@@ -33,6 +33,7 @@
                         <div class="info">
                             <h5>{{ $adminEditData->name }}</h5>
                             <span>{{ $adminEditData->email }}</span>
+                            <span>{{ $adminEditData->phone }}</span>
                         </div>
                     </div>
                 </div>
@@ -46,8 +47,8 @@
                 <div class="box-head">
                     <h4 class="title">Editeaza Profil Admin</h4>
                 </div>
+                {{-- formular de actualizare date admin pe ruta admin.profile.store cu enctype="multipart/form-data pentru lucrul cu imagini si @csrf --}}
                 <div class="box-body">
-                    {{-- formular de actualizare date admin enctype="multipart/form-data pentru lucrul cu imagini si @csrf --}}
                     <form method="POST" action="{{ route('admin.profile.store') }}" enctype="multipart/form-data">
                         @csrf
                         <div class="row mbn-20">

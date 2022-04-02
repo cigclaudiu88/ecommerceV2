@@ -31,6 +31,7 @@
                         <div class="info">
                             <h5>{{ $adminData->name }}</h5>
                             <span>{{ $adminData->email }}</span>
+                            <span>{{ $adminData->phone }}</span>
                             {{-- adaugat ruta admin.profile.edit --}}
                             <a href="{{ route('admin.profile.edit') }}" class="button mt-10"><strong>Edit
                                     Profil</strong></a>

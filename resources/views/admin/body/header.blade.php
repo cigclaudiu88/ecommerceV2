@@ -239,7 +239,7 @@
                              </div>
 
                          </li> --}}
-
+                         {{-- preluam in $adminData datele din tabelul admins --}}
                          @php
                              $adminData = DB::table('admins')->first();
                          @endphp
@@ -249,7 +249,8 @@
                              <a class="toggle" href="#">
                                  <span class="user">
                                      <span class="avatar">
-                                         {{-- daca adminul nu are imagine de profil se seteaza automat cu imaginea de profil din upload/default_profile.png --}}
+                                         {{-- daca adminul nu are imagine de profil se seteaza automat cu imaginea de profil default din upload/default_profile.png --}}
+                                         {{-- daca adminul are imagine de profil se seteaza acea imagine --}}
                                          <img src="{{ !empty($adminData->profile_photo_path)? url('upload/admin_images/' . $adminData->profile_photo_path): url('upload/default_profile.png') }}"
                                              alt="">
                                          <span class="status"></span>

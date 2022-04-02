@@ -80,6 +80,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
     // 7. Admin Profile & Image Update Part 2
     // 7. Admin Profile & Image Update Part 4
+    // ruta de actualizare date admin
     Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
     // 7. Admin Profile & Image Update Part 4
     // 11. Admin Profile Change Password Part 1
