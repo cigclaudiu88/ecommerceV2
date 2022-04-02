@@ -21,33 +21,46 @@
             </div>
             {{-- formular de actualizare date admin pe ruta admin.profile.store cu enctype="multipart/form-data pentru lucrul cu imagini si @csrf --}}
             <div class="box-body">
-                <form method="" action="">
+                <form method="POST" action="{{ route('admin.update.password') }}">
                     @csrf
                     <div class="row mbn-20">
 
                         <div class="col-12 mb-20">
-                            <label for="name">Nume</label>
-                            <input type="text" name="name" class="form-control" placeholder="Nume">
+                            <label for="current_password"> <strong>Parola Curenta</strong></label>
+                            <input type="password" name="current_password" id="current_password" type="text"
+                                class="form-control">
+                            @error('old_password')
+                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                            @enderror
                         </div>
 
                         <div class="col-12 mb-20">
-                            <label for="email">Adresa Email</label>
-                            <input type="email" name="email" class="form-control" placeholder="Email">
+                            <label for="password"><strong>Parola Nou</strong>a</label>
+                            <input type="password" name="password" id="password" type="text" class="form-control">
+                            @error('password')
+                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                            @enderror
                         </div>
 
                         <div class="col-12 mb-20">
-                            <label for="phone">Telefon</label>
-                            <input type="text" name="phone" class="form-control" placeholder="Telefon">
+                            <label for="password_confirmation"><strong>Confirmare Parola Noua</strong></label>
+                            <input type="password" name="password_confirmation" id="password_confirmation" type="text"
+                                class="form-control">
+                            @error('password_confirmation')
+                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                            @enderror
                         </div>
 
 
                         <div class="col-12 mb-20">
                             <input type="submit" value="Actualizeaza" class="button button-primary">
+                            <a href="{{ url('/admin/dashboard') }}"><button class="button button-danger">Anuleaza
+                                </button></a>
                         </div>
                     </div>
                 </form>
 
-                <a href="{{ url('/admin/dashboard') }}"><button class="button button-danger">Anuleaza </button></a>
+
 
             </div>
         </div>

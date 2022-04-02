@@ -5,6 +5,10 @@ namespace App\Http\Controllers\Backend;
 use App\Models\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+// pentru actualizare parola avem nevoie de Auth si Hash
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use App\Http\Requests\AdminPasswordRequest;
 
 class AdminProfileController extends Controller
 {
@@ -68,5 +72,57 @@ class AdminProfileController extends Controller
     {
         // returnam view-ul admin_change_password.php
         return view('admin.password.admin_change_password');
+    }
+
+    public function AdminUpdatePassword(Request $request)
+    {
+
+        $request->validate(
+            [
+                // valoarea campului parola curenta din formular trebuie sa fie egala cu valoarea din tabela admins
+                'current_password' => 'required',
+                // valoarea campului parola noua din formular trebuie fie diferita de valoarea parolei curente din tabela admins si acceasi cu parola curenta
+                'password' => 'required|confirmed|min:6|different:current_password',
+                // valoarea campului confirmare parola noua din formular trebuie sa fie egala cu valoarea campului parola noua din formular
+                'password_confirmation' => 'required|min:6|different:current_password',
+            ],
+
+            [
+                //mesaje speciale daca campurile sunt goale
+                'current_password.required' => 'Parola curenta nu este corecta!',
+                'password.required' => 'Parola noua si confirmare parola nu sunt identice!',
+                'password_confirmation.required' => 'Parola noua si confirmare parola nu sunt identice!',
+
+                //mesaje speciale daca campurile parola noua si confirmare parola nu sunt identice
+                'password.confirmed' => 'Parola noua si confirmare parola nu sunt identice!',
+                'password_confirmation.confirmed' => 'Parola noua si confirmare parola nu sunt identice!',
+
+                //mesaje speciale daca campurile parola noua si confirmare parola au mai putin de 6 caractere
+                'password.min' => 'Parola trebuie sa contina minim 6 caractere!',
+                'password_confirmation.min' => 'Parola trebuie sa contina minim 6 caractere!',
+
+                // mesaje speciale daca campurile parola noua si confirmare parola sunt identice cu parola curenta
+                'password.different' => 'Parola noua trebuie sa fie diferita de parola curenta!',
+                'password_confirmation.different' => 'Parola noua confirmata trebuie sa fie diferita de parola curenta!',
+            ]
+        );
+        // $hashedPassword preia valoarea din tabela admins din campul password folosind modelul Admin
+        $hashedPassword = Admin::find(1)->password;
+        // daca parola introdusa in campul parola curenta din formular corespunde cu parola din tabela admins
+        if (Hash::check($request->current_password, $hashedPassword)) {
+            // $adminData preia datele din tabela admins primul rand
+            $admin = Admin::find(1);
+            // valoarea campului password din tabela admins va fi egal cu valoarea hash-uita din campul password din formular folosind functia bcrypt
+            $admin->password = Hash::make($request->password);
+            // salvam datele in tabela admins
+            $admin->save();
+            // logout admin
+            Auth::logout();
+            // returnam view-ul admin_login.php
+            return redirect()->route('admin.logout');
+        } else {
+            // redirectionam admin-ul la pagina precedenta
+            return redirect()->back();
+        }
     }
 }

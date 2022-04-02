@@ -86,6 +86,7 @@ Route::middleware(['auth:admin'])->group(function () {
     // 11. Admin Profile Change Password Part 1
     // ruta de modificare parola admin
     Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
+    // ruta de actualizare parola admin
     Route::post('/admin/update/password', [AdminProfileController::class, 'AdminUpdatePassword'])->name('admin.update.password');
     // 11. Admin Profile Change Password Part 1
 }); // end Middleware Admin
