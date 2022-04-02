@@ -1,15 +1,16 @@
  <!-- Header Section Start -->
-
  <div class="container-fluid">
      <div class="row justify-content-between align-items-center">
 
          <!-- Header Logo (Header Left) Start -->
          <div class="header-logo col-auto">
-             <a href="index.html">
-                 {{-- <img src="{{ asset('backend/images/logo/logo.png') }}" alt=""> --}}
-                 {{-- <img src="{{ asset('backend/images/logo/logo-light.png') }}" class="logo-light" alt=""> --}}
+             {{-- <a href="index.html">
+                 <img src="{{ asset('backend/images/logo/logo.png') }}" alt="">
+                 <img src="{{ asset('backend/images/logo/logo-light.png') }}" class="logo-light" alt="">
+             </a> --}}
+             <a href="{{ url('/admin/dashboard') }}">
+                 <h3>eShop Admin Dashboard</h3>
              </a>
-             <h3>eShop Admin Dashboard</h3>
          </div><!-- Header Logo (Header Left) End -->
 
          <!-- Header Right Start -->
@@ -239,27 +240,35 @@
 
                          </li> --}}
 
+                         @php
+                             $adminData = DB::table('admins')->first();
+                         @endphp
+
                          <!--User-->
                          <li class="adomx-dropdown col-auto">
                              <a class="toggle" href="#">
                                  <span class="user">
                                      <span class="avatar">
-                                         <img src="{{ asset('backend/images/avatar/avatar-1.jpg') }}" alt="">
+                                         {{-- daca adminul nu are imagine de profil se seteaza automat cu imaginea de profil din upload/default_profile.png --}}
+                                         <img src="{{ !empty($adminData->profile_photo_path)? url('upload/admin_images/' . $adminData->profile_photo_path): url('upload/default_profile.png') }}"
+                                             alt="">
                                          <span class="status"></span>
                                      </span>
-                                     <span class="name">Madison Howard</span>
+                                     <span class="name">{{ $adminData->name }}</span>
                                  </span>
                              </a>
 
                              <!-- Dropdown -->
                              <div class="adomx-dropdown-menu dropdown-menu-user">
                                  <div class="head">
-                                     <h5 class="name"><a href="#">Madison Howard</a></h5>
-                                     <a class="mail" href="#">mailnam@mail.com</a>
+                                     <h5 class="name"><a href="#">{{ $adminData->name }}</a></h5>
+                                     <a class="mail" href="#">{{ $adminData->email }}</a>
                                  </div>
                                  <div class="body">
                                      <ul>
-                                         <li><a href="#"><i class="zmdi zmdi-account"></i>Profile</a></li>
+                                         {{-- Adaugat admin.profile route --}}
+                                         <li><a href="{{ route('admin.profile') }}"><i
+                                                     class="zmdi zmdi-account"></i>Profile</a></li>
                                          <li><a href="#"><i class="zmdi zmdi-email-open"></i>Inbox</a></li>
                                          <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>Activity</a>
                                          </li>

@@ -72,6 +72,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/logout', [AdminController::class, 'destroy'])->name('admin.logout');
     // 3. Admin Logout Option
     // 6. Admin Profile & Image Update Part 1
+    // adaugat ruta pentru a afisa paginii profilului admin
     Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
     // 6. Admin Profile & Image Update Part 1
     // 7. Admin Profile & Image Update Part 2
