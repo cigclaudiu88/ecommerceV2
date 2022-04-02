@@ -31,7 +31,9 @@
                         <div class="info">
                             <h5>{{ $adminData->name }}</h5>
                             <span>{{ $adminData->email }}</span>
-                            <button class="btn btn-danger mt-5">Edit Profil</button>
+                            {{-- adaugat ruta admin.profile.edit --}}
+                            <a href="{{ route('admin.profile.edit') }}" class="button mt-10"><strong>Edit
+                                    Profil</strong></a>
                             {{-- <a href="#" class="edit"><i class="zmdi zmdi-edit"></i></a> --}}
                         </div>
                     </div>

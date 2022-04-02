@@ -76,6 +76,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::get('/admin/profile', [AdminProfileController::class, 'AdminProfile'])->name('admin.profile');
     // 6. Admin Profile & Image Update Part 1
     // 7. Admin Profile & Image Update Part 2
+    // ruta de editare a profilului admin
     Route::get('/admin/profile/edit', [AdminProfileController::class, 'AdminProfileEdit'])->name('admin.profile.edit');
     // 7. Admin Profile & Image Update Part 2
     // 7. Admin Profile & Image Update Part 4
