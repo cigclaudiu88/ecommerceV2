@@ -84,6 +84,7 @@ Route::middleware(['auth:admin'])->group(function () {
     Route::post('/admin/profile/store', [AdminProfileController::class, 'AdminProfileStore'])->name('admin.profile.store');
     // 7. Admin Profile & Image Update Part 4
     // 11. Admin Profile Change Password Part 1
+    // ruta de modificare parola admin
     Route::get('/admin/change/password', [AdminProfileController::class, 'AdminChangePassword'])->name('admin.change.password');
     Route::post('/admin/update/password', [AdminProfileController::class, 'AdminUpdatePassword'])->name('admin.update.password');
     // 11. Admin Profile Change Password Part 1

@@ -270,6 +270,9 @@
                                          {{-- Adaugat admin.profile route --}}
                                          <li><a href="{{ route('admin.profile') }}"><i
                                                      class="zmdi zmdi-account"></i>Profile</a></li>
+                                         {{-- adaugat admin.change.password route --}}
+                                         <li><a href="{{ route('admin.change.password') }}"><i
+                                                     class="zmdi zmdi-account"></i>Modifica Parola</a></li>
                                          <li><a href="#"><i class="zmdi zmdi-email-open"></i>Inbox</a></li>
                                          <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>Activity</a>
                                          </li>
