@@ -104,6 +104,7 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 })->name('dashboard');
 // Home Page route
 // 1. Frontend Template Setup Part 1
+// frontpage home route
 Route::get('/', [IndexController::class, 'index']);
 // 1. Frontend Template Setup Part 1
 // 2. User Profile Design Part 2
