@@ -9,7 +9,7 @@
                     <li><a href="index-crypto.html"><span>Cryptocurrency</span></a></li>
                 </ul>
             </li>
-            <li><a href="widgets.html"><i class="ti-palette"></i> <span>Widgets</span></a></li>
+
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
                         Elements</span></a>
                 <ul class="side-header-sub-menu">
