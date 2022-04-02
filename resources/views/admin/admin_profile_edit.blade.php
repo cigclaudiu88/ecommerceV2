@@ -78,7 +78,7 @@
 
                             <div class="col-12 mb-20">
                                 <img id="showImage"
-                                    src="{{ !empty($adminData->profile_photo_path)? url('upload/admin_images/' . $adminData->profile_photo_path): url('upload/default_profile.png') }}"
+                                    src="{{ !empty($adminEditData->profile_photo_path)? url('upload/admin_images/' . $adminEditData->profile_photo_path): url('upload/default_profile.png') }}"
                                     style="width: 100px; height: 100px;" alt="">
                             </div>
 

@@ -53,7 +53,13 @@ class AdminProfileController extends Controller
         }
         // salvam datele din tabela admins
         $data->save();
-        // returnam la view-ul admin_profile_view.blade.php
-        return redirect()->route('admin.profile');
+
+        // adaugam notificare cu Toastr
+        $notification = array(
+            'message' => 'Admin Profile Updated Succesfully',
+            'alert-type' => 'success'
+        );
+        // returnam view-ul admin_profile_edit.php cu notificare Toastr
+        return redirect()->route('admin.profile')->with($notification);
     }
 }
