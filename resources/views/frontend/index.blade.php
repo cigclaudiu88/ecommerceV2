@@ -1,5 +1,6 @@
 @extends('frontend.main_master')
 @section('content')
+    <!-- Content Section End -->
     <!-- Hero Section Begin -->
     <!-- <section class="hero"> -->
     <div class="container">
@@ -595,4 +596,5 @@
         </div>
     </section>
     <!-- Blog Section End -->
+    <!-- Content Section End -->
 @endsection

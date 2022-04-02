@@ -2641,7 +2641,7 @@ ol {
 
 .footer__about ul li {
   font-size: 16px;
-  color: #1c1c1c;
+  color: #ffffff;
   line-height: 36px;
   list-style: none;
 }
@@ -2660,7 +2660,7 @@ ol {
 }
 
 .footer__widget h6 {
-  color: #1c1c1c;
+  color: #ffffff;
   font-weight: 700;
   margin-bottom: 10px;
 }
@@ -2675,14 +2675,14 @@ ol {
 }
 
 .footer__widget ul li a {
-  color: #1c1c1c;
+  color: #ffffff;
   font-size: 14px;
   line-height: 32px;
 }
 
 .footer__widget p {
   font-size: 14px;
-  color: #1c1c1c;
+  color: #ffffff;
   margin-bottom: 30px;
 }
 
@@ -2695,7 +2695,7 @@ ol {
   width: 100%;
   font-size: 16px;
   padding-left: 20px;
-  color: #1c1c1c;
+  color: #ffffff;
   height: 46px;
   border: 1px solid #ededed;
 }
