@@ -266,7 +266,9 @@
                                      </ul>
                                      <ul>
                                          <li><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></li>
-                                         <li><a href="#"><i class="zmdi zmdi-lock-open"></i>Sing out</a>
+                                         {{-- Adaugat log out route --}}
+                                         <li><a href="{{ route('admin.logout') }}"><i
+                                                     class="zmdi zmdi-lock-open"></i>Log out</a>
                                          </li>
                                      </ul>
                                      <ul>
