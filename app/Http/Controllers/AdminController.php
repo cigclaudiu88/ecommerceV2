@@ -48,7 +48,7 @@ class AdminController extends Controller
     // 8. Laravel 8 Multi Auth Part 1
     public function loginForm()
     {
-        return view('auth.login', ['guard' => 'admin']);
+        return view('auth.admin_login', ['guard' => 'admin']);
     }
     // 8. Laravel 8 Multi Auth Part 1
 
