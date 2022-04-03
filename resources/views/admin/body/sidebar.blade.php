@@ -5,7 +5,7 @@
             <li class="has-sub-menu"><a href="#"><i class="ti-home"></i>
                     <span>Brands</span></a>
                 <ul class="side-header-sub-menu">
-                    <li><a href="index.html"><span>Branduri</span></a></li>
+                    <li><a href="{{ route('all.brand') }}"><span>Branduri</span></a></li>
                     <li><a href="index-crypto.html"><span>Cryptocurrency</span></a></li>
                 </ul>
             </li>

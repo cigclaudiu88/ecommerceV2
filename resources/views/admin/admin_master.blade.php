@@ -98,6 +98,10 @@
     <script src="{{ asset('backend/js/plugins/vmap/maps/samples/jquery.vmap.sampledata.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/vmap/vmap.active.js') }}"></script>
 
+    <!-- Data Tables JS -->
+    <script src="{{ asset('backend/js/plugins/datatables/datatables.min.js') }}"></script>
+    <script src="{{ asset('backend/js/plugins/datatables/datatables.active.js') }}"></script>
+
     <!--Toastr Alerts-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 

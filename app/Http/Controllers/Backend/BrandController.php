@@ -11,7 +11,7 @@ class BrandController extends Controller
 {
     public function BrandView()
     {
-        // $brand preia ultimele date din tabelul brands folosind modelul Brand cu fuctia get()
+        // $brand preia ultimele date din tabelul brands folosind modelul Brand cu functia get()
         $brands = Brand::latest()->get();
         // returns this view resources\views\backend\brand\brand_view.blade.php with $brands data
         return view('backend.brand.brand_view', compact('brands'));
