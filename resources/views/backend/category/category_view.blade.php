@@ -28,7 +28,8 @@
                                         {{-- adaugat ruta de editare categorie --}}
                                         <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info">Edit</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -105,4 +105,22 @@ class CategoryController extends Controller
         // redirectionam la aceeasi pagina cu mesajul $notification
         return redirect()->route('all.category')->with($notification);
     }
+
+    // functia de stergere categorie de produse in tabelul categories
+    public function CategoryDelete($id)
+    {
+        // $category preia datele din tabelul categories folosind modelul Category si functia findOrFail() pe id-ul categoriei de produse primit ca parametru
+        $category = Category::findOrFail($id);
+
+        // se sterge din tabelul categories datele aferente id-ului primit ca parametru
+        Category::findorFail($id)->delete();
+
+        // adaugam notificare de succes la stergerea categoriei de produse
+        $notification = array(
+            'message' => 'Categoria a fost stearsa cu succes.',
+            'alert-type' => 'warning'
+        );
+        // redirectionam la aceeasi pagina cu mesajul $notification
+        return redirect()->back()->with($notification);
+    }
 }

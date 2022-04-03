@@ -141,7 +141,7 @@ Route::prefix('category')->group(function () {
     Route::get('/edit/{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
     // ruta de actualizare categorii din tabela categories
     Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
-    // ruta de stergere categorii din tabela brands
+    // ruta de stergere categorii din tabela categories
     Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
 
     // All Admin SubCategory All Routes
