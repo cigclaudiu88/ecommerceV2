@@ -26,7 +26,7 @@
                                     <td>{{ $item->category_name }}</td>
                                     <td>
                                         {{-- adaugat ruta de editare categorie --}}
-                                        <a href="" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info">Edit</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
                                         <a href="" class="btn btn-danger" id="delete">Delete</a>
                                     </td>

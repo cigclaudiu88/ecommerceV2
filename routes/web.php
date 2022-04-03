@@ -137,11 +137,11 @@ Route::prefix('category')->group(function () {
     Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
     // ruta de inserare in tabela categories
     Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
-    // ruta de editare branduri din tabela categories
+    // ruta de editare categorii din tabela categories
     Route::get('/edit/{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
     // ruta de actualizare categorii din tabela categories
     Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
-    // ruta de stergere branduri din tabela brands
+    // ruta de stergere categorii din tabela brands
     Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
 
     // All Admin SubCategory All Routes
