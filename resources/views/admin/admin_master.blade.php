@@ -43,6 +43,9 @@
     {{-- Sweet Alert CSS --}}
     <link href="//cdn.jsdelivr.net/npm/@sweetalert2/theme-dark@4/dark.css" rel="stylesheet">
 
+    {{-- FontAwesome CDN --}}
+    <script src="https://kit.fontawesome.com/e4b2d9b481.js" crossorigin="anonymous"></script>
+
 </head>
 
 <body class="skin-dark">

@@ -47,7 +47,7 @@
                 <div class="box-body">
                     {{-- formular de adaugare categorii in tabelul categories folosind ruta category.store si functia CategoryStore() din CategoryController --}}
                     {{-- enctype pentru lucrul cu imagini si protectie csrf --}}
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('category.store') }}">
                         @csrf
                         <div class="row mbn-20">
 
@@ -62,7 +62,7 @@
 
                             <div class="col-12 mb-20">
                                 <label for="category_icon"><strong>Icoana Categorie</strong></label>
-                                <input type="text" name="category_icon" id="imagedisplay" class="form-control"
+                                <input type="text" name="category_icon" id="category_icon" class="form-control"
                                     placeholder="Icoana Categorie">
                                 @error('category_icon')
                                     <span class="text-danger"><strong>{{ $message }}</strong></span>
