@@ -116,7 +116,7 @@
             "newestOnTop": false,
             "progressBar": false,
             "rtl": false,
-            "positionClass": "toast-bottom-full-width",
+            "positionClass": "toast-top-right",
             "preventDuplicates": false,
             "onclick": null,
             "showDuration": 300,
@@ -149,8 +149,6 @@
             }
         @endif
     </script>
-
-
 </body>
 
 </html>

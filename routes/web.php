@@ -96,9 +96,11 @@ Route::middleware(['auth:admin'])->group(function () {
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
     // 3. User Profile Design Part 3
     // $id takes the id DB value for authenticated user
+    // $id preia valoarea id din baza de date pentru utilizatorul autentificat
     $id = Auth::user()->id;
-    // $user finds the $id in the User Model
+    // $user cauta in tabela users in baza de date utilizatorul cu id-ul $id
     $user = User::find($id);
+    // returnam view-ul dashboard pentru utilizatori autentificati
     return view('dashboard', compact('user'));
     // 3. User Profile Design Part 3
 })->name('dashboard');
@@ -114,6 +116,7 @@ Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.l
 Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
 // 2. User Profile Design Part 2
 // 2. User Profile Design Part 3
+// ruta de actualizare date utilizator
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
 // 2. User Profile Design Part 3
 // 5. User Profile¦ Password Change Part 1
