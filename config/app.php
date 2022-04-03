@@ -166,6 +166,10 @@ return [
          * Package Service Providers...
          */
 
+        // Install Image Intervention Package 
+        Intervention\Image\ImageServiceProvider::class,
+        // Install Image Intervention Package
+
         /*
          * Application Service Providers...
          */
@@ -231,6 +235,9 @@ return [
         'URL' => Illuminate\Support\Facades\URL::class,
         'Validator' => Illuminate\Support\Facades\Validator::class,
         'View' => Illuminate\Support\Facades\View::class,
+        // Install Image Intervention Package 
+        'Image' => Intervention\Image\Facades\Image::class,
+        // Install Image Intervention Package 
 
     ],
 

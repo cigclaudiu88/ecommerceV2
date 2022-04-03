@@ -116,13 +116,11 @@ Route::get('/user/change/password', [IndexController::class, 'UserChangePassword
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.profile.password.update');
 
 
-// Admin Brand Grup Rute
-// 1. Brand Page Design Part 1
+// Admin Brand Rute Grupate si prefixate cu brand
 Route::prefix('brand')->group(function () {
     // ruta pentru afisarea tuturor brandurilor
     Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
-    // 3. Brand Page Design Part 3
-    // Brand Store route
+    // ruta de inserare in tabela branduri
     Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
     // 3. Brand Page Design Part 3
     // 7. Brand Crud Part 2
