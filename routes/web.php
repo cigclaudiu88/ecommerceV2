@@ -131,26 +131,18 @@ Route::prefix('brand')->group(function () {
 });
 
 
-// Admin Category All Routes Group
-// 1. Category Crud Part 1
+// Admin Categorii Rute Grupate si prefixate cu category
 Route::prefix('category')->group(function () {
-    // Display All Category Route
+    // ruta pentru afisarea tuturor categoriilor
     Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
-    // 2. Category Crud Part 2
-    // Category Store route
+    // ruta de inserare in tabela categories
     Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
-    // 2. Category Crud Part 2
-    // 3. Category Crud Part 3
-    // Edit Category Route
+    // ruta de editare branduri din tabela categories
     Route::get('/edit/{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
-    // Update Category Route
+    // ruta de actualizare categorii din tabela categories
     Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
-    // 3. Category Crud Part 3
-    // 4. Category Crud Part 4
-    // Category Delete Route
+    // ruta de stergere branduri din tabela brands
     Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
-    // 4. Category Crud Part 4
-    // 1. Category Crud Part 1
 
     // All Admin SubCategory All Routes
 

@@ -8,6 +8,7 @@ $route = Route::current()->getName();
 
     <nav class="side-header-menu" id="side-header-menu">
         <ul>
+            {{-- sectiune meniu navigare admin branduri incepe --}}
             {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
             <li class="{{ $route == 'dashboard' ? 'active' : '' }}"><a href="{{ url('admin/dashboard') }}"><i
                         class="ti-home"></i>
@@ -18,9 +19,21 @@ $route = Route::current()->getName();
                     <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}"><a
                             href="{{ route('all.brand') }}"><span>Management Branduri </span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
-                    <li><a href="index-crypto.html"><span>Cryptocurrency</span></a></li>
                 </ul>
             </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
+
+            {{-- sectiune meniu navigare admin categorii incepe --}}
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="treeview {{ $prefix == '/category' ? 'active' : '' }}"><a href="#"><i class="ti-home"></i>
+                    <span>Categorii Produse</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}"><a
+                            href="{{ route('all.category') }}"><span>Management Categorii </span></a></li>
+                    {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin categorii termina --}}
 
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
                         Elements</span></a>
