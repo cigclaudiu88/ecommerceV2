@@ -35,6 +35,11 @@
     <!-- Toaster CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
+    {{-- jQuerry CDN link pentru scriptul de vizualizare imagine inserata in formulare --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 </head>
 
 <body class="skin-dark">
@@ -120,7 +125,7 @@
             "newestOnTop": false,
             "progressBar": false,
             "rtl": false,
-            "positionClass": "toast-top-right",
+            "positionClass": "toast-top-center",
             "preventDuplicates": false,
             "onclick": null,
             "showDuration": 300,
@@ -153,6 +158,20 @@
             }
         @endif
     </script>
+
+    {{-- javascript pentru a afisa imaginea selectata de profil inainte de inserare --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            $('#imagedisplay').change(function(e) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#showImage').attr('src', e.target.result);
+                }
+                reader.readAsDataURL(e.target.files['0']);
+            });
+        });
+    </script>
+
 </body>
 
 </html>

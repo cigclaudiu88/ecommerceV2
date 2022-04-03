@@ -124,9 +124,9 @@ Route::prefix('brand')->group(function () {
     Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
     // 3. Brand Page Design Part 3
     // 7. Brand Crud Part 2
-    // Edit Brand Route
+    // ruta de editare branduri din tabela brands
     Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
-    // Update Brand Route
+    // ruta de actualizare branduri din tabela brands
     Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
     // 7. Brand Crud Part 2
     // 8. Brand Crud Part 3 Delete With Sweelalert Alert 2 
