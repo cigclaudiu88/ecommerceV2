@@ -13,15 +13,16 @@
                         <div class="dashboard_tab_button">
                             <ul role="tablist" class="nav flex-column dashboard-list" id="nav-tab">
                                 <li><a href="#dashboard" data-toggle="tab" class="nav-link active">Acasa</a></li>
-                                <li><a href="#account-details" data-toggle="tab" class="nav-link">Detalii Cont</a>
+                                <li><a href="#" data-toggle="tab" class="nav-link">Detalii
+                                        Cont</a>
                                 </li>
                                 <li><a href="#account-password" data-toggle="tab" class="nav-link">Schimba Parola</a>
                                 </li>
                                 <li> <a href="#orders" data-toggle="tab" class="nav-link">Istoric Comenzi</a></li>
                                 <li><a href="#downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>
                                 <li><a href="#address" data-toggle="tab" class="nav-link">Adrese</a></li>
-
-                                <li><a href="login.html" class="nav-link">logout</a></li>
+                                {{-- adaugat ruta de logout --}}
+                                <li><a href="{{ route('user.logout') }}" class="nav-link">logout</a></li>
                             </ul>
                         </div>
                     </div>

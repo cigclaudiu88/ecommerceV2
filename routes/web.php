@@ -108,7 +108,9 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 Route::get('/', [IndexController::class, 'index']);
 // 1. Frontend Template Setup Part 1
 // 2. User Profile Design Part 2
+// ruta de logout utlizator
 Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
+// ruta de date profil  - momentan inactiva - totul merge prin /dashboard
 Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
 // 2. User Profile Design Part 2
 // 2. User Profile Design Part 3
