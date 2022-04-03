@@ -1,11 +1,23 @@
+@php
+// $prefix preia prefixul rutei
+$prefix = Request::route()->getPrefix();
+// $route preia numele rutei curente
+$route = Route::current()->getName();
+@endphp
 <div class="side-header-inner custom-scroll">
 
     <nav class="side-header-menu" id="side-header-menu">
         <ul>
-            <li class="has-sub-menu"><a href="#"><i class="ti-home"></i>
-                    <span>Brands</span></a>
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="{{ $route == 'dashboard' ? 'active' : '' }}"><a href="{{ url('admin/dashboard') }}"><i
+                        class="ti-home"></i>
+                    <span>Dashboard</span></a>
+            <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}"><a href="#"><i class="ti-home"></i>
+                    <span>Branduri</span></a>
                 <ul class="side-header-sub-menu">
-                    <li><a href="{{ route('all.brand') }}"><span>Branduri</span></a></li>
+                    <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}"><a
+                            href="{{ route('all.brand') }}"><span>Management Branduri </span></a></li>
+                    {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                     <li><a href="index-crypto.html"><span>Cryptocurrency</span></a></li>
                 </ul>
             </li>
