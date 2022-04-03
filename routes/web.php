@@ -122,19 +122,14 @@ Route::prefix('brand')->group(function () {
     Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
     // ruta de inserare in tabela branduri
     Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
-    // 3. Brand Page Design Part 3
-    // 7. Brand Crud Part 2
     // ruta de editare branduri din tabela brands
     Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
     // ruta de actualizare branduri din tabela brands
     Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
-    // 7. Brand Crud Part 2
-    // 8. Brand Crud Part 3 Delete With Sweelalert Alert 2 
-    // Brand Delete Route
+    // ruta de stergere branduri din tabela brands
     Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
-    // 8. Brand Crud Part 3 Delete With Sweelalert Alert 2
 });
-// 1. Brand Page Design Part 1
+
 
 // Admin Category All Routes Group
 // 1. Category Crud Part 1

@@ -30,8 +30,11 @@
                                             alt="">
                                     </td>
                                     <td>
+                                        {{-- adaugat ruta de editare brand --}}
                                         <a href="{{ route('brand.edit', $item->id) }}" class="btn btn-info">Edit</a>
-                                        <a href="" class="btn btn-danger">Delete</a>
+                                        {{-- adaugat ruta de stergere brand cu id="delete" pentru scriptul de sweetalert --}}
+                                        <a href="{{ route('brand.delete', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
@@ -65,10 +68,15 @@
 
                             <div class="col-12 mb-20">
                                 <label for="brand_image"><strong>Poza Brand</strong></label>
-                                <input type="file" name="brand_image" id="brand_image" class="form-control">
+                                <input type="file" name="brand_image" id="imagedisplay" class="form-control">
                                 @error('brand_image')
                                     <span class="text-danger"><strong>{{ $message }}</strong></span>
                                 @enderror
+                            </div>
+
+                            {{-- afisam imaginea salvata in tabela brands --}}
+                            <div class="col-12 mb-20">
+                                <img src="" alt="" id="showImage">
                             </div>
 
                             <div class="col-12 mb-20">

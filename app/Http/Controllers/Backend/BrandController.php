@@ -150,4 +150,26 @@ class BrandController extends Controller
             return redirect()->route('all.brand')->with($notification);
         }
     }
+    // functia de stergere branduri din tabelul brands pe pagina resources\views\backend\brand\brand_view.blade.php
+    public function BrandDelete($id)
+    {
+        // $brand cauta id-ul brandului care trebuie sters din tabelul brands folosind modelul Brand
+        $brand = Brand::findOrFail($id);
+        // $img preia imaginea brandului care trebuie stearsa din folderul upload/brand/ salvat in variabila $brand
+        $img = $brand->brand_image;
+        // stergem imaginea din folderul upload/brand/ salvata in variabila $img
+        unlink($img);
+
+        // stergem brandul din tabelul brands cu id-ul brandului care trebuie sters gasit prin modelul Brand
+        Brand::findorFail($id)->delete();
+
+        // Adaugat notificare Toastr
+        $notification = array(
+            'message' => 'Brandul a fost sters!',
+            'alert-type' => 'warning'
+        );
+
+        // redirect spre ruta all.branduri (vizualizare branduri) cu mesajul de succes
+        return redirect()->route('all.brand')->with($notification);
+    }
 }
