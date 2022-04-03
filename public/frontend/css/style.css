@@ -3558,3 +3558,87 @@ a {
   background: #7fad39;
   color: #fff;
 }
+/* ---------------------------------------------------------------------------- User Profile CSS Starts ---------------------------------------------------------------------------- */
+
+.main_content_area {
+  padding: 70px 0 65px;
+}
+@media only screen and (max-width: 767px) {
+  .main_content_area {
+    padding: 60px 0 53px;
+  }
+}
+
+@media only screen and (max-width: 767px) {
+  .dashboard_tab_button {
+    margin-bottom: 20px;
+  }
+}
+.dashboard_tab_button ul li {
+  margin-bottom: 5px;
+}
+.dashboard_tab_button ul li a {
+  font-size: 14px;
+  color: #ffffff;
+  font-weight: 500;
+  text-transform: capitalize;
+  background: #222222;
+  border-radius: 3px;
+}
+.dashboard_tab_button ul li a:hover {
+  background: #7fad39;
+  color: #ffffff;
+}
+.dashboard_tab_button ul li a.active {
+  background: #7fad39;
+}
+
+dashboard_tab_button .account_login_form form input {
+  border: 1px solid #ddd;
+  background: none;
+  height: 40px;
+  margin-bottom: 20px;
+  width: 100%;
+  padding: 0 20px;
+  color: #222222;
+}
+
+.tab-content > .tab-pane.active {
+  display: block;
+  height: auto;
+  opacity: 1;
+  overflow: visible;
+}
+
+.tab-content > .tab-pane {
+  display: block;
+  height: 0;
+  opacity: 0;
+  overflow: hidden;
+}
+
+.dashboard_content h3 {
+  font-size: 22px;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 15px;
+}
+.dashboard_content h4 {
+  font-size: 20px;
+  text-transform: capitalize;
+  font-weight: 500;
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+.dashboard_content button {
+  color: #7fad39;
+  font-weight: 500;
+  border: 0;
+  background: inherit;
+}
+.dashboard_content p a {
+  color: #7fad39;
+  font-weight: 500;
+}
+
+/* ---------------------------------------------------------------------------- User Profile CSS Ends ---------------------------------------------------------------------------- */
