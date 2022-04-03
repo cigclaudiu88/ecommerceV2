@@ -94,44 +94,32 @@ Route::middleware(['auth:admin'])->group(function () {
 // User All Routes
 // Laravel Jetstream Default User Authentification route
 Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function () {
-    // 3. User Profile Design Part 3
-    // $id takes the id DB value for authenticated user
     // $id preia valoarea id din baza de date pentru utilizatorul autentificat
     $id = Auth::user()->id;
     // $user cauta in tabela users in baza de date utilizatorul cu id-ul $id
     $user = User::find($id);
     // returnam view-ul dashboard pentru utilizatori autentificati
     return view('dashboard', compact('user'));
-    // 3. User Profile Design Part 3
 })->name('dashboard');
 // Home Page route
-// 1. Frontend Template Setup Part 1
 // frontpage home route
 Route::get('/', [IndexController::class, 'index'])->name('welcome');
-// 1. Frontend Template Setup Part 1
-// 2. User Profile Design Part 2
 // ruta de logout utlizator
 Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
 // ruta de date profil
 Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
-// 2. User Profile Design Part 2
-// 2. User Profile Design Part 3
 // ruta de actualizare date utilizator
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
-// 2. User Profile Design Part 3
-// 5. User Profile¦ Password Change Part 1
 // ruta de schimbare parola profil utilizator
 Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
-// 5. User Profile¦ Password Change Part 1
-// 5. User Profile¦ Password Change Part 2
 // ruta de actualizare parola profil utilizator 
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.profile.password.update');
-// 5. User Profile¦ Password Change Part 2
 
-// Admin Brand All Routes Group
+
+// Admin Brand Grup Rute
 // 1. Brand Page Design Part 1
 Route::prefix('brand')->group(function () {
-    // Display All Brands Route
+    // ruta pentru afisarea tuturor brandurilor
     Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
     // 3. Brand Page Design Part 3
     // Brand Store route
