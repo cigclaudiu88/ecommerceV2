@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
-    <title>eShop Admin Login</title>
+    <title>eShop Autentificare</title>
     <meta name="robots" content="noindex, follow" />
     <meta name="description" content="">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
@@ -48,8 +48,7 @@
                         <div class="login-register-form-wrap">
 
                             <div class="content">
-                                <h1>Sign in</h1>
-                                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                                <h1>Autentificare</h1>
                             </div>
 
                             <div class="login-register-form">
@@ -63,18 +62,19 @@
                                                 id="password" name="password" placeholder="Password"></div>
                                         <div class="col-12 mb-20"><label for="remember"
                                                 class="adomx-checkbox-2"><input id="remember" type="checkbox"><i
-                                                    class="icon"></i>Remember.</label></div>
+                                                    class="icon"></i>Tine-ma minte.</label></div>
                                         <div class="col-12">
                                             <div class="row justify-content-between">
                                                 <div class="col-auto mb-15"><a
-                                                        href="{{ route('password.request') }}">Forgot Password?</a>
+                                                        href="{{ route('password.request') }}">Ai uitat parola?</a>
                                                 </div>
-                                                <div class="col-auto mb-15">Dont have account? <a
-                                                        href="register.html">Create Now.</a></div>
+                                                <div class="col-auto mb-15">Nu ai cont? <a
+                                                        href="{{ route('register') }}">Creaza unul acum!</a></div>
                                             </div>
                                         </div>
                                         <div class="col-12 mt-10"><button
-                                                class="button button-primary button-outline">sign in</button></div>
+                                                class="button button-primary button-outline">Autentificare</button>
+                                        </div>
                                     </div>
                                 </form>
                             </div>

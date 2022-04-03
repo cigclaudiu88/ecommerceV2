@@ -1,60 +1,142 @@
-<x-guest-layout>
-    <x-jet-authentication-card>
-        <x-slot name="logo">
-            <x-jet-authentication-card-logo />
-        </x-slot>
+<!doctype html>
+<html class="no-js" lang="en">
 
-        <x-jet-validation-errors class="mb-4" />
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+    <title>eShop Autentificare</title>
+    <meta name="robots" content="noindex, follow" />
+    <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <!-- Favicon -->
+    <link rel="shortcut icon" type="image/x-icon" href="{{ asset('backend/images/favicon.ico') }}">
 
-        <form method="POST" action="{{ route('register') }}">
-            @csrf
+    <!-- CSS
+ ============================================ -->
 
-            <div>
-                <x-jet-label for="name" value="{{ __('Name') }}" />
-                <x-jet-input id="name" class="block mt-1 w-full" type="text" name="name" :value="old('name')" required autofocus autocomplete="name" />
-            </div>
+    <!-- Bootstrap CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/vendor/bootstrap.min.css') }}">
 
-            <div class="mt-4">
-                <x-jet-label for="email" value="{{ __('Email') }}" />
-                <x-jet-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required />
-            </div>
+    <!-- Icon Font CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/vendor/material-design-iconic-font.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/vendor/font-awesome.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/vendor/themify-icons.css') }}">
+    <link rel="stylesheet" href="{{ asset('backend/css/vendor/cryptocurrency-icons.css') }}">
 
-            <div class="mt-4">
-                <x-jet-label for="password" value="{{ __('Password') }}" />
-                <x-jet-input id="password" class="block mt-1 w-full" type="password" name="password" required autocomplete="new-password" />
-            </div>
+    <!-- Plugins CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/plugins/plugins.css') }}">
 
-            <div class="mt-4">
-                <x-jet-label for="password_confirmation" value="{{ __('Confirm Password') }}" />
-                <x-jet-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required autocomplete="new-password" />
-            </div>
+    <!-- Helper CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/helper.css') }}">
 
-            @if (Laravel\Jetstream\Jetstream::hasTermsAndPrivacyPolicyFeature())
-                <div class="mt-4">
-                    <x-jet-label for="terms">
-                        <div class="flex items-center">
-                            <x-jet-checkbox name="terms" id="terms"/>
+    <!-- Main Style CSS -->
+    <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
 
-                            <div class="ml-2">
-                                {!! __('I agree to the :terms_of_service and :privacy_policy', [
-                                        'terms_of_service' => '<a target="_blank" href="'.route('terms.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Terms of Service').'</a>',
-                                        'privacy_policy' => '<a target="_blank" href="'.route('policy.show').'" class="underline text-sm text-gray-600 hover:text-gray-900">'.__('Privacy Policy').'</a>',
-                                ]) !!}
+</head>
+
+<body class="skin-dark">
+
+    <div class="main-wrapper">
+
+        <!-- Content Body Start -->
+        <div class="content-body m-0 p-0">
+
+            <div class="login-register-wrap">
+                <div class="row">
+
+                    <div class="d-flex align-self-center justify-content-center order-2 order-lg-1 col-lg-5 col-12">
+                        <div class="login-register-form-wrap">
+
+                            <div class="content">
+                                <h1>Inregistrare cont nou</h1>
+                            </div>
+
+                            <div class="login-register-form">
+                                <form method="POST" action="{{ route('register') }}">
+                                    @csrf
+                                    <div class="row">
+
+                                        <div class="col-12 mb-20"><input class="form-control" type="text" id="name"
+                                                name="name" placeholder="Nume si Prenume">
+                                            @error('name')
+                                                <span class="invalid-feedback" role="alert"></span>
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 mb-20"><input class="form-control" type="email"
+                                                id="email" name="email" placeholder="Adresa de Email">
+                                            @error('email')
+                                                <span class="invalid-feedback" role="alert"></span>
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 mb-20"><input class="form-control" type="text" id="phone"
+                                                name="phone" placeholder="Phone">
+                                            @error('phone')
+                                                <span class="invalid-feedback" role="alert"></span>
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 mb-20"><input class="form-control" type="password"
+                                                id="password" name="password" placeholder="Parola">
+                                            @error('password')
+                                                <span class="invalid-feedback" role="alert"></span>
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-12 mb-20"><input class="form-control" type="password"
+                                                id="password_confirmation" name="password_confirmation"
+                                                placeholder="Confirmare Parola">
+                                            @error('password_confirmation')
+                                                <span class="invalid-feedback" role="alert"></span>
+                                                <strong class="text-danger">{{ $message }}</strong>
+                                            @enderror
+                                        </div>
+                                        <div class="col-12">
+
+                                            <div class="row justify-content-between">
+                                                <div class="col-auto mb-15">Ai deja cont? <a
+                                                        href="{{ route('login') }}">Autentifica-te acum.</a></div>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 mt-10"><button
+                                                class="button button-primary button-outline">Inregistrare cont</button>
+                                        </div>
+                                    </div>
+                                </form>
+
                             </div>
                         </div>
-                    </x-jet-label>
+                    </div>
+
+                    <div class="login-register-bg order-1 order-lg-2 col-lg-7 col-12">
+                    </div>
+
                 </div>
-            @endif
-
-            <div class="flex items-center justify-end mt-4">
-                <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('Already registered?') }}
-                </a>
-
-                <x-jet-button class="ml-4">
-                    {{ __('Register') }}
-                </x-jet-button>
             </div>
-        </form>
-    </x-jet-authentication-card>
-</x-guest-layout>
+
+        </div><!-- Content Body End -->
+
+    </div>
+
+    <!-- JS
+============================================ -->
+
+    <!-- Global Vendor, plugins & Activation JS -->
+    <script src="{{ asset('backend/js/vendor/modernizr-3.6.0.min.js') }}"></script>
+    <script src="{{ asset('backend/js/vendor/jquery-3.3.1.min.js') }}"></script>
+    <script src="{{ asset('backend/js/vendor/popper.min.js') }}"></script>
+    <script src="{{ asset('backend/js/vendor/bootstrap.min.js') }}"></script>
+    <!--Plugins JS-->
+    <script src="{{ asset('backend/js/plugins/perfect-scrollbar.min.js') }}"></script>
+    <script src="{{ asset('backend/js/plugins/tippy4.min.js.js') }}"></script>
+    <!--Main JS-->
+    <script src="{{ asset('backend/js/main.js') }}"></script>
+
+</body>
+
+</html>
