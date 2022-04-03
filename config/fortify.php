@@ -61,7 +61,11 @@ return [
     |
     */
 
-    'home' => RouteServiceProvider::HOME,
+    // 'home' => RouteServiceProvider::HOME,
+    // redirectionam userul dupa autentificare spre frontpage
+    'home' => function () {
+        return route('welcome');
+    },
 
     /*
     |--------------------------------------------------------------------------

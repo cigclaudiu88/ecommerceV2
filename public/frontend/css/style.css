@@ -338,7 +338,7 @@ ol {
 
 .header__top__right__language:after {
   position: absolute;
-  right: -21px;
+  right: -47px;
   top: 1px;
   height: 20px;
   width: 1px;
@@ -367,11 +367,11 @@ ol {
 
 .header__top__right__language ul {
   background: #222222;
-  width: 100px;
+  width: 150px;
   text-align: left;
   padding: 5px 0;
   position: absolute;
-  left: 0;
+  left: -20px;
   top: 43px;
   z-index: 9;
   opacity: 0;

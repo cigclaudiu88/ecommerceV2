@@ -1,10 +1,5 @@
 @extends('frontend.main_master')
 @section('content')
-    {{-- jQuerry CDN link pentru scriptul de vizualizare imagine profil --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
-        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
-        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-
     <!-- my account start  -->
     <section class="main_content_area">
         <div class="container">
@@ -20,12 +15,12 @@
                         <!-- Nav tabs -->
                         <div class="dashboard_tab_button">
                             <ul role="tablist" class="nav flex-column dashboard-list" id="nav-tab">
-                                <li><a href="{{ route('dashboard') }}" class="nav-link active">Acasa</a>
+                                <li><a href="{{ route('dashboard') }}" class="nav-link">Acasa</a>
                                 </li>
                                 <li><a href="{{ route('user.profile') }}" class="nav-link">Detalii
                                         Cont</a>
                                 </li>
-                                <li><a href="{{ route('user.change.password') }}" class="nav-link">Schimba
+                                <li><a href="{{ route('user.change.password') }}" class="nav-link active">Schimba
                                         Parola</a>
                                 </li>
                                 <li> <a href="#orders" data-toggle="tab" class="nav-link">Istoric Comenzi</a></li>
@@ -41,15 +36,8 @@
                         <!-- Tab panes -->
                         <div class="tab-content dashboard_content">
 
-                            <div class="tab-pane fade show active" id="dashboard">
-                                <h3>Acasa </h3>
-                                <p>Buna <strong>{{ Auth::user()->name }}</strong> Din aceasta pagina poti modifica
-                                    informatiile contului, poti schimba parola, poti vizualiza istoricul comenzilor plasate
-                                    si multe altele.</p>
-                            </div>
-
                             {{-- sectiunea de schimbare parola incepe --}}
-                            <div class="tab-pane fade" id="account-password">
+                            <div class="tab-pane fade active" id="account-password">
                                 <h3><strong>Actualizare Parola</strong></h3>
                                 <div class="login">
                                     <div class="login_form_container">
@@ -192,17 +180,4 @@
         </div>
     </section>
     <!-- my account end   -->
-
-    {{-- javascript pentru a afisa imaginea selectata de profil inainte de inserare --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#imagedisplay').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-        });
-    </script>
 @endsection

@@ -107,12 +107,12 @@ Route::middleware(['auth:sanctum,web', 'verified'])->get('/dashboard', function 
 // Home Page route
 // 1. Frontend Template Setup Part 1
 // frontpage home route
-Route::get('/', [IndexController::class, 'index']);
+Route::get('/', [IndexController::class, 'index'])->name('welcome');
 // 1. Frontend Template Setup Part 1
 // 2. User Profile Design Part 2
 // ruta de logout utlizator
 Route::get('/user/logout', [IndexController::class, 'UserLogout'])->name('user.logout');
-// ruta de date profil  - momentan inactiva - totul merge prin /dashboard
+// ruta de date profil
 Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user.profile');
 // 2. User Profile Design Part 2
 // 2. User Profile Design Part 3
@@ -120,9 +120,11 @@ Route::get('/user/profile', [IndexController::class, 'UserProfile'])->name('user
 Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])->name('user.profile.store');
 // 2. User Profile Design Part 3
 // 5. User Profile¦ Password Change Part 1
+// ruta de schimbare parola profil utilizator
 Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
 // 5. User Profile¦ Password Change Part 1
 // 5. User Profile¦ Password Change Part 2
+// ruta de actualizare parola profil utilizator 
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.profile.password.update');
 // 5. User Profile¦ Password Change Part 2
 

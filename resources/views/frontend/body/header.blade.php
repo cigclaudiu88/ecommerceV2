@@ -84,14 +84,33 @@
                                 <a href="#"><i class="fa fa-pinterest-p"></i></a>
                             </div>
                             {{-- link spre pagina de inregistrare cont --}}
-                            <div class="header__top__right__auth mr-3">
-                                <a href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
-                            </div>
-                            {{-- link spre pagina de autentificare --}}
-                            <div class="header__top__right__auth">
-                                <a href="{{ route('register') }}"><i class="fa fa-lock"></i>Inregistrare
-                                    cont</a>
-                            </div>
+                            {{-- daca utilizatorul este auttentificat header-ul va afisa butonul Profil --}}
+                            @auth
+                                <div class="header__top__right__language">
+                                    <div class="header__top__right__auth mr-3">
+                                        <a href="{{ route('dashboard') }}"><i class="fa fa-user"></i>Profil</a>
+                                    </div>
+                                    <span class="arrow_carrot-down"></span>
+                                    <ul>
+                                        <li><a href="{{ route('dashboard') }}">Acasa</a></li>
+                                        <li><a href="{{ route('user.profile') }}">Detalii Cont</a></li>
+                                        <li><a href="{{ route('user.change.password') }}">Schimba Parola</a></li>
+                                        <li><a href="#">Comenzi</a></li>
+                                        <li><a href="{{ route('user.logout') }}">Logout</a></li>
+                                    </ul>
+                                </div>
+
+                                {{-- daca utilizatorul nu este autentificat header-ul va afisa butoanele Login / Inregistrare --}}
+                            @else
+                                <div class="header__top__right__auth mr-3">
+                                    <a href="{{ route('login') }}"><i class="fa fa-user"></i>Login</a>
+                                </div>
+                                {{-- link spre pagina de autentificare --}}
+                                <div class="header__top__right__auth">
+                                    <a href="{{ route('register') }}"><i class="fa fa-lock"></i>Inregistrare
+                                        cont</a>
+                                </div>
+                            @endauth
                         </div>
                     </div>
                 </div>

@@ -8,6 +8,8 @@ use Illuminate\Http\Request;
 // adaugam namespace-ul pentru clasa Auth
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+// adaugam namespace-ul pentru clasa Hash - cryptare parola
+use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
 {
@@ -23,7 +25,7 @@ class IndexController extends Controller
         // logout user
         Auth::logout();
         // redirect user spre pagina de login
-        return Redirect()->route('login');
+        return Redirect()->route('welcome');
     }
 
     // functie de actualizare a datelor userului
@@ -62,5 +64,78 @@ class IndexController extends Controller
         );
         // redirectioam utilizatorul spre pagina de dashboard
         return redirect()->route('dashboard')->with($notification);
+    }
+
+    public function UserProfile()
+    {
+        // $id salveaza id-ul utilizatorului autentificat
+        $id = Auth::user()->id;
+        // $user cauta in modelul User utilizatorul autentificat 
+        $user = User::find($id);
+        // returnam pagina de profil userului resources\views\frontend\user_profile.blade.php
+        return view('frontend.profile.user_profile', compact('user'));
+    }
+
+    public function UserChangePassword()
+    {
+        // $id salveaza id-ul utilizatorului autentificat
+        $id = Auth::user()->id;
+        // $user cauta in modelul User utilizatorul autentificat 
+        $user = User::find($id);
+        // returnam pagina de schimbare parola a userului resources\views\frontend\user_change_password.blade.php
+        return view('frontend.profile.change_password', compact('user'));
+    }
+
+    // functie de actualizare a parolei userului
+    public function UserPasswordUpdate(Request $request)
+    {
+        // validare campurile din formular schimbare parola
+        $request->validate(
+            [
+                // valoarea campului parola curenta din formular trebuie sa fie egala cu valoarea din tabela admins
+                'current_password' => 'required',
+                // valoarea campului parola noua din formular trebuie fie diferita de valoarea parolei curente din tabela admins si acceasi cu parola curenta
+                'password' => 'required|confirmed|min:6|different:current_password',
+                // valoarea campului confirmare parola noua din formular trebuie sa fie egala cu valoarea campului parola noua din formular
+                'password_confirmation' => 'required|min:6|different:current_password',
+            ],
+
+            [
+                //mesaje speciale daca campurile sunt goale
+                'current_password.required' => 'Parola curenta nu este corecta!',
+                'password.required' => 'Parola noua si confirmare parola nu sunt identice!',
+                'password_confirmation.required' => 'Parola noua si confirmare parola nu sunt identice!',
+
+                //mesaje speciale daca campurile parola noua si confirmare parola nu sunt identice
+                'password.confirmed' => 'Parola noua si confirmare parola nu sunt identice!',
+                'password_confirmation.confirmed' => 'Parola noua si confirmare parola nu sunt identice!',
+
+                //mesaje speciale daca campurile parola noua si confirmare parola au mai putin de 6 caractere
+                'password.min' => 'Parola trebuie sa contina minim 6 caractere!',
+                'password_confirmation.min' => 'Parola trebuie sa contina minim 6 caractere!',
+
+                // mesaje speciale daca campurile parola noua si confirmare parola sunt identice cu parola curenta
+                'password.different' => 'Parola noua trebuie sa fie diferita de parola curenta!',
+                'password_confirmation.different' => 'Parola noua confirmata trebuie sa fie diferita de parola curenta!',
+            ]
+        );
+        // $hashedPassword takes the current auth users password from DB
+        $hashedPassword = Auth::user()->password;
+        // if current_password typed matches the password hashed in the DB
+        if (Hash::check($request->current_password, $hashedPassword)) {
+            // $user takes DB info of auth user using User Model
+            $user = User::find(Auth::id());
+            // $user's DB password takes the password inserted in the new password field and enctypts it
+            $user->password = Hash::make($request->password);
+            // saves the new data to DB
+            $user->save();
+            // logs out logged user
+            Auth::logout();
+            // redirects user to /user/logout
+            return redirect()->route('user.logout');
+        } else {
+            // returns user to the priviouse page
+            return redirect()->route('dashboard');
+        }
     }
 }
