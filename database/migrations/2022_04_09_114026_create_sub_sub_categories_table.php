@@ -20,8 +20,8 @@ class CreateSubSubCategoriesTable extends Migration
             $table->integer('category_id');
             // cheie externa la tabela subcategories
             $table->integer('subcategory_id');
-            $table->string('sub_subcategory_name');
-            $table->string('sub_subcategory_slug');
+            $table->string('subsubcategory_name');
+            $table->string('subsubcategory_slug');
             $table->timestamps();
         });
     }

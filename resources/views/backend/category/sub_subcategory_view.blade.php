@@ -52,8 +52,8 @@
                     <h4 class="title">Adauga SubSubCategorie Produse</h4>
                 </div>
                 <div class="box-body">
-                    {{-- adaugat ruta subcategory.store in formularul de adaugare --}}
-                    <form method="POST" action="">
+                    {{-- adaugat ruta subcategory.store in formularul de adaugare subsubcategorie in tabelul sub_subcategorie --}}
+                    <form method="POST" action="{{ route('subsubcategory.store') }}">
                         @csrf
                         <div class="row mbn-20">
 
