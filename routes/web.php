@@ -22,6 +22,7 @@ use App\Http\Controllers\Backend\CategoryController;
 // 1. Category Crud Part 1
 // 5. Subcategory Crud Part 1
 use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\SubSubCategoryController;
 // 5. Subcategory Crud Part 1
 // 1. Add Product Database and Page Design Part 1
 use App\Http\Controllers\Backend\ProductController;
@@ -156,38 +157,21 @@ Route::prefix('category')->group(function () {
     // ruta de stergere subcategorii din tabela subcategories
     Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
 
-
-    // All Admin Sub->SubCategory All Routes
-    // 1. Sub Subcategory Crud Part 1
-    // SubSubCategories View Route
-    Route::get('/subcategory/subcategory/view', [SubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategory');
-    // 1. Sub Subcategory Crud Part 1
-
-    // 1. Sub Subcategory Crud Part 2
-    // SubSubCategories GetCategory Route
-    Route::get('/subcategory/subsubcategory/{category_id}', [SubCategoryController::class, 'GetSubCategory']);
-    // 1. Sub Subcategory Crud Part 2
-
-    // 4. Add Product Database and Page Design Part 4
-    Route::get('/subcategory/subsubcategory/product/{subcategory_id}', [SubCategoryController::class, 'GetSubSubCategory']);
-    // 4. Add Product Database and Page Design Part 4
-
-    // 1. Sub Subcategory Crud Part 3
-    // SubSubCategories Insert Route
-    Route::post('/subcategory/subcategory/store', [SubCategoryController::class, 'SubSubCategoryStore'])->name('subsubcategory.store');
-    // 1. Sub Subcategory Crud Part 3
-
-    // 4. Sub Subcategory Crud Part 4
-    // SubSubCategories Edit Route
-    Route::get('/subcategory/subcategory/edit/{id}', [SubCategoryController::class, 'SubSubCategoryEdit'])->name('subsubcategory.edit');
-    // SubSubCategories Update Route
-    Route::post('/subcategory/subcategory/update', [SubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
-    // 4. Sub Subcategory Crud Part 4
-
-    // 4. Sub Subcategory Crud Part 5
-    // SubSubCategory Delete Route
-    Route::get('/subcategory/subcategory/delete/{id}', [SubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
-    // 4. Sub Subcategory Crud Part 5
+    // Admin Rute pentru SubSubcategorii 
+    // ruta de afisare tuturor subsubcategoriilor
+    Route::get('/subcategory/subcategory/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategory');
+    // ruta de preluare subcategorie din tabela subcategories
+    Route::get('/subcategory/subsubcategory/{category_id}', [SubSubCategoryController::class, 'GetSubCategory']);
+    // ruta de preluare subsubcategorie din tabela subcategories
+    Route::get('/subcategory/subsubcategory/product/{subcategory_id}', [SubSubCategoryController::class, 'GetSubSubCategory']);
+    // ruta de inserare in tabela subsubcategories
+    Route::post('/subcategory/subcategory/store', [SubSubCategoryController::class, 'SubSubCategoryStore'])->name('subsubcategory.store');
+    // ruta de editare subsubcategorii din tabela subsubcategories
+    Route::get('/subcategory/subcategory/edit/{id}', [SubSubCategoryController::class, 'SubSubCategoryEdit'])->name('subsubcategory.edit');
+    // ruta de actualizare subcategorii din tabela subcategories
+    Route::post('/subcategory/subcategory/update', [SubSubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
+    // ruta de stergere subsubcategorii din tabela subsubcategories
+    Route::get('/subcategory/subcategory/delete/{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
 });
 
 // 1. Add Product Database and Page Design Part 1

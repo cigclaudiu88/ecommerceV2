@@ -32,6 +32,9 @@ $route = Route::current()->getName();
                             href="{{ route('all.category') }}"><span>Management Categorii </span></a></li>
                     <li class="{{ $route == 'all.subcategory' ? 'active' : '' }}"><a
                             href="{{ route('all.subcategory') }}"><span>Management SubCategorii </span></a></li>
+                    <li class="{{ $route == 'all.subsubcategory' ? 'active' : '' }}"><a
+                            href="{{ route('all.subsubcategory') }}"><span>Management SubSubCategorii </span></a>
+                    </li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>
             </li>
