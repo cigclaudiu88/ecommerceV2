@@ -1,5 +1,8 @@
 @extends('admin.admin_master')
 @section('admin')
+    {{-- ajax jquerry CDN pentru scriptul de la finalul paginii --}}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <div class="row">
 
         <!--Default Data Table Start-->
@@ -23,9 +26,9 @@
                             {{-- iteram cu variabila $subsubcategories (SubSubCategoryView() din SubSubCategoryController) ca $item si afisam in tabel toate valorile din tabelul subsubcategories --}}
                             @foreach ($subsubcategories as $item)
                                 <tr>
-                                    {{-- folosind functia category() din modelul SubSubCategory afisam prin $item->category() numele categoriei --}}
+                                    {{-- folosind functia category() din modelul SubSubCategory afisam prin $item->category()->numele categoriei --}}
                                     <td>{{ $item['category']['category_name'] }}</td>
-                                    {{-- folosind functia subcategory() din modelul SubSubCategory afisam prin $item->subcategory() numele subcategoriei --}}
+                                    {{-- folosind functia subcategory() din modelul SubSubCategory afisam prin $item->subcategory()->numele subcategoriei --}}
                                     <td>{{ $item['subcategory']['subcategory_name'] }}</td>
                                     <td>{{ $item->subsubcategory_name }}</td>
                                     <td>
@@ -72,7 +75,7 @@
                             <div class="col-12 mb-20">
                                 <label for="subcategory_id"><strong>SubCategorie</strong></label>
                                 <select name="subcategory_id" class="form-control">
-                                    <option value="" id="subcategory_id" selected="" disabled="">Selecteaza SubCategoria
+                                    <option value="" selected="" disabled="">Selecteaza SubCategoria
                                     </option>
 
                                     </option>
@@ -101,7 +104,36 @@
                 </div>
             </div>
         </div>
-
-
     </div>
+
+    {{-- script pentru afisarea subcategoriilor aferente categoriei selectate in formularul de adaugare subsubcategorie produse --}}
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // la schimbarea selectului de nume categorie din formular
+            $('select[name="category_id"]').on('change', function() {
+                var category_id = $(this).val();
+                // if there is something in category_id input field the coresponding subcategory options will apear in the select options input field (subcategory_id)
+                // daca in campul category_id avem selectat o categorie, optiunile corespunzatoare subcategoriei vor aparea in campul select al subcategoriei (subcategory_id)
+                if (category_id) {
+                    $.ajax({
+                        url: "{{ url('/category/subcategory/subsubcategory') }}/" + category_id,
+                        type: "GET",
+                        dataType: "json",
+                        // daca codul de mai sus este succesful optiunile corespunzatoare subcategoriei vor aparea in campul select al subcategoriei (subcategory_id)
+                        // altfel continutul va fi gol
+                        success: function(data) {
+                            var d = $('select[name="subcategory_id"]').empty();
+                            $.each(data, function(key, value) {
+                                $('select[name="subcategory_id"]').append(
+                                    '<option value="' + value.id + '">' + value
+                                    .subcategory_name + '</option>');
+                            });
+                        },
+                    });
+                } else {
+                    alert('danger');
+                }
+            });
+        });
+    </script>
 @endsection
