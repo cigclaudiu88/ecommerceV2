@@ -29,6 +29,72 @@ class ProductController extends Controller
     // functia de
     public function ProductStore(Request $request)
     {
+
+        // validari inserare produse in tabelul products
+        $request->validate(
+            [
+                // numele brandului este necesar
+                'brand_id' => 'required',
+                // numele categoriei este necesar
+                'category_id' => 'required',
+                // numele subcategoriei este necesar
+                'subcategory_id' => 'required',
+                // numele subsubcategoriei este necesar
+                'subsubcategory_id	' => 'required',
+                // numele produsului este necesar, trebuie sa fie unic in tabelul products si trebuie sa fie un string de minim 6 caractere
+                'product_name' => 'required|unique:products|min:6',
+                // codul produsului este necesar, trebuie sa fie unic in tabelul products si trebuie sa fie un string de minim 6 caractere
+                'product_code' => 'required|unique:products|min:6',
+                // cantitatea produsului este necesara, trebuie sa fie un numar intreg
+                'product_quantity' => 'required|numeric',
+                // pretul produsului este necesar, trebuie sa fie un numar z
+                'selling_price' => 'required|numeric',
+                // descrierea scurta a produsului este necesara, trebuie sa fie un string de minim 10 caractere
+                'short_description' => 'required|min:10',
+                // specificatiile produsului sunt necesare, trebuie sa fie un string de minim 10 caractere
+                'specifications' => 'required|min:10',
+                // descrierea lunga a produsului este necesara, trebuie sa fie un string de minim 10 caractere
+                'long_description' => 'required|min:10',
+                // imaginea principala a produsului este necesara, trebuie sa fie un imagine de tip .jpg, .png sau .jpeg 
+                'product_thumbnail' => 'required|image|mimes:jpeg,png,jpg',
+            ],
+            // mesaje speciale pentru fiecare tip de eraoare la inserare produselor in 
+            [
+                'brand_id.required' => 'Numele brandului de produse este necesar.',
+                'category_id.required' => 'Numele categoriei de produse este necesar.',
+                'subcategory_id.required' => 'Numele subcategoriei de produse este necesar.',
+                'subsubcategory_id.required' => 'Numele subsubcategoriei de produse este necesar.',
+
+                'product_name.required' => 'Numele categoriei de produse este necesar.',
+                'product_name.unique' => 'Numele produsului trebuie sa fie unic.',
+                'product_name.min' => 'Numele produsului trebuie sa fie de minim 6 caractere.',
+
+                'product_code.required' => 'Codul produsului este necesar.',
+                'product_code.unique' => 'Codul produsului trebuie sa fie unic.',
+                'product_code.min' => 'Codul produsului trebuie sa fie de minim 6 caractere.',
+
+                'product_quantity.required' => 'Cantiatea produsului este necesara.',
+                'product_quantity.numeric' => 'Cantiatea produsului trebuie sa fie un numar intreg.',
+
+                'selling_price.required' => 'Pretul produslui este necesar.',
+                'selling_price.numeric' => 'Pretul produsului trebuie sa fie o valoare nimerica zecimala.',
+
+                'short_description.required' => 'Descrierea scurta a produsului este necesara.',
+                'short_description.min' => 'Descrierea scurta a produsului trebuie sa contina minim 10 caractere.',
+
+                'specifications.required' => 'Specificatiile produsului sunt necesare.',
+                'specifications.min' => 'Specificatiile produsului trebuie sa contina minim 10 caractere.',
+
+                'long_description.required' => 'Descrierea lunga a produsului este necesara.',
+                'long_description.min' => 'Descrierea lunga a produsului trebuie sa contina minim 10 caractere.',
+
+                'product_thumbnail.required' => 'Imaginea principala a produsului este necesara.',
+                'product_thumbnail.image' => 'Imaginea principala a produsului trebuie sa fie o imagine.',
+                'product_thumbnail.mimes' => 'Imaginea principala a produsului trebuie sa fie o imagine de tip .jpg, .png sau .jpeg.',
+            ]
+        );
+
+
         // $image preia imaginea principala din formularul de adaugare a unui produs
         $image = $request->file('product_thumbnail');
         // $name_gen genereaza un nume unic pentru imaginea principala din formularul de adaugare a unui produs
@@ -93,5 +159,13 @@ class ProductController extends Controller
         );
         // redirectionam catre pagina de adaugare a unui produs
         return redirect()->route('manage-product')->with($notification);
+    }
+    // functia pentru vizualizare / managementul tuturor produselor
+    public function ManageProduct()
+    {
+        // $products preia toate produsele din tabela products
+        $products = Product::latest()->get();
+        // returnam pagina de management a tuturor produselor cu datele din tabela products
+        return view('backend.product.product_view', compact('products'));
     }
 }
