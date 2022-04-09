@@ -113,6 +113,10 @@
     <script src="{{ asset('backend/js/plugins/datatables/datatables.min.js') }}"></script>
     <script src="{{ asset('backend/js/plugins/datatables/datatables.active.js') }}"></script>
 
+    <!-- Summernote Editor JS -->
+    <script src="{{ asset('backend/js/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="{{ asset('backend/js/plugins/summernote/summernote.active.js') }}"></script>
+
     <!--Toastr Alerts-->
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
 

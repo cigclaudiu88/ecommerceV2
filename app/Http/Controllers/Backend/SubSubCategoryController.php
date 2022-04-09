@@ -34,6 +34,14 @@ class SubSubCategoryController extends Controller
         return json_encode($subcat);
     }
 
+    // functia care aduce subsubcategoria aferenta subcategoriei selectate in formularul de adaugare a produselor
+    public function GetSubSubCategory($subcategory_id)
+    {
+        // $subcat salveaza toate datele din tabela sub_sub_categories, care au subcategory_id egal cu $subcategory_id primit ca parametru din formularul de adaugare produse
+        $subsubcat = SubSubCategory::where('subcategory_id', $subcategory_id)->orderBy('subsubcategory_name', 'ASC')->get();
+        return json_encode($subsubcat);
+    }
+
     // functia de adaugare a subsubcategoriei in tabelul sub_subcategories
     public function SubSubCategoryStore(Request $request)
     {
