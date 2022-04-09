@@ -89,7 +89,7 @@
 
                         <div class="col-4 mb-20">
                             <label for="formLayoutAddress2">Cantitate</label>
-                            <input type="text" name="product_quantity" class="form-control" required="">
+                            <input type="text" name="product_quantity" class="form-control">
                             @error('product_quantity')
                                 <span class="text-danger"><strong>{{ $message }}</strong></span>
                             @enderror
@@ -114,7 +114,7 @@
                         <div class="col-6 mb-20">
                             <label for="formLayoutFile1">Poza Principala</label>
                             <input type="file" name="product_thumbnail" class="form-control"
-                                onchange="mainThumbnailUrl(this)" required="">
+                                onchange="mainThumbnailUrl(this)">
 
                             @error('product_thumbnail')
                                 <span class="text-danger"><strong>{{ $message }}</strong></span>

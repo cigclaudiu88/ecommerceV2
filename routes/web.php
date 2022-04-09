@@ -179,7 +179,7 @@ Route::prefix('product')->group(function () {
     // ruta de afisare tuturor produselor
     Route::get('/add', [ProductController::class, 'AddProduct'])->name('add-product');
     // ruta de inserare in tabela products
-    Route::post('/store', [ProductController::class, 'StoreProduct'])->name('product-store');
+    Route::post('/store', [ProductController::class, 'ProductStore'])->name('product-store');
     // ruta de vizualizare / management produse
     Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage-product');
     // ruta de editare produse din tabela products
