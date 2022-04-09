@@ -128,4 +128,19 @@ class SubSubCategoryController extends Controller
         // redirectionam la aceeasi pagina cu mesajul $notification
         return redirect()->route('all.subsubcategory')->with($notification);
     }
+
+    // functia de stergere a subsubcategoriei
+    public function SubSubCategoryDelete($id)
+    {
+        // se cauta in tabelul sub_sub_categories subsubcategoria cu id-ul $id primit ca parametru si se sterge
+        SubSubCategory::findOrFail($id)->delete();
+
+        // afisam mesajul de succes la stergerea subsubcategoriei
+        $notification = array(
+            'message' => 'Subsubcategoria a fost stearsa cu succes!',
+            'alert-type' => 'info'
+        );
+        // 
+        return redirect()->back()->with($notification);
+    }
 }

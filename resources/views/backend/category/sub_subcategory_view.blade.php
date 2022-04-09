@@ -35,8 +35,9 @@
                                         {{-- adaugat ruta de editare subsubcateogrie --}}
                                         <a href="{{ route('subsubcategory.edit', $item->id) }}"
                                             class="btn btn-info">Edit</a>
-
-                                        <a href="" class="btn btn-danger" id="delete">Delete</a>
+                                        {{-- adaugat ruta de stergere subsubcategorie --}}
+                                        <a href="{{ route('subsubcategory.delete', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
