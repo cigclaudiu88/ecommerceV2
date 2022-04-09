@@ -22,11 +22,13 @@
                             {{-- iteram cu variabila $subcategories (SubCategoryView() din SubCategoryController) ca $item si afisam in tabel toate valorile din tabelul subcategories --}}
                             @foreach ($subcategories as $item)
                                 <tr>
+                                    {{-- folosind functia category() din modelul SubCategory afisam prin $item->category() numele categoriei --}}
                                     <td>{{ $item['category']['category_name'] }}</td>
                                     <td>{{ $item->subcategory_name }}</td>
                                     <td>
-
-                                        <a href="" class="btn btn-info">Edit</a>
+                                        {{-- adaugat ruta de editare subcategprii produse --}}
+                                        <a href="{{ route('subcategory.edit', $item->id) }}"
+                                            class="btn btn-info">Edit</a>
 
                                         <a href="" class="btn btn-danger" id="delete">Delete</a>
                                     </td>
@@ -45,7 +47,8 @@
                     <h4 class="title">Adauga SubCategorie Produse</h4>
                 </div>
                 <div class="box-body">
-                    <form method="POST" action="">
+                    {{-- adaugat ruta subcategory.store in formularul de adaugare --}}
+                    <form method="POST" action="{{ route('subcategory.store') }}">
                         @csrf
                         <div class="row mbn-20">
 
@@ -60,7 +63,7 @@
                                     </option>
                                 </select>
                                 @error('category_id')
-                                    <span class="text-danger">{{ $message }}</span>
+                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
 
