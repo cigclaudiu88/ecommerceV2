@@ -28,8 +28,10 @@ $route = Route::current()->getName();
             <li class="treeview {{ $prefix == '/category' ? 'active' : '' }}"><a href="#"><i class="ti-home"></i>
                     <span>Categorii Produse</span></a>
                 <ul class="side-header-sub-menu">
-                    <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}"><a
+                    <li class="treeview {{ $prefix == '/category' ? 'active' : '' }}"><a
                             href="{{ route('all.category') }}"><span>Management Categorii </span></a></li>
+                    <li class="treeview {{ $prefix == '/subcategory' ? 'active' : '' }}"><a
+                            href="{{ route('all.subcategory') }}"><span>Management SubCategorii </span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>
             </li>
