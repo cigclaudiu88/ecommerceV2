@@ -8,11 +8,13 @@
                     <h4 class="title">Actualizeaza SubCategorie Produse</h4>
                 </div>
                 <div class="box-body">
-
-                    <form method="POST" action="">
+                    {{-- adaugat ruta subcategory.store in formularul de editare --}}
+                    <form method="POST" action="{{ route('subcategory.update') }}">
                         @csrf
-                        <div class="row mbn-20">
+                        {{-- camp ascuns pentru a prelua id-ul subcategoriei pt actualizare --}}
+                        <input type="hidden" name="id" value="{{ $subcategories->id }}">
 
+                        <div class="row mbn-20">
                             <div class="col-12 mb-20">
                                 <label for="category_id"><strong>Categorie</strong></label>
                                 <select name="category_id" class="form-control">

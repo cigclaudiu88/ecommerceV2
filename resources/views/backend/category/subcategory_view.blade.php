@@ -26,11 +26,12 @@
                                     <td>{{ $item['category']['category_name'] }}</td>
                                     <td>{{ $item->subcategory_name }}</td>
                                     <td>
-                                        {{-- adaugat ruta de editare subcategprii produse --}}
+                                        {{-- adaugat ruta de editare subcategorii produse --}}
                                         <a href="{{ route('subcategory.edit', $item->id) }}"
                                             class="btn btn-info">Edit</a>
-
-                                        <a href="" class="btn btn-danger" id="delete">Delete</a>
+                                        {{-- adaugat ruta de stergere subcategorii produse --}}
+                                        <a href="{{ route('subcategory.delete', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
