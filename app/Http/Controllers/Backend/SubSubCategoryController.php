@@ -73,4 +73,59 @@ class SubSubCategoryController extends Controller
         // redirectionam la aceeasi pagina cu mesajul $notification
         return redirect()->back()->with($notification);
     }
+    // functia de
+    public function SubSubCategoryEdit($id)
+    {
+        // $categories salveaza toate datele din tabela categories si le ordoneaza crescator dupa category_name folosind functia orderBy si modelul Category
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        // $subsubcategories salveaza toate datele din tabela sub_subcategories si le ordoneaza crescator dupa subsubcategory_name folosind functia orderBy si modelul SubSubCategory
+        $subcategories = SubCategory::orderBy('subcategory_name', 'ASC')->get();
+        // $subsubcategories salveaza toate datele din tabela sub_sub_categories care au id-ul $id primit ca parametru
+        $subsubcategories = SubSubCategory::findOrFail($id);
+        // returneaza datele din $categories, $subcategories si $subsubcategories catre view-ul resources\views\backend\category\sub_subcategory_edit.blade.php
+        return view('backend.category.sub_subcategory_edit', compact('categories', 'subcategories', 'subsubcategories'));
+    }
+
+    // functia de actualizare a subsubcategoriei
+    public function SubSubCategoryUpdate(Request $request)
+    {
+
+        // $subsubcat_id primeste id-ul subsubcategoriei din formularul de editare din campul ascuns
+        $subsubcat_id = $request->id;
+
+        // validari inserare subsubcategorie in tabelul sub_subcategories
+        $request->validate(
+            [
+                // id-ul (numele categoriei) categoriei este necesar
+                'category_id' => 'required',
+                // id-ul (numele subcategoriei) subcategoriei este necesar
+                'subcategory_id' => 'required',
+                'subsubcategory_name' => 'required|min:3',
+            ],
+            // mesaje speciale pentru fiecare tip de eraore la inserare categorie
+            [
+                'category_id.required' => 'Numele categoriei de produse este necesar.',
+                'subcategory_id.required' => 'Numele subcategoriei de produse este necesar.',
+                'subsubcategory_name.required' => 'Numele categoriei de produse este necesar.',
+                'subsubcategory_name.min' => 'Numele subsubcategoriei de produse trebuie sa contina minim 3 caractere.',
+            ]
+        );
+        // se actualizeaza in tabelul sub_sub_categories valorile primite din campurile nume categorie, nume subcategorie si nume subsubcategorie din formularul de actualizare
+        // pentru id-ul subsubcategoriei cu id-ul salvat in $subsubcat_id
+        SubSubCategory::findOrFail($subsubcat_id)->update([
+            'category_id' => $request->category_id,
+            'subcategory_id' => $request->subcategory_id,
+            'subsubcategory_name' => $request->subsubcategory_name,
+            // subsubcateory_slug este generat cu litere mici si _ intre cuvinte daca au spatiu
+            'subsubcategory_slug' => strtolower(str_replace(' ', '_', $request->subsubcategory_name)),
+        ]);
+
+        // afisam mesajul de succes la actualizarea subsubcategoriei
+        $notification = array(
+            'message' => 'Subsubcategoria a fost actualizata cu succes!',
+            'alert-type' => 'info'
+        );
+        // redirectionam la aceeasi pagina cu mesajul $notification
+        return redirect()->route('all.subsubcategory')->with($notification);
+    }
 }

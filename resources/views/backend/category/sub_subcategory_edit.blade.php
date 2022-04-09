@@ -5,66 +5,29 @@
 
     <div class="row">
 
-        <!--Default Data Table Start-->
-        <div class="col-8 mb-30">
-            <div class="box">
-                <div class="box-head">
-                    <h3 class="title">SubSubCategorii Produse</h3>
-                </div>
-                <div class="box-body">
-
-                    <table class="table table-bordered data-table data-table-default">
-                        <thead>
-                            <tr>
-                                <th>Categorie</th>
-                                <th>SubCategorie</th>
-                                <th>SubSubCategorie</th>
-                                <th>Actiuni</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            {{-- iteram cu variabila $subsubcategories (SubSubCategoryView() din SubSubCategoryController) ca $item si afisam in tabel toate valorile din tabelul subsubcategories --}}
-                            @foreach ($subsubcategories as $item)
-                                <tr>
-                                    {{-- folosind functia category() din modelul SubSubCategory afisam prin $item->category()->numele categoriei --}}
-                                    <td>{{ $item['category']['category_name'] }}</td>
-                                    {{-- folosind functia subcategory() din modelul SubSubCategory afisam prin $item->subcategory()->numele subcategoriei --}}
-                                    <td>{{ $item['subcategory']['subcategory_name'] }}</td>
-                                    <td>{{ $item->subsubcategory_name }}</td>
-                                    <td>
-                                        {{-- adaugat ruta de editare subsubcateogrie --}}
-                                        <a href="{{ route('subsubcategory.edit', $item->id) }}"
-                                            class="btn btn-info">Edit</a>
-
-                                        <a href="" class="btn btn-danger" id="delete">Delete</a>
-                                    </td>
-                                </tr>
-                            @endforeach
-                        </tbody>
-                    </table>
-                </div>
-            </div>
-        </div>
-        <!--Default Data Table End-->
-
         <div class="col-lg-4 col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h4 class="title">Adauga SubSubCategorie Produse</h4>
+                    <h4 class="title">Actualizeaza SubSubCategorie Produse</h4>
                 </div>
                 <div class="box-body">
                     {{-- adaugat ruta subcategory.store in formularul de adaugare subsubcategorie in tabelul sub_subcategorie --}}
-                    <form method="POST" action="{{ route('subsubcategory.store') }}">
+                    <form method="POST" action="{{ route('subsubcategory.update') }}">
                         @csrf
-                        <div class="row mbn-20">
+                        {{-- camp ascuns care contine id-ul subsubcategoriei --}}
+                        <input type="hidden" name="id" value="{{ $subsubcategories->id }}">
 
+                        <div class="row mbn-20">
                             <div class="col-12 mb-20">
                                 <label for="category_id"><strong>Categorie</strong></label>
                                 <select name="category_id" class="form-control">
                                     <option value="" id="category_id" selected="" disabled="">Selecteaza Categoria</option>
-                                    {{-- iteram cu variabila $categories (SubCategoryView() din SubCategoryController) ca $category si afisam in select toate valorile din tabelul categories --}}
+                                    {{-- iteram cu variabila $categories (SubSubCategoryView() din SubSubCategoryController) ca $category --}}
+                                    {{-- daca id-ul categorie = category_id din tabelul sub_sub_categories selectam numele categoriei altfel ramane gol --}}
                                     @foreach ($categories as $category)
-                                        <option value="{{ $category->id }}">{{ $category->category_name }}
+                                        <option value="{{ $category->id }}"
+                                            {{ $category->id == $subsubcategories->category_id ? 'selected' : '' }}>
+                                            {{ $category->category_name }}
                                     @endforeach
                                     </option>
                                 </select>
@@ -77,7 +40,13 @@
                                 <label for="subcategory_id"><strong>SubCategorie</strong></label>
                                 <select name="subcategory_id" class="form-control">
                                     <option value="" selected="" disabled="">Selecteaza SubCategoria
-
+                                        {{-- iteram cu variabila $subcategories (SubSubCategoryView() din SubSubCategoryController) ca $index --}}
+                                        {{-- daca id-ul index-ului = subcategory_id din tabelul sub_sub_categories selectam numele subcategoriei altfel ramane gol --}}
+                                        @foreach ($subcategories as $index)
+                                    <option value="{{ $index->id }}"
+                                        {{ $index->id == $subsubcategories->subcategory_id ? 'selected' : '' }}>
+                                        {{ $index->subcategory_name }}
+                                        @endforeach
 
                                     </option>
                                 </select>
@@ -89,14 +58,14 @@
                             <div class="col-12 mb-20">
                                 <label for="subsubcategory_name"><strong>Nume SubSubCategorie</strong></label>
                                 <input type="text" name="subsubcategory_name" id="subsubcategory_name"
-                                    class="form-control" placeholder="Nume SubCategorie">
+                                    class="form-control" value="{{ $subsubcategories->subsubcategory_name }}">
                                 @error('subsubcategory_name')
                                     <span class="text-danger"><strong>{{ $message }}</strong></span>
                                 @enderror
                             </div>
 
                             <div class="col-12 mb-20">
-                                <input type="submit" value="Adauga SubSubCategorie" class="button button-primary">
+                                <input type="submit" value="Actualizeaza SubSubCategorie" class="button button-primary">
                                 {{-- <input type="submit" value="cancle" class="button button-danger"> --}}
                             </div>
 
