@@ -40,6 +40,20 @@ $route = Route::current()->getName();
             </li>
             {{-- sectiune meniu navigare admin categorii termina --}}
 
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
+                    <span>Produse</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="{{ $route == 'add-product' ? 'active' : '' }}"><a
+                            href="{{ route('add-product') }}"><span>Adauga Produse </span></a></li>
+                    <li class="{{ $route == 'manage-product' ? 'active' : '' }}"><a
+                            href="{{ route('manage-product') }}"><span>Management Produse </span></a></li>
+                    {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
+
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
                         Elements</span></a>
                 <ul class="side-header-sub-menu">

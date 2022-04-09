@@ -174,44 +174,32 @@ Route::prefix('category')->group(function () {
     Route::get('/subcategory/subcategory/delete/{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
 });
 
-// 1. Add Product Database and Page Design Part 1
-// All Admin Products All Route
+// Admin Produse Rute Grupate si prefixate cu product
 Route::prefix('product')->group(function () {
-    // Display All Brands Route
+    // ruta de afisare tuturor produselor
     Route::get('/add', [ProductController::class, 'AddProduct'])->name('add-product');
-    // 8. Product Upload Part 2
+    // ruta de inserare in tabela products
     Route::post('/store', [ProductController::class, 'StoreProduct'])->name('product-store');
-    // 8. Product Upload Part 2
-    // 10. Manage Product Read All Product
+    // ruta de vizualizare / management produse
     Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage-product');
-    // 10. Manage Product Read All Product
-    // 11. Manage Product Edit Option Part 1
+    // ruta de editare produse din tabela products
     Route::get('/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
-    // 11. Manage Product Edit Option Part 1
-    // 13. Manage Product Update Option
+    // ruta de actualizare produse din tabela products
     Route::post('/data/update', [ProductController::class, 'ProductDataUpdate'])->name('product-data-update');
-    // 13. Manage Product Update Option
-    // 15. Manage Product Update Single & Multiple Image Part 2
+    // ruta de actualizare multiImage produse
     Route::post('/multi-image/update', [ProductController::class, 'ProductMultiImageUpdate'])->name('product-multi-image-update');
-    // 15. Manage Product Update Single & Multiple Image Part 2
-
-    // 15. Manage Product Update Single & Multiple Image Part 3
+    // ruta de actualizare poza principala produse
     Route::post('/thumbnail-image/update', [ProductController::class, 'ProductThumbnailImageUpdate'])->name('product-thumbnail-image-update');
-    // 15. Manage Product Update Single & Multiple Image Part 3
-    // 17. Multiple image Delete
+    // ruta de stergere produse din tabela products
     Route::get('/multi-image/update/{id}', [ProductController::class, 'ProductMultiImageDelete'])->name('product-multi-image-delete');
-    // 17. Multiple image Delete
-
-    // Add Active / Inactive Product Functionality
+    // ruta de dezactivare produse din tabela products
     Route::get('/inactive/{id}', [ProductController::class, 'ProductInactive'])->name('product.inactive');
-
+    // ruta de activare produse din tabela products
     Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
-    // Add Active / Inactive Product Functionality
-    // 19. Product Delete With Multiple Image
+    // ruta de stergere produse din tabela products
     Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
-    // 19. Product Delete With Multiple Image
 });
-// 1. Add Product Database and Page Design Part 1
+
 
 // Admin Slider All Routes
 // 1. Slider Page Design Part 1
