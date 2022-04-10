@@ -409,4 +409,33 @@ class ProductController extends Controller
         // redirectionam catre pagina de management a unui produs cu notificare
         return redirect()->back()->with($notification);
     }
+
+    // functia de
+    public function ProductDelete($id)
+    {
+        // $product preia datele produsului care va fi sters din tabela products prin id-ul primit ca parametru
+        $product = Product::findOrFail($id);
+        // stergem poza pirincipala veche din folderul public/product_images
+        unlink($product->product_thumbnail);
+        // stergem produsul cu id-ul primit ca parametru din tabela products
+        Product::findOrFail($id)->delete();
+
+
+        // $images cauta in tabela multi_img imaginea pentru care id-ul primit ca parametru este egal cu id-ul din tabela multi_img
+        $images = MultiImg::where('product_id', $id)->get();
+        // iteram prin toate imaginile
+        foreach ($images as $img) {
+            // stergem fiecare poza din folderul public/product_images
+            unlink($img->photo_name);
+            // stergem fiecare poza din tabela multi_img in care id-ul produsului este egal cu id-ul primit ca parametru
+            MultiImg::where('product_id', $id)->delete();
+        }
+        // adaugam un mesaj de succes la stergerea unui produs
+        $notification = array(
+            'message' => 'Product Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        // redirectionam catre pagina de management a unui produs cu notificare
+        return redirect()->back()->with($notification);
+    }
 }

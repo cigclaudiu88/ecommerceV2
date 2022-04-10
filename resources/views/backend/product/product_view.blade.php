@@ -57,6 +57,7 @@
                                     <td width="30%">
                                         {{-- adaugat ruta de editare produse --}}
                                         <a href="{{ route('product.edit', $item->id) }}" class="btn btn-success">Edit</a>
+                                        {{-- adaugat ruta de stergere produse --}}
                                         <a href="{{ route('product.delete', $item->id) }}" class="btn btn-danger"
                                             id="delete">Delete</a>
                                         <a href="{{ route('product.edit', $item->id) }}"
