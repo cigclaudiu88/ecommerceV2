@@ -1,7 +1,10 @@
 @extends('admin.admin_master')
 @section('admin')
     {{-- ajax jquerry CDN pentru scriptul de validare categorie-subcategorie-subsubcategorie --}}
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 
     <div class="col-lg-12 col-12 mb-30">
@@ -28,7 +31,6 @@
                             @error('brand_id')
                                 <span class="text-danger"><strong>{{ $message }}</strong></span>
                             @enderror
-                            </select>
                         </div>
 
                         <div class="col-3 mb-20">
@@ -415,7 +417,10 @@
                                     '<option value="' + value.id + '">' + value
                                     .subsubcategory_name + '</option>');
                             });
+                            // pentru ca scriptul de ascundere sa functioneze !!!!
+                            $("#test").trigger("change");
                         },
+
                     });
                 } else {
                     alert('danger');
@@ -475,8 +480,9 @@
             $('#fieldTablet').hide();
             $('#fieldPhone').hide();
 
-            $("#test").change(function() {
+            $("#test").on('change', function() {
                 var subsubcategory_id = $(this).val();
+                console.log(subsubcategory_id);
                 if (subsubcategory_id == 1) {
                     $('#fieldLaptop').show();
                     $('#fieldTablet').hide();
@@ -496,6 +502,6 @@
                 }
             });
         });
-        $("#test").trigger("change");
+        // $("#test").trigger("change");
     </script>
 @endsection
