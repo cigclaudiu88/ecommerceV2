@@ -10,7 +10,8 @@
                 <h4 class="title">Actualizeaza Produse</h4>
             </div>
             <div class="box-body">
-                <form method="post" action="" enctype="multipart/form-data">
+                {{-- adaugat ruta de actualizare produse in formular --}}
+                <form method="post" action="{{ route('product-data-update') }}" enctype="multipart/form-data">
                     @csrf
                     {{-- camp ascuns pt a prelua id-ul produsului care va fi actualizat --}}
                     <input type="hidden" name="id" value="{{ $products->id }}">
@@ -196,8 +197,8 @@
                         </div>
 
                         <div class="col-12 mb-20">
-                            <input type="submit" value="Adauga Produs" class="button button-primary">
-                            <input type="submit" value="cancle" class="button button-danger">
+                            <input type="submit" value="Actualizeaza Produs" class="button button-primary">
+                            {{-- <input type="submit" value="cancle" class="button button-danger"> --}}
                         </div>
 
                     </div>
