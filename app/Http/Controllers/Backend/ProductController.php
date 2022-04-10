@@ -291,4 +291,41 @@ class ProductController extends Controller
         // redirectionam catre pagina de management a unui produs
         return redirect()->route('manage-product')->with($notification);
     }
+
+    // functia de actualizare poze multiple a unui produs
+    public function ProductMultiImageUpdate(Request $request)
+    {
+        // $imgs salveaza datele multiple de tip imagine primite de la formularul de editare a unui produs
+        $imgs = $request->multi_img;
+
+        // loop though $imgs 
+        // iteram prin fiecare imagine din $imgs ca id=>img
+        foreach ($imgs as $id => $img) {
+            // $imgDel este un array care contine id-urile imaginilor care vor fi sterse aferente unui produs
+            $imgDel = MultiImg::findOrFail($id);
+
+            // stergem imaginea veche din folderul public/product_images
+            unlink($imgDel->photo_name);
+            // $make_name retine numele generat unic pentru fiecare imagine
+            $make_name = hexdec(uniqid()) . '.' . $img->getClientOriginalExtension();
+            // salvam imaginea in folderul public/product_images
+            Image::make($img)->save('upload/products/multi-image/' . $make_name);
+            // actualizam imaginea in tabela multi_img
+            $uploadPath = 'upload/products/multi-image/' . $make_name;
+
+            // actualizam datele din tabela multi_img pentru imaginea cu in care id-ul primit ca parametru este egal cu id-ul din tabela multi_img
+            MultiImg::where('id', $id)->update([
+                'photo_name' => $uploadPath,
+                'updated_at' => Carbon::now(),
+            ]);
+        }
+
+        // adaugam un mesaj de succes la actualizarea datelor unui produs
+        $notification = array(
+            'message' => 'Pozele produsului au fost actualizate cu succes!',
+            'alert-type' => 'info'
+        );
+        // redirectionam catre pagina de management a unui produs cu notificare
+        return redirect()->back()->with($notification);
+    }
 }

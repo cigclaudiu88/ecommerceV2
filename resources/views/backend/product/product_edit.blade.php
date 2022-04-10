@@ -195,6 +195,7 @@
                 <h4 class="title">Actualizeaza Poze Multiple</h4>
             </div>
             <div class="box-body">
+                {{-- adaugat ruta de actualizare poze multiple --}}
                 <form method="post" action="{{ route('product-multi-image-update') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mbn-20">
@@ -211,7 +212,8 @@
                                             <div class="form-group">
                                                 <label class="form-control-label" for=""> Schimba Poza <span
                                                         class="text-danger">*</span></label>
-                                                <input type="file" class="form-control" name="multi_img[ $img->id]">
+                                                <input type="file" class="form-control"
+                                                    name="multi_img[ {{ $img->id }}]">
                                             </div>
                                             </p>
                                         </h5>
