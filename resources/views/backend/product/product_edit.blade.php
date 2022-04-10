@@ -251,7 +251,9 @@
                                     <img class="box-img-top" src="{{ asset($img->photo_name) }}">
                                     <div class="box-body">
                                         <h5 class="box-title">
-                                            <a href="" class="btn btn btn-danger " id="delete" title="Delete Data"><i
+                                            {{-- adaugat ruta de stergere din poze multiple --}}
+                                            <a href="{{ route('product-multi-image-delete', $img->id) }}"
+                                                class="btn btn btn-danger " id="delete" title="Delete Data"><i
                                                     class="fa fa-trash"></i> Delete Poza</a>
                                             <p class="box-text">
                                             <div class="form-group">

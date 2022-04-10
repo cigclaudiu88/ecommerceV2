@@ -363,4 +363,22 @@ class ProductController extends Controller
         // redirectionam catre pagina de management a unui produs cu notificare
         return redirect()->back()->with($notification);
     }
+    // functia de stergere imagini 
+    public function ProductMultiImageDelete($id)
+    {
+        // $oldimg preia imaginea veche a produsului care va fi stearsa din folderul public/product_images
+        $oldimg = MultiImg::findOrFail($id);
+
+        // stergem imaginea veche din folderul public/product_images
+        unlink($oldimg->photo_name);
+        // stergem imaginea din tabela multi_img
+        MultiImg::findOrFail($id)->delete();
+        // 
+        $notification = array(
+            'message' => 'Product Image Deleted Successfully',
+            'alert-type' => 'success'
+        );
+        // 
+        return redirect()->back()->with($notification);
+    }
 }
