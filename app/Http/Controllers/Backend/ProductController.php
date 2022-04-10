@@ -8,7 +8,9 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\MultiImg;
 
+use App\Models\SubCategory;
 use Illuminate\Http\Request;
+use App\Models\SubSubCategory;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Intervention\Image\ImageManagerStatic as Image;
@@ -167,5 +169,24 @@ class ProductController extends Controller
         $products = Product::latest()->get();
         // returnam pagina de management a tuturor produselor cu datele din tabela products
         return view('backend.product.product_view', compact('products'));
+    }
+    // functia pentru editarea unui produs
+    public function ProductEdit($id)
+    {
+        // $multiImgs preia toate imaginile multiple din tabela multi_img pentru id-ul produsului care va fi editat primit ca parametru
+        $multiImgs = MultiImg::where('product_id', $id)->get();
+
+        // $brands preia toate brandurile din tabela brands
+        $brands = Brand::latest()->get();
+        // $categories preia toate categorile din tabela categories
+        $categories = Category::latest()->get();
+        // $subcategories preia toate subcategorile din tabela sub_categories
+        $subcategories = SubCategory::latest()->get();
+        // $subsubcategories preia toate subsubcategorile din tabela sub_sub_categories
+        $subsubcategories = SubSubCategory::latest()->get();
+        // $product preia toata informatia a unui produs cu id-ul primit ca parametru
+        $products = Product::findOrFail($id);
+        // returnam pagina de editare a unui produs cu datele din tabelele products, brands, categories, sub_categories, sub_sub_categories si multi_img
+        return view('backend.product.product_edit', compact('brands', 'categories', 'subcategories', 'subsubcategories', 'products', 'multiImgs'));
     }
 }
