@@ -13,6 +13,9 @@ use Illuminate\Http\Request;
 use App\Models\SubSubCategory;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use App\Models\ProductLaptop;
+use App\Models\ProductPhone;
+use App\Models\ProductTablet;
 use Intervention\Image\ImageManagerStatic as Image;
 
 class ProductController extends Controller
@@ -29,9 +32,10 @@ class ProductController extends Controller
         return view('backend.product.product_add', compact('brands', 'categories'));
     }
     // functia de
+
     public function ProductStore(Request $request)
     {
-
+        // dd($request->all());
         // validari inserare produse in tabelul products
         $request->validate(
             [
@@ -58,7 +62,7 @@ class ProductController extends Controller
                 // descrierea lunga a produsului este necesara, trebuie sa fie un string de minim 10 caractere
                 'long_description' => 'required|min:10',
                 // imaginea principala a produsului este necesara, trebuie sa fie un imagine de tip .jpg, .png sau .jpeg 
-                'product_thumbnail' => 'required|image|mimes:jpeg,png,jpg',
+                // 'product_thumbnail' => 'required|image|mimes:jpeg,png,jpg',
             ],
             // mesaje speciale pentru fiecare tip de eraoare la inserare produselor in 
             [
@@ -91,8 +95,8 @@ class ProductController extends Controller
                 'long_description.min' => 'Descrierea lunga a produsului trebuie sa contina minim 10 caractere.',
 
                 'product_thumbnail.required' => 'Imaginea principala a produsului este necesara.',
-                'product_thumbnail.image' => 'Imaginea principala a produsului trebuie sa fie o imagine.',
-                'product_thumbnail.mimes' => 'Imaginea principala a produsului trebuie sa fie o imagine de tip .jpg, .png sau .jpeg.',
+                // 'product_thumbnail.image' => 'Imaginea principala a produsului trebuie sa fie o imagine.',
+                // 'product_thumbnail.mimes' => 'Imaginea principala a produsului trebuie sa fie o imagine de tip .jpg, .png sau .jpeg.',
             ]
         );
 
@@ -134,7 +138,6 @@ class ProductController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-
         // inserarea in tabela multi_img a imaginilor din formularul de adaugare a unui produs
         // $images preia imaginile multiple din formularul de adaugare a unui produs
         $images = $request->file('multi_img');
@@ -154,6 +157,38 @@ class ProductController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
+        if ($request->subsubcategory_id == "1") {
+            ProductLaptop::insert([
+                'product_id' => $product_id,
+                'laptop_os' => $request->laptop_os,
+                'laptop_cpu' => $request->laptop_cpu,
+                'laptop_gpu' => $request->laptop_gpu,
+                'laptop_memory' => $request->laptop_memory,
+                'laptop_display' => $request->laptop_display,
+                'laptop_storage' => $request->laptop_storage,
+            ]);
+        } else if ($request->subsubcategory_id == "2") {
+            ProductTablet::insert([
+                'product_id' => $product_id,
+                'tablet_os' => $request->tablet_os,
+                'tablet_cpu' => $request->tablet_cpu,
+                'tablet_memory' => $request->tablet_memory,
+                'tablet_display' => $request->tablet_display,
+                'tablet_storage' => $request->tablet_storage,
+                'tablet_camera' => $request->tablet_camera,
+            ]);
+        } else if ($request->subsubcategory_id == "3") {
+            ProductPhone::insert([
+                'product_id' => $product_id,
+                'phone_os' => $request->phone_os,
+                'phone_cpu' => $request->phone_cpu,
+                'phone_memory' => $request->phone_memory,
+                'phone_display' => $request->phone_display,
+                'phone_storage' => $request->phone_storage,
+                'phone_camera' => $request->phone_camera,
+            ]);
+        }
+
         // adaugam un mesaj de succes la adaugarea unui produs
         $notification = array(
             'message' => 'Produsul a fost adaugat cu succes!',
@@ -282,6 +317,8 @@ class ProductController extends Controller
             'status' => 1,
             'created_at' => Carbon::now(),
         ]);
+
+
 
         // adaugam un mesaj de succes la actualizarea datelor unui produs
         $notification = array(

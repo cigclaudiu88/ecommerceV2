@@ -62,7 +62,7 @@
 
                         <div class="col-3 mb-20">
                             <label for="formLayoutAddress1">SubSubCategorie</label>
-                            <select name="subsubcategory_id" class="form-control">
+                            <select name="subsubcategory_id" class="form-control" id="test">
                                 <option value="" selected="" disabled="">Select SubSubCategory
                                 </option>
                             </select>
@@ -162,11 +162,206 @@
                                     class="icon"></i> Oferta Saptamanii</label>
                         </div>
 
-                        <div class="col-12 mb-20">
+
+                        <div class="col-lg-12 col-12 mb-30" id="fieldLaptop">
+                            <div class="box">
+                                <div class="box-head">
+                                    <h4 class="title">Date Laptop</h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row mbn-20">
+
+                                        <div class="col-4 mb-20">
+                                            <label for="laptop_os">Laptop Sistem de Operare</label>
+                                            <input type="text" name="laptop_os" class="form-control" id="fieldLaptop1">
+                                            @error('laptop_os')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="laptop_cpu">Laptop CPU</label>
+                                            <input type="text" name="laptop_cpu" class="form-control" id="fieldLaptop2">
+                                            @error('laptop_cpu')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="laptop_gpu">Laptop GPU</label>
+                                            <input type="text" name="laptop_gpu" class="form-control" id="fieldLaptop3">
+                                            @error('laptop_gpu')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+
+                                        <div class="col-4 mb-20">
+                                            <label for="laptop_memory">Laptop Memorie</label>
+                                            <input type="text" name="laptop_memory" class="form-control"
+                                                id="fieldLaptop4">
+                                            @error('laptop_memory')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+
+                                        <div class="col-4 mb-20">
+                                            <label for="laptop_display">Laptop Diagonala Display</label>
+                                            <input type="text" name="laptop_display" class="form-control"
+                                                id="fieldLaptop5">
+                                            @error('laptop_display')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="laptop_storage">Spatiu de Stocare</label>
+                                            <input type="text" name="laptop_storage" class="form-control"
+                                                id="fieldLaptop6">
+                                            @error('laptop_storage')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-12 mb-30" id="fieldTablet">
+                            <div class="box">
+                                <div class="box-head">
+                                    <h4 class="title">Date Tableta</h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row mbn-20">
+
+                                        <div class="col-4 mb-20">
+                                            <label for="tablet_os">Tableta Sistem de Operare</label>
+                                            <input type="text" name="tablet_os" class="form-control" id="fieldTablet1">
+                                            @error('tablet_os')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="tablet_cpu">Tableta CPU</label>
+                                            <input type="text" name="tablet_cpu" class="form-control" id="fieldTablet2">
+                                            @error('tablet_cpu')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="tablet_memory">Tableta Memorie</label>
+                                            <input type="text" name="tablet_memory" class="form-control"
+                                                id="fieldTablet3">
+                                            @error('tablet_memory')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="tablet_display">Tableta Diagonala Display</label>
+                                            <input type="text" name="tablet_display" class="form-control"
+                                                id="fieldTablet4">
+                                            @error('tablet_display')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+
+                                        <div class="col-4 mb-20">
+                                            <label for="tablet_storage">Tableta Spatiu de Stocare</label>
+                                            <input type="text" name="tablet_storage" class="form-control"
+                                                id="fieldTablet5">
+                                            @error('tablet_storage')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="tablet_camera">Tableta Camera</label>
+                                            <input type="text" name="tablet_camera" class="form-control"
+                                                id="fieldTablet5">
+                                            @error('tablet_camera')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-12 col-12 mb-30" id="fieldPhone">
+                            <div class="box">
+                                <div class="box-head">
+                                    <h4 class="title">Date Telefon</h4>
+                                </div>
+                                <div class="box-body">
+                                    <div class="row mbn-20">
+                                        <div class="col-4 mb-20">
+                                            <label for="phone_os">Telefon Sistem de Operare</label>
+                                            <input type="text" name="phone_os" class="form-control" id="fieldPhone1">
+                                            @error('phone_os')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="phone_cpu">Telefon CPU</label>
+                                            <input type="text" name="phone_cpu" class="form-control" id="fieldPhone2">
+                                            @error('phone_cpu')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+
+                                        <div class="col-4 mb-20">
+                                            <label for="phone_memory">Telefon Memorie</label>
+                                            <input type="text" name="phone_memory" class="form-control" id="fieldPhone3">
+                                            @error('phone_memory')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="phone_display">Telefon Diagonala Display</label>
+                                            <input type="text" name="phone_display" class="form-control"
+                                                id="fieldPhone4">
+                                            @error('phone_display')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="phone_storage">Telefon Spatiu de Stocare</label>
+                                            <input type="text" name="phone_storage" class="form-control"
+                                                id="fieldPhone5">
+                                            @error('phone_storage')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+                                        <div class="col-4 mb-20">
+                                            <label for="phone_camera">Telefon Camera</label>
+                                            <input type="text" name="phone_camera" class="form-control" id="fieldPhone6">
+                                            @error('phone_camera')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-12 mb-20 mt-10">
                             <input type="submit" value="Adauga Produs" class="button button-primary">
                             <input type="submit" value="cancle" class="button button-danger">
                         </div>
-
                     </div>
                 </form>
             </div>
@@ -273,5 +468,34 @@
             });
         });
     </script>
-    {{-- 7. Product Upload Part 1 --}}
+
+    <script>
+        $(document).ready(function() {
+            $('#fieldLaptop').hide();
+            $('#fieldTablet').hide();
+            $('#fieldPhone').hide();
+
+            $("#test").change(function() {
+                var subsubcategory_id = $(this).val();
+                if (subsubcategory_id == 1) {
+                    $('#fieldLaptop').show();
+                    $('#fieldTablet').hide();
+                    $('#fieldPhone').hide();
+                } else if (subsubcategory_id == 2) {
+                    $('#fieldLaptop').hide();
+                    $('#fieldTablet').show();
+                    $('#fieldPhone').hide();
+                } else if (subsubcategory_id == 3) {
+                    $('#fieldLaptop').hide();
+                    $('#fieldTablet').hide();
+                    $('#fieldPhone').show();
+                } else {
+                    $('#fieldLaptop').hide();
+                    $('#fieldTablet').hide();
+                    $('#fieldPhone').hide();
+                }
+            });
+        });
+        $("#test").trigger("change");
+    </script>
 @endsection
