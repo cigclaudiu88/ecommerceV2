@@ -328,4 +328,39 @@ class ProductController extends Controller
         // redirectionam catre pagina de management a unui produs cu notificare
         return redirect()->back()->with($notification);
     }
+
+    // functia pentru actualizarea pozei principale a unui produs
+    public function ProductThumbnailImageUpdate(Request $request)
+    {
+        // $pro_id preia id-ul produsului care va fi editat din campul hidden din formularul de editare a unui produs
+        $pro_id = $request->id;
+        // $oldImage preia imaginea veche a produsului care va fi stearsa din folderul public/product_images
+        $oldImage = $request->old_image;
+
+        // stergem imaginea veche din folderul public/product_images
+        unlink($oldImage);
+
+        // $image preia imaginea noua a produsului din formularul de editare a pozei principale a unui produs
+        $image = $request->file('product_thumbnail');
+        // $name_gen retine numele generat unic pentru fiecare imagine
+        $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+        // salvam imaginea in folderul public/product_images
+        Image::make($image)->save('upload/products/thumbnail/' . $name_gen);
+        // actualizam imaginea in tabela product
+        $save_url = 'upload/products/thumbnail/' . $name_gen;
+
+        // actualizam in tabela products imaginea noua a produsului cu id-ul primit ca parametru
+        Product::findOrFail($pro_id)->update([
+            'product_thumbnail' => $save_url,
+            'updated_at' => Carbon::now(),
+        ]);
+
+        // adaugam un mesaj de succes la actualizarea datelor unui produs
+        $notification = array(
+            'message' => 'Poza principala a produsului a fost actualizata cu succes!',
+            'alert-type' => 'info'
+        );
+        // redirectionam catre pagina de management a unui produs cu notificare
+        return redirect()->back()->with($notification);
+    }
 }

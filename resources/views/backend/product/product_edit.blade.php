@@ -192,6 +192,51 @@
     <div class="col-lg-12 col-12 mb-30">
         <div class="box">
             <div class="box-head">
+                <h4 class="title">Actualizeaza Poze Principala</h4>
+            </div>
+            <div class="box-body">
+                <form method="post" action="{{ route('product-thumbnail-image-update') }}" enctype="multipart/form-data">
+                    @csrf
+                    {{-- campuri ascunse pentru a prelua id-ul produsului si poza principala a produsului --}}
+                    <input type="hidden" name="id" value="{{ $products->id }}">
+                    <input type="hidden" name="old_image" value="{{ $products->product_thumbnail }}">
+
+                    <div class="row mbn-20">
+
+                        <div class="col-3 mb-20">
+                            <div class="box text-center" style="width: 18rem;">
+                                <img class="box-img-top" src="{{ asset($products->product_thumbnail) }}">
+                                <div class="box-body">
+                                    <h5 class="box-title">
+                                        {{-- <a href="" class="btn btn btn-danger " id="delete" title="Delete Data"><i
+                                                class="fa fa-trash"></i> Delete Image</a> --}}
+                                        <p class="box-text">
+                                        <div class="form-group">
+                                            <label class="form-control-label" for=""> Schimba Poza Principala <span
+                                                    class="text-danger">*</span></label>
+                                            <input type="file" name="product_thumbnail" class="form-control"
+                                                onchange="mainThumbnailUrl(this)">
+                                            <img src="" alt="" id="mainThumbnail">
+                                        </div>
+                                        </p>
+                                    </h5>
+                                </div>
+                            </div>
+                        </div> {{-- end col-md-3 --}}
+                    </div>
+                    <div class="col-12 mb-20">
+                        <input type="submit" value="Actualizeaza Poze Principala" class="button button-primary">
+                        {{-- <input type="submit" value="cancle" class="button button-danger"> --}}
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="col-lg-12 col-12 mb-30">
+        <div class="box">
+            <div class="box-head">
                 <h4 class="title">Actualizeaza Poze Multiple</h4>
             </div>
             <div class="box-body">
@@ -296,7 +341,7 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#mainThumbnail').attr('src', e.target.result).width(120).height(100);
+                    $('#mainThumbnail').attr('src', e.target.result).width(200).height(200);
                 };
                 reader.readAsDataURL(input.files[0]);
             }
