@@ -61,7 +61,7 @@
                                             id="delete">Delete</a>
                                         <a href="{{ route('product.edit', $item->id) }}"
                                             class="btn btn-info">Vizualizare</a>
-
+                                        {{-- adaugat rute de activ / inactiv produse --}}
                                         @if ($item->status == 1)
                                             <a href="{{ route('product.inactive', $item->id) }}"
                                                 class="btn btn-danger">Inactiv</a>

@@ -381,4 +381,32 @@ class ProductController extends Controller
         // 
         return redirect()->back()->with($notification);
     }
+
+    // functia de dezactivare a unui produs
+    public function ProductInactive($id)
+    {
+        // actualizam statusul produsului cu id-ul primit ca parametru cu 0
+        Product::findOrFail($id)->update(['status' => 0]);
+        // adaugam un mesaj de succes la dezactivarea unui produs
+        $notification = array(
+            'message' => 'Produsul a fost dezactivat cu succes!',
+            'alert-type' => 'warning'
+        );
+        // redirectionam catre pagina de management a unui produs cu notificare
+        return redirect()->back()->with($notification);
+    }
+
+    // functia de activare a unui produs
+    public function ProductActive($id)
+    {
+        // actualizam statusul produsului cu id-ul primit ca parametru cu 1
+        Product::findOrFail($id)->update(['status' => 1]);
+        //
+        $notification = array(
+            'message' => 'Produsul a fost activat cu succes!',
+            'alert-type' => 'info'
+        );
+        // redirectionam catre pagina de management a unui produs cu notificare
+        return redirect()->back()->with($notification);
+    }
 }
