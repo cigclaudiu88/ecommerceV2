@@ -139,25 +139,6 @@
                             @enderror
                         </div>
 
-                        <div class="col-6 mb-20">
-                            <label for="formLayoutFile1">Poza Principala</label>
-                            <input type="file" name="product_thumbnail" class="form-control"
-                                onchange="mainThumbnailUrl(this)">
-
-                            @error('product_thumbnail')
-                                <span class="text-danger"><strong>{{ $message }}</strong></span>
-                            @enderror
-                            <img src="" alt="" id="mainThumbnail">
-                        </div>
-
-                        <div class="col-6 mb-20">
-                            <label for="formLayoutFile1">Poze Multiple</label>
-                            <input type="file" name="multi_img[]" class="form-control" multiple="" id="multiImg">
-                            @error('multi_img')
-                                <span class="text-danger">{{ $message }}</span>
-                            @enderror
-                            <div class="row ml-1" id="preview_img"></div>
-                        </div>
 
                         <div class="col-12 mb-20">
                             <label for="formLayoutMessage1">Descriere Scurta</label>
@@ -206,6 +187,49 @@
             </div>
         </div>
     </div>
+
+
+    <div class="col-lg-12 col-12 mb-30">
+        <div class="box">
+            <div class="box-head">
+                <h4 class="title">Actualizeaza Poze Multiple</h4>
+            </div>
+            <div class="box-body">
+                <form method="post" action="{{ route('product-multi-image-update') }}" enctype="multipart/form-data">
+                    @csrf
+                    <div class="row mbn-20">
+
+                        @foreach ($multiImgs as $img)
+                            <div class="col-3 mb-20">
+                                <div class="card-body text-center" style="width: 18rem;">
+                                    <img class="box-img-top" src="{{ asset($img->photo_name) }}">
+                                    <div class="box-body">
+                                        <h5 class="box-title">
+                                            <a href="" class="btn btn btn-danger " id="delete" title="Delete Data"><i
+                                                    class="fa fa-trash"></i> Delete Poza</a>
+                                            <p class="box-text">
+                                            <div class="form-group">
+                                                <label class="form-control-label" for=""> Schimba Poza <span
+                                                        class="text-danger">*</span></label>
+                                                <input type="file" class="form-control" name="multi_img[ $img->id]">
+                                            </div>
+                                            </p>
+                                        </h5>
+                                    </div>
+                                </div>
+                            </div> {{-- end col-md-3 --}}
+                        @endforeach
+                        <div class="col-12 mb-20">
+                            <input type="submit" value="Actualizeaza Poze Multiple" class="button button-primary">
+                            {{-- <input type="submit" value="cancle" class="button button-danger"> --}}
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
 
     {{-- script pentru afisarea subcategoriilor aferente categoriei selectate si subsubcategoriilor aferente subcategoriei selectate in formularul de adaugare produse --}}
     <script type="text/javascript">
