@@ -417,7 +417,8 @@
                                     '<option value="' + value.id + '">' + value
                                     .subsubcategory_name + '</option>');
                             });
-                            // pentru ca scriptul de ascundere sa functioneze !!!!
+                            // pentru ca scriptul de ascundere sa functioneze 
+                            // daca select / option are o singura optiune trigger-ul trebuie folosit aici
                             $("#test").trigger("change");
                         },
 
@@ -502,6 +503,8 @@
                 }
             });
         });
-        // $("#test").trigger("change");
+        // pentru ca scriptul de ascundere sa functioneze 
+        // daca select / option are mai multe optiune trigger-ul trebuie folosit aici
+        $("#test").trigger("change");
     </script>
 @endsection
