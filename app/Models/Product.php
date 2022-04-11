@@ -12,22 +12,19 @@ class Product extends Model
     // face toate campurile prezente sau viitoare din tabelul products accesibile
     protected $guarded = [];
 
-    // functia de legatura cu tabelul categories
-    public function productlaptop()
+    // functia de legatura cu tabela product_laptops
+    public function product_laptop()
     {
-        // legatura intre tabela productlaptops (product_id) si tabela products (id)
-        return $this->belongsTo(ProductLaptop::class);
+        return $this->hasOne(ProductLaptop::class);
     }
-
-    public function producttablet()
+    // functia de legatura cu tabela product_tablets
+    public function product_tablet()
     {
-        // legatura intre tabela producttablets (product_id) si tabela products (id)
-        return $this->belongsTo(ProductTablet::class);
+        return $this->hasOne(ProductTablet::class);
     }
-
-    public function productphone()
+    //
+    public function product_phone()
     {
-        // legatura intre tabela productphones (product_id) si tabela products (id)
-        return $this->belongsTo(ProductPhone::class);
+        return $this->hasOne(ProductPhone::class);
     }
 }

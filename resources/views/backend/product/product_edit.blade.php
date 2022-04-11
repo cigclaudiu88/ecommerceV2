@@ -177,6 +177,229 @@
                                 Oferta Saptamanii</label>
                         </div>
 
+                        @if ($products->subsubcategory_id == 1)
+                            <div class="col-lg-12 col-12 mb-30" id="fieldLaptop">
+                                <div class="box">
+                                    <div class="box-head">
+                                        <h4 class="title">Date Laptop</h4>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row mbn-20">
+
+                                            <div class="col-4 mb-20">
+                                                <label for="laptop_os">Laptop Sistem de Operare</label>
+                                                <input type="text" name="laptop_os" class="form-control" id="fieldLaptop1"
+                                                    value="{{ $products->product_laptop->laptop_os }}">
+                                                @error('laptop_os')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="laptop_cpu">Laptop CPU</label>
+                                                <input type="text" name="laptop_cpu" class="form-control"
+                                                    id="fieldLaptop2"
+                                                    value="{{ $products->product_laptop->laptop_cpu }}">
+                                                @error('laptop_cpu')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="laptop_gpu">Laptop GPU</label>
+                                                <input type="text" name="laptop_gpu" class="form-control"
+                                                    id="fieldLaptop3"
+                                                    value="{{ $products->product_laptop->laptop_gpu }}">
+                                                @error('laptop_gpu')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+
+                                            <div class="col-4 mb-20">
+                                                <label for="laptop_memory">Laptop Memorie</label>
+                                                <input type="text" name="laptop_memory" class="form-control"
+                                                    id="fieldLaptop4"
+                                                    value="{{ $products->product_laptop->laptop_memory }}">
+                                                @error('laptop_memory')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+
+                                            <div class="col-4 mb-20">
+                                                <label for="laptop_display">Laptop Diagonala Display</label>
+                                                <input type="text" name="laptop_display" class="form-control"
+                                                    id="fieldLaptop5"
+                                                    value="{{ $products->product_laptop->laptop_display }}">
+                                                @error('laptop_display')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="laptop_storage">Spatiu de Stocare</label>
+                                                <input type="text" name="laptop_storage" class="form-control"
+                                                    id="fieldLaptop6"
+                                                    value="{{ $products->product_laptop->laptop_storage }}">
+                                                @error('laptop_storage')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($products->subsubcategory_id == 2)
+                            <div class="col-lg-12 col-12 mb-30" id="fieldTablet">
+                                <div class="box">
+                                    <div class="box-head">
+                                        <h4 class="title">Date Tableta</h4>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row mbn-20">
+
+                                            <div class="col-4 mb-20">
+                                                <label for="tablet_os">Tableta Sistem de Operare</label>
+                                                <input type="text" name="tablet_os" class="form-control" id="fieldTablet1"
+                                                    value="{{ $products->product_tablet->tablet_os }}">
+                                                @error('tablet_os')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="tablet_cpu">Tableta CPU</label>
+                                                <input type="text" name="tablet_cpu" class="form-control"
+                                                    id="fieldTablet2"
+                                                    value="{{ $products->product_tablet->tablet_cpu }}">
+                                                @error('tablet_cpu')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="tablet_memory">Tableta Memorie</label>
+                                                <input type="text" name="tablet_memory" class="form-control"
+                                                    id="fieldTablet3"
+                                                    value="{{ $products->product_tablet->tablet_memory }}">
+                                                @error('tablet_memory')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="tablet_display">Tableta Diagonala Display</label>
+                                                <input type="text" name="tablet_display" class="form-control"
+                                                    id="fieldTablet4"
+                                                    value="{{ $products->product_tablet->tablet_display }}">
+                                                @error('tablet_display')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+
+                                            <div class="col-4 mb-20">
+                                                <label for="tablet_storage">Tableta Spatiu de Stocare</label>
+                                                <input type="text" name="tablet_storage" class="form-control"
+                                                    id="fieldTablet5"
+                                                    value="{{ $products->product_tablet->tablet_storage }}">
+                                                @error('tablet_storage')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="tablet_camera">Tableta Camera</label>
+                                                <input type="text" name="tablet_camera" class="form-control"
+                                                    id="fieldTablet5"
+                                                    value="{{ $products->product_tablet->tablet_camera }}">
+                                                @error('tablet_camera')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
+                        @if ($products->subsubcategory_id == 3)
+                            <div class="col-lg-12 col-12 mb-30" id="fieldPhone">
+                                <div class="box">
+                                    <div class="box-head">
+                                        <h4 class="title">Date Telefon</h4>
+                                    </div>
+                                    <div class="box-body">
+                                        <div class="row mbn-20">
+                                            <div class="col-4 mb-20">
+                                                <label for="phone_os">Telefon Sistem de Operare</label>
+                                                <input type="text" name="phone_os" class="form-control" id="fieldPhone1"
+                                                    value="{{ $products->product_phone->phone_os }}">
+                                                @error('phone_os')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="phone_cpu">Telefon CPU</label>
+                                                <input type="text" name="phone_cpu" class="form-control" id="fieldPhone2"
+                                                    value="{{ $products->product_phone->phone_cpu }}">
+                                                @error('phone_cpu')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+
+                                            <div class="col-4 mb-20">
+                                                <label for="phone_memory">Telefon Memorie</label>
+                                                <input type="text" name="phone_memory" class="form-control"
+                                                    id="fieldPhone3"
+                                                    value="{{ $products->product_phone->phone_memory }}">
+                                                @error('phone_memory')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="phone_display">Telefon Diagonala Display</label>
+                                                <input type="text" name="phone_display" class="form-control"
+                                                    id="fieldPhone4"
+                                                    value="{{ $products->product_phone->phone_display }}">
+                                                @error('phone_display')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="phone_storage">Telefon Spatiu de Stocare</label>
+                                                <input type="text" name="phone_storage" class="form-control"
+                                                    id="fieldPhone5"
+                                                    value="{{ $products->product_phone->phone_storage }}">
+                                                @error('phone_storage')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+
+                                            <div class="col-4 mb-20">
+                                                <label for="phone_camera">Telefon Camera</label>
+                                                <input type="text" name="phone_camera" class="form-control"
+                                                    id="fieldPhone6"
+                                                    value="{{ $products->product_phone->phone_camera }}">
+                                                @error('phone_camera')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+
                         <div class="col-12 mb-20">
                             <input type="submit" value="Actualizeaza Produs" class="button button-primary">
                             {{-- <input type="submit" value="cancle" class="button button-danger"> --}}
@@ -328,6 +551,7 @@
                                     .subsubcategory_name + '</option>');
                             });
                         },
+
                     });
                 } else {
                     alert('danger');
@@ -343,7 +567,7 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#mainThumbnail').attr('src', e.target.result).width(200).height(200);
+                    $('#mainThumbnail').attr('src', e.target.result).width(120).height(100);
                 };
                 reader.readAsDataURL(input.files[0]);
             }
@@ -380,5 +604,4 @@
             });
         });
     </script>
-    {{-- 7. Product Upload Part 1 --}}
 @endsection
