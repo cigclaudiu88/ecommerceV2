@@ -485,6 +485,16 @@ class ProductController extends Controller
             // stergem fiecare poza din tabela multi_img in care id-ul produsului este egal cu id-ul primit ca parametru
             MultiImg::where('product_id', $id)->delete();
         }
+
+        if ($product->subsubcategory_id == "1") {
+            ProductLaptop::where('product_id', $id)->delete();
+        } else if ($product->subsubcategory_id == "2") {
+            ProductTablet::where('product_id', $id)->delete();
+        } else if ($product->subsubcategory_id == "3") {
+            ProductPhone::where('product_id', $id)->delete();
+        }
+
+
         // adaugam un mesaj de succes la stergerea unui produs
         $notification = array(
             'message' => 'Product Deleted Successfully',
