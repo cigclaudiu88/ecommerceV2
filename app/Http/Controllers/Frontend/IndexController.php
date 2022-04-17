@@ -4,19 +4,21 @@ namespace App\Http\Controllers\Frontend;
 
 // adaugam modelul User
 use App\Models\User;
-use Illuminate\Http\Request;
+use App\Models\Category;
 // adaugam namespace-ul pentru clasa Auth
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 // adaugam namespace-ul pentru clasa Hash - cryptare parola
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class IndexController extends Controller
 {
     public function index()
     {
+        $categories = Category::orderBy('id', 'ASC')->get();
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php
-        return view('frontend.index');
+        return view('frontend.index', compact('categories'));
     }
 
     // functia de logout user

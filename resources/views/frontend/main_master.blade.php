@@ -43,6 +43,8 @@
     <!-- Toaster CSS -->
     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
 
+    {{-- Font Asesome CDN --}}
+    <script src="https://kit.fontawesome.com/e4b2d9b481.js" crossorigin="anonymous"></script>
 </head>
 
 <body>
