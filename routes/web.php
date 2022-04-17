@@ -201,33 +201,23 @@ Route::prefix('product')->group(function () {
 });
 
 
-// Admin Slider All Routes
-// 1. Slider Page Design Part 1
+// Admin Sliders Rute Grupate si prefixate cu slider
 Route::prefix('slider')->group(function () {
-    // Display All Slider Route
+    // ruta de afisare tuturor sliders
     Route::get('/view', [SliderController::class, 'SliderView'])->name('manage-slider');
-    // 1. Slider Page Design Part 1
-    // 2. Upload Slider and Show All Slider List Part 2
-    // Slider Store route
+    // ruta de inserare in tabela sliders
     Route::post('/store', [SliderController::class, 'SliderStore'])->name('slider.store');
-    // 2. Upload Slider and Show All Slider List Part 2
-    // Edit Slider Route
-    // 3. Slider Edit & Update Delete Part 1
+    // ruta de editare sliders din tabela sliders
     Route::get('/edit/{id}', [SliderController::class, 'SliderEdit'])->name('slider.edit');
-    // Update Slider Route
+    // ruta de actualizare sliders din tabela sliders
     Route::post('/update', [SliderController::class, 'SliderUpdate'])->name('slider.update');
-    // 3. Slider Edit & Update Delete Part 1
-    // 4. Slider Edit & Update Delete Part 2
-    // Delete Slider Route
+    // ruta de stergere sliders din tabela sliders
     Route::get('/delete/{id}', [SliderController::class, 'SliderDelete'])->name('slider.delete');
-    // 4. Slider Edit & Update Delete Part 2
-    // 5. Slider Active Inactive
+    // ruta de dezactivare sliders din tabela sliders
     Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
-
+    // ruta de activare sliders din tabela sliders
     Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
-    // 5. Slider Active Inactive
 });
-// 1. Brand Page Design Part 1
 
 // 1. Product Details Show Part 1
 // Frontend - Product Details Page URL
