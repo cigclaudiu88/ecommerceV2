@@ -1,81 +1,94 @@
-  <!-- Footer Section Begin -->
-  <footer class="footer spad bg-dark">
-      <div class="container">
-          <div class="row">
-              <div class="col-lg-3 col-md-6 col-sm-6">
-                  <div class="footer__about">
-                      <div class="footer__about__logo">
-                          <a href="./index.html"><img src="{{ asset('frontend/img/logo.png') }} " alt="" /></a>
-                      </div>
-                      <ul>
-                          <li>Address: 60-49 Road 11378 New York</li>
-                          <li>Phone: +65 11.188.888</li>
-                          <li>Email: hello@colorlib.com</li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-6 col-sm-6 offset-lg-1">
-                  <div class="footer__widget">
-                      <h6>Useful Links</h6>
-                      <ul>
-                          <li><a href="#">About Us</a></li>
-                          <li><a href="#">About Our Shop</a></li>
-                          <li><a href="#">Secure Shopping</a></li>
-                          <li><a href="#">Delivery infomation</a></li>
-                          <li><a href="#">Privacy Policy</a></li>
-                          <li><a href="#">Our Sitemap</a></li>
-                      </ul>
-                      <ul>
-                          <li><a href="#">Who We Are</a></li>
-                          <li><a href="#">Our Services</a></li>
-                          <li><a href="#">Projects</a></li>
-                          <li><a href="#">Contact</a></li>
-                          <li><a href="#">Innovation</a></li>
-                          <li><a href="#">Testimonials</a></li>
-                      </ul>
-                  </div>
-              </div>
-              <div class="col-lg-4 col-md-12">
-                  <div class="footer__widget">
-                      <h6>Join Our Newsletter Now</h6>
-                      <p>
-                          Get E-mail updates about our latest shop and special offers.
-                      </p>
-                      <form action="#">
-                          <input type="text" placeholder="Enter your mail" />
-                          <button type="submit" class="site-btn">Subscribe</button>
-                      </form>
-                      <div class="footer__widget__social">
-                          <a href="#"><i class="fa fa-facebook"></i></a>
-                          <a href="#"><i class="fa fa-instagram"></i></a>
-                          <a href="#"><i class="fa fa-twitter"></i></a>
-                          <a href="#"><i class="fa fa-pinterest"></i></a>
-                      </div>
-                  </div>
-              </div>
-          </div>
-          <div class="row">
-              <div class="col-lg-12">
-                  <div class="footer__copyright">
-                      <div class="footer__copyright__text">
-                          <p>
-                              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                              Copyright &copy;
-                              <script>
-                                  document.write(new Date().getFullYear());
-                              </script>
-                              All rights reserved | This template is made with
-                              <i class="fa fa-heart" aria-hidden="true"></i> by
-                              <a href="https://colorlib.com" target="_blank">Colorlib</a>
-                              <!-- Link back to Colorlib can't be removed. Template is licensed under CC BY 3.0. -->
-                          </p>
-                      </div>
-                      <div class="footer__copyright__payment">
-                          <img src="{{ asset('frontend/img/payment-item.png') }} " alt="" />
-                      </div>
-                  </div>
-              </div>
-          </div>
-      </div>
-  </footer>
-  <!-- Footer Section End -->
+<!--footer area start-->
+<footer class="footer_widgets">
+    <div class="footer_top">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 col-md-12 col-sm-7">
+                    <div class="widgets_container contact_us">
+                        <div class="footer_logo">
+                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                        </div>
+                        <p class="footer_desc">We are a team of designers and developers that create high quality
+                            eCommerce, WordPress, Shopify .</p>
+                        <p><span>Address:</span> 4710-4890 Breckinridge USA</p>
+                        <p><span>Email:</span> <a href="#">demo@hasthemes.com</a></p>
+                        <p><span>Call us:</span> <a href="tel:(08)23456789">(08) 23 456 789</a> </p>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-5">
+                    <div class="widgets_container widget_menu">
+                        <h3>Information</h3>
+                        <div class="footer_menu">
+
+                            <ul>
+                                <li><a href="about.html">About Us</a></li>
+                                <li><a href="#">Delivery Information</a></li>
+                                <li><a href="#"> Privacy Policy</a></li>
+                                <li><a href="#"> Terms & Conditions</a></li>
+                                <li><a href="contact.html"> Contact Us</a></li>
+                                <li><a href="#"> Site Map</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-3 col-sm-4">
+                    <div class="widgets_container widget_menu">
+                        <h3>Extras</h3>
+                        <div class="footer_menu">
+                            <ul>
+                                <li><a href="#">Brands</a></li>
+                                <li><a href="#"> Gift Certificates</a></li>
+                                <li><a href="#">Affiliate</a></li>
+                                <li><a href="#">Specials</a></li>
+                                <li><a href="#">Returns</a></li>
+                                <li><a href="#"> Order History</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4 col-md-6 col-sm-8">
+                    <div class="widgets_container widget_newsletter">
+                        <h3>Sign up newsletter</h3>
+                        <p class="footer_desc">Get updates by subscribe our weekly newsletter</p>
+                        <div class="subscribe_form">
+                            <form id="mc-form" class="mc-form footer-newsletter">
+                                <input id="mc-email" type="email" autocomplete="off" placeholder="Enter you email" />
+                                <button id="mc-submit">Subscribe</button>
+                            </form>
+                            <!-- mailchimp-alerts Start -->
+                            <div class="mailchimp-alerts text-centre">
+                                <div class="mailchimp-submitting"></div><!-- mailchimp-submitting end -->
+                                <div class="mailchimp-success"></div><!-- mailchimp-success end -->
+                                <div class="mailchimp-error"></div><!-- mailchimp-error end -->
+                            </div><!-- mailchimp-alerts end -->
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer_bottom">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-lg-6 col-md-7">
+                    <div class="copyright_area">
+                        <p>Copyright © 2021 <a href="#">Safira</a> . All Rights Reserved.Design by <a
+                                href="#">Safira</a></p>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-5">
+                    <div class="footer_payment">
+                        <ul>
+                            <li><a href="#"><img src="assets/img/icon/paypal1.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="assets/img/icon/paypal2.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="assets/img/icon/paypal3.jpg" alt=""></a></li>
+                            <li><a href="#"><img src="assets/img/icon/paypal4.jpg" alt=""></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!--footer area end-->

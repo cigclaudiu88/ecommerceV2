@@ -14,7 +14,7 @@
                             alt="" height="40%" width="40%"><br><br>
                         <!-- Nav tabs -->
                         <div class="dashboard_tab_button">
-                            <ul role="tablist" class="nav flex-column dashboard-list" id="nav-tab">
+                            <ul role="tablist" class="nav flex-column dashboard-list">
                                 <li><a href="{{ route('dashboard') }}" class="nav-link">Acasa</a>
                                 </li>
                                 <li><a href="{{ route('user.profile') }}" class="nav-link">Detalii

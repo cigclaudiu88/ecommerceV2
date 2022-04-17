@@ -19,7 +19,7 @@
                             alt="" height="40%" width="40%"><br><br>
                         <!-- Nav tabs -->
                         <div class="dashboard_tab_button">
-                            <ul role="tablist" class="nav flex-column dashboard-list" id="nav-tab">
+                            <ul role="tablist" class="nav flex-column dashboard-list">
                                 <li><a href="{{ route('dashboard') }}" class="nav-link">Acasa</a>
                                 </li>
                                 <li><a href="{{ route('user.profile') }}" class="nav-link active">Detalii
@@ -43,7 +43,7 @@
 
                             {{-- sectiunea de actualizare date cont incepe --}}
                             <div class="tab-pane fade active" id="account-details">
-                                <h3><strong>Actualizare Detalii Cont</strong></h3>
+                                <h3><strong>Actualizare Detalii Cont client</strong></h3>
                                 {{-- adaugat formular de actualizare date si poza (enctype) cont utilizator cu ruta user.profile.store --}}
                                 <div class="login">
                                     <div class="login_form_container">

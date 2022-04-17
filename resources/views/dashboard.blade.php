@@ -19,7 +19,7 @@
                             alt="" height="40%" width="40%"><br><br>
                         <!-- Nav tabs -->
                         <div class="dashboard_tab_button">
-                            <ul role="tablist" class="nav flex-column dashboard-list" id="nav-tab">
+                            <ul role="tablist" class="nav flex-column dashboard-list">
                                 <li><a href="{{ route('dashboard') }}" class="nav-link active">Acasa</a>
                                 </li>
                                 <li><a href="{{ route('user.profile') }}" class="nav-link">Detalii
@@ -32,7 +32,7 @@
                                 <li><a href="#downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>
                                 <li><a href="#address" data-toggle="tab" class="nav-link">Adrese</a></li>
                                 {{-- adaugat ruta de logout --}}
-                                <li><a href="{{ route('user.logout') }}" class="nav-link">logout</a></li>
+                                <li><a href="{{ route('user.logout') }}" class="nav-link">Logout</a></li>
                             </ul>
                         </div>
                     </div>
