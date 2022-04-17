@@ -3,6 +3,7 @@
 <div class="off_canvars_overlay">
 
 </div>
+{{-- meniu pentru dispozitive mobile start --}}
 <div class="offcanvas_menu">
     <div class="container">
         <div class="row">
@@ -14,120 +15,57 @@
                     <div class="canvas_close">
                         <a href="javascript:void(0)"><i class="icon-x"></i></a>
                     </div>
-
-                    <div class="header_social text-right">
+                    {{-- <div class="header_social text-right">
                         <ul>
-                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>
-                            <li><a href="#"><i class="ion-social-googleplus-outline"></i></a></li>
-                            <li><a href="#"><i class="ion-social-youtube-outline"></i></a></li>
                             <li><a href="#"><i class="ion-social-facebook"></i></a></li>
+                            <li><a href="#"><i class="ion-social-twitter"></i></a></li>                 
                             <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                     <div class="call-support">
                         <p><a href="tel:(08)23456789">(08) 23 456 789</a> Customer Support</p>
                     </div>
+                    @php
+                        // $categories preia din modelul Category toate datele din tabelul categories in ordine ascendenta dupa id
+                        $categories = App\Models\Category::orderBy('id', 'ASC')->get();
+                    @endphp
                     <div id="menu" class="text-left ">
                         <ul class="offcanvas_main_menu">
-                            <li class="menu-item-has-children active">
-                                <a href="#">Home</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Home Organic</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="index.html">Organic 01</a></li>
-                                            <li><a href="index-2.html">Organic 02</a></li>
-                                            <li><a href="index-3.html">Organic 03</a></li>
-                                            <li><a href="index-4.html">Organic 04</a></li>
-                                            <li><a href="index-5.html">Organic 05</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Home Fashion</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="index-8.html">Fashion 01</a></li>
-                                            <li><a href="index-9.html">Fashion 02</a></li>
-                                            <li><a href="#">Fashion 03 <span>(Comming Soon)</span></a></li>
-                                            <li><a href="#">Fashion 04 <span>(Comming Soon)</span></a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Home Cosmetic</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="index-6.html">Cosmetic 01</a></li>
-                                            <li><a href="index-7.html">Cosmetic 02</a></li>
-                                            <li><a href="#">Cosmetic 03 <span>(Comming Soon)</span></a> </li>
-                                            <li><a href="#">Cosmetic 04 <span>(Comming Soon)</span></a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">Shop</a>
-                                <ul class="sub-menu">
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Shop Layouts</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="shop.html">shop</a></li>
-                                            <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                            <li><a href="shop-fullwidth-list.html">Full Width list</a></li>
-                                            <li><a href="shop-right-sidebar.html">Right Sidebar </a></li>
-                                            <li><a href="shop-right-sidebar-list.html"> Right Sidebar list</a></li>
-                                            <li><a href="shop-list.html">List View</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">other Pages</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="cart.html">cart</a></li>
-                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                            <li><a href="checkout.html">Checkout</a></li>
-                                            <li><a href="my-account.html">my account</a></li>
-                                            <li><a href="404.html">Error 404</a></li>
-                                        </ul>
-                                    </li>
-                                    <li class="menu-item-has-children">
-                                        <a href="#">Product Types</a>
-                                        <ul class="sub-menu">
-                                            <li><a href="product-details.html">product details</a></li>
-                                            <li><a href="product-sidebar.html">product sidebar</a></li>
-                                            <li><a href="product-grouped.html">product grouped</a></li>
-                                            <li><a href="variable-product.html">product variable</a></li>
-                                        </ul>
-                                    </li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">blog</a>
-                                <ul class="sub-menu">
-                                    <li><a href="blog.html">blog</a></li>
-                                    <li><a href="blog-details.html">blog details</a></li>
-                                    <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                    <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                </ul>
-
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="#">pages </a>
-                                <ul class="sub-menu">
-                                    <li><a href="about.html">About Us</a></li>
-                                    <li><a href="services.html">services</a></li>
-                                    <li><a href="faq.html">Frequently Questions</a></li>
-                                    <li><a href="contact.html">contact</a></li>
-                                    <li><a href="login.html">login</a></li>
-                                    <li><a href="404.html">Error 404</a></li>
-                                </ul>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="my-account.html">my account</a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="about.html">about Us</a>
-                            </li>
-                            <li class="menu-item-has-children">
-                                <a href="contact.html"> Contact Us</a>
-                            </li>
+                            {{-- iteram cu $categories (max 5 inregistrari) si afisam in meniu toate categoriile din baza de date --}}
+                            @foreach ($categories->slice(0, 5) as $category)
+                                <li class="menu-item-has-children active">
+                                    <a href="#">{{ $category->category_name }}</a>
+                                    @php
+                                        // $subcategories preia din modelul Subcategory toate datele din tabelul subcategories in ordine ascendenta dupa id
+                                        $subcategories = App\Models\SubCategory::where('category_id', $category->id)
+                                            ->orderBy('id', 'ASC')
+                                            ->get();
+                                    @endphp
+                                    <ul class="sub-menu">
+                                        {{-- iteram cu $subcategories (max 5 inregistrari) si afisam in meniu toate subcategoriile din baza de date --}}
+                                        @foreach ($subcategories->slice(0, 5) as $subcategory)
+                                            <li class="menu-item-has-children">
+                                                <a href="#">{{ $subcategory->subcategory_name }}</a>
+                                                @php
+                                                    // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
+                                                    $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
+                                                        ->orderBy('id')
+                                                        ->get();
+                                                @endphp
+                                                <ul class="sub-menu">
+                                                    {{-- iteram cu $subsubcategories si afisam in meniu toate subsubcategoriile din baza de date --}}
+                                                    @foreach ($subsubcategories as $subsubcategory)
+                                                        <li><a
+                                                                href="index.html">{{ $subsubcategory->subsubcategory_name }}</a>
+                                                        </li>
+                                                    @endforeach {{-- iteratie SubSubCategory incheiata --}}
+                                                </ul>
+                                            </li>
+                                        @endforeach {{-- iteratie SubCategory incheiata --}}
+                                    </ul>
+                                </li>
+                            @endforeach {{-- iteratie Category incheiata --}}
                         </ul>
                     </div>
                     <div class="offcanvas_footer">
@@ -138,10 +76,9 @@
         </div>
     </div>
 </div>
-<!--offcanvas menu area end-->
+{{-- meniu pentru dispozitive mobile end --}}
 
 <header>
-
     <div class="main_header">
 
         <div class="header_top">
@@ -281,7 +218,7 @@
                                                     <!--mini cart end-->
                                                 </div>
                                             </li>
-                                            {{-- Profil Utilizator --}}
+                                            {{-- Meniu Profil Utilizator Autentificat --}}
                                             <li>
                                                 <div class="language_currency">
                                                     <ul>
@@ -491,116 +428,63 @@
                                 </div>
                             </div>
                         </div>
-                        <div class="col-lg-6">
+                        <div class="col-lg-9">
                             <!--main menu start-->
                             <div class="main_menu menu_position">
+                                @php
+                                    // $categories preia din modelul Category toate datele din tabelul categories in ordine ascendenta dupa id
+                                    $categories = App\Models\Category::orderBy('id', 'ASC')->get();
+                                @endphp
                                 <nav>
                                     <ul>
-                                        <li><a class="active" href="index.html">home<i
-                                                    class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu home_sub_menu d-flex">
-                                                <li><span>Organic</span>
-                                                    <ul>
-                                                        <li><a href="index.html">Organic 01</a></li>
-                                                        <li><a href="index-2.html">Organic 02</a></li>
-                                                        <li><a href="index-3.html">Organic 03</a></li>
-                                                        <li><a href="index-4.html">Organic 04</a></li>
-                                                        <li><a href="index-5.html">Organic 05</a></li>
-                                                    </ul>
-                                                </li>
-                                                <li><span>Fashion</span>
-                                                    <ul>
-                                                        <li><a href="index-8.html">Fashion 01</a></li>
-                                                        <li><a href="index-9.html">Fashion 02</a></li>
-                                                        <li><a href="#">Fashion 03 <span>(Comming Soon)</span></a>
-                                                        </li>
-                                                        <li><a href="#">Fashion 04 <span>(Comming Soon)</span></a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                                <li><span>Cosmetic</span>
-                                                    <ul>
-                                                        <li><a href="index-6.html">Cosmetic 01</a></li>
-                                                        <li><a href="index-7.html">Cosmetic 02</a></li>
-                                                        <li><a href="#">Cosmetic 03 <span>(Comming Soon)</span></a>
-                                                        </li>
-                                                        <li><a href="#">Cosmetic 04 <span>(Comming Soon)</span></a>
-                                                        </li>
-                                                    </ul>
-                                                </li>
-                                            </ul>
-                                        </li>
-                                        <li class="mega_items"><a href="shop.html">shop<i
-                                                    class="fa fa-angle-down"></i></a>
-                                            <div class="mega_menu">
-                                                <ul class="mega_menu_inner">
-                                                    <li><a href="#">Shop Layouts</a>
-                                                        <ul>
-                                                            <li><a href="shop-fullwidth.html">Full Width</a></li>
-                                                            <li><a href="shop-fullwidth-list.html">Full Width
-                                                                    list</a>
-                                                            </li>
-                                                            <li><a href="shop-right-sidebar.html">Right Sidebar </a>
-                                                            </li>
-                                                            <li><a href="shop-right-sidebar-list.html"> Right
-                                                                    Sidebar
-                                                                    list</a></li>
-                                                            <li><a href="shop-list.html">List View</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">other Pages</a>
-                                                        <ul>
-                                                            <li><a href="cart.html">cart</a></li>
-                                                            <li><a href="wishlist.html">Wishlist</a></li>
-                                                            <li><a href="checkout.html">Checkout</a></li>
-                                                            <li><a href="my-account.html">my account</a></li>
-                                                            <li><a href="404.html">Error 404</a></li>
-                                                        </ul>
-                                                    </li>
-                                                    <li><a href="#">Product Types</a>
-                                                        <ul>
-                                                            <li><a href="product-details.html">product details</a>
-                                                            </li>
-                                                            <li><a href="product-sidebar.html">product sidebar</a>
-                                                            </li>
-                                                            <li><a href="product-grouped.html">product grouped</a>
-                                                            </li>
-                                                            <li><a href="variable-product.html">product variable</a>
-                                                            </li>
+                                        {{-- iteram cu $categories (max 3 inregistrari) si afisam in meniu toate categoriile din baza de date --}}
+                                        @foreach ($categories->slice(0, 3) as $category)
+                                            <li><a class="active"
+                                                    href="{{ url('/') }}">{{ $category->category_name }}<i
+                                                        class="fa fa-angle-down"></i></a>
+                                                @php
+                                                    // $subcategories preia din modelul Subcategory toate datele din tabelul subcategories in ordine ascendenta dupa id
+                                                    $subcategories = App\Models\SubCategory::where('category_id', $category->id)
+                                                        ->orderBy('id', 'ASC')
+                                                        ->get();
+                                                @endphp
+                                                <ul class="sub_menu home_sub_menu d-flex">
+                                                    {{-- iteram cu $subcategories (max 3 inregistrari) si afisam in meniu toate subcategoriile din baza de date --}}
+                                                    @foreach ($subcategories->slice(0, 3) as $subcategory)
+                                                        <li><a
+                                                                href="index.html"><strong>{{ $subcategory->subcategory_name }}</strong></a>
+                                                            @php
+                                                                // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
+                                                                $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
+                                                                    ->orderBy('id', 'ASC')
+                                                                    ->get();
+                                                            @endphp
+                                                            <ul>
+                                                                {{-- iteram cu $subsubcategories (max 3 inregistrari) si afisam in meniu toate subsubcategoriile din baza de date --}}
+                                                                @foreach ($subsubcategories as $subsubcategory)
+                                                                    <li><a
+                                                                            href="index.html">{{ $subsubcategory->subsubcategory_name }}</a>
+                                                                    </li>
+                                                                @endforeach {{-- iteratie SubSubCategory incheiata --}}
+                                                            </ul>
 
-                                                        </ul>
-                                                    </li>
+                                                        </li>
+                                                    @endforeach {{-- iteratie SubCategory incheiata --}}
                                                 </ul>
-                                            </div>
-                                        </li>
-                                        <li><a href="blog.html">blog<i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu pages">
-                                                <li><a href="blog-details.html">blog details</a></li>
-                                                <li><a href="blog-fullwidth.html">blog fullwidth</a></li>
-                                                <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="#">pages <i class="fa fa-angle-down"></i></a>
-                                            <ul class="sub_menu pages">
-                                                <li><a href="about.html">About Us</a></li>
-                                                <li><a href="services.html">services</a></li>
-                                                <li><a href="faq.html">Frequently Questions</a></li>
-                                                <li><a href="contact.html">contact</a></li>
-                                                <li><a href="login.html">login</a></li>
-                                                <li><a href="404.html">Error 404</a></li>
-                                            </ul>
-                                        </li>
-                                        <li><a href="contact.html"> Contact Us</a></li>
+
+                                            </li>
+                                        @endforeach {{-- iteratie SubCategory incheiata --}}
                                     </ul>
+
                                 </nav>
                             </div>
                             <!--main menu end-->
                         </div>
-                        <div class="col-lg-3">
+                        {{-- <div class="col-lg-3">
                             <div class="call-support">
                                 <p><a href="tel:(08)23456789">(08) 23 456 789</a> Customer Support</p>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </div>
             </div>
