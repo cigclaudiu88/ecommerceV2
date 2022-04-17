@@ -40,8 +40,8 @@
                                     </td>
 
                                     <td width="30%">
-
-                                        <a href="" class="btn btn-success">Edit</a>
+                                        {{-- adaugat ruta de editare a sliderului --}}
+                                        <a href="{{ route('slider.edit', $item->id) }}" class="btn btn-success">Edit</a>
                                         <a href="" class="btn btn-danger" id="delete">Delete</a>
 
                                         @if ($item->status == 1)
@@ -77,7 +77,7 @@
                             <div class="col-12 mb-20">
                                 <label for="slider_title"><strong>Titlu Slider</strong></label>
                                 <input type="text" name="slider_title" id="slider_title" class="form-control"
-                                    placeholder="Nume Brand">
+                                    placeholder="Titlu Slider">
                                 @error('slider_title')
                                     <span class="text-danger"><strong>{{ $message }}</strong></span>
                                 @enderror
@@ -86,7 +86,7 @@
                             <div class="col-12 mb-20">
                                 <label for="slider_description"><strong>Descriere Slider</strong></label>
                                 <input type="text" name="slider_description" id="slider_description" class="form-control"
-                                    placeholder="Nume Brand">
+                                    placeholder="Descriere Slider">
                                 @error('slider_description')
                                     <span class="text-danger"><strong>{{ $message }}</strong></span>
                                 @enderror
