@@ -42,7 +42,9 @@
                                     <td width="30%">
                                         {{-- adaugat ruta de editare a sliderului --}}
                                         <a href="{{ route('slider.edit', $item->id) }}" class="btn btn-success">Edit</a>
-                                        <a href="" class="btn btn-danger" id="delete">Delete</a>
+                                        {{-- adaugat ruta de stergere a sliderului --}}
+                                        <a href="{{ route('slider.delete', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
 
                                         @if ($item->status == 1)
                                             <a href="{{ route('product.inactive', $item->id) }}"

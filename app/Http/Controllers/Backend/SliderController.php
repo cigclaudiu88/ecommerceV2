@@ -125,8 +125,30 @@ class SliderController extends Controller
                 'message' => 'Slider actualizat cu succes!',
                 'alert-type' => 'info'
             );
-            // 
+            // redirectionam catre pagina de afisare a tuturor slider-urilor cu notificare
             return redirect()->route('manage-slider')->with($notification);
         }
+    }
+
+    // functia de stergere a unui slider
+    public function SliderDelete($id)
+    {
+        // $slider primeste datele slider-ului cu id-ul $id primit ca parametru din tabela sliders folosind modelul Slider si functia findorFail()
+        $slider = Slider::findOrFail($id);
+        // $img preia imaginea din tabela sliders din campul slider_image
+        $img = $slider->slider_image;
+        // stergem imaginea veche din folderul upload/slider/ salvata in $img
+        unlink($img);
+
+        // sterge datele din tabela sliders cu id-ul $id
+        Slider::findOrFail($id)->delete();
+
+        // afisam mesaj de notificare
+        $notification = array(
+            'message' => 'Slider sters cu succes!',
+            'alert-type' => 'info'
+        );
+        // redirectionam catre pagina de afisare a tuturor slider-urilor cu notificare
+        return redirect()->back()->with($notification);
     }
 }
