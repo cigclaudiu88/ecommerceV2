@@ -33,9 +33,9 @@
 
                                     <td class="text-center">
                                         @if ($item->slider_status == 1)
-                                            <span class="badge badge-pill badge-success"> Active </span>
+                                            <span class="badge badge-pill badge-info"> Activ </span>
                                         @else
-                                            <span class="badge badge-pill badge-danger"> Inactive </span>
+                                            <span class="badge badge-pill badge-danger"> Inactiv </span>
                                         @endif
                                     </td>
 
@@ -46,11 +46,11 @@
                                         <a href="{{ route('slider.delete', $item->id) }}" class="btn btn-danger"
                                             id="delete">Delete</a>
 
-                                        @if ($item->status == 1)
-                                            <a href="{{ route('product.inactive', $item->id) }}"
+                                        @if ($item->slider_status == 1)
+                                            <a href="{{ route('slider.inactive', $item->id) }}"
                                                 class="btn btn-danger">Inactiv</a>
                                         @else
-                                            <a href="{{ route('product.active', $item->id) }}"
+                                            <a href="{{ route('slider.active', $item->id) }}"
                                                 class="btn btn-success">Activ</a>
                                         @endif
 

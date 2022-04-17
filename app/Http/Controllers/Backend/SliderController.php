@@ -151,4 +151,35 @@ class SliderController extends Controller
         // redirectionam catre pagina de afisare a tuturor slider-urilor cu notificare
         return redirect()->back()->with($notification);
     }
+
+    // functia de dezactivare a unui slider
+    public function SliderInactive($id)
+    {
+        // finds the requested $id with Slider Model and updates the slider_status to 0
+        // cautam slider-ul cu id-ul $id folosind modelul Slider si functia findOrFail() si actualizam campul slider_status cu 0
+        Slider::findOrFail($id)->update(['slider_status' => 0]);
+
+        // afisam mesaj de notificare
+        $notification = array(
+            'message' => 'Slider dezactivat cu succes!',
+            'alert-type' => 'info'
+        );
+        //
+        return redirect()->back()->with($notification);
+    }
+
+    // functia de
+    public function SliderActive($id)
+    {
+        // cautam slider-ul cu id-ul $id folosind modelul Slider si functia findOrFail() si actualizam campul slider_status cu 1
+        Slider::findOrFail($id)->update(['slider_status' => 1]);
+
+        // afisam mesaj de notificare
+        $notification = array(
+            'message' => 'Slider Active Successfully',
+            'alert-type' => 'info'
+        );
+        // redirectionam catre pagina de afisare a tuturor slider-urilor cu notificare
+        return redirect()->back()->with($notification);
+    }
 }
