@@ -76,19 +76,17 @@
         </div>
     </div>
 </div>
-{{-- meniu pentru dispozitive mobile end --}}
+{{-- meniu pentru dispozitive mobile sfarsit --}}
 
+{{-- Header Start --}}
 <header>
-    <div class="main_header">
 
+    <div class="main_header">
         <div class="header_top">
             <div class="container">
                 <div class="row align-items-center">
-
-
                 </div>
             </div>
-
 
             <div class="header_middle">
                 <div class="container">
@@ -131,6 +129,7 @@
                             </div>
                         </div>
 
+                        {{-- Meniu Utilizator Autentificat / Neautentificat start --}}
                         {{-- cand utilizatorul este autentificat are acces la rutele profilului --}}
                         @auth
                             <div class="col-lg-3">
@@ -264,7 +263,9 @@
                     </div>
                 </div>
             </div>
+            {{-- Meniu Utilizator Autentificat / Neautentificat sfarsit --}}
 
+            {{-- Meniu Orizontal Sticky Start --}}
             <div class="header_bottom sticky-header">
                 <div class="container">
                     <div class="row align-items-center">
@@ -298,33 +299,57 @@
                                 </form>
                             </div>
                         </div>
+                        {{-- Meniu Vertical Start --}}
                         <div class="col-lg-3 col-md-6">
                             <div class="categories_menu">
                                 <div class="categories_title">
-                                    <h2 class="categori_toggle">All Cattegories</h2>
+                                    <h2 class="categori_toggle">Categorii Produse</h2>
                                 </div>
                                 <div class="categories_menu_toggle">
                                     <ul>
+                                        {{-- iteram cu $categories si afisam in meniul vertical toate categoriile din baza de date --}}
                                         @foreach ($categories as $category)
                                             <li class="menu_item_children"><a href="#"><i
                                                         class="icon {{ $category->category_icon }}"
                                                         aria-hidden="true"></i> {{ $category->category_name }}<i
                                                         class="fa fa-angle-right"></i></a>
-                                                <ul class="categories_mega_menu">
-                                                    <li class="menu_item_children"><a href="#">Dresses</a>
-                                                        <ul class="categorie_sub_menu">
-                                                            <li><a href="">Sweater</a></li>
-                                                        </ul>
-                                                    </li>
+                                                @php
+                                                    // $subcategories preia din modelul Subcategory toate datele din tabelul subcategories in ordine ascendenta dupa id
+                                                    $subcategories = App\Models\SubCategory::where('category_id', $category->id)
+                                                        ->orderBy('id', 'ASC')
+                                                        ->get();
+                                                @endphp
+                                                <ul class="categories_mega_menu" style="width:700px !important">
+                                                    {{-- iteram cu $subcategories si afisam in meniul vertical toate subcategoriile din baza de date --}}
+                                                    @foreach ($subcategories as $subcategory)
+                                                        <li class="menu_item_children"><a href="#">
+                                                                {{ $subcategory->subcategory_name }}</a>
+                                                            @php
+                                                                // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
+                                                                $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
+                                                                    ->orderBy('id', 'ASC')
+                                                                    ->get();
+                                                            @endphp
+                                                            <ul class="categorie_sub_menu">
+                                                                {{-- iteram cu $subsubcategories si afisam in meniul vertical toate subsubcategoriile din baza de date --}}
+                                                                @foreach ($subsubcategories as $subsubcategory)
+                                                                    <li><a
+                                                                            href="">{{ $subsubcategory->subsubcategory_name }}</a>
+                                                                    </li>
+                                                                @endforeach {{-- iteratie SubSubCategory incheiata --}}
+                                                            </ul>
+                                                        </li>
+                                                    @endforeach {{-- iteratie SubCategory incheiata --}}
                                                 </ul>
                                             </li>
-                                        @endforeach {{-- end Category foreach --}}
+                                        @endforeach {{-- iteratie SubCategory incheiata --}}
                                     </ul>
                                 </div>
                             </div>
                         </div>
+                        {{-- Meniu Vertical Sfarsit --}}
+                        {{-- Menu Orizontal Start --}}
                         <div class="col-lg-9">
-                            <!--main menu start-->
                             <div class="main_menu menu_position">
                                 @php
                                     // $categories preia din modelul Category toate datele din tabelul categories in ordine ascendenta dupa id
@@ -373,8 +398,9 @@
 
                                 </nav>
                             </div>
-                            <!--main menu end-->
+
                         </div>
+                        {{-- Menu Orizontal Sfarsit --}}
                         {{-- <div class="col-lg-3">
                             <div class="call-support">
                                 <p><a href="tel:(08)23456789">(08) 23 456 789</a> Customer Support</p>
@@ -383,9 +409,10 @@
                     </div>
                 </div>
             </div>
+            {{-- Meniu Orizontal Sticky Sfarsit --}}
         </div>
 </header>
-<!--header area end-->
+{{-- Header Sfarsit --}}
 
 
 
