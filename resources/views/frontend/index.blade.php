@@ -525,7 +525,7 @@
                                     </div>
                                     <figcaption class="product_content">
                                         <h4 class="product_name"><a
-                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
                                         <p><a href="#">Fruits</a></p>
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
