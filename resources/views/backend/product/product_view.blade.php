@@ -27,7 +27,7 @@
                             @foreach ($products as $item)
                                 <tr>
                                     <td><img src="{{ asset($item->product_thumbnail) }}"
-                                            style="width:200px; height:100px;">
+                                            style="max-width:none !important; width:100px !important; height:100px !important;">
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->product_quantity }}</td>
