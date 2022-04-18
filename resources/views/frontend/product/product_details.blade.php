@@ -57,14 +57,14 @@
                     <form action="#">
 
                         <h1><a href="#">{{ $product->product_name }}</a></h1>
-                        <div class="product_nav">
+                        {{-- <div class="product_nav">
                             <ul>
                                 <li class="prev"><a href="product-details.html"><i
                                             class="fa fa-angle-left"></i></a></li>
                                 <li class="next"><a href="variable-product.html"><i
                                             class="fa fa-angle-right"></i></a></li>
                             </ul>
-                        </div>
+                        </div> --}}
                         <div class=" product_ratting">
                             <ul>
                                 <li><a href="#"><i class="icon-star"></i></a></li>
@@ -275,8 +275,8 @@
                                         <li class="quick_button"><a href="#" data-tippy="quick view"
                                                 data-tippy-placement="top" data-tippy-arrow="true"
                                                 data-tippy-inertia="true" data-bs-toggle="modal"
-                                                data-bs-target="#modal_box"> <span
-                                                    class="lnr lnr-magnifier"></span></a></li>
+                                                data-bs-target="#modal_box"> <span class="lnr lnr-magnifier"></span></a>
+                                        </li>
                                         <li class="wishlist"><a href="wishlist.html" data-tippy="Add to Wishlist"
                                                 data-tippy-placement="top" data-tippy-arrow="true"
                                                 data-tippy-inertia="true"><span class="lnr lnr-heart"></span></a></li>
@@ -767,4 +767,13 @@
 </section>
 <!--product area end-->
 
+<style>
+    img {
+        max-width: 100%;
+        max-height: 100%;
+        display: block;
+        /* remove extra space below image */
+    }
+
+</style>
 @endsection
