@@ -24,8 +24,8 @@ class IndexController extends Controller
         $sliders = Slider::where('slider_status', 1)->orderBy('id', 'DESC')->limit(3)->get();
         // $categories primeste toate categoriile din baza de date ordonate ascendent dupa id
         $categories = Category::orderBy('id', 'ASC')->get();
-        // $products preia din tabela products doar datele care au statusul 1 (activ) si le ordoneaza dupa id descendent si le limiteaza la 8 inregistrari
-        $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(8)->get();
+        // $products preia din tabela products doar datele care au statusul 1 (activ) si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
+        $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
         return view('frontend.index', compact('categories', 'sliders', 'products'));
     }
