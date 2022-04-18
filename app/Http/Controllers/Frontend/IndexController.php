@@ -4,11 +4,13 @@ namespace App\Http\Controllers\Frontend;
 
 // adaugam modelul User
 use App\Models\User;
-use App\Models\Category;
+// adaugam modelul Slider 
+use App\Models\Slider;
 // adaugam namespace-ul pentru clasa Auth
+use App\Models\Category;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 // adaugam namespace-ul pentru clasa Hash - cryptare parola
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -16,9 +18,12 @@ class IndexController extends Controller
 {
     public function index()
     {
+        // $sliders preia din tabela sliders doar datele care au statusul 1 (active) si le ordoneaza dupa id descendent si le limiteaza la 3 inregistrari
+        $sliders = Slider::where('slider_status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        // $categories primeste toate categoriile din baza de date ordonate ascendent dupa id
         $categories = Category::orderBy('id', 'ASC')->get();
-        // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php
-        return view('frontend.index', compact('categories'));
+        // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
+        return view('frontend.index', compact('categories', 'sliders'));
     }
 
     // functia de logout user

@@ -46,8 +46,8 @@ class SliderController extends Controller
         $image = $request->file('slider_image');
         // $nume_gen genereaza un nume random pentru imaginea brandului folosind hexdec() cu uniqid()
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-        // folosind Image model (image intervention package) redimenzionam imaginea $image la latimea 870 si inaltimea 370 si salvam imaginea in upload/brand/ cu numele $name_gen
-        Image::make($image)->resize(870, 370)->save('upload/slider/' . $name_gen);
+        // folosind Image model (image intervention package) redimenzionam imaginea $image la latimea 1920 si inaltimea 550 si salvam imaginea in upload/brand/ cu numele $name_gen
+        Image::make($image)->resize(1920, 550)->save('upload/slider/' . $name_gen);
         // salvam imaginea $save_url in folderul upload/brand/ cu numele $name_gen
         $save_url = 'upload/slider/' . $name_gen;
 
@@ -92,8 +92,8 @@ class SliderController extends Controller
             $image = $request->file('slider_image');
             // $nume_gen genereaza un nume random pentru imaginea brandului folosind hexdec() cu uniqid()
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
-            // folosind Image model (image intervention package) redimenzionam imaginea $image la latimea 870 si inaltimea 370 si salvam imaginea in upload/brand/ cu numele $name_gen
-            Image::make($image)->resize(870, 370)->save('upload/slider/' . $name_gen);
+            // folosind Image model (image intervention package) redimenzionam imaginea $image la latimea 1920 si inaltimea 550 si salvam imaginea in upload/brand/ cu numele $name_gen
+            Image::make($image)->resize(1920, 550)->save('upload/slider/' . $name_gen);
             // salvam imaginea $save_url in folderul upload/brand/ cu numele $name_gen
             $save_url = 'upload/slider/' . $name_gen;
 

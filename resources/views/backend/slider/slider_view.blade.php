@@ -3,7 +3,7 @@
     <div class="row">
 
         <!--Default Data Table Start-->
-        <div class="col-8 mb-30">
+        <div class="col-9 mb-30">
             <div class="box">
                 <div class="box-head">
                     <h3 class="title">Lista Sliders</h3>
@@ -64,7 +64,7 @@
         </div>
         <!--Default Data Table End-->
 
-        <div class="col-lg-4 col-12 mb-30">
+        <div class="col-lg-3 col-12 mb-30">
             <div class="box">
                 <div class="box-head">
                     <h4 class="title">Adauga Slider-uri</h4>
