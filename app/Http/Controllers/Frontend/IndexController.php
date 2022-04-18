@@ -149,4 +149,12 @@ class IndexController extends Controller
             return redirect()->route('dashboard');
         }
     }
+    // functia de redirectare la pagina de detalii produse
+    public function ProductDetails($id, $slug)
+    {
+        // $product preia datele din tabela products aferenta id-ului primit ca parametru
+        $product = Product::findOrFail($id);
+        // returnam pagina de detalii produse cu datele produsului din tabela products
+        return view('frontend.product.product_details', compact('product'));
+    }
 }

@@ -219,8 +219,8 @@ Route::prefix('slider')->group(function () {
     Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
 });
 
-// 1. Product Details Show Part 1
-// Frontend - Product Details Page URL
+// Rutele pentru pagina de detalii produse
+// pagina frontend de detalii a unui produs
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
 // 2. Tag Wise Product Show Part 1
 // Frontend Product Tag Page

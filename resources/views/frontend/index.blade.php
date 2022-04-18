@@ -51,9 +51,11 @@
                                             <article class="single_product">
                                                 <figure>
                                                     <div class="product_thumb">
-                                                        <a class="primary_img" href="product-details.html"><img
+                                                        <a class="primary_img"
+                                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
                                                                 src="{{ asset($product->product_thumbnail) }}" alt=""></a>
-                                                        <a class="secondary_img" href="product-details.html"><img
+                                                        <a class="secondary_img"
+                                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
                                                                 src="{{ asset($product->product_thumbnail) }}" alt=""></a>
                                                         @php
                                                             // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
@@ -96,20 +98,22 @@
                                                     </div>
                                                     <figcaption class="product_content">
                                                         <h4 class="product_name"><a
-                                                                href="product-details.html">{{ Str::limit($product->product_name, 40) }}</a>
+                                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                                         </h4>
                                                         <p><a href="#">Fruits</a></p>
                                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                                         <div class="price_box">
                                                             @if ($product->discount_price == null)
-                                                                <span class="current_price">{{ $product->selling_price }}
+                                                                <span
+                                                                    class="current_price">{{ $product->selling_price }}
                                                                     RON</span>
                                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                             @else
                                                                 <span
                                                                     class="current_price">{{ $product->discount_price }}
                                                                     RON</span><br>
-                                                                <span class="old_price">{{ $product->selling_price }}
+                                                                <span
+                                                                    class="old_price">{{ $product->selling_price }}
                                                                     RON</span>
                                                             @endif
                                                         </div>
@@ -137,10 +141,12 @@
                                                 <article class="single_product">
                                                     <figure>
                                                         <div class="product_thumb">
-                                                            <a class="primary_img" href="product-details.html"><img
+                                                            <a class="primary_img"
+                                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
                                                                     src="{{ asset($product->product_thumbnail) }}"
                                                                     alt=""></a>
-                                                            <a class="secondary_img" href="product-details.html"><img
+                                                            <a class="secondary_img"
+                                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
                                                                     src="{{ asset($product->product_thumbnail) }}"
                                                                     alt=""></a>
                                                             @php
@@ -190,7 +196,7 @@
                                                         </div>
                                                         <figcaption class="product_content">
                                                             <h4 class="product_name"><a
-                                                                    href="product-details.html">{{ Str::limit($product->product_name, 40) }}</a>
+                                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                                             </h4>
                                                             <p><a href="#">Fruits</a></p>
                                                             {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
