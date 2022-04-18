@@ -29,8 +29,10 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $featured preia din tabela products doar datele care au campul featured 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        // $hot_deals preia din tabela products doar datele care au campul hot_deals 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
+        $hot_deals = Product::where('hot_deal', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured'));
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals'));
     }
 
     // functia de logout user
