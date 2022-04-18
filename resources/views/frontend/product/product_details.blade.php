@@ -22,56 +22,35 @@
 @endsection
 
 <!--product details start-->
+{{-- sectiunea de galerie foto produs start --}}
 <div class="product_details mt-70 mb-70">
     <div class="container">
         <div class="row">
             <div class="col-lg-6 col-md-6">
                 <div class="product-details-tab">
-                    <div id="img-1" class="zoomWrapper single-zoom">
-                        <a href="#">
-                            <img id="zoom1" src="{{ asset('frontend/img/product/productbig4.jpg') }}"
-                                data-zoom-image="{{ asset('frontend/img/product/productbig4.jpg') }}" alt="big-1">
+                    <div id="slide{{ $product->id }}" class="zoomWrapper single-zoom">
+                        <a href="{{ asset(asset($product->product_thumbnail)) }}">
+                            <img id="zoom1" src="{{ asset(asset($product->product_thumbnail)) }}"
+                                data-zoom-image="{{ asset(asset($product->product_thumbnail)) }}" alt="big-1">
                         </a>
                     </div>
                     <div class="single-zoom-thumb">
                         <ul class="s-tab-zoom owl-carousel single-product-active" id="gallery_01">
-                            <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update=""
-                                    data-image="{{ asset('frontend/img/product/productbig4.jpg') }}"
-                                    data-zoom-image="{{ asset('frontend/img/product/productbig4.jpg') }}">
-                                    <img src="{{ asset('frontend/img/product/productbig4.jpg') }}" alt="zo-th-1" />
-                                </a>
-
-                            </li>
-                            <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update=""
-                                    data-image="{{ asset('frontend/img/product/productbig1.jpg') }}"
-                                    data-zoom-image="{{ asset('frontend/img/product/productbig1.jpg') }}">
-                                    <img src="{{ asset('frontend/img/product/productbig1.jpg') }}" alt="zo-th-1" />
-                                </a>
-
-                            </li>
-                            <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update=""
-                                    data-image="{{ asset('frontend/img/product/productbig2.jpg') }}"
-                                    data-zoom-image="{{ asset('frontend/img/product/productbig2.jpg') }}">
-                                    <img src="{{ asset('frontend/img/product/productbig2.jpg') }}" alt="zo-th-1" />
-                                </a>
-
-                            </li>
-                            <li>
-                                <a href="#" class="elevatezoom-gallery active" data-update=""
-                                    data-image="{{ asset('frontend/img/product/productbig3.jpg') }}"
-                                    data-zoom-image="{{ asset('frontend/img/product/productbig3.jpg') }}">
-                                    <img src="{{ asset('frontend/img/product/productbig3.jpg') }}" alt="zo-th-1" />
-                                </a>
-
-                            </li>
+                            {{-- iteram cu $multiImage din ProdcutDetails() din IndexController pentru a afisa toate multiimaginile produsului selectat --}}
+                            @foreach ($multiImage as $img)
+                                <li>
+                                    <a href="#slide{{ $img->id }}" class="elevatezoom-gallery active" data-update=""
+                                        data-image="{{ asset(asset($img->photo_name)) }}"
+                                        data-zoom-image="{{ asset(asset($img->photo_name)) }}">
+                                        <img src="{{ asset(asset($img->photo_name)) }}" alt="zo-th-1" />
+                                    </a>
+                                </li>
+                            @endforeach
                         </ul>
                     </div>
                 </div>
             </div>
-
+            {{-- sectiunea de galerie foto produs sfarsit --}}
 
             <div class="col-lg-6 col-md-6">
                 <div class="product_d_right">

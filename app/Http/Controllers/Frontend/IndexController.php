@@ -10,9 +10,10 @@ use App\Models\Slider;
 use App\Models\Product;
 use App\Models\Category;
 // adaugam namespace-ul pentru clasa Hash - cryptare parola
+use App\Models\MultiImg;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
 // adaugam namespace-ul pentru clasa Auth
+use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -154,7 +155,9 @@ class IndexController extends Controller
     {
         // $product preia datele din tabela products aferenta id-ului primit ca parametru
         $product = Product::findOrFail($id);
+        // $multiImage preia datele din tabela multimgs aferenta id-ului primit ca parametru unde product_id (tabel multiimages ) = id (tabel products)
+        $multiImage = MultiImg::where('product_id', $id)->get();
         // returnam pagina de detalii produse cu datele produsului din tabela products
-        return view('frontend.product.product_details', compact('product'));
+        return view('frontend.product.product_details', compact('product', 'multiImage'));
     }
 }
