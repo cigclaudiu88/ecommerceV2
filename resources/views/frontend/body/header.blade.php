@@ -59,7 +59,7 @@
                                                     {{-- iteram cu $subsubcategories si afisam in meniu toate subsubcategoriile din baza de date --}}
                                                     @foreach ($subsubcategories as $subsubcategory)
                                                         <li><a
-                                                                href="index.html">{{ $subsubcategory->subsubcategory_name }}</a>
+                                                                href="{{ url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug) }}">{{ $subsubcategory->subsubcategory_name }}</a>
                                                         </li>
                                                     @endforeach {{-- iteratie SubSubCategory incheiata --}}
                                                 </ul>
@@ -340,7 +340,7 @@
                                                                 {{-- iteram cu $subsubcategories si afisam in meniul vertical toate subsubcategoriile din baza de date --}}
                                                                 @foreach ($subsubcategories as $subsubcategory)
                                                                     <li><a
-                                                                            href="">{{ $subsubcategory->subsubcategory_name }}</a>
+                                                                            href="{{ url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug) }}">{{ $subsubcategory->subsubcategory_name }}</a>
                                                                     </li>
                                                                 @endforeach {{-- iteratie SubSubCategory incheiata --}}
                                                             </ul>
@@ -389,7 +389,7 @@
                                                                 {{-- iteram cu $subsubcategories (max 3 inregistrari) si afisam in meniu toate subsubcategoriile din baza de date --}}
                                                                 @foreach ($subsubcategories as $subsubcategory)
                                                                     <li><a
-                                                                            href="index.html">{{ $subsubcategory->subsubcategory_name }}</a>
+                                                                            href="{{ url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug) }}">{{ $subsubcategory->subsubcategory_name }}</a>
                                                                     </li>
                                                                 @endforeach {{-- iteratie SubSubCategory incheiata --}}
                                                             </ul>

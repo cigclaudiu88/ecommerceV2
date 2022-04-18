@@ -25,15 +25,15 @@ class BrandController extends Controller
         // validari pentru inserarea brandurilor
         $request->validate(
             [
-                // numele brandului trebuie sa fie un string de minim 3 caractere
-                'brand_name' => 'required|min:3',
+                // numele brandului trebuie sa fie un string de minim 2 caractere
+                'brand_name' => 'required|min:2',
                 // imaginea este necesara si trebuie sa fie de tipul jpeg, png gif sau svg
                 'brand_image' => 'required|image|mimes:jpeg,png,jpg,svg',
             ],
             // mesaje speciale pentru fiecare tip de eraore
             [
                 'brand_name.required' => 'Numele brandului este ncesesar.',
-                'brand_name.min' => 'Numele brandului trebuie sa contina minim 3 caractere.',
+                'brand_name.min' => 'Numele brandului trebuie sa contina minim 2 caractere.',
                 'brand_image.required' => 'Imaginea brandului este necesara.',
                 'brand_image.image' => 'Imaginea brandului trebuie sa fie de tipul jpeg, png, gif sau svg.',
                 'brand_image.mimes' => 'Imaginea brandului trebuie sa fie de tipul jpeg, png, gif sau svg.',
@@ -82,15 +82,15 @@ class BrandController extends Controller
         // validari pentru actualizarea brandurilor
         $request->validate(
             [
-                // numele brandului trebuie sa fie un string de minim 3 caractere
-                'brand_name' => 'required|min:3',
+                // numele brandului trebuie sa fie un string de minim 2 caractere
+                'brand_name' => 'required|min:2',
                 // imaginea este necesara si trebuie sa fie de tipul jpeg, png gif sau svg
                 'brand_image' => 'required|image|mimes:jpeg,png,jpg,svg',
             ],
             // mesaje speciale pentru fiecare tip de eraore
             [
                 'brand_name.required' => 'Numele brandului este ncesesar.',
-                'brand_name.min' => 'Numele brandului trebuie sa contina minim 3 caractere.',
+                'brand_name.min' => 'Numele brandului trebuie sa contina minim 2 caractere.',
                 'brand_image.required' => 'Imaginea brandului este necesara.',
                 'brand_image.image' => 'Imaginea brandului trebuie sa fie de tipul jpeg, png, gif sau svg.',
                 'brand_image.mimes' => 'Imaginea brandului trebuie sa fie de tipul jpeg, png, gif sau svg.',

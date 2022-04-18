@@ -226,8 +226,7 @@ Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDeta
 Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
 // ruta de afisare a produselor functie de subcategorie
 Route::get('/subcategory/product/{subcategory_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
-// 2. SubSubCategory Wise Product Show
-// Frontend SubSubCategory wise Data
+// ruta de afisare a produselor functie de subsubcategorie
 Route::get('/subsubcategory/product/{subsubcategory_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
 // 3. Product View Modal With Ajax Part 1
 // Product View Modal with Ajax
