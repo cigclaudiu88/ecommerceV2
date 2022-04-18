@@ -13,6 +13,7 @@ use App\Models\Category;
 use App\Models\MultiImg;
 use Illuminate\Http\Request;
 // adaugam namespace-ul pentru clasa Auth
+use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -35,8 +36,13 @@ class IndexController extends Controller
         $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $special_deals preia din tabela products doar datele care au campul special_deals 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
         $special_deals = Product::where('special_deal', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        // $skip_category_0 foloseste modelul Category pentru sa sari peste o categorie si preia datele urmatoarei categorii skip(0) - prima categorie skip(1) - a doua categorie skip(2) - a treia categorie etc
+        $skip_subsubcategory_0 = SubSubCategory::skip(0)->first();
+        // $skip_product_0 foloseste modelul Product pentru a preluat doar acele inregistrari care au status = 1 din tabelul products
+        // si unde category_id (products) corespunde $skip_category_0->id, ordoneaza dupa id Descending
+        $skip_product_0 = Product::where('status', 1)->where('category_id', $skip_subsubcategory_0->id)->orderBy('id', 'DESC')->get();
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals'));
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_product_0'));
     }
 
     // functia de logout user
