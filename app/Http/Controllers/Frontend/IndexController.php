@@ -5,14 +5,15 @@ namespace App\Http\Controllers\Frontend;
 // adaugam modelul User
 use App\Models\User;
 // adaugam modelul Slider 
-use App\Models\Slider;
+use App\Models\Brand;
 // adaugam modelul Product
+use App\Models\Slider;
 use App\Models\Product;
-use App\Models\Category;
 // adaugam namespace-ul pentru clasa Hash - cryptare parola
+use App\Models\Category;
 use App\Models\MultiImg;
-use Illuminate\Http\Request;
 // adaugam namespace-ul pentru clasa Auth
+use Illuminate\Http\Request;
 use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -37,12 +38,26 @@ class IndexController extends Controller
         // $special_deals preia din tabela products doar datele care au campul special_deals 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
         $special_deals = Product::where('special_deal', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $skip_category_0 foloseste modelul Category pentru sa sari peste o categorie si preia datele urmatoarei categorii skip(0) - prima categorie skip(1) - a doua categorie skip(2) - a treia categorie etc
-        $skip_subsubcategory_0 = SubSubCategory::skip(0)->first();
+        $skip_category_0 = SubSubCategory::skip(0)->first();
         // $skip_product_0 foloseste modelul Product pentru a preluat doar acele inregistrari care au status = 1 din tabelul products
         // si unde category_id (products) corespunde $skip_category_0->id, ordoneaza dupa id Descending
-        $skip_product_0 = Product::where('status', 1)->where('category_id', $skip_subsubcategory_0->id)->orderBy('id', 'DESC')->get();
+        $skip_product_0 = Product::where('status', 1)->where('category_id', $skip_category_0->id)->orderBy('id', 'DESC')->get();
+        // $skip_category useses Category Model to skip and get the first id of categories table if skip(0) - change skip() value to display different categories
+        // $skip_category_2 preia din tabela categories a treia categorie
+        $skip_category_2 = Category::skip(2)->first();
+        // $skip_product_2 foloseste modelul Product pentru a preluat doar acele inregistrari care au status = 1 din tabelul products
+        // si unde category_id (products) corespunde $skip_category_2->id, ordoneaza dupa id Descending
+        $skip_product_2 = Product::where('status', 1)->where('category_id', $skip_category_2->id)->orderBy('id', 'DESC')->get();
+        // sarit branduri -> produse
+        // $skip_brand_0 Brand Model to skip and get the first id of brands table if skip(0) - change skip() value to display different categories
+        $skip_brand_0 = Brand::skip(0)->first();
+        // $skip_brand_product_0 foloseste modelul Product pentru a preluat doar acele inregistrari care au status = 1 din tabelul products
+        // si unde brand_id (products) corespunde $skip_brand_0->id, ordoneaza dupa id Descending
+        $skip_brand_product_0 = Product::where('status', 1)->where('brand_id', $skip_brand_0->id)->orderBy('id', 'DESC')->get();
+        // 5. Product Show With Skip Category & Brand Part 2
+
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_product_0'));
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_category_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_brand_product_0'));
     }
 
     // functia de logout user

@@ -717,7 +717,7 @@
                                     </div>
                                     <figcaption class="product_content">
                                         <h4 class="product_name"><a
-                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
                                         <p><a href="#">Fruits</a></p>
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
@@ -744,6 +744,99 @@
     </div>
 </div>
 {{-- Sectiunea de Produse a unei categorii specifice sfarsit --}}
+
+{{-- Sectiunea de Produse a unui brand specific start --}}
+<div class="product_area mb-65">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_title">
+                    <p>Produse adaugate recent in magazin </p>
+                    <h2>Oferte de la Samsung</h2>
+                </div>
+            </div>
+        </div>
+        <div class="product_container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="product_carousel product_column5 owl-carousel">
+                        @foreach ($skip_brand_product_0 as $product)
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a class="primary_img"
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
+                                                src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                        <a class="secondary_img"
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
+                                                src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                        @php
+                                            // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
+                                            $amount = $product->selling_price - $product->discount_price;
+                                            $discount = ($amount / $product->selling_price) * 100;
+                                        @endphp
+                                        <div class="label_product">
+                                            {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                            @if ($product->discount_price == null)
+                                                <span class="label_new">Nou</span>
+                                            @else
+                                                {{-- daca produsul are pret de discount afisam % discount --}}
+                                                <span class="label_sale">{{ round($discount) }}%</span>
+                                            @endif
+                                        </div>
+                                        <div class="action_links">
+                                            <ul>
+                                                <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                                        data-tippy-placement="top" data-tippy-arrow="true"
+                                                        data-tippy-inertia="true"> <span
+                                                            class="lnr lnr-cart"></span></a>
+                                                </li>
+                                                <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                        data-tippy-placement="top" data-tippy-arrow="true"
+                                                        data-tippy-inertia="true" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_box"> <span
+                                                            class="lnr lnr-magnifier"></span></a></li>
+                                                <li class="wishlist"><a href="wishlist.html"
+                                                        data-tippy="Add to Wishlist" data-tippy-placement="top"
+                                                        data-tippy-arrow="true" data-tippy-inertia="true"><span
+                                                            class="lnr lnr-heart"></span></a></li>
+                                                <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                        data-tippy-placement="top" data-tippy-arrow="true"
+                                                        data-tippy-inertia="true"><span
+                                                            class="lnr lnr-sync"></span></a>
+                                                </li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                    <figcaption class="product_content">
+                                        <h4 class="product_name"><a
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
+                                        </h4>
+                                        <p><a href="#">Fruits</a></p>
+                                        {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
+                                        <div class="price_box">
+                                            @if ($product->discount_price == null)
+                                                <span class="current_price">{{ $product->selling_price }}
+                                                    RON</span>
+                                                {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
+                                            @else
+                                                <span class="current_price">{{ $product->discount_price }}
+                                                    RON</span><br>
+                                                <span class="old_price">{{ $product->selling_price }}
+                                                    RON</span>
+                                            @endif
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        @endforeach
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{{-- Sectiunea de Produse a unui brand specific sfarsit --}}
 
 <!--custom product area start-->
 <div class="custom_product_area">
