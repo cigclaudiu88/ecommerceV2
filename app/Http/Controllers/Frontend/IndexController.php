@@ -189,4 +189,17 @@ class IndexController extends Controller
         // returnam pagina de detalii produse cu datele produsului din tabela products
         return view('frontend.product.product_details', compact('product', 'multiImage'));
     }
+
+    // functia de afisare a produselor functie de subcategorie
+    public function SubCategoryWiseProduct($subcategory_id, $slug)
+    {
+        // products gets active products (status = 1) where subcategory_id (products tabale) matches $subcategory_id (requested)
+        // $products preia din tabela products acele intregistrarile care au statusul 1 
+        // si subcategory_id aceeasi cu cea primita ca parametru $subcategory_id ordonate dupa id desc si paginate la 10
+        $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        // $subcategory preia datele din tabela subcategories aferenta id-ului primit ca parametru
+        $categories = Category::orderBy('id', 'ASC')->get();
+        // returnam pagina de produse functie de subcategorie cu datele din variabila $products si $categories
+        return view('frontend.product.subcategory_view', compact('products', 'categories'));
+    }
 }

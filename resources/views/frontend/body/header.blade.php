@@ -46,7 +46,9 @@
                                         {{-- iteram cu $subcategories (max 5 inregistrari) si afisam in meniu toate subcategoriile din baza de date --}}
                                         @foreach ($subcategories->slice(0, 5) as $subcategory)
                                             <li class="menu-item-has-children">
-                                                <a href="#">{{ $subcategory->subcategory_name }}</a>
+                                                {{-- adaugat url pentru afisarea produselor functie de subcategorie in magazin --}}
+                                                <a
+                                                    href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
                                                 @php
                                                     // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
                                                     $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
@@ -228,7 +230,8 @@
                                                             <ul class="dropdown_currency">
                                                                 <li><a href="{{ route('dashboard') }}">Acasa</a>
                                                                 </li>
-                                                                <li><a href="{{ route('user.profile') }}">Detalii Cont</a>
+                                                                <li><a href="{{ route('user.profile') }}">Detalii
+                                                                        Cont</a>
                                                                 </li>
                                                                 <li><a href="{{ route('user.change.password') }}">Schimba
                                                                         Parola</a>
@@ -323,7 +326,9 @@
                                                 <ul class="categories_mega_menu" style="width:700px !important">
                                                     {{-- iteram cu $subcategories si afisam in meniul vertical toate subcategoriile din baza de date --}}
                                                     @foreach ($subcategories as $subcategory)
-                                                        <li class="menu_item_children"><a href="#">
+                                                        {{-- adaugat url pentru afisarea produselor functie de subcategorie in magazin --}}
+                                                        <li class="menu_item_children"><a
+                                                                href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">
                                                                 {{ $subcategory->subcategory_name }}</a>
                                                             @php
                                                                 // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
@@ -372,8 +377,8 @@
                                                 <ul class="sub_menu home_sub_menu d-flex">
                                                     {{-- iteram cu $subcategories (max 3 inregistrari) si afisam in meniu toate subcategoriile din baza de date --}}
                                                     @foreach ($subcategories->slice(0, 3) as $subcategory)
-                                                        <li><a
-                                                                href="index.html"><strong>{{ $subcategory->subcategory_name }}</strong></a>
+                                                        <li><a {{-- adaugat url pentru afisarea produselor functie de subcategorie in magazin --}}
+                                                                href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}"><strong>{{ $subcategory->subcategory_name }}</strong></a>
                                                             @php
                                                                 // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
                                                                 $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)

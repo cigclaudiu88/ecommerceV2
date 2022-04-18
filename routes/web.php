@@ -222,12 +222,9 @@ Route::prefix('slider')->group(function () {
 // Rutele pentru pagina de detalii produse
 // pagina frontend de detalii a unui produs
 Route::get('/product/details/{id}/{slug}', [IndexController::class, 'ProductDetails']);
-// 2. Tag Wise Product Show Part 1
 // Frontend Product Tag Page
 Route::get('/product/tag/{tag}', [IndexController::class, 'TagWiseProduct']);
-// 1. SubCategory Wise Product Show
-// 1. SubCategory Wise Product Show
-// Frontend SubCategory wise Data
+// ruta de afisare a produselor functie de subcategorie
 Route::get('/subcategory/product/{subcategory_id}/{slug}', [IndexController::class, 'SubCategoryWiseProduct']);
 // 2. SubSubCategory Wise Product Show
 // Frontend SubSubCategory wise Data

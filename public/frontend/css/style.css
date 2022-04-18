@@ -5823,7 +5823,7 @@ textarea:-ms-input-placeholder {
   position: relative;
 }
 .widget_list.widget_categories > ul > li.widget_sub_categories > a::before {
-  content: "+";
+  /* content: "+"; */
   cursor: pointer;
   font-size: 12px;
   position: absolute;
@@ -5835,7 +5835,7 @@ textarea:-ms-input-placeholder {
   > ul
   > li.widget_sub_categories
   > a.active::before {
-  content: "-";
+  /* content: "-"; */
   cursor: pointer;
   font-size: 12px;
   position: absolute;
