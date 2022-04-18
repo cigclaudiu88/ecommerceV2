@@ -55,9 +55,20 @@
                                                                 src="{{ asset($product->product_thumbnail) }}" alt=""></a>
                                                         <a class="secondary_img" href="product-details.html"><img
                                                                 src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                                        @php
+                                                            // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
+                                                            $amount = $product->selling_price - $product->discount_price;
+                                                            $discount = ($amount / $product->selling_price) * 100;
+                                                        @endphp
                                                         <div class="label_product">
-                                                            <span class="label_sale">Sale</span>
-                                                            <span class="label_new">Nou</span>
+                                                            {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                                            @if ($product->discount_price == null)
+                                                                <span class="label_new">Nou</span>
+                                                            @else
+                                                                {{-- daca produsul are pret de discount afisam % discount --}}
+                                                                <span
+                                                                    class="label_sale">{{ round($discount) }}%</span>
+                                                            @endif
                                                         </div>
                                                         <div class="action_links">
                                                             <ul>
@@ -88,11 +99,19 @@
                                                                 href="product-details.html">{{ Str::limit($product->product_name, 40) }}</a>
                                                         </h4>
                                                         <p><a href="#">Fruits</a></p>
+                                                        {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                                         <div class="price_box">
-                                                            <span class="current_price">{{ $product->discount_price }}
-                                                                RON</span><br>
-                                                            <span class="old_price">{{ $product->selling_price }}
-                                                                RON</span>
+                                                            @if ($product->discount_price == null)
+                                                                <span class="current_price">{{ $product->selling_price }}
+                                                                    RON</span>
+                                                                {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
+                                                            @else
+                                                                <span
+                                                                    class="current_price">{{ $product->discount_price }}
+                                                                    RON</span><br>
+                                                                <span class="old_price">{{ $product->selling_price }}
+                                                                    RON</span>
+                                                            @endif
                                                         </div>
                                                     </figcaption>
                                                 </figure>
@@ -124,9 +143,20 @@
                                                             <a class="secondary_img" href="product-details.html"><img
                                                                     src="{{ asset($product->product_thumbnail) }}"
                                                                     alt=""></a>
+                                                            @php
+                                                                // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
+                                                                $amount = $product->selling_price - $product->discount_price;
+                                                                $discount = ($amount / $product->selling_price) * 100;
+                                                            @endphp
                                                             <div class="label_product">
-                                                                <span class="label_sale">Sale</span>
-                                                                <span class="label_new">Nou</span>
+                                                                {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                                                @if ($product->discount_price == null)
+                                                                    <span class="label_new">Nou</span>
+                                                                @else
+                                                                    {{-- daca produsul are pret de discount afisam % discount --}}
+                                                                    <span
+                                                                        class="label_sale">{{ round($discount) }}%</span>
+                                                                @endif
                                                             </div>
                                                             <div class="action_links">
                                                                 <ul>
@@ -163,13 +193,21 @@
                                                                     href="product-details.html">{{ Str::limit($product->product_name, 40) }}</a>
                                                             </h4>
                                                             <p><a href="#">Fruits</a></p>
+                                                            {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                                             <div class="price_box">
-                                                                <span
-                                                                    class="current_price">{{ $product->discount_price }}
-                                                                    RON</span><br>
-                                                                <span
-                                                                    class="old_price">{{ $product->selling_price }}
-                                                                    RON</span>
+                                                                @if ($product->discount_price == null)
+                                                                    <span
+                                                                        class="current_price">{{ $product->selling_price }}
+                                                                        RON</span>
+                                                                    {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
+                                                                @else
+                                                                    <span
+                                                                        class="current_price">{{ $product->discount_price }}
+                                                                        RON</span><br>
+                                                                    <span
+                                                                        class="old_price">{{ $product->selling_price }}
+                                                                        RON</span>
+                                                                @endif
                                                             </div>
                                                         </figcaption>
                                                     </figure>
