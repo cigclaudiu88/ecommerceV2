@@ -31,8 +31,8 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $featured preia din tabela products doar datele care au campul featured 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
         $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(10)->get();
-        // $hot_deals preia din tabela products doar datele care au campul hot_deals 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
-        $hot_deals = Product::where('hot_deal', 1)->where('discount_price', '!=', NULL)->orderBy('id', 'DESC')->limit(10)->get();
+        // $hot_deals preia din tabela products doar datele care au campul hot_deals 1 si le ordoneaza random si le limiteaza la 10 inregistrari
+        $hot_deals = Product::where('hot_deal', 1)->where('discount_price', '!=', NULL)->inRandomOrder()->limit(10)->get();
         // $special_offer preia din tabela products doar datele care au campul special_offer 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari            
         $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $special_deals preia din tabela products doar datele care au campul special_deals 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
