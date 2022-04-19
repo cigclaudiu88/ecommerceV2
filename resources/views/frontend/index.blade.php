@@ -109,15 +109,15 @@
                                                     <div class="price_box">
                                                         @if ($product->discount_price == null)
                                                             <span
-                                                                class="current_price">{{ $product->selling_price }}
+                                                                class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                                 RON</span>
                                                             {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                         @else
                                                             <span
-                                                                class="current_price">{{ $product->discount_price }}
+                                                                class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                                 RON</span><br>
                                                             <span
-                                                                class="old_price">{{ $product->selling_price }}
+                                                                class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                                 RON</span>
                                                         @endif
                                                     </div>
@@ -207,15 +207,15 @@
                                                         <div class="price_box">
                                                             @if ($product->discount_price == null)
                                                                 <span
-                                                                    class="current_price">{{ $product->selling_price }}
+                                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                                     RON</span>
                                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                             @else
                                                                 <span
-                                                                    class="current_price">{{ $product->discount_price }}
+                                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                                     RON</span><br>
                                                                 <span
-                                                                    class="old_price">{{ $product->selling_price }}
+                                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                                     RON</span>
                                                             @endif
                                                         </div>
@@ -335,13 +335,16 @@
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
-                                                <span class="current_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
-                                                <span class="current_price">{{ $product->discount_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
-                                                <span class="old_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -435,13 +438,16 @@
                                             {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                             <div class="price_box">
                                                 @if ($product->discount_price == null)
-                                                    <span class="current_price">{{ $product->selling_price }}
+                                                    <span
+                                                        class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                     {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                 @else
-                                                    <span class="current_price">{{ $product->discount_price }}
+                                                    <span
+                                                        class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                         RON</span><br>
-                                                    <span class="old_price">{{ $product->selling_price }}
+                                                    <span
+                                                        class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                 @endif
                                             </div>
@@ -531,13 +537,16 @@
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
-                                                <span class="current_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
-                                                <span class="current_price">{{ $product->discount_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
-                                                <span class="old_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -723,13 +732,16 @@
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
-                                                <span class="current_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
-                                                <span class="current_price">{{ $product->discount_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
-                                                <span class="old_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -816,13 +828,16 @@
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
-                                                <span class="current_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
-                                                <span class="current_price">{{ $product->discount_price }}
+                                                <span
+                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
-                                                <span class="old_price">{{ $product->selling_price }}
+                                                <span
+                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -898,13 +913,16 @@
                                             {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                             <div class="price_box">
                                                 @if ($product->discount_price == null)
-                                                    <span class="current_price">{{ $product->selling_price }}
+                                                    <span
+                                                        class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                     {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                 @else
-                                                    <span class="current_price">{{ $product->discount_price }}
+                                                    <span
+                                                        class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
                                                         RON</span><br>
-                                                    <span class="old_price">{{ $product->selling_price }}
+                                                    <span
+                                                        class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                 @endif
                                             </div>
