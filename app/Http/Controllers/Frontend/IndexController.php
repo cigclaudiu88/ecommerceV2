@@ -225,4 +225,28 @@ class IndexController extends Controller
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products si $categories
         return view('frontend.product.subsubcategory_view', compact('products', 'categories'));
     }
+
+    // functia de afisare a produselor in modal
+    public function ProductViewModalAjax($id)
+    {
+        // $product preia datele din tabela products aferenta id-ului primit ca parametru
+        $product = Product::findOrFail($id);
+        //  $product prea id-ul produsului din tabela products folosind functile category, subsubcategory si brand din Modelul Product
+        $product = Product::with('category', 'brand', 'subsubcategory')->findOrFail($id);
+
+        $multiImage = MultiImg::where('product_id', $id)->get();
+        // $color = $product->product_color;
+        // $product_color = explode(',', $color);
+
+        // $size = $product->product_size;
+        // $product_size = explode(',', $size);
+
+        return response()->json(array(
+            'product' => $product,
+            'multiImage' => $multiImage,
+            // 'color' => $product_color,
+            // 'size' => $product_size,
+
+        ));
+    } // end method 
 }

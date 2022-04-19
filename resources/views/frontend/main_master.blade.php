@@ -6,6 +6,8 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title')</title>
     <meta name="description" content="">
+    {{-- csrf token pentru scriptul de modal conform script de jos --}}
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- Favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="{{ asset('frontend/img/favicon.ico') }}">
@@ -154,7 +156,61 @@
         @endif
     </script>
 
+    <script type="text/javascript">
+        $.ajaxSetup({
+            headers: {
+                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+            }
+        })
 
+        // functie de ProductView din Quick View Modal de pe butonul cu lupa
+        function productView(id) {
+            // alert(id)
+            $.ajax({
+                type: 'GET',
+                url: '/product/view/modal/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    // afisam numele produsului in modal prin id-ul pname
+                    // folosind data si product.product_name din functia ProductViewModalAjax() din IndexController
+                    $('#pname').text(data.product.product_name);
+                    // daca avem discount afisam pretul cu discount altfel doar pretul normal
+                    if (data.product.discount_price == null) {
+                        $('#pprice').text('');
+                        $('#oldprice').text('');
+                        $('#pprice').text(data.product.selling_price);
+                    } else {
+                        $('#pprice').text(data.product.discount_price);
+                        $('#oldprice').text(data.product.selling_price);
+                    }
+                    // folosind functia category din Product Model accesam numele categoriei
+                    $('#psubsubcategory').text(data.product.subsubcategory.subsubcategory_name);
+                    // folosind functia brand din Product Model accesam numele brandului
+                    $('#pbrand').text(data.product.brand.brand_name);
+
+                    $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+                    // pentru randere continut specificatii ca si html si nu text
+                    $('#pspecifications').html(data.product.specifications);
+
+                    // Afisare stoc produse in modal
+                    if (data.product.product_quantity >= 10) {
+                        $('#lowstock').hide();
+                        $('#stockout').hide();
+                        $('#aviable').text('In Stoc');
+                    } else if (data.product.product_quantity > 0) {
+                        $('#aviable').hide();
+                        $('#stockout').hide();
+                        $('#lowstock').text('Stoc Scazut');
+                    } else if (data.product.product_quantity == 0) {
+                        $('#aviable').hide();
+                        $('#lowstock').hide();
+                        $('#stockout').text('Stoc Epuizat');
+                    }
+
+                }
+            })
+        }
+    </script>
 
 </body>
 

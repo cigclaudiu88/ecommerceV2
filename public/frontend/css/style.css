@@ -3667,6 +3667,52 @@ textarea:-ms-input-placeholder {
   border-radius: 5px;
 }
 
+/*  Badge pentru Modal - Stoc Produs : In Stoc */
+span#aviable {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #40a944;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#lowstock {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #e7901e;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#stockout {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #f50909;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
 .product_content {
   margin-top: 16px;
   text-align: center;

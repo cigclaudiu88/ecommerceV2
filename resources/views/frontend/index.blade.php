@@ -82,10 +82,13 @@
                                                                     data-tippy="Add to cart" data-tippy-placement="top"
                                                                     data-tippy-arrow="true" data-tippy-inertia="true">
                                                                     <span class="lnr lnr-cart"></span></a></li>
+                                                            {{-- adaugat onclickevent si id-ul produsului --}}
                                                             <li class="quick_button"><a href="#"
                                                                     data-tippy="quick view" data-tippy-placement="top"
                                                                     data-tippy-arrow="true" data-tippy-inertia="true"
-                                                                    data-bs-toggle="modal" data-bs-target="#modal_box">
+                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
+                                                                    onclick="productView(this.id)"
+                                                                    id="{{ $product->id }}">
                                                                     <span class="lnr lnr-magnifier"></span></a></li>
                                                             <li class="wishlist"><a href="wishlist.html"
                                                                     data-tippy="Add to Wishlist"
@@ -181,7 +184,9 @@
                                                                         data-tippy-placement="top"
                                                                         data-tippy-arrow="true"
                                                                         data-tippy-inertia="true" data-bs-toggle="modal"
-                                                                        data-bs-target="#modal_box"> <span
+                                                                        data-bs-target="#modal_box"
+                                                                        onclick="productView(this.id)"
+                                                                        id="{{ $product->id }}"> <span
                                                                             class="lnr lnr-magnifier"></span></a></li>
                                                                 <li class="wishlist"><a href="wishlist.html"
                                                                         data-tippy="Add to Wishlist"
@@ -313,7 +318,8 @@
                                                 <li class="quick_button"><a href="#" data-tippy="quick view"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box"> <span
+                                                        data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                        id="{{ $product->id }}"> <span
                                                             class="lnr lnr-magnifier"></span></a></li>
                                                 <li class="wishlist"><a href="wishlist.html"
                                                         data-tippy="Add to Wishlist" data-tippy-placement="top"
@@ -423,7 +429,8 @@
                                                     <li class="quick_button"><a href="#" data-tippy="quick view"
                                                             data-tippy-placement="top" data-tippy-arrow="true"
                                                             data-tippy-inertia="true" data-bs-toggle="modal"
-                                                            data-bs-target="#modal_box"> <span
+                                                            data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                            id="{{ $product->id }}"> <span
                                                                 class="lnr lnr-magnifier"></span></a></li>
                                                     <li class="wishlist"><a href="wishlist.html"
                                                             data-tippy="Add to Wishlist" data-tippy-placement="top"
@@ -515,7 +522,8 @@
                                                 <li class="quick_button"><a href="#" data-tippy="quick view"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box"> <span
+                                                        data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                        id="{{ $product->id }}"> <span
                                                             class="lnr lnr-magnifier"></span></a></li>
                                                 <li class="wishlist"><a href="wishlist.html"
                                                         data-tippy="Add to Wishlist" data-tippy-placement="top"
@@ -710,7 +718,8 @@
                                                 <li class="quick_button"><a href="#" data-tippy="quick view"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box"> <span
+                                                        data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                        id="{{ $product->id }}"> <span
                                                             class="lnr lnr-magnifier"></span></a></li>
                                                 <li class="wishlist"><a href="wishlist.html"
                                                         data-tippy="Add to Wishlist" data-tippy-placement="top"
@@ -806,7 +815,8 @@
                                                 <li class="quick_button"><a href="#" data-tippy="quick view"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
-                                                        data-bs-target="#modal_box"> <span
+                                                        data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                        id="{{ $product->id }}"> <span
                                                             class="lnr lnr-magnifier"></span></a></li>
                                                 <li class="wishlist"><a href="wishlist.html"
                                                         data-tippy="Add to Wishlist" data-tippy-placement="top"
@@ -897,7 +907,8 @@
                                                     <li class="quick_button"><a href="#" data-tippy="quick view"
                                                             data-tippy-placement="top" data-tippy-arrow="true"
                                                             data-tippy-inertia="true" data-bs-toggle="modal"
-                                                            data-bs-target="#modal_box"> <span
+                                                            data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                            id="{{ $product->id }}"> <span
                                                                 class="lnr lnr-magnifier"></span></a></li>
                                                     <li class="wishlist"><a href="wishlist.html"
                                                             data-tippy="Add to Wishlist" data-tippy-placement="top"
@@ -920,7 +931,7 @@
                                                 @else
                                                     <span
                                                         class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
-                                                        RON</span><br>
+                                                        RON</span>
                                                     <span
                                                         class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
                                                         RON</span>

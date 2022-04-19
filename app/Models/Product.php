@@ -28,8 +28,20 @@ class Product extends Model
         return $this->hasOne(ProductPhone::class);
     }
 
-    public function subsubcategories()
+
+    // pentru a asigura legaturile intre tabele pentru modal afisare nume brand, nume categorie, nume subsubcategorie
+    public function category()
     {
-        return $this->hasOne(SubSubCategory::class, 'id', 'subsubcategory_id');
+        return $this->belongsTo(Category::class, 'category_id', 'id');
+    }
+
+    public function brand()
+    {
+        return $this->belongsTo(Brand::class, 'brand_id', 'id');
+    }
+
+    public function subsubcategory()
+    {
+        return $this->belongsTo(SubSubCategory::class, 'subsubcategory_id', 'id');
     }
 }

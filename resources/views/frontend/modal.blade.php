@@ -13,7 +13,8 @@
                                     <div class="tab-content product-details-large">
                                         <div class="tab-pane fade show active" id="tab1" role="tabpanel">
                                             <div class="modal_tab_img">
-                                                <a href="#"><img src="assets/img/product/productbig1.jpg" alt=""></a>
+                                                {{-- adaugat id pentru a prelua thumbnail image din ajax script --}}
+                                                <a href=""><img src="" alt="" id="pimage"></a>
                                             </div>
                                         </div>
                                         <div class="tab-pane fade" id="tab2" role="tabpanel">
@@ -62,19 +63,32 @@
                             <div class="col-lg-7 col-md-7 col-sm-12">
                                 <div class="modal_right">
                                     <div class="modal_title mb-10">
-                                        <h2>Donec Ac Tempus</h2>
+                                        <h2><strong><span id="pname"></span></strong></h2>
+                                        <h2>Categorie: <span id="psubsubcategory"></span></h2>
+                                        <h2>Brand: <span id="pbrand"></span></h2>
+                                        <h2><span id="aviable"></span></h2>
+                                        <h2><span id="lowstock"></span></h2>
+                                        <h2><span id="stockout"></span></h2>
                                     </div>
                                     <div class="modal_price mb-10">
-                                        <span class="new_price">$64.99</span>
-                                        <span class="old_price">$78.99</span>
+                                        <strong>Pret: </strong> <span class="new_price"><strong
+                                                id="pprice"></strong>
+                                            <strong>
+                                                RON</strong></span>
+                                        <span class="old_price"><strong id="oldprice"></strong> <strong>
+                                            </strong></span>
+                                    </div>
+                                    <div class="modal_add_to_cart">
+                                        <form action="#">
+                                            <input min="1" max="100" step="1" value="1" type="number">
+                                            <button type="submit">Adauga in Cos</button>
+                                        </form>
                                     </div>
                                     <div class="modal_description mb-15">
-                                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Mollitia iste
-                                            laborum ad impedit pariatur esse optio tempora sint ullam autem deleniti nam
-                                            in quos qui nemo ipsum numquam, reiciendis maiores quidem aperiam, rerum vel
-                                            recusandae </p>
+                                        <p><span id="pspecifications"></span></p>
                                     </div>
-                                    <div class="variants_selects">
+
+                                    {{-- <div class="variants_selects">
                                         <div class="variants_size">
                                             <h2>size</h2>
                                             <select class="select_option">
@@ -101,8 +115,8 @@
                                                 <button type="submit">add to cart</button>
                                             </form>
                                         </div>
-                                    </div>
-                                    <div class="modal_social">
+                                    </div> --}}
+                                    {{-- <div class="modal_social">
                                         <h2>Share this product</h2>
                                         <ul>
                                             <li class="facebook"><a href="#"><i class="fa fa-facebook"></i></a>
@@ -116,7 +130,7 @@
                                             <li class="linkedin"><a href="#"><i class="fa fa-linkedin"></i></a>
                                             </li>
                                         </ul>
-                                    </div>
+                                    </div> --}}
                                 </div>
                             </div>
                         </div>
