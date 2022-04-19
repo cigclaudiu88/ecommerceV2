@@ -196,15 +196,15 @@
                     if (data.product.product_quantity >= 10) {
                         $('#lowstock').hide();
                         $('#stockout').hide();
-                        $('#aviable').text('In Stoc');
+                        $('#aviable').text('In Stoc').show();
                     } else if (data.product.product_quantity > 0) {
                         $('#aviable').hide();
                         $('#stockout').hide();
-                        $('#lowstock').text('Stoc Scazut');
+                        $('#lowstock').text('Stoc Scazut').show();
                     } else if (data.product.product_quantity == 0) {
                         $('#aviable').hide();
                         $('#lowstock').hide();
-                        $('#stockout').text('Stoc Epuizat');
+                        $('#stockout').text('Stoc Epuizat').show();
                     }
 
                 }
