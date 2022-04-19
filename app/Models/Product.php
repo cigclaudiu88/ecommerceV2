@@ -27,4 +27,9 @@ class Product extends Model
     {
         return $this->hasOne(ProductPhone::class);
     }
+
+    public function subsubcategories()
+    {
+        return $this->hasOne(SubSubCategory::class, 'id', 'subsubcategory_id');
+    }
 }

@@ -24,4 +24,9 @@ class SubSubCategory extends Model
         // legatura intre tabela sub_subcategories (subcategory_id) si tabela subcategories (id)
         return $this->belongsTo(SubCategory::class, 'subcategory_id', 'id');
     }
+
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'subsubcategory_id', 'id');
+    }
 }

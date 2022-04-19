@@ -193,9 +193,13 @@ class IndexController extends Controller
         // $relatedProduct preia din tabela products produsele care au acelasi subsubcategory_id ca $subsubcat_id
         // si unde id-ul nu este egal cu id-ul produsului care a fost selectat pentru a nu afisa in produse similare produsul selectat
         $relatedProduct = Product::where('subsubcategory_id', $subsubcat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
-        // $relatedProductAccesories=Product::where('subcategory_id', $subcat_id)->where('id', '!=', $id)->where('subsubcategory_id', '!=', $subsubcat_id)->where('')
+
+        $subcat_id = $product->subcategory_id;
+
+        $relatedProductAccesories = Product::where('subcategory_id', $subcat_id)->where('subsubcategory_id', '>', $subsubcat_id)->where('id', '!=', $id)->orderBy('id', 'DESC')->get();
+
         // returnam pagina de detalii produse cu datele produsului din tabela products
-        return view('frontend.product.product_details', compact('product', 'multiImage', 'relatedProduct'));
+        return view('frontend.product.product_details', compact('product', 'multiImage', 'relatedProduct', 'relatedProductAccesories'));
     }
 
     // functia de afisare a produselor functie de subcategorie
