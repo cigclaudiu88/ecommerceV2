@@ -386,6 +386,8 @@
                 url: '/user/get-wishlist-product',
                 dataType: 'json',
                 success: function(response) {
+                    // pentru afisare in wishlist numarul de produse din wishlist
+                    $('span[id="wishQty"]').text(response.length);
                     var rows = ""
                     $.each(response, function(key, value) {
                         // folosind functia product() din modelul Wishlist acesam campurile dint tabelul products
