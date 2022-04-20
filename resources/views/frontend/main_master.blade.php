@@ -339,6 +339,17 @@
         // functia de sters dini mini cart + notificare sweetalert start
     </script>
 
+    {{-- adaugare in wishlist script --}}
+    <script type="text/javascript">
+        function addToWishList(product_id) {
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                url: "/add-to-wishlist/" + product_id,
+                success: function(data) {}
+            })
+        }
+    </script>
 
 
 </body>

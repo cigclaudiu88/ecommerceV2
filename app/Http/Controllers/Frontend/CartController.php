@@ -85,4 +85,9 @@ class CartController extends Controller
         // returnam mesajul de succes
         return response()->json(['success' => 'Produsul a fost sters cu success din Mini Cosul de Cumparaturi']);
     }
+
+    // functia de adaugare produse in wishlist
+    public function AddToWishlist(Request $request, $product_id)
+    {
+    }
 }

@@ -238,3 +238,5 @@ Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 // ruta de stergere produse din minicart
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
+// ruta pentru adaugare produse in wishlist
+Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);

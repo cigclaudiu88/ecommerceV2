@@ -82,7 +82,7 @@
                                                                     data-tippy="Add to cart" data-tippy-placement="top"
                                                                     data-tippy-arrow="true" data-tippy-inertia="true">
                                                                     <span class="lnr lnr-cart"></span></a></li>
-                                                            {{-- adaugat onclickevent si id-ul produsului --}}
+                                                            {{-- adaugat onclick event si id-ul produsului --}}
                                                             <li class="quick_button"><a href="#"
                                                                     data-tippy="quick view" data-tippy-placement="top"
                                                                     data-tippy-arrow="true" data-tippy-inertia="true"
@@ -90,10 +90,12 @@
                                                                     onclick="productView(this.id)"
                                                                     id="{{ $product->id }}">
                                                                     <span class="lnr lnr-magnifier"></span></a></li>
+                                                            {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
                                                             <li class="wishlist"><a href="wishlist.html"
                                                                     data-tippy="Add to Wishlist"
                                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                                    data-tippy-inertia="true"><span
+                                                                    data-tippy-inertia="true" id="{{ $product->id }}"
+                                                                    onclick="addToWishList(this.id)"><span
                                                                         class="lnr lnr-heart"></span></a></li>
                                                             <li class="compare"><a href="#"
                                                                     data-tippy="Add to Compare"
