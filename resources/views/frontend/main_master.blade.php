@@ -378,6 +378,41 @@
         }
     </script>
 
+    {{-- script afisare produse din wishlist start --}}
+    <script type="text/javascript">
+        function wishlist() {
+            $.ajax({
+                type: 'GET',
+                url: '/get-wishlist-product',
+                dataType: 'json',
+                success: function(response) {
+                    var rows = ""
+                    $.each(response, function(key, value) {
+                        // folosind functia product() din modelul Wishlist acesam campurile dint tabelul products
+                        rows += ` <tr>
+                                        <td class="product_remove"><a href="#">X</a></td>
+                                        <td class="product_thumb"><a href="#">
+                                            <img
+                                                    src="/${value.product.product_thumbnail	}" alt=""></a></td>
+                                        <td class="product_name"><a href="#">${value.product.product_name}</a></td>
+                                        <td class="product-price">${value.product.discount_price == null ? `<span class="current_price">${value.product.selling_price} RON</span>`:`<span class="current_price">${value.product.discount_price} RON</span> <span class="old_price">${value.product.selling_price} RON</span>`}</td>
+                                        <td class="product_quantity">${value.product.product_quantity==0 ? `<span id="stockout">Stoc Epuizat</span>`:`<span id="aviable">In Stoc</span>`}</td>
+                                        <td class="product_total"> <a href="#"
+                                                                    data-tippy="quick view" data-tippy-placement="top"
+                                                                    data-tippy-arrow="true" data-tippy-inertia="true"
+                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
+                                                                    onclick="productView(this.id)"
+                                                                    id="${value.product_id}"></td>
+                                    </tr>`
+                    });
+
+                    $('#wishlist').html(rows);
+                }
+            })
+        }
+        wishlist();
+    </script>
+    {{-- script afisare produse din wishlist sfarsit --}}
 
 </body>
 

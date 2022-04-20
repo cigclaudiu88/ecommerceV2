@@ -3763,11 +3763,25 @@ span#stockout {
   font-size: 15px;
   margin-left: 5px;
 }
+
+.product-price span.old_price {
+  text-decoration: line-through;
+  font-weight: 400;
+  font-size: 15px;
+  margin-left: 5px;
+}
+.product-price span.current_price {
+  font-weight: 500;
+  font-size: 17px;
+  color: #40a944;
+}
+
 .price_box span.current_price {
   font-weight: 500;
   font-size: 17px;
   color: #40a944;
 }
+
 @media only screen and (max-width: 767px) {
   .price_box span.current_price {
     font-size: 13px;
@@ -7602,6 +7616,14 @@ span#stockout {
     width: 140px;
   }
 }
+
+/* center a span inside a td with product_quantity class - la wishlist stock*/
+td.product_quantity span {
+  display: block;
+  text-align: center;
+  margin: 0 auto;
+}
+
 .table_desc .cart_page table tbody tr td.product_quantity {
   width: 218px;
 }

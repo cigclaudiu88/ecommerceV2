@@ -243,3 +243,5 @@ Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMi
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
 // ruta spre pagina de wishlist
 Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist');
+// ruta de preluare a produselor din wishlist
+Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);

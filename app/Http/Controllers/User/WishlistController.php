@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Http\Controllers\Controller;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class WishlistController extends Controller
 {
@@ -13,4 +15,13 @@ class WishlistController extends Controller
         // returnam pagina de vizualizare wishlist
         return view('frontend.wishlist.view_wishlist');
     }
+
+    // functia de preluare a produselor din wishlist
+    public function GetWishlistProduct()
+    {
+        // $wishlist preia prin legatura data de functia product() din modelul Wishlist acele produse din wishlist care au user_id = id-ul utilizatorului autentificat
+        $wishlist = Wishlist::with('product')->where('user_id', Auth::id())->latest()->get();
+        // returnam wishlist-ul in format json
+        return response()->json($wishlist);
+    } // end mehtod 
 }

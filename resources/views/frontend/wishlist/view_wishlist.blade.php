@@ -33,49 +33,15 @@
                             <table>
                                 <thead>
                                     <tr>
-                                        <th class="product_remove">Delete</th>
-                                        <th class="product_thumb">Image</th>
-                                        <th class="product_name">Product</th>
-                                        <th class="product-price">Price</th>
-                                        <th class="product_quantity">Stock Status</th>
-                                        <th class="product_total">Add To Cart</th>
+                                        <th class="product_remove">Sterge</th>
+                                        <th class="product_thumb">Poza</th>
+                                        <th class="product_name">Produs</th>
+                                        <th class="product-price">Pret</th>
+                                        <th class="product_quantity">Status Stoc</th>
+                                        <th class="product_total">Adauga in Cos</th>
                                     </tr>
                                 </thead>
-                                <tbody>
-                                    <tr>
-                                        <td class="product_remove"><a href="#">X</a></td>
-                                        <td class="product_thumb"><a href="#"><img
-                                                    src="assets/img/product/productbig1.jpg" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbag fringilla</a></td>
-                                        <td class="product-price">£65.00</td>
-                                        <td class="product_quantity">In Stock</td>
-                                        <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                    </tr>
-
-                                    <tr>
-                                        <td class="product_remove"><a href="#">X</a></td>
-                                        <td class="product_thumb"><a href="#"><img
-                                                    src="assets/img/product/productbig2.jpg" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbags justo</a></td>
-                                        <td class="product-price">£90.00</td>
-                                        <td class="product_quantity">In Stock</td>
-                                        <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                    </tr>
-                                    <tr>
-                                        <td class="product_remove"><a href="#">X</a></td>
-                                        <td class="product_thumb"><a href="#"><img
-                                                    src="assets/img/product/productbig3.jpg" alt=""></a></td>
-                                        <td class="product_name"><a href="#">Handbag elit</a></td>
-                                        <td class="product-price">£80.00</td>
-                                        <td class="product_quantity">In Stock</td>
-                                        <td class="product_total"><a href="#">Add To Cart</a></td>
-
-
-                                    </tr>
+                                <tbody id="wishlist">
 
                                 </tbody>
                             </table>
