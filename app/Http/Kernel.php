@@ -59,9 +59,10 @@ class Kernel extends HttpKernel
         'cache.headers' => \Illuminate\Http\Middleware\SetCacheHeaders::class,
         'can' => \Illuminate\Auth\Middleware\Authorize::class,
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
-        // 9. Laravel 8 Multi Auth Part 2
+        // inregistrat middlewearul -> admin
         'admin' => \App\Http\Middleware\AdminRedirectIfAuthenticated::class,
-        // 9. Laravel 8 Multi Auth Part 2
+        // inregistrat middlewearul -> user
+        'user' => \App\Http\Middleware\UserRedirectIfAuthenticated::class,
         'password.confirm' => \Illuminate\Auth\Middleware\RequirePassword::class,
         'signed' => \Illuminate\Routing\Middleware\ValidateSignature::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,

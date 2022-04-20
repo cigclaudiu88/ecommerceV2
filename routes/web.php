@@ -241,9 +241,12 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 // ruta pentru adaugare produse in wishlist
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
-// ruta spre pagina de wishlist
-Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist');
-// ruta de preluare a produselor din wishlist
-Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
-// ruta de stergere produse din wishlist
-Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+// grupare rutele pt wishlist si prefixate cu wishlist si folosind middleware user
+Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' => 'User'], function () {
+    // ruta spre pagina de wishlist
+    Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist');
+    // ruta de preluare a produselor din wishlist
+    Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
+    // ruta de stergere produse din wishlist
+    Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+});
