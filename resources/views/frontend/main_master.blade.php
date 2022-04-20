@@ -47,6 +47,8 @@
 
     {{-- Font Asesome CDN --}}
     <script src="https://kit.fontawesome.com/e4b2d9b481.js" crossorigin="anonymous"></script>
+    {{-- SweetAlert CDN --}}
+    <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
 </head>
 
 <body>
@@ -233,7 +235,28 @@
                 success: function(data) {
                     // id pentru inchidere modal on click
                     $('#closeModel').click();
-                    console.log(data)
+                    // console.log(data)
+
+                    // Mesaj SweetAlert Adaugat cu succes in cosul de cumparaturi - start
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    // Mesaj SweetAlert Adaugat cu succes in cosul de cumparaturi - sfarsit
                 }
             })
         }
