@@ -24,4 +24,14 @@ class WishlistController extends Controller
         // returnam wishlist-ul in format json
         return response()->json($wishlist);
     } // end mehtod 
+
+    // functia de stergere produse din wishlist
+    public function RemoveWishlistProduct($id)
+    {
+
+        // cautam in tabelul wishlists pentru user_id al utilizatorului autentificat si product_id = id-ul produsului care trebuie sters
+        Wishlist::where('user_id', Auth::id())->where('id', $id)->delete();
+        // returnam un raspuns json cu mesajul de succes
+        return response()->json(['success' => 'Produsul a fost sters din wishlist']);
+    }
 }

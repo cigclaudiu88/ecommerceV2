@@ -390,19 +390,19 @@
                     $.each(response, function(key, value) {
                         // folosind functia product() din modelul Wishlist acesam campurile dint tabelul products
                         rows += ` <tr>
-                                        <td class="product_remove"><a href="#">X</a></td>
+                                        <td class="product_remove"> <button type="submit"  id="${value.id}" onclick="wishlistRemove(this.id)"><i class="icon-x"></i></button></td>
                                         <td class="product_thumb"><a href="#">
                                             <img
                                                     src="/${value.product.product_thumbnail	}" alt=""></a></td>
                                         <td class="product_name"><a href="#">${value.product.product_name}</a></td>
                                         <td class="product-price">${value.product.discount_price == null ? `<span class="current_price">${value.product.selling_price} RON</span>`:`<span class="current_price">${value.product.discount_price} RON</span> <span class="old_price">${value.product.selling_price} RON</span>`}</td>
                                         <td class="product_quantity">${value.product.product_quantity==0 ? `<span id="stockout">Stoc Epuizat</span>`:`<span id="aviable">In Stoc</span>`}</td>
-                                        <td class="product_total"> <a href="#"
+                                        <td class="product_total"> <span><a href="#"
                                                                     data-tippy="quick view" data-tippy-placement="top"
                                                                     data-tippy-arrow="true" data-tippy-inertia="true"
                                                                     data-bs-toggle="modal" data-bs-target="#modal_box"
                                                                     onclick="productView(this.id)"
-                                                                    id="${value.product_id}"></td>
+                                                                    id="${value.product_id}">Adauga in Cos</span></td>
                                     </tr>`
                     });
 
@@ -411,6 +411,41 @@
             })
         }
         wishlist();
+
+        ///  functia de stergere produse din wishlist + notificare sweetalert start
+        function wishlistRemove(id) {
+            $.ajax({
+                type: 'GET',
+                url: '/wishlist-remove/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    wishlist();
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    ///  functia de stergere produse din wishlist + notificare sweetalert start
+                }
+            });
+        }
+        // End Wishlist remove   
     </script>
     {{-- script afisare produse din wishlist sfarsit --}}
 
