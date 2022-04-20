@@ -232,3 +232,5 @@ Route::get('/subcategory/product/{subcategory_id}/{slug}', [IndexController::cla
 Route::get('/subsubcategory/product/{subsubcategory_id}/{slug}', [IndexController::class, 'SubSubCategoryWiseProduct']);
 // ruta de afisare a produselor in modal cu script ajax
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewModalAjax']);
+// ruta de aduagat in cosul de cumparaturi script ajax
+Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);

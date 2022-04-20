@@ -2,7 +2,8 @@
     <div class="modal fade" id="modal_box" tabindex="-1" role="dialog" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
             <div class="modal-content">
-                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close">
+                {{-- adaugat id="closeModel" pentru a inchide modalul dupa apasarea butonului Adauga in Cos --}}
+                <button type="button" class="close" data-bs-dismiss="modal" aria-label="Close" id="closeModel">
                     <span aria-hidden="true"><i class="icon-x"></i></span>
                 </button>
                 <div class="modal_body">

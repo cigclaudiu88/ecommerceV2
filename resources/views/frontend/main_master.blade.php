@@ -207,8 +207,8 @@
                         $('#stockout').text('Stoc Epuizat').show();
                     }
                     // adaugat in modal id-ul / cantitatea produsului pentru a putea fi folosit in functia addToCart() 
-                    $('#product_id').val();
-                    $('#qty').val();
+                    $('#product_id').val(id);
+                    $('#qty').val(1);
                 }
             })
         }
@@ -231,6 +231,8 @@
                 },
                 url: "/cart/data/store/" + id,
                 success: function(data) {
+                    // id pentru inchidere modal on click
+                    $('#closeModel').click();
                     console.log(data)
                 }
             })
