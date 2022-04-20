@@ -234,3 +234,5 @@ Route::get('/subsubcategory/product/{subsubcategory_id}/{slug}', [IndexControlle
 Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewModalAjax']);
 // ruta de aduagat in cosul de cumparaturi script ajax
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
+// ruta pt afisare ini mini cosul de cumparaturi
+Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);

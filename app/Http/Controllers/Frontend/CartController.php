@@ -52,4 +52,22 @@ class CartController extends Controller
             return response()->json(['success' => 'Adaugat cu success in Cosul de Cumparaturi']);
         }
     }
+
+    // functia de adaugare in mini cosul de cumparaturi
+    public function AddMiniCart()
+    {
+        // $carts preia toate produsele din mini cosul de cumparaturi
+        $carts = Cart::content();
+        // $carQty preia numarul total de produse din mini cosul de cumparaturi
+        $cartQty = Cart::count();
+        // $cartTotal preia pretul total al produselor din mini cosul de cumparaturi
+        $cartTotal = Cart::total();
+
+        // returnam toate datele in format json
+        return response()->json(array(
+            'carts' => $carts,
+            'cartQty' => $cartQty,
+            'cartTotal' => $cartTotal,
+        ));
+    }
 }
