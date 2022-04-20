@@ -19,8 +19,11 @@ class CartController extends Controller
     {
         // $product preia id-ul produsului din tabelul products folosind modelul Product si functia findorfail()
         $product = Product::findOrFail($id);
+        if ($product->product_quantity == 0) {
+            return response()->json(['error' => 'Stocul produsului este epuizat']);
+        }
         // daca produsul nu are discount, atunci in cos se adauga pretul de vanzare (selling_price)
-        if ($product->discount_price == NULL) {
+        else if ($product->discount_price == NULL) {
             // adaugam in cosul de cumparaturi produsul cu toate datele
             Cart::add([
                 'id' => $id,
