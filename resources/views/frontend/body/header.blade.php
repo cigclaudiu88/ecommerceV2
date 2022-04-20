@@ -149,11 +149,18 @@
                                             </li>
                                             {{-- mini cos de cumparaturi --}}
                                             <li>
+
+
                                                 <div class="header_account_list  mini_cart_wrapper">
                                                     <a href="javascript:void(0)"><span class="lnr lnr-cart"></span><span
                                                             class="item_count">2</span></a>
                                                     <!--mini cart-->
-                                                    <div class="mini_cart">
+                                                    {{-- Mini Cos Script Ajax Start --}}
+                                                    <div id="miniCart">
+
+                                                    </div>
+                                                    {{-- Mini Cos Script Ajax Sfarsit --}}
+                                                    {{-- <div class="mini_cart">
                                                         <div class="cart_gallery">
                                                             <div class="cart_close">
                                                                 <div class="cart_text">
@@ -164,6 +171,7 @@
                                                                             class="icon-x"></i></a>
                                                                 </div>
                                                             </div>
+
                                                             <div class="cart_item">
                                                                 <div class="cart_img">
                                                                     <a href="#"><img
@@ -178,6 +186,7 @@
                                                                     <a href="#"><i class="icon-x"></i></a>
                                                                 </div>
                                                             </div>
+
                                                             <div class="cart_item">
                                                                 <div class="cart_img">
                                                                     <a href="#"><img
@@ -192,7 +201,9 @@
                                                                     <a href="#"><i class="icon-x"></i></a>
                                                                 </div>
                                                             </div>
+
                                                         </div>
+
                                                         <div class="mini_cart_table">
                                                             <div class="cart_table_border">
                                                                 <div class="cart_total">
@@ -205,6 +216,7 @@
                                                                 </div>
                                                             </div>
                                                         </div>
+
                                                         <div class="mini_cart_footer">
                                                             <div class="cart_button">
                                                                 <a href="cart.html"><i class="fa fa-shopping-cart"></i> View
@@ -216,7 +228,8 @@
                                                             </div>
 
                                                         </div>
-                                                    </div>
+
+                                                    </div> --}}
                                                     <!--mini cart end-->
                                                 </div>
                                             </li>
