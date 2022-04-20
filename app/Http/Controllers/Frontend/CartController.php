@@ -5,9 +5,12 @@ namespace App\Http\Controllers\Frontend;
 // adaugam modelul Product
 use App\Models\Product;
 // adaugam modelul Cart
-use Gloudemans\Shoppingcart\Facades\Cart;
+use App\Models\Wishlist;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
 {
@@ -89,5 +92,23 @@ class CartController extends Controller
     // functia de adaugare produse in wishlist
     public function AddToWishlist(Request $request, $product_id)
     {
+        // pentru a avea acces la functionalitatea de wishlist utilizatorul trebuie sa fie autentificat
+        // verificam daca userul este autentificat
+        if (Auth::check()) {
+
+            // $exists preia din tabelul wishlists pentru utilizatorul autentificat produsul cu id-ul $product_id
+            $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product_id)->first();
+
+            // adaugam in tabelul wishlists user_id-ul utilizatorului autentificat si in product_id-ul produsului cu id-ul $product_id
+            Wishlist::insert([
+                'user_id' => Auth::id(),
+                'product_id' => $product_id,
+                'created_at' => Carbon::now(),
+            ]);
+            return response()->json(['success' => 'Produsul a fost adaugat cu success in Wishlist']);
+        } else {
+
+            return response()->json(['error' => 'Trebuie sa fii autentificat pentru a adauga produsul in Wishlist']);
+        }
     }
 }
