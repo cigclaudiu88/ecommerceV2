@@ -294,7 +294,7 @@
                                                                     <p> <span>  ${value.qty}*${value.price} RON </span></p>
                                                                 </div>
                                                                 <div class="cart_remove">
-                                                                    <a href="#"><i class="icon-x"></i></a>
+                                                                    <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="icon-x"></i></button>
                                                                 </div>
                                                             </div>`
                     });
@@ -303,6 +303,40 @@
             })
         }
         miniCart();
+
+        // functia de sters dini mini cart + notificare sweetalert start
+        function miniCartRemove(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: '/minicart/product-remove/' + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    // incarcat miniCart() din functia de mai sus
+                    miniCart();
+                    // start mesaj sweetalert
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            title: data.error
+                        })
+                    }
+                    // sfarsit mesaj sweetalert
+                }
+            });
+        }
+        // functia de sters dini mini cart + notificare sweetalert start
     </script>
 
 

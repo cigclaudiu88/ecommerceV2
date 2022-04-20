@@ -77,4 +77,12 @@ class CartController extends Controller
 
         ));
     }
+    // functia de stergere produse dini minicart
+    public function RemoveMiniCart($rowId)
+    {
+        // sterge produsul cu id-ul $rowId din mini cosul de cumparaturi
+        Cart::remove($rowId);
+        // returnam mesajul de succes
+        return response()->json(['success' => 'Produsul a fost sters cu success din Mini Cosul de Cumparaturi']);
+    }
 }

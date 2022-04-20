@@ -236,3 +236,5 @@ Route::get('/product/view/modal/{id}', [IndexController::class, 'ProductViewModa
 Route::post('/cart/data/store/{id}', [CartController::class, 'AddToCart']);
 // ruta pt afisare ini mini cosul de cumparaturi
 Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
+// ruta de stergere produse din minicart
+Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
