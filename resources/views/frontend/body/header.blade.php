@@ -152,19 +152,16 @@
 
 
                                                 <div class="header_account_list  mini_cart_wrapper">
+                                                    {{-- adaugat id="cartQty" pt afisare total cantitate din scritpul minicart --}}
                                                     <a href="javascript:void(0)"><span class="lnr lnr-cart"></span><span
-                                                            class="item_count">2</span></a>
+                                                            class="item_count" id="cartQty"></span></a>
                                                     <!--mini cart-->
-                                                    {{-- Mini Cos Script Ajax Start --}}
-                                                    <div id="miniCart">
 
-                                                    </div>
-                                                    {{-- Mini Cos Script Ajax Sfarsit --}}
-                                                    {{-- <div class="mini_cart">
+                                                    <div class="mini_cart">
                                                         <div class="cart_gallery">
                                                             <div class="cart_close">
                                                                 <div class="cart_text">
-                                                                    <h3>cart</h3>
+                                                                    <h3>Cos de Cumparaturi</h3>
                                                                 </div>
                                                                 <div class="mini_cart_close">
                                                                     <a href="javascript:void(0)"><i
@@ -172,47 +169,29 @@
                                                                 </div>
                                                             </div>
 
-                                                            <div class="cart_item">
-                                                                <div class="cart_img">
-                                                                    <a href="#"><img
-                                                                            src="{{ asset('frontend/img/s-product/product.jpg') }}"
-                                                                            alt=""></a>
-                                                                </div>
-                                                                <div class="cart_info">
-                                                                    <a href="#">Primis In Faucibus</a>
-                                                                    <p>1 x <span> $65.00 </span></p>
-                                                                </div>
-                                                                <div class="cart_remove">
-                                                                    <a href="#"><i class="icon-x"></i></a>
-                                                                </div>
-                                                            </div>
+                                                            {{-- Mini Cos Script Ajax Start --}}
+                                                            <div id="miniCart">
 
-                                                            <div class="cart_item">
-                                                                <div class="cart_img">
-                                                                    <a href="#"><img
-                                                                            src="{{ asset('frontend/img/s-product/product2.jpg') }}"
-                                                                            alt=""></a>
-                                                                </div>
-                                                                <div class="cart_info">
-                                                                    <a href="#">Letraset Sheets</a>
-                                                                    <p>1 x <span> $60.00 </span></p>
-                                                                </div>
-                                                                <div class="cart_remove">
-                                                                    <a href="#"><i class="icon-x"></i></a>
-                                                                </div>
                                                             </div>
+                                                            {{-- Mini Cos Script Ajax Sfarsit --}}
+
+
 
                                                         </div>
-
+                                                        {{-- afisare subtotal, tva si total valaore in mini cart folosind id-urile din scriptul minicart --}}
                                                         <div class="mini_cart_table">
                                                             <div class="cart_table_border">
                                                                 <div class="cart_total">
-                                                                    <span>Sub total:</span>
-                                                                    <span class="price">$125.00</span>
+                                                                    <span>Total Fara TVA (RON): </span>
+                                                                    <span class="price" id="cartSubTotal"></span>
+                                                                </div>
+                                                                <div class="cart_total">
+                                                                    <span>TVA (RON): </span>
+                                                                    <span class="price" id="cartTax"></span>
                                                                 </div>
                                                                 <div class="cart_total mt-10">
-                                                                    <span>total:</span>
-                                                                    <span class="price">$125.00</span>
+                                                                    <span>Total cu TVA (RON): </span>
+                                                                    <span class="price" id="cartTotal"></span>
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -229,7 +208,7 @@
 
                                                         </div>
 
-                                                    </div> --}}
+                                                    </div>
                                                     <!--mini cart end-->
                                                 </div>
                                             </li>

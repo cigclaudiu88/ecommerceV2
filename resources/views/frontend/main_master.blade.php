@@ -233,6 +233,7 @@
                 },
                 url: "/cart/data/store/" + id,
                 success: function(data) {
+                    miniCart();
                     // id pentru inchidere modal on click
                     $('#closeModel').click();
                     // console.log(data)
@@ -272,80 +273,30 @@
                 dataType: 'json',
                 success: function(response) {
 
+                    // afisam in span-urile care au id-urile valorile aduse de cartSubTotal, cartTax, cartTotal din functia AddMiniCart() din CartController
+                    $('span[id="cartSubTotal"]').text(response.cartSubTotal);
+                    $('span[id="cartTax"]').text(response.cartTax);
+                    $('span[id="cartTotal"]').text(response.cartTotal);
+                    $('#cartQty').text(response.cartQty);
+
                     var miniCart = ""
 
                     $.each(response.carts, function(key, value) {
 
-                        miniCart += `<div class="mini_cart">
-                                                        <div class="cart_gallery">
-                                                            <div class="cart_close">
-                                                                <div class="cart_text">
-                                                                    <h3>cart</h3>
-                                                                </div>
-                                                                <div class="mini_cart_close">
-                                                                    <a href="javascript:void(0)"><i
-                                                                            class="icon-x"></i></a>
-                                                                </div>
-                                                            </div>
-
-                                                            <div class="cart_item">
+                        miniCart += `<div class="cart_item">
                                                                 <div class="cart_img">
                                                                     <a href="#"><img
-                                                                            src="{{ asset('frontend/img/s-product/product.jpg') }}"
+                                                                            src="/${value.options.image}"
                                                                             alt=""></a>
                                                                 </div>
                                                                 <div class="cart_info">
-                                                                    <a href="#">Primis In Faucibus</a>
-                                                                    <p>1 x <span> $65.00 </span></p>
+                                                                    <a href="#">${value.name}</a>
+                                                                    <p> <span>  ${value.qty}*${value.price} RON </span></p>
                                                                 </div>
                                                                 <div class="cart_remove">
                                                                     <a href="#"><i class="icon-x"></i></a>
                                                                 </div>
-                                                            </div>
-
-                                                            <div class="cart_item">
-                                                                <div class="cart_img">
-                                                                    <a href="#"><img
-                                                                            src="{{ asset('frontend/img/s-product/product2.jpg') }}"
-                                                                            alt=""></a>
-                                                                </div>
-                                                                <div class="cart_info">
-                                                                    <a href="#">Letraset Sheets</a>
-                                                                    <p>1 x <span> $60.00 </span></p>
-                                                                </div>
-                                                                <div class="cart_remove">
-                                                                    <a href="#"><i class="icon-x"></i></a>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-
-                                                        <div class="mini_cart_table">
-                                                            <div class="cart_table_border">
-                                                                <div class="cart_total">
-                                                                    <span>Sub total:</span>
-                                                                    <span class="price">$125.00</span>
-                                                                </div>
-                                                                <div class="cart_total mt-10">
-                                                                    <span>total:</span>
-                                                                    <span class="price">$125.00</span>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-
-                                                        <div class="mini_cart_footer">
-                                                            <div class="cart_button">
-                                                                <a href="cart.html"><i class="fa fa-shopping-cart"></i> View
-                                                                    cart</a>
-                                                            </div>
-                                                            <div class="cart_button">
-                                                                <a href="checkout.html"><i class="fa fa-sign-in"></i>
-                                                                    Checkout</a>
-                                                            </div>
-
-                                                        </div>
-
-                                                    </div>`
+                                                            </div>`
                     });
                     $('#miniCart').html(miniCart);
                 }
