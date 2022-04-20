@@ -100,12 +100,19 @@ class CartController extends Controller
             $exists = Wishlist::where('user_id', Auth::id())->where('product_id', $product_id)->first();
 
             // adaugam in tabelul wishlists user_id-ul utilizatorului autentificat si in product_id-ul produsului cu id-ul $product_id
-            Wishlist::insert([
-                'user_id' => Auth::id(),
-                'product_id' => $product_id,
-                'created_at' => Carbon::now(),
-            ]);
-            return response()->json(['success' => 'Produsul a fost adaugat cu success in Wishlist']);
+            // daca produsul nu exista in wishlist, atunci il adaugam
+            if (!$exists) {
+                Wishlist::insert([
+                    'user_id' => Auth::id(),
+                    'product_id' => $product_id,
+                    'created_at' => Carbon::now(),
+                ]);
+                return response()->json(['success' => 'Produsul a fost adaugat cu success in Wishlist']);
+                // daca produsul exista in wishlist, atunci afisam mesajul de eroare
+            } else {
+                return response()->json(['error' => 'Produsul exista deja in Wishlist']);
+            }
+            //  daca utilizatorul nu este autentificat, atunci afisam mesajul de eroare daca doreste sa adauge produsul in wishlist
         } else {
 
             return response()->json(['error' => 'Trebuie sa fii autentificat pentru a adauga produsul in Wishlist']);
