@@ -80,8 +80,12 @@
                                     </div>
                                     <div class="modal_add_to_cart">
                                         <form action="#">
-                                            <input min="1" max="100" step="1" value="1" type="number">
-                                            <button type="submit">Adauga in Cos</button>
+                                            {{-- adaugat id qty pentru functia addToCart din scrript --}}
+                                            <input min="1" max="100" step="1" value="1" type="number" id="qty">
+                                            {{-- adaugat camp hiddent pentru product_id --}}
+                                            <input type="hidden" id="product_id">
+                                            {{-- adaugat onclick event --}}
+                                            <button type="submit" onclick="addToCart()">Adauga in Cos</button>
                                         </form>
                                     </div>
                                     <div class="modal_description mb-15">

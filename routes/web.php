@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Route;
 // 1. Frontend Template Setup Part 2
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Backend\AdminProfileController;
 // 1. Frontend Template Setup Part 2
 // 3. User Profile Design Part 3
@@ -30,6 +31,7 @@ use App\Http\Controllers\Backend\ProductController;
 // 1. Upload Slider and Show All Slider List Part 1
 use App\Http\Controllers\Backend\SliderController;
 // 1. Upload Slider and Show All Slider List Part 1
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes

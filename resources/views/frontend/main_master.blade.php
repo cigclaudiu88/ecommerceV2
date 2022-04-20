@@ -206,11 +206,38 @@
                         $('#lowstock').hide();
                         $('#stockout').text('Stoc Epuizat').show();
                     }
-
+                    // adaugat in modal id-ul / cantitatea produsului pentru a putea fi folosit in functia addToCart() 
+                    $('#product_id').val();
+                    $('#qty').val();
                 }
             })
         }
+
+        // Inceput functie adauga in cos
+        function addToCart() {
+            var product_name = $('#pname').text();
+            var id = $('#product_id').val();
+            // var color = $('#color option:selected').text();
+            // var size = $('#size option:selected').text();
+            var quantity = $('#qty').val();
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    // color: color,
+                    // size: size,
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/cart/data/store/" + id,
+                success: function(data) {
+                    console.log(data)
+                }
+            })
+        }
+        //  Sfarsit functie adauga in cos
     </script>
+
 
 </body>
 
