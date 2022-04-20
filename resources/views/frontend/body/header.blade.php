@@ -143,8 +143,9 @@
                                             {{-- wishlist --}}
                                             <li>
                                                 <div class="header_account_list header_wishlist">
-                                                    <a href="wishlist.html"><span class="lnr lnr-heart"></span> <span
-                                                            class="item_count">3</span> </a>
+                                                    {{-- adaugat ruta pt wishlist --}}
+                                                    <a href="{{ route('wishlist') }}"><span class="lnr lnr-heart"></span>
+                                                        <span class="item_count">3</span> </a>
                                                 </div>
                                             </li>
                                             {{-- mini cos de cumparaturi --}}

@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\Backend\AdminProfileController;
 // 1. Frontend Template Setup Part 2
 // 3. User Profile Design Part 3
@@ -240,3 +241,5 @@ Route::get('/product/mini/cart/', [CartController::class, 'AddMiniCart']);
 Route::get('/minicart/product-remove/{rowId}', [CartController::class, 'RemoveMiniCart']);
 // ruta pentru adaugare produse in wishlist
 Route::post('/add-to-wishlist/{product_id}', [CartController::class, 'AddToWishlist']);
+// ruta spre pagina de wishlist
+Route::get('/wishlist', [WishlistController::class, 'ViewWishlist'])->name('wishlist');
