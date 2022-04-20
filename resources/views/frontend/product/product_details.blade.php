@@ -55,8 +55,8 @@
             <div class="col-lg-6 col-md-6">
                 <div class="product_d_right">
                     <form action="#">
-
-                        <h1><a href="#">{{ $product->product_name }}</a></h1>
+                        {{-- adaugat id="pname" pentru AddToCart() --}}
+                        <h1 id="pname"><a href="#">{{ $product->product_name }}</a></h1>
                         {{-- <div class="product_nav">
                             <ul>
                                 <li class="prev"><a href="product-details.html"><i
@@ -104,8 +104,12 @@
                         </div>
                         <div class="product_variant quantity">
                             <label>quantity</label>
-                            <input min="1" max="100" value="1" type="number">
-                            <button class="button" type="submit">add to cart</button>
+                            {{-- adaugat id="qty" pt scriptul AddToCart --}}
+                            <input min="1" value="1" type="number" id="qty">
+                            {{-- adaugat camp hiddent pentru product_id --}}
+                            <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
+                            {{-- adaugat onclick="addToCart()" --}}
+                            <button class="button" type="submit" onclick="addToCart()">Adauga in Cos</button>
 
                         </div>
                         <div class=" product_d_action">

@@ -82,7 +82,7 @@
                                     <div class="modal_add_to_cart">
                                         <form action="#">
                                             {{-- adaugat id qty pentru functia addToCart din scrript --}}
-                                            <input min="1" max="100" step="1" value="1" type="number" id="qty">
+                                            <input min="1" step="1" value="1" type="number" id="qty">
                                             {{-- adaugat camp hiddent pentru product_id --}}
                                             <input type="hidden" id="product_id">
                                             {{-- adaugat onclick event --}}
