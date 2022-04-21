@@ -195,7 +195,7 @@
                     $('.product_navactive').empty();
                     // se afiseaza fiecare imagine din multimea de imagini din baza de date in div-ul cu id-ul product_navactive din modal
                     data.multiImage.forEach((image, index) => $('.product_navactive').append(
-                        `<li><a class="nav-link" data-toggle="tab" href="#tab${index+1}" role="tab" aria-controls="tab${index+1}" aria-selected="${index === 0}"><img src=${image.photo_name} alt=""></a></li>`
+                        `<div class="owl-item ${index<4? `active`:`cloned`}" style="width: 96.707px;"><li><a class="nav-link ${index+1==1? `active`:``}" data-toggle="tab" role="tab" aria-controls="tab${index+1}" aria-selected="${index === 0}"><img src=${image.photo_name} alt=""></a></li><div>`
                     ));
 
                     // pentru randere continut specificatii ca si html si nu text
