@@ -227,8 +227,10 @@ Route::prefix('slider')->group(function () {
 
 // Admin Vouchers Rute Grupate si prefixate cu voucher
 Route::prefix('voucher')->group(function () {
-    // ruta de afisare tuturor sliders
+    // ruta de afisare tuturor voucher-urilor din tabelul vouchers
     Route::get('/view', [VoucherController::class, 'VoucherView'])->name('manage-voucher');
+    // ruta de inserare voucher-uri in tabela vouchers
+    Route::post('/store', [VoucherController::class, 'VoucherStore'])->name('voucher.store');
 });
 
 // Rutele pentru pagina de detalii produse

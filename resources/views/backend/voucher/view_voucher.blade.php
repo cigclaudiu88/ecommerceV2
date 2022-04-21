@@ -25,16 +25,18 @@
                             @foreach ($vouchers as $item)
                                 <tr>
                                     <td>{{ $item->voucher_name }}</td>
-                                    <td>{{ $item->voucher_discount }}</td>
-                                    <td>{{ $item->voucher_validity }}</td>
+                                    <td>{{ $item->voucher_discount }}%</td>
+                                    <td>{{ Carbon\Carbon::parse($item->voucher_validity)->format('D, d F Y') }}
+                                    </td>
                                     <td class="text-center">
-                                        @if ($item->status == 1)
+                                        {{-- atunci cand data voucherului este mai mare sau egala cu data curenta atunci voucherul este activ invers inactiv --}}
+                                        @if ($item->voucher_validity >= Carbon\Carbon::now()->format('Y-m-d'))
                                             <span class="badge badge-pill badge-primary"> Activ </span>
                                         @else
                                             <span class="badge badge-pill badge-danger"> Inactiv </span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td width="30%">
                                         {{-- adaugat ruta de editare categorie --}}
                                         <a href="" class="btn btn-info">Edit</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
@@ -55,9 +57,8 @@
                     <h4 class="title">Adauga Voucher</h4>
                 </div>
                 <div class="box-body">
-                    {{-- formular de adaugare categorii in tabelul categories folosind ruta category.store si functia CategoryStore() din CategoryController --}}
-                    {{-- enctype pentru lucrul cu imagini si protectie csrf --}}
-                    <form method="POST" action="">
+                    {{-- formular de adaugare voucheruri in tabelul vouchers folosind ruta voucher.store si functia VoucherStore() din VocuherController --}}
+                    <form method="POST" action="{{ route('voucher.store') }}">
                         @csrf
                         <div class="row mbn-20">
 
@@ -82,7 +83,7 @@
                             <div class="col-12 mb-20">
                                 <label for="voucher_validity"><strong>Valabilitate Voucher</strong></label>
                                 <input type="date" name="voucher_validity" id="voucher_validity" class="form-control"
-                                    placeholder="Valabilitate Voucher">
+                                    min="{{ Carbon\Carbon::now()->format('Y-m-d') }}" placeholder="Valabilitate Voucher">
                                 @error('voucher_validity')
                                     <span class="text-danger"><strong>{{ $message }}</strong></span>
                                 @enderror

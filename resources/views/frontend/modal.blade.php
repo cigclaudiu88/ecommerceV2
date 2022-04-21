@@ -18,7 +18,7 @@
                                                 <a href=""><img src="" alt="" id="pimage"></a>
                                             </div>
                                         </div>
-                                        <div class="tab-pane fade" id="tab2" role="tabpanel">
+                                        {{-- <div class="tab-pane fade" id="tab2" role="tabpanel">
                                             <div class="modal_tab_img">
                                                 <a href="#"><img src="assets/img/product/productbig2.jpg" alt=""></a>
                                             </div>
@@ -32,32 +32,11 @@
                                             <div class="modal_tab_img">
                                                 <a href="#"><img src="assets/img/product/productbig4.jpg" alt=""></a>
                                             </div>
-                                        </div>
+                                        </div> --}}
                                     </div>
                                     <div class="modal_tab_button">
                                         <ul class="nav product_navactive owl-carousel" role="tablist">
-                                            <li>
-                                                <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab"
-                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
-                                                        id="pimage1"></a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link active" data-toggle="tab" href="#tab2" role="tab"
-                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
-                                                        id="pimage2"></a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link active" data-toggle="tab" href="#tab3" role="tab"
-                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
-                                                        id="pimage3"></a>
-                                            </li>
-                                            <li>
-                                                <a class="nav-link active" data-toggle="tab" href="#tab4" role="tab"
-                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
-                                                        id="pimage4"></a>
-                                            </li>
-
-
+                                            {{-- aici se adauga li - a - img din functia / scriptul productView() --}}
                                         </ul>
                                     </div>
                                 </div>

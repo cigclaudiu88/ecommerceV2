@@ -191,10 +191,13 @@
                     $('#pbrand').text(data.product.brand.brand_name);
 
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
-                    $('#pimage1').attr('src', '/' + data.multiImage[0].photo_name);
-                    $('#pimage2').attr('src', '/' + data.multiImage[1].photo_name);
-                    $('#pimage3').attr('src', '/' + data.multiImage[2].photo_name);
-                    $('#pimage4').attr('src', '/' + data.multiImage[3].photo_name);
+                    // pt fiecare produs selectat se sterge imagnile din div-ul cu id-ul product_navactive din modal
+                    $('.product_navactive').empty();
+                    // se afiseaza fiecare imagine din multimea de imagini din baza de date in div-ul cu id-ul product_navactive din modal
+                    data.multiImage.forEach((image, index) => $('.product_navactive').append(
+                        `<li><a class="nav-link" data-toggle="tab" href="#tab${index+1}" role="tab" aria-controls="tab${index+1}" aria-selected="${index === 0}"><img src=${image.photo_name} alt=""></a></li>`
+                    ));
+
                     // pentru randere continut specificatii ca si html si nu text
                     $('#pspecifications').html(data.product.specifications);
 
