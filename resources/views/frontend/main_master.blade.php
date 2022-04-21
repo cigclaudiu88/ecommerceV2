@@ -191,6 +191,10 @@
                     $('#pbrand').text(data.product.brand.brand_name);
 
                     $('#pimage').attr('src', '/' + data.product.product_thumbnail);
+                    $('#pimage1').attr('src', '/' + data.multiImage[0].photo_name);
+                    $('#pimage2').attr('src', '/' + data.multiImage[1].photo_name);
+                    $('#pimage3').attr('src', '/' + data.multiImage[2].photo_name);
+                    $('#pimage4').attr('src', '/' + data.multiImage[3].photo_name);
                     // pentru randere continut specificatii ca si html si nu text
                     $('#pspecifications').html(data.product.specifications);
 
@@ -265,6 +269,50 @@
             })
         }
         //  Sfarsit functie adauga in cos
+
+        function addToCartButton(product_id, product_name) {
+
+            var product_name = product_name;
+            var quantity = 1;
+            $.ajax({
+                type: "POST",
+                dataType: 'json',
+                data: {
+                    // color: color,
+                    // size: size,
+                    quantity: quantity,
+                    product_name: product_name
+                },
+                url: "/cart/data/store/" + product_id,
+                success: function(data) {
+                    miniCart();
+
+                    // Mesaj SweetAlert Adaugat cu succes in cosul de cumparaturi - start
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        icon: 'success',
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    // Mesaj SweetAlert Adaugat cu succes in cosul de cumparaturi - sfarsit
+                }
+            })
+        }
     </script>
 
     {{-- script pt afisare produse in mini cart --}}
@@ -372,10 +420,6 @@
                             title: data.error
                         })
                     }
-
-
-
-
                 }
             });
         }

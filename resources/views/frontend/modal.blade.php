@@ -38,24 +38,25 @@
                                         <ul class="nav product_navactive owl-carousel" role="tablist">
                                             <li>
                                                 <a class="nav-link active" data-toggle="tab" href="#tab1" role="tab"
-                                                    aria-controls="tab1" aria-selected="false"><img
-                                                        src="assets/img/product/product1.jpg" alt=""></a>
+                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
+                                                        id="pimage1"></a>
                                             </li>
                                             <li>
-                                                <a class="nav-link" data-toggle="tab" href="#tab2" role="tab"
-                                                    aria-controls="tab2" aria-selected="false"><img
-                                                        src="assets/img/product/product6.jpg" alt=""></a>
+                                                <a class="nav-link active" data-toggle="tab" href="#tab2" role="tab"
+                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
+                                                        id="pimage2"></a>
                                             </li>
                                             <li>
-                                                <a class="nav-link button_three" data-toggle="tab" href="#tab3"
-                                                    role="tab" aria-controls="tab3" aria-selected="false"><img
-                                                        src="assets/img/product/product2.jpg" alt=""></a>
+                                                <a class="nav-link active" data-toggle="tab" href="#tab3" role="tab"
+                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
+                                                        id="pimage3"></a>
                                             </li>
                                             <li>
-                                                <a class="nav-link" data-toggle="tab" href="#tab4" role="tab"
-                                                    aria-controls="tab4" aria-selected="false"><img
-                                                        src="assets/img/product/product7.jpg" alt=""></a>
+                                                <a class="nav-link active" data-toggle="tab" href="#tab4" role="tab"
+                                                    aria-controls="tab1" aria-selected="false"><img src="" alt=""
+                                                        id="pimage4"></a>
                                             </li>
+
 
                                         </ul>
                                     </div>

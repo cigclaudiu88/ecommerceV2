@@ -80,7 +80,10 @@
                                                         <ul>
                                                             <li class="add_to_cart"><a href="#"
                                                                     data-tippy="Add to cart" data-tippy-placement="top"
-                                                                    data-tippy-arrow="true" data-tippy-inertia="true">
+                                                                    data-tippy-arrow="true" data-tippy-inertia="true"
+                                                                    id="{{ $product->id }}"
+                                                                    name="{{ $product->product_name }}"
+                                                                    onclick="addToCartButton(this.id, this.name)">
                                                                     <span class="lnr lnr-cart"></span></a></li>
                                                             {{-- adaugat onclick event si id-ul produsului --}}
                                                             <li class="quick_button"><a href="#"
