@@ -514,10 +514,10 @@
                     $.each(response.carts, function(key, value) {
                         // acesam datele produselor din functia AddToCart() CartController
                         rows += `<tr>
-                            <td class="product_remove"> <button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="icon-x"></i></button></td>
+                            <td class="product_remove"><a id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-trash-o"></i></a></td>                      
                                         <td class="product_thumb"><img
                                                     src="/${value.options.image}" alt=""></td>
-                                        <td class="product_name"><a href="#">${value.name}</a></td>
+                                        <td class="product_name"><a>${value.name}</a></td>
                                         <td class="product-price">${value.price.toLocaleString()} RON</td>
                                         
                                         <td class="product_quantity"><button type="submit" class="btn btn-success btn-sm">+</button><label></label> <input min="1" max="100"
