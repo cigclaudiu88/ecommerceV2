@@ -46,7 +46,7 @@ class CartPageController extends Controller
         return response()->json(['success' => 'Produsul a fost sters cu succes din Cosul de Cumparaturi']);
     }
 
-    // functia de actualizare cantitatea produselor din pagina cosului de cumparaturi
+    // functia de crestere cantitatea produselor din pagina cosului de cumparaturi
     public function CartIncrement($rowId)
     {
         // $row preia produsul cu id-ul $rowId din cosul de cumparaturi
@@ -55,5 +55,15 @@ class CartPageController extends Controller
         Cart::update($rowId, $row->qty + 1);
         // returnam raspunsul json increment
         return response()->json('increment');
+    }
+    // functia de scadere cantitatea produselor din pagina cosului de cumparaturi
+    public function CartDecrement($rowId)
+    {
+        // $row preia produsul cu id-ul $rowId din cosul de cumparaturi
+        $row = Cart::get($rowId);
+        // actualizam cantitatea produsului cu id-ul $rowId cu 1
+        Cart::update($rowId, $row->qty - 1);
+        // returnam raspunsul json increment
+        return response()->json('decrement');
     }
 }

@@ -513,6 +513,7 @@
                     //  pentru fiecare response cu carts json response din GetCartProduct() CartPageController toate datele produseles din cosul de cumparaturi
                     $.each(response.carts, function(key, value) {
                         // acesam datele produselor din functia AddToCart() CartController
+                        // atunci cand cantitatea este 1 butonul de scadere cantitate este disabled
                         rows += `<tr>
                             <td class="product_remove"><a id="${value.rowId}" onclick="cartRemove(this.id)"><i class="fa fa-trash-o"></i></a></td>                      
                                         <td class="product_thumb"><img
@@ -521,7 +522,11 @@
                                         <td class="product-price">${value.price.toLocaleString()} RON</td>
                                         
                                         <td class="product_quantity">
-                                            <button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>
+                    
+                                            ${value.qty > 1 ? 
+                                                `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)" >-</button> ` 
+                                                : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button> `}
+
                                             <input min="1" max="100" value="${value.qty}" type="text" class="text-center">
                                             <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)">+</button>
                                         </td>
@@ -577,6 +582,19 @@
             $.ajax({
                 type: 'GET',
                 url: "/cart-increment/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    // actualizam cantitatea si in cart() si in miniCarT()
+                    cart();
+                    miniCart();
+                }
+            });
+        }
+        // functia de decrementare produse din cosul de cumparaturi start
+        function cartDecrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "/cart-decrement/" + rowId,
                 dataType: 'json',
                 success: function(data) {
                     // actualizam cantitatea si in cart() si in miniCarT()

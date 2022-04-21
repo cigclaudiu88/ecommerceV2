@@ -259,3 +259,5 @@ Route::get('/user/get-cart-product', [CartPageController::class, 'GetCartProduct
 Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
 // ruta de crestere cantitatea produselor din cosul de cumparaturi
 Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
+// ruta de scadere cantitatea produselor din cosul de cumparaturi
+Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
