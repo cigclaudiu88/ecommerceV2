@@ -423,7 +423,7 @@ textarea:-ms-input-placeholder {
 }
 
 /* 02. Element */
-.button2 {
+.button {
   background: #40a944;
   box-shadow: none;
   color: #ffffff;
@@ -1481,7 +1481,7 @@ textarea:-ms-input-placeholder {
   border: 1px solid #ededed;
 }
 .cart_button a:hover {
-  background: #40a944;
+  background: #eef0f1;
   border-color: #40a944;
   color: #fff;
 }

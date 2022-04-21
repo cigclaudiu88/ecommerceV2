@@ -200,8 +200,10 @@
 
                                                         <div class="mini_cart_footer">
                                                             <div class="cart_button">
-                                                                <a href="cart.html"><i class="fa fa-shopping-cart"></i> View
-                                                                    cart</a>
+                                                                {{-- adaugat ruta mycart spre pagina cosului de cumparaturi --}}
+                                                                <a href="{{ route('mycart') }}"><i
+                                                                        class="fa fa-shopping-cart"></i> Vizualizeaza Cosul
+                                                                    de Cumparaturi</a>
                                                             </div>
                                                             <div class="cart_button">
                                                                 <a href="checkout.html"><i class="fa fa-sign-in"></i>

@@ -11,6 +11,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
+use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\Backend\AdminProfileController;
 // 1. Frontend Template Setup Part 2
 // 3. User Profile Design Part 3
@@ -249,4 +250,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
     // ruta de stergere produse din wishlist
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+    // ruta spre pagina cosului de cumparaturi
+    Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+    // ruta care aduce produseles din cosul de cumparaturi
+    Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
 });

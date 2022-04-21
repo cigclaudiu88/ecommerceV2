@@ -498,6 +498,74 @@
     </script>
     {{-- script afisare produse din wishlist sfarsit --}}
 
+    {{-- script pagina cosului de cumparaturi start --}}
+    <script type="text/javascript">
+        function cart() {
+            $.ajax({
+                type: 'GET',
+                url: '/user/get-cart-product',
+                dataType: 'json',
+                success: function(response) {
+                    // pentru afisare in wishlist numarul de produse din wishlist
+
+                    var rows = ""
+                    //  pentru fiecare response cu carts json response din GetCartProduct() CartPageController toate datele produseles din cosul de cumparaturi
+                    $.each(response.carts, function(key, value) {
+                        // acesam datele produselor din functia AddToCart() CartController
+                        rows += `<tr>
+                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
+                                        <td class="product_thumb"><a href="#"><img
+                                                    src="/${value.options.image}" alt=""></a></td>
+                                        <td class="product_name"><a href="#">${value.name}</a></td>
+                                        <td class="product-price">${value.price} RON</td>
+                                        <td class="product_quantity"><label>Cantitate</label> <input min="1" max="100"
+                                                value="1" type="number"></td>
+                                        <td class="product_total">£130.00</td>
+                                    </tr>`
+                    });
+
+                    $('#cartPage').html(rows);
+                }
+            })
+        }
+        cart();
+
+        ///  functia de stergere produse din wishlist + notificare sweetalert start
+        function wishlistRemove(id) {
+            $.ajax({
+                type: 'GET',
+                url: '/user/wishlist-remove/' + id,
+                dataType: 'json',
+                success: function(data) {
+                    wishlist();
+                    // Start Message 
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                    ///  functia de stergere produse din wishlist + notificare sweetalert start
+                }
+            });
+        }
+        // End Wishlist remove   
+    </script>
+    {{-- script pagina cosului de cumparaturi sfarsit --}}
 </body>
 
 </html>
