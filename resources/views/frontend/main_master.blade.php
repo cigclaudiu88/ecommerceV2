@@ -517,10 +517,12 @@
                                         <td class="product_thumb"><a href="#"><img
                                                     src="/${value.options.image}" alt=""></a></td>
                                         <td class="product_name"><a href="#">${value.name}</a></td>
-                                        <td class="product-price">${value.price} RON</td>
-                                        <td class="product_quantity"><label>Cantitate</label> <input min="1" max="100"
-                                                value="1" type="number"></td>
-                                        <td class="product_total">£130.00</td>
+                                        <td class="product-price">${value.price.toLocaleString()} RON</td>
+                                        
+                                        <td class="product_quantity"><button type="submit" class="btn btn-success btn-sm">+</button><label></label> <input min="1" max="100"
+                                            value="${value.qty}" type="text" class="text-center"><button type="submit" class="btn btn-danger btn-sm">-</button></td>
+                                            
+                                        <td class="product-price">${value.subtotal.toLocaleString()} RON</td>
                                     </tr>`
                     });
 
