@@ -500,6 +500,7 @@
 
     {{-- script pagina cosului de cumparaturi start --}}
     <script type="text/javascript">
+        // functia de afisare produse din cosul de cumparaturi
         function cart() {
             $.ajax({
                 type: 'GET',
@@ -513,9 +514,9 @@
                     $.each(response.carts, function(key, value) {
                         // acesam datele produselor din functia AddToCart() CartController
                         rows += `<tr>
-                                        <td class="product_remove"><a href="#"><i class="fa fa-trash-o"></i></a></td>
-                                        <td class="product_thumb"><a href="#"><img
-                                                    src="/${value.options.image}" alt=""></a></td>
+                            <td class="product_remove"> <button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartRemove(this.id)"><i class="icon-x"></i></button></td>
+                                        <td class="product_thumb"><img
+                                                    src="/${value.options.image}" alt=""></td>
                                         <td class="product_name"><a href="#">${value.name}</a></td>
                                         <td class="product-price">${value.price.toLocaleString()} RON</td>
                                         
@@ -532,14 +533,15 @@
         }
         cart();
 
-        ///  functia de stergere produse din wishlist + notificare sweetalert start
-        function wishlistRemove(id) {
+        // functia de stergere produse din cosul de cumparaturi + notificare sweetalert start
+        function cartRemove(id) {
             $.ajax({
                 type: 'GET',
-                url: '/user/wishlist-remove/' + id,
+                url: '/user/cart-remove/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    wishlist();
+                    cart();
+                    miniCart();
                     // Start Message 
                     const Toast = Swal.mixin({
                         toast: true,

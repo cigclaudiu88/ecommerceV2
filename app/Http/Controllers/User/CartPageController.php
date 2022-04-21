@@ -36,4 +36,13 @@ class CartPageController extends Controller
             'cartTotal' => $cartTotal,
         ));
     }
+
+    // functia de stergere produse din pagina cosului de cumparaturi
+    public function RemoveCartProduct($rowId)
+    {
+        // sterge produsul cu id-ul $rowId din cosul de cumparaturi
+        Cart::remove($rowId);
+        // returnam mesajul de succes
+        return response()->json(['success' => 'Produsul a fost sters cu succes din Cosul de Cumparaturi']);
+    }
 }

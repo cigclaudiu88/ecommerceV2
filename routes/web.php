@@ -254,4 +254,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
     // ruta care aduce produseles din cosul de cumparaturi
     Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+    // ruta de stergere produse din pagina cosului de cumparaturi
+    Route::get('/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
 });
