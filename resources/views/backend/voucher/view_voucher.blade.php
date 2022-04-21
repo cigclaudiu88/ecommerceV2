@@ -38,9 +38,10 @@
                                     </td>
                                     <td width="30%">
                                         {{-- adaugat ruta de editare categorie --}}
-                                        <a href="" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('voucher.edit', $item->id) }}" class="btn btn-info">Edit</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="{{ route('voucher.delete', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

@@ -231,6 +231,12 @@ Route::prefix('voucher')->group(function () {
     Route::get('/view', [VoucherController::class, 'VoucherView'])->name('manage-voucher');
     // ruta de inserare voucher-uri in tabela vouchers
     Route::post('/store', [VoucherController::class, 'VoucherStore'])->name('voucher.store');
+    // ruta de editare voucher-uri din tabela vouchers
+    Route::get('/edit/{id}', [VoucherController::class, 'VoucherEdit'])->name('voucher.edit');
+    // ruta de actualizare voucher-uri din tabela vouchers
+    Route::post('/update/{id}', [VoucherController::class, 'VoucherUpdate'])->name('voucher.update');
+    // ruta de stergere voucher-uri din tabela vouchers
+    Route::get('/delete/{id}', [VoucherController::class, 'VoucherDelete'])->name('voucher.delete');
 });
 
 // Rutele pentru pagina de detalii produse
