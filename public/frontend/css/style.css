@@ -7634,7 +7634,8 @@ td.product_quantity span {
 .table_desc .cart_page table tbody tr td.product_quantity input {
   width: 60px;
   height: 40px;
-  padding: 0 5px 0 10px;
+  /* actualizat padding text input cantitate pagina cos de cumparaturi */
+  padding: 0 0 0 0;
   background: none;
   border: 1px solid #ededed;
 }

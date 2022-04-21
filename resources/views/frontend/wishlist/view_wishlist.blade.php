@@ -25,33 +25,30 @@
 <!--wishlist area start -->
 <div class="wishlist_area mt-70">
     <div class="container">
-        <form action="#">
-            <div class="row">
-                <div class="col-12">
-                    <div class="table_desc wishlist">
-                        <div class="cart_page">
-                            <table>
-                                <thead>
-                                    <tr>
-                                        <th class="product_remove">Sterge</th>
-                                        <th class="product_thumb">Poza</th>
-                                        <th class="product_name">Produs</th>
-                                        <th class="product-price">Pret</th>
-                                        <th class="product_quantity">Status Stoc</th>
-                                        <th class="product_total">Adauga in Cos</th>
-                                    </tr>
-                                </thead>
-                                <tbody id="wishlist">
+        <div class="row">
+            <div class="col-12">
+                <div class="table_desc wishlist">
+                    <div class="cart_page">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th class="product_remove">Sterge</th>
+                                    <th class="product_thumb">Poza</th>
+                                    <th class="product_name">Produs</th>
+                                    <th class="product-price">Pret</th>
+                                    <th class="product_quantity">Status Stoc</th>
+                                    <th class="product_total">Adauga in Cos</th>
+                                </tr>
+                            </thead>
+                            <tbody id="wishlist">
 
-                                </tbody>
-                            </table>
-                        </div>
-
+                            </tbody>
+                        </table>
                     </div>
+
                 </div>
             </div>
-
-        </form>
+        </div>
         <div class="row">
             <div class="col-12">
                 <div class="wishlist_share">

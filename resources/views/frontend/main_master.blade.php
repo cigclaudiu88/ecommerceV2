@@ -440,13 +440,13 @@
                         // folosind functia product() din modelul Wishlist acesam campurile dint tabelul products
                         rows += ` <tr>
                                         <td class="product_remove"> <button type="submit"  id="${value.id}" onclick="wishlistRemove(this.id)"><i class="icon-x"></i></button></td>
-                                        <td class="product_thumb"><a href="#">
+                                        <td class="product_thumb"><a>
                                             <img
                                                     src="/${value.product.product_thumbnail	}" alt=""></a></td>
-                                        <td class="product_name"><a href="#">${value.product.product_name}</a></td>
+                                        <td class="product_name"><a >${value.product.product_name}</a></td>
                                         <td class="product-price">${value.product.discount_price == null ? `<span class="current_price">${value.product.selling_price} RON</span>`:`<span class="current_price">${value.product.discount_price} RON</span> <span class="old_price">${value.product.selling_price} RON</span>`}</td>
                                         <td class="product_quantity">${value.product.product_quantity==0 ? `<span id="stockout">Stoc Epuizat</span>`:`<span id="aviable">In Stoc</span>`}</td>
-                                        <td class="product_total"> <span><a href="#"
+                                        <td class="product_total"> <span><a
                                                                     data-tippy="quick view" data-tippy-placement="top"
                                                                     data-tippy-arrow="true" data-tippy-inertia="true"
                                                                     data-bs-toggle="modal" data-bs-target="#modal_box"
@@ -520,8 +520,11 @@
                                         <td class="product_name"><a>${value.name}</a></td>
                                         <td class="product-price">${value.price.toLocaleString()} RON</td>
                                         
-                                        <td class="product_quantity"><button type="submit" class="btn btn-success btn-sm">+</button><label></label> <input min="1" max="100"
-                                            value="${value.qty}" type="text" class="text-center"><button type="submit" class="btn btn-danger btn-sm">-</button></td>
+                                        <td class="product_quantity">
+                                            <button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)">-</button>
+                                            <input min="1" max="100" value="${value.qty}" type="text" class="text-center">
+                                            <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)">+</button>
+                                        </td>
                                             
                                         <td class="product-price">${value.subtotal.toLocaleString()} RON</td>
                                     </tr>`
@@ -568,6 +571,20 @@
             });
         }
         // End Wishlist remove   
+
+        // functia de incrementare produse din cosul de cumparaturi start
+        function cartIncrement(rowId) {
+            $.ajax({
+                type: 'GET',
+                url: "/cart-increment/" + rowId,
+                dataType: 'json',
+                success: function(data) {
+                    // actualizam cantitatea si in cart() si in miniCarT()
+                    cart();
+                    miniCart();
+                }
+            });
+        }
     </script>
     {{-- script pagina cosului de cumparaturi sfarsit --}}
 </body>
