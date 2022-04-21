@@ -32,6 +32,7 @@ use App\Http\Controllers\Backend\ProductController;
 // 1. Add Product Database and Page Design Part 1
 // 1. Upload Slider and Show All Slider List Part 1
 use App\Http\Controllers\Backend\SliderController;
+use App\Http\Controllers\Backend\VoucherController;
 // 1. Upload Slider and Show All Slider List Part 1
 
 /*
@@ -221,6 +222,13 @@ Route::prefix('slider')->group(function () {
     Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
     // ruta de activare sliders din tabela sliders
     Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
+});
+
+
+// Admin Vouchers Rute Grupate si prefixate cu voucher
+Route::prefix('voucher')->group(function () {
+    // ruta de afisare tuturor sliders
+    Route::get('/view', [VoucherController::class, 'VoucherView'])->name('manage-voucher');
 });
 
 // Rutele pentru pagina de detalii produse
