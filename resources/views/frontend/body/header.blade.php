@@ -151,14 +151,11 @@
                                             </li>
                                             {{-- mini cos de cumparaturi --}}
                                             <li>
-
-
                                                 <div class="header_account_list  mini_cart_wrapper">
                                                     {{-- adaugat id="cartQty" pt afisare total cantitate din scritpul minicart --}}
                                                     <a href="javascript:void(0)"><span class="lnr lnr-cart"></span><span
                                                             class="item_count" id="cartQty"></span></a>
                                                     <!--mini cart-->
-
                                                     <div class="mini_cart">
                                                         <div class="cart_gallery">
                                                             <div class="cart_close">
@@ -250,11 +247,73 @@
                                 <div class="header_account_area">
                                     <div class="header_account_list register">
                                         <ul>
+                                            <li>
+                                                <div class="header_account_list  mini_cart_wrapper">
+                                                    {{-- adaugat id="cartQty" pt afisare total cantitate din scritpul minicart --}}
+                                                    <a href="javascript:void(0)"><span class="lnr lnr-cart"></span><span
+                                                            class="item_count" id="cartQty"></span></a>
+                                                    <!--mini cart-->
+                                                    <div class="mini_cart">
+                                                        <div class="cart_gallery">
+                                                            <div class="cart_close">
+                                                                <div class="cart_text">
+                                                                    <h3>Cos de Cumparaturi</h3>
+                                                                </div>
+                                                                <div class="mini_cart_close">
+                                                                    <a href="javascript:void(0)"><i
+                                                                            class="icon-x"></i></a>
+                                                                </div>
+                                                            </div>
+
+                                                            {{-- Mini Cos Script Ajax Start --}}
+                                                            <div id="miniCart">
+
+                                                            </div>
+                                                            {{-- Mini Cos Script Ajax Sfarsit --}}
+
+
+
+                                                        </div>
+                                                        {{-- afisare subtotal, tva si total valaore in mini cart folosind id-urile din scriptul minicart --}}
+                                                        <div class="mini_cart_table">
+                                                            <div class="cart_table_border">
+                                                                <div class="cart_total">
+                                                                    <span>Total Fara TVA (RON): </span>
+                                                                    <span class="price" id="cartSubTotal"></span>
+                                                                </div>
+                                                                <div class="cart_total">
+                                                                    <span>TVA (RON): </span>
+                                                                    <span class="price" id="cartTax"></span>
+                                                                </div>
+                                                                <div class="cart_total mt-10">
+                                                                    <span>Total cu TVA (RON): </span>
+                                                                    <span class="price" id="cartTotal"></span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="mini_cart_footer">
+                                                            <div class="cart_button">
+                                                                {{-- adaugat ruta mycart spre pagina cosului de cumparaturi --}}
+                                                                <a href="{{ route('mycart') }}"><i
+                                                                        class="fa fa-shopping-cart"></i> Vizualizeaza Cosul
+                                                                    de Cumparaturi</a>
+                                                            </div>
+                                                            <div class="cart_button">
+                                                                <a href="checkout.html"><i class="fa fa-sign-in"></i>
+                                                                    Checkout</a>
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+                                                    <!--mini cart end-->
+                                                </div>
+                                            </li>
                                             <li><a href="{{ route('register') }}"><i class="fa fa-lock"></i>
                                                     Creaza Cont</a></li>
-                                            <li><span>/</span></li>
                                             <li><a href="{{ route('login') }}"><i class="fa fa-user"></i>
-                                                    Autentificare</a></li>
+                                                    Login</a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -250,10 +250,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
     // ruta de stergere produse din wishlist
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
-    // ruta spre pagina cosului de cumparaturi
-    Route::get('/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
-    // ruta care aduce produseles din cosul de cumparaturi
-    Route::get('/get-cart-product', [CartPageController::class, 'GetCartProduct']);
-    // ruta de stergere produse din pagina cosului de cumparaturi
-    Route::get('/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
 });
+// ruta spre pagina cosului de cumparaturi
+Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
+// ruta care aduce produseles din cosul de cumparaturi
+Route::get('/user/get-cart-product', [CartPageController::class, 'GetCartProduct']);
+// ruta de stergere produse din pagina cosului de cumparaturi
+Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartProduct']);
