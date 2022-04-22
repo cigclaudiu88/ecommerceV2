@@ -608,6 +608,28 @@
         }
     </script>
     {{-- script pagina cosului de cumparaturi sfarsit --}}
+
+    {{-- script pentru aplicare voucher - start --}}
+    </script>
+    <script type="text/javascript">
+        function applyVoucher() {
+            // variabila voucher_name preia valoarea din inputul de text cu id voucher_name
+            var voucher_name = $('#voucher_name').val();
+            // script ajax care trimite datele catre controllerul CartController
+            $.ajax({
+                type: 'POST',
+                dataType: 'json',
+                // datele trimise catre controller
+                data: {
+                    voucher_name: voucher_name
+                },
+                // ruta catre functia VoucherApply din CartController
+                url: "{{ url('/voucher-apply') }}",
+                success: function(data) {}
+            })
+        }
+    </script>
+    {{-- script pentru aplicare voucher - sfarsit --}}
 </body>
 
 </html>

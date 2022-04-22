@@ -69,10 +69,10 @@ $route = Route::current()->getName();
             {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
             <li class="has-sub-menu {{ $prefix == '/voucher' ? 'active' : '' }}"><a href="#"><i
                         class="ti-home"></i>
-                    <span>Vouchers</span></a>
+                    <span>Voucher</span></a>
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'manage-voucher' ? 'active' : '' }}"><a
-                            href="{{ route('manage-voucher') }}"><span>Management Sliders</span></a></li>
+                            href="{{ route('manage-voucher') }}"><span>Management Voucher-uri</span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>
             </li>

@@ -303,3 +303,5 @@ Route::prefix('shipping')->group(function () {
 
     Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
 });
+
+Route::post('/voucher-apply', [CartController::class, 'VoucherApply']);

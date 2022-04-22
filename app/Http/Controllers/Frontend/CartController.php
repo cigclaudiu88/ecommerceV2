@@ -121,4 +121,9 @@ class CartController extends Controller
             return response()->json(['error' => 'Trebuie sa fii autentificat pentru a adauga produsul in Wishlist']);
         }
     }
+
+    // functia de aplicare Voucher in cosul de cumparaturi
+    public function CouponApply(Request $request)
+    {
+    }
 }
