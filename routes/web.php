@@ -33,6 +33,7 @@ use App\Http\Controllers\Backend\ProductController;
 // 1. Upload Slider and Show All Slider List Part 1
 use App\Http\Controllers\Backend\SliderController;
 use App\Http\Controllers\Backend\VoucherController;
+use App\Http\Controllers\Backend\ShippingAreaController;
 // 1. Upload Slider and Show All Slider List Part 1
 
 /*
@@ -277,3 +278,16 @@ Route::get('/user/cart-remove/{rowId}', [CartPageController::class, 'RemoveCartP
 Route::get('/cart-increment/{rowId}', [CartPageController::class, 'CartIncrement']);
 // ruta de scadere cantitatea produselor din cosul de cumparaturi
 Route::get('/cart-decrement/{rowId}', [CartPageController::class, 'CartDecrement']);
+
+// Rute zona de expedieri
+Route::prefix('shipping')->group(function () {
+    // ruta de afisare a zonelor de expediere
+    Route::get('/division/view', [ShippingAreaController::class, 'DivisionView'])->name('manage-division');
+    // ruta de inserare a zonelor de expediere
+    Route::post('/division/store', [ShippingAreaController::class, 'DivisionStore'])->name('division.store');
+
+    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
+    Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
+
+    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
+});
