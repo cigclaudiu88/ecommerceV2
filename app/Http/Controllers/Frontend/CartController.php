@@ -131,19 +131,22 @@ class CartController extends Controller
         // pentru acele voucher-uri care au perioada de valabilitate mai mare de ziua de azi, atunci se aplica voucherul
         $voucher = Voucher::where('voucher_name', $request->voucher_name)->where('voucher_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
         if ($voucher) {
-            // $total = (int)str_replace(',', '', Cart::subtotal());
 
-            // Session::put('voucher', [
-            //     'voucher_name' => $voucher->voucher_name,
-            //     'voucher_discount' => $voucher->voucher_discount,
-            //     'voucher_amount' => round($total * $voucher->voucher_discount / 100),
-            //     'total_amount' => round($total - $total * $voucher->voucher_discount / 100)
+            $voucherDiscount = $voucher->voucher_discount;
+            $voucherName = $voucher->voucher_name;
 
             Session::put('voucher', [
-                'voucher_name' => $voucher->voucher_name,
-                'voucher_discount' => $voucher->voucher_discount,
-                'discount_amount' => Cart::subtotal() * $voucher->voucher_discount / 100,
-                'total_amount' => Cart::subtotal() - Cart::subtotal() * $voucher->voucher_discount / 100
+                'voucher_name' => $voucherName,
+                // pretul inainte de voucher si tva
+                'subtotal' => Cart::priceTotal(),
+                // setarea discountului in functie de voucher
+                'voucher_discount' => Cart::setGlobalDiscount($voucherDiscount),
+                // pretul dupa voucher
+                'discount_amount' => Cart::discount(),
+                // pretul dupa voucher cu tva
+                'tax' => Cart::tax(),
+                // pretul total dupa voucher cu tva
+                'grandtotal' => Cart::total(),
             ]);
             return response()->json(array('success' => 'Voucherul a fost aplicat cu success',));
         } else {
@@ -157,13 +160,11 @@ class CartController extends Controller
         // daca sesiunea are voucher, atunci calculam pretul total al produselor din cosul de cumparaturi cu voucher
         if (Session::has('voucher')) {
             return response()->json(array(
-                'subtotal' => Cart::subtotal(),
-                'tax' => Cart::tax(),
-                'total' => Cart::total(),
                 'voucher_name' => session()->get('voucher')['voucher_name'],
-                'voucher_discount' => session()->get('voucher')['voucher_discount'],
+                'subtotal' => session()->get('voucher')['subtotal'],
                 'discount_amount' => session()->get('voucher')['discount_amount'],
-                'total_amount' => session()->get('voucher')['total_amount'],
+                'tax' => session()->get('voucher')['tax'],
+                'grandtotal' => session()->get('voucher')['grandtotal'],
             ));
             // daca nu avem voucher afisam pretul total al produselor din cosul de cumparaturi fara voucher
         } else {

@@ -365,6 +365,7 @@
                 url: '/minicart/product-remove/' + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    voucherCalculation();
                     // incarcat miniCart() din functia de mai sus
                     miniCart();
                     // start mesaj sweetalert
@@ -551,6 +552,7 @@
                 url: '/user/cart-remove/' + id,
                 dataType: 'json',
                 success: function(data) {
+                    voucherCalculation();
                     cart();
                     miniCart();
                     // Start Message 
@@ -587,6 +589,7 @@
                 url: "/cart-increment/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    voucherCalculation();
                     // actualizam cantitatea si in cart() si in miniCarT()
                     cart();
                     miniCart();
@@ -600,6 +603,7 @@
                 url: "/cart-decrement/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    voucherCalculation();
                     // actualizam cantitatea si in cart() si in miniCarT()
                     cart();
                     miniCart();
@@ -610,7 +614,6 @@
     {{-- script pagina cosului de cumparaturi sfarsit --}}
 
     {{-- script pentru aplicare voucher - start --}}
-    </script>
     <script type="text/javascript">
         function applyVoucher() {
             // variabila voucher_name preia valoarea din inputul de text cu id voucher_name
@@ -626,7 +629,11 @@
                 // ruta catre functia VoucherApply din CartController
                 url: "{{ url('/voucher-apply') }}",
                 success: function(data) {
+                    voucherCalculation();
 
+                    if (data.validity == true) {
+                        $('#VoucherField').hide();
+                    }
                     // start mesaj aplicare voucher
                     const Toast = Swal.mixin({
                         toast: true,
@@ -652,16 +659,62 @@
 
                 }
             });
+            voucherCalculation();
         }
+
         // functia de calculare valoare Voucher
         function voucherCalculation() {
             $.ajax({
                 type: 'GET',
                 url: "{{ url('/coupon-calculation') }}",
                 dataType: 'json',
-                success: function(data) {}
-            })
+                success: function(data) {
+                    // afisare calcul cos de cumparaturi FARA VOUCHER
+                    if (data.total) {
+                        $('#voucherCalField').html(
+                            `<div class="cart_subtotal">
+                                <p>Subtotal</p>
+                                <p class="cart_amount">${data.subtotal} RON</p>
+                            </div>
+
+                            <div class="cart_subtotal ">
+                                <p>TVA</p>
+                                <p class="cart_amount">${data.tax} RON</p>
+                            </div>
+
+                            <div class="cart_subtotal">
+                                <p>Total</p>
+                                <p class="cart_amount">${data.total} RON</p>
+                            </div>`
+                        );
+                    }
+                    // afisare calcul cos de cumparaturi CU VOUCHER
+                    else {
+                        $('#voucherCalField').html(
+                            `<div class="cart_subtotal">
+                                <p>Subtotal</p>
+                                <p class="cart_amount">${data.subtotal} RON</p>
+                            </div>
+
+                            <div class="cart_subtotal ">
+                                <p>Voucher: ${data.voucher_name}</p>
+                                <p class="cart_amount text-danger">-${data.discount_amount} RON</p>
+                            </div>
+
+                            <div class="cart_subtotal ">
+                                <p>TVA</p>
+                                <p class="cart_amount">${data.tax} RON</p>
+                            </div>
+
+                            <div class="cart_subtotal">
+                                <p>Total</p>
+                                <p class="cart_amount">${data.grandtotal} RON</p>
+                            </div>`);
+                    }
+                }
+            });
         }
+        voucherCalculation();
     </script>
     {{-- script pentru aplicare voucher - sfarsit --}}
 </body>

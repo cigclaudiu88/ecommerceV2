@@ -79,26 +79,11 @@
                         <h3>Cart Totals</h3>
                         <div class="coupon_inner" id="voucherCalField">
 
-                            <div class="cart_subtotal">
-                                <p>Subtotal</p>
-                                <p class="cart_amount">£215.00</p>
-                            </div>
+                            {{-- aici se afiseaza subtotal, tva si total cu sau fara tva din functia / script applyVoucher() --}}
 
-                            <div class="cart_subtotal ">
-                                <p>TVA</p>
-                                <p class="cart_amount">£255.00</p>
-                            </div>
-
-
-                            <div class="cart_subtotal">
-                                <p>Total</p>
-                                <p class="cart_amount">£215.00</p>
-                            </div>
-
-                            <div class="checkout_btn">
-                                <a href="#">Proceed to Checkout</a>
-                            </div>
-                            
+                        </div>
+                        <div class="checkout_btn mb-5">
+                            <a href="#">Proceed to Checkout</a>
                         </div>
 
                     </div>
