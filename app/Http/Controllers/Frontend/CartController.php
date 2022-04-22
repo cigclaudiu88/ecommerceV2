@@ -19,6 +19,12 @@ class CartController extends Controller
     // functia de adaugare in cosul de cumparaturi
     public function AddToCart(Request $request, $id)
     {
+         // cand adaugam un produs in pagina cosului de cumparaturi 
+        // daca sesiunea are voucher, atunci il stergem
+        if (Session::has('voucher')) {
+            Session::forget('voucher');
+        }
+        
         // $product preia id-ul produsului din tabelul products folosind modelul Product si functia findorfail()
         $product = Product::findOrFail($id);
         if ($product->product_quantity == 0) {

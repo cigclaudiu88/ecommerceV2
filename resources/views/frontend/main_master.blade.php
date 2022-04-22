@@ -365,9 +365,16 @@
                 url: '/minicart/product-remove/' + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    // cam redundant pt ca voucherRemove faci si voucherCalculation...
+                    voucherRemove();
+                    // adaugat functia de calculare voucher ca atunci cand se sterge un produs din cosul de cumparaturi se recalculeaza pretul total
                     voucherCalculation();
-                    // incarcat miniCart() din functia de mai sus
+                    cart();
                     miniCart();
+                    // dupa ce stergem produse care aveau voucher, afisam din nou campul de adaugare voucher
+                    $('#voucherField').show();
+                    // dupa ce stergem  produse care aveau voucher adaugare voucher valoarea din campul de adaugare voucher devine gol
+                    $('#voucher_name').val('');
                     // start mesaj sweetalert
                     const Toast = Swal.mixin({
                         toast: true,
@@ -552,9 +559,15 @@
                 url: '/user/cart-remove/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    voucherCalculation();
+                    voucherRemove();
+                    // adaugat functia de calculare voucher ca atunci cand se sterge un produs din cosul de cumparaturi se recalculeaza pretul total
+                    // voucherCalculation();
                     cart();
                     miniCart();
+                    // dupa ce stergem produse care aveau voucher, afisam din nou campul de adaugare voucher
+                    $('#voucherField').show();
+                    // dupa ce stergem  produse care aveau voucher adaugare voucher valoarea din campul de adaugare voucher devine gol
+                    $('#voucher_name').val('');
                     // Start Message 
                     const Toast = Swal.mixin({
                         toast: true,
