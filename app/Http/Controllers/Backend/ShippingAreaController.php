@@ -28,7 +28,7 @@ class ShippingAreaController extends Controller
             ],
             // mesaje de eroare pt fiecare tip de validare
             [
-                'division_name.required' => 'Numele zonelor de livrare este necesar.',
+                'division_name.required' => 'Numele zonei de livrare este necesar.',
             ]
         );
         // inseram in tabelul shipdivisions valorile 
@@ -40,6 +40,54 @@ class ShippingAreaController extends Controller
         $notification = array(
             'message' => 'Zona de livrare a fost adaugata cu succes!',
             'alert-type' => 'success'
+        );
+        // redirectionam la aceeasi pagina cu mesajul $notification
+        return redirect()->back()->with($notification);
+    }
+    // functia de editare a unei zonelor de livrare
+    public function DivisionEdit($id)
+    {
+        // $division preia datele unei zonelor de livrare
+        $divisions = ShipDivision::findOrFail($id);
+        // returnam pagina de editare a unei zonelor de livrare
+        return view('backend.shipping.division.edit_division', compact('divisions'));
+    }
+
+    public function DivisionUpdate(Request $request, $id)
+    {
+        // validari inserare voucher in tabelul vouchers
+        $request->validate(
+            [
+                'division_name' => 'required',
+            ],
+            // mesaje de eroare pt fiecare tip de validare
+            [
+                'division_name.required' => 'Numele zonei de livrare este necesar.',
+            ]
+        );
+        // actualizam datele unei zonelor de livrare pentru id-ul $id
+        ShipDivision::findOrFail($id)->update([
+            'division_name' => $request->division_name,
+            'created_at' => Carbon::now(),
+        ]);
+        // adaugam notificare de succes la actualizarea voucher-ului
+        $notification = array(
+            'message' => 'Zona de livrare a fost actualizata cu succes!',
+            'alert-type' => 'info'
+        );
+        // redirectionam la aceeasi pagina cu mesajul $notification
+        return redirect()->route('manage-division')->with($notification);
+    }
+
+    // functia de stergere a unei zonelor de livrare
+    public function DivisionDelete($id)
+    {
+        // cautam in tabelul shipdivisions datele unei zonelor de livrare pentru id-ul $id si le stergem
+        ShipDivision::findOrFail($id)->delete();
+        // adaugam notificare de succes la stergerea voucher-ului
+        $notification = array(
+            'message' => 'Zona de livrare a fost stearsa cu succes!',
+            'alert-type' => 'info'
         );
         // redirectionam la aceeasi pagina cu mesajul $notification
         return redirect()->back()->with($notification);

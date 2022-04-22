@@ -285,9 +285,10 @@ Route::prefix('shipping')->group(function () {
     Route::get('/division/view', [ShippingAreaController::class, 'DivisionView'])->name('manage-division');
     // ruta de inserare a zonelor de expediere
     Route::post('/division/store', [ShippingAreaController::class, 'DivisionStore'])->name('division.store');
-
-    Route::get('/edit/{id}', [CouponController::class, 'CouponEdit'])->name('coupon.edit');
-    Route::post('/update/{id}', [CouponController::class, 'CouponUpdate'])->name('coupon.update');
-
-    Route::get('/delete/{id}', [CouponController::class, 'CouponDelete'])->name('coupon.delete');
+    // ruta de editare a zonelor de expediere
+    Route::get('/division/edit/{id}', [ShippingAreaController::class, 'DivisionEdit'])->name('division.edit');
+    // ruta de actualizare a zonelor de expediere
+    Route::post('/division/update/{id}', [ShippingAreaController::class, 'DivisionUpdate'])->name('division.update');
+    // ruta de stergere a zonelor de expediere
+    Route::get('/division/delete/{id}', [ShippingAreaController::class, 'DivisionDelete'])->name('division.delete');
 });
