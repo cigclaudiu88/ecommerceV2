@@ -589,6 +589,7 @@
                 url: "/cart-increment/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    //adaugat functia de calcul a voucherului pentru a actualiza pretul total la fiecare incrementare
                     voucherCalculation();
                     // actualizam cantitatea si in cart() si in miniCarT()
                     cart();
@@ -603,6 +604,7 @@
                 url: "/cart-decrement/" + rowId,
                 dataType: 'json',
                 success: function(data) {
+                    // adaugat functia de calcul a voucherului pentru a actualiza pretul total la fiecare decrementare
                     voucherCalculation();
                     // actualizam cantitatea si in cart() si in miniCarT()
                     cart();
