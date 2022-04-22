@@ -5,11 +5,13 @@ namespace App\Http\Controllers\Frontend;
 // adaugam modelul Product
 use App\Models\Product;
 // adaugam modelul Cart
+use App\Models\Voucher;
 use App\Models\Wishlist;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CartController extends Controller
@@ -123,7 +125,29 @@ class CartController extends Controller
     }
 
     // functia de aplicare Voucher in cosul de cumparaturi
-    public function CouponApply(Request $request)
+    public function VoucherApply(Request $request)
     {
+        // $voucher preia din tabelul vouchers acel voucher pentru care numele din tabel = numele voucherului introduse de utilizator in campul voucher din formularul de aplicare voucher
+        // pentru acele voucher-uri care au perioada de valabilitate mai mare de ziua de azi, atunci se aplica voucherul
+        $voucher = Voucher::where('voucher_name', $request->voucher_name)->where('voucher_validity', '>=', Carbon::now()->format('Y-m-d'))->first();
+        if ($voucher) {
+            // $total = (int)str_replace(',', '', Cart::subtotal());
+
+            // Session::put('voucher', [
+            //     'voucher_name' => $voucher->voucher_name,
+            //     'voucher_discount' => $voucher->voucher_discount,
+            //     'voucher_amount' => round($total * $voucher->voucher_discount / 100),
+            //     'total_amount' => round($total - $total * $voucher->voucher_discount / 100)
+
+            Session::put('voucher', [
+                'voucher_name' => $voucher->voucher_name,
+                'voucher_discount' => $voucher->voucher_discount,
+                'discount_amount' => Cart::subtotal() * $voucher->voucher_discount / 100,
+                'total_amount' => Cart::subtotal() - Cart::totalsubtotal() * $voucher->voucher_discount / 100
+            ]);
+            return response()->json(array('success' => 'Voucherul a fost aplicat cu success',));
+        } else {
+            return response()->json(['error' => 'Voucherul nu este valid sau a expirat']);
+        }
     }
 }

@@ -63,8 +63,8 @@
                         <div class="coupon_inner">
                             <p>Daca aveti un Voucher il puteti adauga aici.</p>
                             {{-- adaugat id + onclick pt scriptul de aplicare voucher --}}
-                            <input type="text" id="voucher_name" onclick="applyVoucher()" placeholder="Cod Voucher">
-                            <button type="submit">Aplica Voucher</button>
+                            <input type="text" id="voucher_name" placeholder="Cod Voucher">
+                            <button type="submit" onclick="applyVoucher()">Aplica Voucher</button>
                         </div>
                     </div>
                 </div>
