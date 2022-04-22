@@ -81,10 +81,12 @@ $route = Route::current()->getName();
             {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
             <li class="has-sub-menu {{ $prefix == '/shipping' ? 'active' : '' }}"><a href="#"><i
                         class="ti-home"></i>
-                    <span>Zona Expedieri</span></a>
+                    <span>Zone Expedieri</span></a>
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'manage-division' ? 'active' : '' }}"><a
-                            href="{{ route('manage-division') }}"><span>Management Expedieri</span></a></li>
+                            href="{{ route('manage-division') }}"><span>Management Judete</span></a></li>
+                    <li class="{{ $route == 'manage-district' ? 'active' : '' }}"><a
+                            href="{{ route('manage-district') }}"><span>Management Localitati</span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>
             </li>
