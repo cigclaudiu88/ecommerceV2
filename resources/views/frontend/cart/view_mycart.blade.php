@@ -62,7 +62,7 @@
                     {{-- daca sesiunea are voucher atunci sectiunea va fi goala altfel va afisa campul de voucher --}}
                     @if (Session::has('voucher'))
                     @else
-                        <div class="coupon_code left">
+                        <div class="coupon_code left" id="voucherField">
                             <h3>Voucher</h3>
                             <div class="coupon_inner">
                                 <p>Daca aveti un Voucher il puteti adauga aici.</p>
@@ -82,9 +82,10 @@
                             {{-- aici se afiseaza subtotal, tva si total cu sau fara tva din functia / script applyVoucher() --}}
 
                         </div>
-                        <div class="checkout_btn mb-5">
+                        {{-- adaugat momentan pe fiecare ramura din voucherCalculation() --}}
+                        {{-- <div class="checkout_btn mb-5">
                             <a href="#">Proceed to Checkout</a>
-                        </div>
+                        </div> --}}
 
                     </div>
                 </div>

@@ -307,4 +307,6 @@ Route::prefix('shipping')->group(function () {
 // ruta de aplicare voucher
 Route::post('/voucher-apply', [CartController::class, 'VoucherApply']);
 // ruta de calculare valoare voucher din cosu lde cumparaturi
-Route::get('/coupon-calculation', [CartController::class, 'VoucherCalculation']);
+Route::get('/voucher-calculation', [CartController::class, 'VoucherCalculation']);
+// ruta de stergere voucher din cosul de cumparaturi 
+Route::get('/voucher-remove', [CartController::class, 'VoucherRemove']);

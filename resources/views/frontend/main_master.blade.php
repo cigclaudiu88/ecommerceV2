@@ -630,7 +630,8 @@
                 url: "{{ url('/voucher-apply') }}",
                 success: function(data) {
                     voucherCalculation();
-
+                    // dupa ce aplicam voucherul campul de adaugare voucher dispare
+                    $('#voucherField').hide();
                     if (data.validity == true) {
                         $('#VoucherField').hide();
                     }
@@ -666,7 +667,7 @@
         function voucherCalculation() {
             $.ajax({
                 type: 'GET',
-                url: "{{ url('/coupon-calculation') }}",
+                url: "{{ url('/voucher-calculation') }}",
                 dataType: 'json',
                 success: function(data) {
                     // afisare calcul cos de cumparaturi FARA VOUCHER
@@ -685,6 +686,10 @@
                             <div class="cart_subtotal">
                                 <p>Total</p>
                                 <p class="cart_amount">${data.total} RON</p>
+                            </div>
+
+                            <div class="checkout_btn">
+                            <a href="#">Proceed to Checkout</a>
                             </div>`
                         );
                     }
@@ -709,7 +714,15 @@
                             <div class="cart_subtotal">
                                 <p>Total</p>
                                 <p class="cart_amount">${data.grandtotal} RON</p>
-                            </div>`);
+                            </div> 
+
+                            <div class="checkout_btn">
+                                <button class="justify-content-start" type="submit" onclick="voucherRemove()"><i class="fa fa-times"></i> Stergere Voucher</button>
+                            <a href="#">Proceed to Checkout</a>
+                            </div>
+                            <div class="cart_subtotal ">
+                            </div>
+                            `);
                     }
                 }
             });
@@ -717,6 +730,49 @@
         voucherCalculation();
     </script>
     {{-- script pentru aplicare voucher - sfarsit --}}
+
+    {{-- script pentru stergere voucher - start --}}
+    <script type="text/javascript">
+        function voucherRemove() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/voucher-remove') }}",
+                dataType: 'json',
+                success: function(data) {
+                    // apelez functia de calculare cos de cumparaturi cu sau fara voucher
+                    voucherCalculation();
+                    // dupa ce stergem voucherul, afisam din nou campul de adaugare voucher
+                    $('#voucherField').show();
+                    // dupa ce stergem voucherul campul de adaugare voucher valoarea din campul de adaugare voucher devine gol
+                    $('#voucher_name').val('');
+                    // start mesaj stergere voucher
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+
+                        showConfirmButton: false,
+                        timer: 3000
+                    })
+                    if ($.isEmptyObject(data.error)) {
+                        Toast.fire({
+                            type: 'success',
+                            icon: 'success',
+                            title: data.success
+                        })
+                    } else {
+                        Toast.fire({
+                            type: 'error',
+                            icon: 'error',
+                            title: data.error
+                        })
+                    }
+                }
+            });
+        }
+    </script>
+    {{-- script pentru stergere voucher - sfarsit --}}
+
+
 </body>
 
 </html>

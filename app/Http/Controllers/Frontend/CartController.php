@@ -175,4 +175,12 @@ class CartController extends Controller
             ));
         }
     }
+    // functia de stergere voucherului din cosul de cumparaturi
+    public function voucherRemove()
+    {
+        // scoatem voucherul din sesiune
+        Session::forget('voucher');
+        // returnam mesajul de succes ca voucherul a fost sters cu success
+        return response()->json(['success' => 'Voucherul a fost sters cu success']);
+    }
 }
