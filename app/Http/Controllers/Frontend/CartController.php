@@ -143,11 +143,35 @@ class CartController extends Controller
                 'voucher_name' => $voucher->voucher_name,
                 'voucher_discount' => $voucher->voucher_discount,
                 'discount_amount' => Cart::subtotal() * $voucher->voucher_discount / 100,
-                'total_amount' => Cart::subtotal() - Cart::totalsubtotal() * $voucher->voucher_discount / 100
+                'total_amount' => Cart::subtotal() - Cart::subtotal() * $voucher->voucher_discount / 100
             ]);
             return response()->json(array('success' => 'Voucherul a fost aplicat cu success',));
         } else {
             return response()->json(['error' => 'Voucherul nu este valid sau a expirat']);
+        }
+    }
+
+    // functia de caulcuarea voucherului in cosul de cumparaturi
+    public function VoucherCalculation()
+    {
+        // daca sesiunea are voucher, atunci calculam pretul total al produselor din cosul de cumparaturi cu voucher
+        if (Session::has('voucher')) {
+            return response()->json(array(
+                'subtotal' => Cart::subtotal(),
+                'tax' => Cart::tax(),
+                'total' => Cart::total(),
+                'voucher_name' => session()->get('voucher')['voucher_name'],
+                'voucher_discount' => session()->get('voucher')['voucher_discount'],
+                'discount_amount' => session()->get('voucher')['discount_amount'],
+                'total_amount' => session()->get('voucher')['total_amount'],
+            ));
+            // daca nu avem voucher afisam pretul total al produselor din cosul de cumparaturi fara voucher
+        } else {
+            return response()->json(array(
+                'subtotal' => Cart::subtotal(),
+                'tax' => Cart::tax(),
+                'total' => Cart::total(),
+            ));
         }
     }
 }

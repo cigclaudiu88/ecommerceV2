@@ -651,8 +651,16 @@
                     // sfarsit mesaj aplicare voucher
 
                 }
+            });
+        }
+        // functia de calculare valoare Voucher
+        function voucherCalculation() {
+            $.ajax({
+                type: 'GET',
+                url: "{{ url('/coupon-calculation') }}",
+                dataType: 'json',
+                success: function(data) {}
             })
-
         }
     </script>
     {{-- script pentru aplicare voucher - sfarsit --}}

@@ -304,4 +304,7 @@ Route::prefix('shipping')->group(function () {
     Route::get('/district/delete/{id}', [ShippingAreaController::class, 'DistrictDelete'])->name('district.delete');
 });
 
+// ruta de aplicare voucher
 Route::post('/voucher-apply', [CartController::class, 'VoucherApply']);
+// ruta de calculare valoare voucher din cosu lde cumparaturi
+Route::get('/coupon-calculation', [CartController::class, 'CouponCalculation']);
