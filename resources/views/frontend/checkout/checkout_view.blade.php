@@ -1,6 +1,12 @@
 @extends('frontend.main_master')
 @section('content')
 
+    {{-- ajax jquerry CDN pentru scriptul de validare judet-localitate --}}
+    {{-- <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+        integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+
 @section('title')
     Casa
 @endsection
@@ -145,66 +151,76 @@
 
                             <div class="col-lg-6 mb-20">
                                 <label>Nume Destinatar <span>*</span></label>
-                                <input type="text" name="shipping_first_name">
+                                <input type="text" name="shipping_first_name" value="{{ $address->first_name }}">
                             </div>
 
                             <div class="col-lg-6 mb-20">
                                 <label>Prenume Destinatar <span>*</span></label>
-                                <input type="text" name="shipping_last_name">
+                                <input type="text" name="shipping_last_name" value="{{ $address->last_name }}">
                             </div>
 
                             <div class="col-lg-6 mb-20">
                                 <label>Numar Telefon<span>*</span></label>
-                                <input type="text" name="shipping_phone">
+                                <input type="text" name="shipping_phone" value="{{ $address->phone }}">
                             </div>
 
                             <div class="col-lg-6 mb-20">
                                 <label>Adresa de E-mail<span>*</span></label>
-                                <input type="text" name="shipping_email">
+                                <input type="text" name="shipping_email" value="{{ $address->user->email }}">
                             </div>
 
 
                             <div class="col-6 mb-20">
                                 <label for="country">Judet <span>*</span></label>
                                 <select class="select_option" name="division_id" id="country">
-                                    <option value="2">bangladesh</option>
-                                    <option value="3">Algeria</option>
-                                    <option value="4">Afghanistan</option>
+                                    <option value="" selected="" disabled="">Selecteaza
+                                        Judetul
+                                    </option>
+                                    @foreach ($divisions as $division)
+                                        <option value="{{ $division->division_name }}"
+                                            {{ $division->division_name == $address->state ? 'selected' : '' }}>
+                                            {{ $division->division_name }}
+                                        </option>
+                                    @endforeach
                                 </select>
                             </div>
 
                             <div class="col-6 mb-20">
                                 <label for="country">Localitate <span>*</span></label>
                                 <select class="select_option" name="district_id" id="country">
-                                    <option value="2">bangladesh</option>
-                                    <option value="3">Algeria</option>
-                                    <option value="4">Afghanistan</option>
+                                    <option value="" selected="" disabled="">Selecteaza
+                                        Localitatea
+                                    </option>
+                                    <option value="{{ $address->city }}" selected="">
+                                        {{ $address->city }}
+                                    </option>
                                 </select>
                             </div>
 
                             <div class="col-lg-6 mb-20">
                                 <label>Nume Strada<span>*</span></label>
-                                <input type="text" name="shipping_street">
+                                <input type="text" name="shipping_street" value="{{ $address->street }}">
                             </div>
 
                             <div class="col-lg-2 mb-20">
                                 <label>Nr.Strada<span>*</span></label>
-                                <input type="text" name="shipping_street_number">
+                                <input type="text" name="shipping_street_number"
+                                    value="{{ $address->street_number }}">
                             </div>
 
                             <div class="col-lg-2 mb-20">
                                 <label>Bloc<span>*</span></label>
-                                <input type="text" name="shipping_building">
+                                <input type="text" name="shipping_building" value="{{ $address->building }}">
                             </div>
 
                             <div class="col-lg-2 mb-20">
                                 <label>Apartament<span>*</span></label>
-                                <input type="text" name="shipping_apartment">
+                                <input type="text" name="shipping_apartment" value="{{ $address->apartment }}">
                             </div>
 
                             <div class="col-12">
                                 <div class="order-notes">
-                                    <label for="order_note">Order Notes</label>
+                                    <label for="order_note">Informatii suplimentare</label>
                                     <textarea id="order_note" placeholder="Aici puteti adauga informatii suplimentare." name="notes"></textarea>
                                 </div>
                             </div>

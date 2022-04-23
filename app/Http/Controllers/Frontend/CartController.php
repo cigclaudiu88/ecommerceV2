@@ -3,10 +3,14 @@
 namespace App\Http\Controllers\Frontend;
 
 // adaugam modelul Product
-use App\Models\Product;
+use App\Models\User;
 // adaugam modelul Cart
+use App\Models\Product;
 use App\Models\Voucher;
 use App\Models\Wishlist;
+use App\Models\UserAddress;
+use App\Models\ShipDistrict;
+use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
@@ -193,6 +197,19 @@ class CartController extends Controller
     // functia de Spre Casa
     public function CheckoutCreate()
     {
+        // $id salveaza id-ul utilizatorului autentificat
+        $id = Auth::user()->id;
+        // $user cauta in modelul User utilizatorul autentificat 
+        $user = User::find($id)->first();
+        // address preia din tabela useraddresses adresa utilizatorului autentificat
+        // dupa inregistrare utilizator acesta variabila este goala
+        // de asemenea foloseste functia user() din modelul UserAddress pentru a accesa campurile din tabelul users $var->user->email etc
+        $address = UserAddress::with('user')->where('user_id', $id)->first();
+        // $divions preia lista judetelor din tabelul shipdivisions
+        $divisions = ShipDivision::all();
+        // $districts preia lista oraselor din tabelul districts
+        $districts = ShipDistrict::with('division')->get();
+
         // verificam daca utilizatorul este autentificat
         if (Auth::check()) {
             // daca utilizatorul este autentificat, iar cosul de de cumparaturi nu este gol, atunci afisam formularul de checkout
@@ -210,7 +227,7 @@ class CartController extends Controller
                     // $cartTotal preia pretul total al produselor din cosul de cumparaturi dupa voucher si tva
                     $cartTotal = Cart::total();
                     // returnam pagina de casa in care trimitem datele din variabilele $carts, $cartQty, $cartTotal
-                    return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
+                    return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal', 'address', 'divisions', 'districts'));
                 }
                 // daca sesiunea nu voucher afisam totalurile fara voucher
                 else {
@@ -225,7 +242,7 @@ class CartController extends Controller
                     // $cartTotal preia totalul produselor din cosul de cumparaturi cu TVA
                     $cartTotal = Cart::total();
                     // returnam pagina de casa in care trimitem datele din variabilele $carts, $cartQty, $cartTotal
-                    return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
+                    return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal', 'address', 'divisions', 'districts'));
                 }
             } else {
 
