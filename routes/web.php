@@ -310,3 +310,6 @@ Route::post('/voucher-apply', [CartController::class, 'VoucherApply']);
 Route::get('/voucher-calculation', [CartController::class, 'VoucherCalculation']);
 // ruta de stergere voucher din cosul de cumparaturi 
 Route::get('/voucher-remove', [CartController::class, 'VoucherRemove']);
+
+// ruta spre casa de vanzari 
+Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');

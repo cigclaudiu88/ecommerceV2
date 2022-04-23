@@ -19,12 +19,12 @@ class CartController extends Controller
     // functia de adaugare in cosul de cumparaturi
     public function AddToCart(Request $request, $id)
     {
-         // cand adaugam un produs in pagina cosului de cumparaturi 
+        // cand adaugam un produs in pagina cosului de cumparaturi 
         // daca sesiunea are voucher, atunci il stergem
         if (Session::has('voucher')) {
             Session::forget('voucher');
         }
-        
+
         // $product preia id-ul produsului din tabelul products folosind modelul Product si functia findorfail()
         $product = Product::findOrFail($id);
         if ($product->product_quantity == 0) {
@@ -188,5 +188,62 @@ class CartController extends Controller
         Session::forget('voucher');
         // returnam mesajul de succes ca voucherul a fost sters cu success
         return response()->json(['success' => 'Voucherul a fost sters cu success']);
+    }
+
+    // functia de Spre Casa
+    public function CheckoutCreate()
+    {
+        // verificam daca utilizatorul este autentificat
+        if (Auth::check()) {
+            // daca utilizatorul este autentificat, iar cosul de de cumparaturi nu este gol, atunci afisam formularul de checkout
+            if (Cart::total() > 0) {
+                // daca sesiunea are voucher afisam totalurile cu voucher
+                if (Session::has('voucher')) {
+                    // $carts preia toate produsele din cosul de cumparaturi
+                    $carts = Cart::content();
+                    // $cartQty preia numarul de produse din cosul de cumparaturi
+                    $cartQty = Cart::count();
+                    // $cartTotal preia pretul subtotal al produselor din cosul de cumparaturi inainte de voucher si tva
+                    $cartSubTotal = Cart::priceTotal();
+                    // $cartTax preia TVA al produselor din cosul de cumparaturi dupa voucher
+                    $cartTax = Cart::tax();
+                    // $cartTotal preia pretul total al produselor din cosul de cumparaturi dupa voucher si tva
+                    $cartTotal = Cart::total();
+                    // returnam pagina de casa in care trimitem datele din variabilele $carts, $cartQty, $cartTotal
+                    return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
+                }
+                // daca sesiunea nu voucher afisam totalurile fara voucher
+                else {
+                    // $carts preia toate produsele din cosul de cumparaturi
+                    $carts = Cart::content();
+                    // $cartQty preia numarul de produse din cosul de cumparaturi
+                    $cartQty = Cart::count();
+                    // $cartTotal preia  subtotal al produselor din cosul de cumparaturi
+                    $cartSubTotal = Cart::subtotal();
+                    // $cartTax preia TVA al produselor din cosul de cumparaturi
+                    $cartTax = Cart::tax();
+                    // $cartTotal preia totalul produselor din cosul de cumparaturi cu TVA
+                    $cartTotal = Cart::total();
+                    // returnam pagina de casa in care trimitem datele din variabilele $carts, $cartQty, $cartTotal
+                    return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
+                }
+            } else {
+
+                $notification = array(
+                    'message' => 'Trebuie sa ai produse in cos pentru a merge spre Casa',
+                    'alert-type' => 'error'
+                );
+                return redirect()->to('/')->with($notification);
+            }
+        }
+        // daca utilizatorul nu este autentificat afisam mesaj si redirectionam spre pagina de autentificare
+        else {
+            $notification = array(
+                'message' => 'Trebuie sa fii autentificat pentru a cumpara produse din magazin.',
+                'alert-type' => 'error'
+            );
+            // redirectionam utilizatorul (clientul) spre pagina de autentificare cu 
+            return redirect()->route('login')->with($notification);
+        }
     }
 }

@@ -32,6 +32,9 @@
     <!-- Main Style CSS -->
     <link rel="stylesheet" href="{{ asset('backend/css/style.css') }}">
 
+    <!-- Toaster CSS -->
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.css">
+
 </head>
 
 <body class="skin-dark">
@@ -108,6 +111,58 @@
     <script src="{{ asset('backend/js/plugins/tippy4.min.js.js') }}"></script>
     <!--Main JS-->
     <script src="{{ asset('backend/js/main.js') }}"></script>
+
+    <!--Toastr Alerts-->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+    {{-- script pentru afisarea notificarilor cu Toaster --}}
+    <script>
+        // daca exista un mesaj in sesiune, il afiseaza cu un toastr
+        @if (Session::has('message'))
+            // variabila type preia tipul de alerta si mesajul din sesiune
+            var type = "{{ Session::get('alert-type', 'message') }}"
+        
+            // optiuni de afisare a mesajului Toastr
+            // pozitie sus in centru larg cu buton de close
+            toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "newestOnTop": false,
+            "progressBar": false,
+            "rtl": false,
+            "positionClass": "toast-top-left",
+            "preventDuplicates": false,
+            "onclick": null,
+            "showDuration": 300,
+            "hideDuration": 1000,
+            "timeOut": 5000,
+            "extendedTimeOut": 1000,
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+            }
+        
+            // functie de tipul de alerta din sesiune se apeleaza notificarea Toastr cu mesajul din sesiune
+            switch(type){
+            case 'info':
+            toastr.info(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'success':
+            toastr.success("{{ Session::get('message') }}");
+            break;
+        
+            case 'warning':
+            toastr.warning(" {{ Session::get('message') }} ");
+            break;
+        
+            case 'error':
+            toastr.error(" {{ Session::get('message') }} ");
+            break;
+            }
+        @endif
+    </script>
 
 </body>
 
