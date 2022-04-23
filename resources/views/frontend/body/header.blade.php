@@ -203,8 +203,9 @@
                                                                     de Cumparaturi</a>
                                                             </div>
                                                             <div class="cart_button">
-                                                                <a href="checkout.html"><i class="fa fa-sign-in"></i>
-                                                                    Checkout</a>
+                                                                <a href="{{ route('checkout') }}"><i
+                                                                        class="fa fa-sign-in"></i>
+                                                                    Spre Casa</a>
                                                             </div>
 
                                                         </div>

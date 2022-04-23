@@ -136,142 +136,80 @@
 
                     </form>
                 </div>
+
+
                 <div class="col-lg-12 col-md-6">
                     <form action="#">
                         <h3>Adresa de Livrare</h3>
                         <div class="row">
 
                             <div class="col-lg-6 mb-20">
-                                <label>First Name <span>*</span></label>
-                                <input type="text">
+                                <label>Nume Destinatar <span>*</span></label>
+                                <input type="text" name="shipping_first_name">
                             </div>
+
                             <div class="col-lg-6 mb-20">
-                                <label>Last Name <span>*</span></label>
-                                <input type="text">
+                                <label>Prenume Destinatar <span>*</span></label>
+                                <input type="text" name="shipping_last_name">
                             </div>
-                            <div class="col-12 mb-20">
-                                <label>Company Name</label>
-                                <input type="text">
+
+                            <div class="col-lg-6 mb-20">
+                                <label>Numar Telefon<span>*</span></label>
+                                <input type="text" name="shipping_phone">
                             </div>
-                            <div class="col-12 mb-20">
-                                <label for="country">country <span>*</span></label>
-                                <select class="select_option" name="cuntry" id="country">
+
+                            <div class="col-lg-6 mb-20">
+                                <label>Adresa de E-mail<span>*</span></label>
+                                <input type="text" name="shipping_email">
+                            </div>
+
+
+                            <div class="col-6 mb-20">
+                                <label for="country">Judet <span>*</span></label>
+                                <select class="select_option" name="division_id" id="country">
                                     <option value="2">bangladesh</option>
                                     <option value="3">Algeria</option>
                                     <option value="4">Afghanistan</option>
-                                    <option value="5">Ghana</option>
-                                    <option value="6">Albania</option>
-                                    <option value="7">Bahrain</option>
-                                    <option value="8">Colombia</option>
-                                    <option value="9">Dominican Republic</option>
-
                                 </select>
                             </div>
 
-                            <div class="col-12 mb-20">
-                                <label>Street address <span>*</span></label>
-                                <input placeholder="House number and street name" type="text">
+                            <div class="col-6 mb-20">
+                                <label for="country">Localitate <span>*</span></label>
+                                <select class="select_option" name="district_id" id="country">
+                                    <option value="2">bangladesh</option>
+                                    <option value="3">Algeria</option>
+                                    <option value="4">Afghanistan</option>
+                                </select>
                             </div>
-                            <div class="col-12 mb-20">
-                                <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                            </div>
-                            <div class="col-12 mb-20">
-                                <label>Town / City <span>*</span></label>
-                                <input type="text">
-                            </div>
-                            <div class="col-12 mb-20">
-                                <label>State / County <span>*</span></label>
-                                <input type="text">
-                            </div>
+
                             <div class="col-lg-6 mb-20">
-                                <label>Phone<span>*</span></label>
-                                <input type="text">
+                                <label>Nume Strada<span>*</span></label>
+                                <input type="text" name="shipping_street">
                             </div>
-                            <div class="col-lg-6 mb-20">
-                                <label> Email Address <span>*</span></label>
-                                <input type="text">
+
+                            <div class="col-lg-2 mb-20">
+                                <label>Nr.Strada<span>*</span></label>
+                                <input type="text" name="shipping_street_number">
                             </div>
-                            <div class="col-12 mb-20">
-                                <input id="account" type="checkbox" data-target="createp_account" />
-                                <a data-bs-toggle="collapse" href="#collapseOne" aria-controls="collapseOne">Create an
-                                    account?</a>
-                                <div id="collapseOne" class="collapse one" data-parent="#accordion">
-                                    <div class="card-body1">
-                                        <label> Account password <span>*</span></label>
-                                        <input placeholder="password" type="password">
-                                    </div>
-                                </div>
+
+                            <div class="col-lg-2 mb-20">
+                                <label>Bloc<span>*</span></label>
+                                <input type="text" name="shipping_building">
                             </div>
-                            <div class="col-12 mb-20">
-                                <input id="address" type="checkbox" data-target="createp_account" />
-                                <a class="righ_0" href="#collapsetwo" data-bs-toggle="collapse"
-                                    aria-controls="collapsetwo">Ship to a different address?</a>
-                                <div id="collapsetwo" class="collapse one" data-parent="#accordion">
-                                    <div class="row">
-                                        <div class="col-lg-6 mb-20">
-                                            <label>First Name <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-lg-6 mb-20">
-                                            <label>Last Name <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>Company Name</label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <div class="select_form_select">
-                                                <label for="countru_name">country <span>*</span></label>
-                                                <select class="select_option" name="cuntry" id="countru_name">
-                                                    <option value="2">bangladesh</option>
-                                                    <option value="3">Algeria</option>
-                                                    <option value="4">Afghanistan</option>
-                                                    <option value="5">Ghana</option>
-                                                    <option value="6">Albania</option>
-                                                    <option value="7">Bahrain</option>
-                                                    <option value="8">Colombia</option>
-                                                    <option value="9">Dominican Republic</option>
 
-                                                </select>
-                                            </div>
-                                        </div>
-
-                                        <div class="col-12 mb-20">
-                                            <label>Street address <span>*</span></label>
-                                            <input placeholder="House number and street name" type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <input placeholder="Apartment, suite, unit etc. (optional)" type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>Town / City <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-12 mb-20">
-                                            <label>State / County <span>*</span></label>
-                                            <input type="text">
-                                        </div>
-                                        <div class="col-lg-6 mb-20">
-                                            <label>Phone<span>*</span></label>
-                                            <input type="text">
-
-                                        </div>
-                                        <div class="col-lg-6">
-                                            <label> Email Address <span>*</span></label>
-                                            <input type="text">
-
-                                        </div>
-                                    </div>
-                                </div>
+                            <div class="col-lg-2 mb-20">
+                                <label>Apartament<span>*</span></label>
+                                <input type="text" name="shipping_apartment">
                             </div>
+
                             <div class="col-12">
                                 <div class="order-notes">
                                     <label for="order_note">Order Notes</label>
-                                    <textarea id="order_note" placeholder="Notes about your order, e.g. special notes for delivery."></textarea>
+                                    <textarea id="order_note" placeholder="Aici puteti adauga informatii suplimentare." name="notes"></textarea>
                                 </div>
                             </div>
                         </div>
+
                         <div class="payment_method">
                             <div class="panel-default">
                                 <input id="payment" name="check_method" type="radio" data-target="createp_account" />
@@ -298,7 +236,7 @@
                                 </div>
                             </div>
                             <div class="order_button">
-                                <button type="submit">Proceed to PayPal</button>
+                                <button type="submit">Finalizeaza Comanda</button>
                             </div>
                         </div>
                     </form>
