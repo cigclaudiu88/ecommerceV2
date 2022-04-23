@@ -704,7 +704,7 @@
                             </div>
 
                             <div class="checkout_btn">
-                            <a href="{{ route('checkout') }}">Spre Casa</a>
+                            <a href="{{ route('checkout') }}">Continua Spre Casa</a>
                             </div>`
                         );
                     }
@@ -733,7 +733,7 @@
 
                             <div class="checkout_btn">
                                 <button class="justify-content-start" type="submit" onclick="voucherRemove()"><i class="fa fa-times"></i> Stergere Voucher</button>
-                            <a href="{{ route('checkout') }}">Spre Casa</a>
+                            <a href="{{ route('checkout') }}">Continua Spre Casa</a>
                             </div>
                             <div class="cart_subtotal ">
                             </div>
