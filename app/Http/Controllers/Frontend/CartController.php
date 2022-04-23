@@ -204,7 +204,7 @@ class CartController extends Controller
         // address preia din tabela useraddresses adresa utilizatorului autentificat
         // dupa inregistrare utilizator acesta variabila este goala
         // de asemenea foloseste functia user() din modelul UserAddress pentru a accesa campurile din tabelul users $var->user->email etc
-        $address = UserAddress::with('user')->where('user_id', $id)->first();
+        $address = UserAddress::with('user', 'district')->where('user_id', $id)->first();
         // $divions preia lista judetelor din tabelul shipdivisions
         $divisions = ShipDivision::all();
         // $districts preia lista oraselor din tabelul districts

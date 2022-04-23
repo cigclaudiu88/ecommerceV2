@@ -172,12 +172,12 @@
 
                             <div class="col-6 mb-20">
                                 <label for="country">Judet <span>*</span></label>
-                                <select class="select_option" name="division_id" id="country">
+                                <select name="division_id" class="form-control" id="country">
                                     <option value="" selected="" disabled="">Selecteaza
                                         Judetul
                                     </option>
                                     @foreach ($divisions as $division)
-                                        <option value="{{ $division->division_name }}"
+                                        <option value="{{ $division->id }}"
                                             {{ $division->division_name == $address->state ? 'selected' : '' }}>
                                             {{ $division->division_name }}
                                         </option>
@@ -187,13 +187,14 @@
 
                             <div class="col-6 mb-20">
                                 <label for="country">Localitate <span>*</span></label>
-                                <select class="select_option" name="district_id" id="country">
+                                <select name="district_id" class="form-control">
                                     <option value="" selected="" disabled="">Selecteaza
                                         Localitatea
                                     </option>
-                                    <option value="{{ $address->city }}" selected="">
+                                    <option value="{{ $address->district->id }}" selected="">
                                         {{ $address->city }}
                                     </option>
+
                                 </select>
                             </div>
 
@@ -263,4 +264,38 @@
     </div>
 </div>
 <!--Checkout page section end-->
+
+{{-- script pentru afisarea localitatilor aferente judetului selectat --}}
+<script type="text/javascript">
+    $(document).ready(function() {
+        // la schimbarea selectului cu nume state (judet) din formular
+        $('select[name="division_id"]').on('change', function() {
+            // variabila state_id preia valoarea din atributul value al optiunii selectate
+            var division_id = $(this).val();
+            // daca in campul judet (state) avem selectat un judet, localitatile aferente acelui judet vor aparea in optiunile selectului cu nume city (oras / sector)
+            if (division_id) {
+                $.ajax({
+                    // trimitem spre url state_id (id-ul judetului)
+                    url: "{{ url('/district-get/ajax') }}/" + division_id,
+                    type: "GET",
+                    dataType: "json",
+                    // daca codul de mai sus primeste ok din functia GetCity() din IndexController 
+                    // afisam in optiunile selectului cu nume city (camp oras / sector) localitatile
+                    // aferente aferente judetului selectat
+                    success: function(data) {
+                        var d = $('select[name="district_id"]').empty();
+                        $.each(data, function(key, value) {
+                            $('select[name="district_id"]').append(
+                                '<option value="' + value.id +
+                                '">' +
+                                value.district_name + '</option>');
+                        });
+                    },
+                });
+            } else {
+                alert('danger');
+            }
+        });
+    });
+</script>
 @endsection

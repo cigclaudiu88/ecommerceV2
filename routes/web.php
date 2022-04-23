@@ -12,6 +12,7 @@ use App\Http\Controllers\Frontend\IndexController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
+use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\Backend\AdminProfileController;
 // 1. Frontend Template Setup Part 2
 // 3. User Profile Design Part 3
@@ -322,3 +323,5 @@ Route::get('/voucher-remove', [CartController::class, 'VoucherRemove']);
 
 // ruta spre casa de vanzari 
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
+// ruta pentru preluare localitate din judet pt pagina de casa -> adresa livrare
+Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'DistrictGetAjax']);

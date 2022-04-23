@@ -16,4 +16,10 @@ class UserAddress extends Model
         // legatura intre tabela  tabela useradresses (user_id) si users (id)
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    public function district()
+    {
+        // legatura intre tabela  tabela useradresses (user_id) si users (id)
+        return $this->belongsTo(ShipDistrict::class, 'city', 'district_name');
+    }
 }
