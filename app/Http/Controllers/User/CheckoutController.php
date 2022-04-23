@@ -16,4 +16,9 @@ class CheckoutController extends Controller
         // returnam toate datele in format json
         return response()->json($ship);
     }
+
+    public function CheckoutStore(Request $request)
+    {
+        dd($request->all());
+    }
 }

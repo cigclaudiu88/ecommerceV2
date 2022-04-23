@@ -325,3 +325,5 @@ Route::get('/voucher-remove', [CartController::class, 'VoucherRemove']);
 Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checkout');
 // ruta pentru preluare localitate din judet pt pagina de casa -> adresa livrare
 Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'DistrictGetAjax']);
+// ruta pentru preluare date adresa pagina de casa -> adresa livrare
+Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');

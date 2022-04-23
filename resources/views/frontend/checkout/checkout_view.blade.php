@@ -145,7 +145,9 @@
 
 
                 <div class="col-lg-12 col-md-6">
-                    <form action="#">
+                    {{-- adaugat ruta pt formularul de adresa livrare --}}
+                    <form action="{{ route('checkout.store') }}" method="POST">
+                        @csrf
                         <h3>Adresa de Livrare</h3>
                         <div class="row">
 
@@ -227,33 +229,64 @@
                             </div>
                         </div>
 
-                        <div class="payment_method">
-                            <div class="panel-default">
-                                <input id="payment" name="check_method" type="radio" data-target="createp_account" />
-                                <a href="#method" data-bs-toggle="collapse" aria-controls="method">Create an
-                                    account?</a>
-                                <div id="method" class="collapse one" data-parent="#accordion">
-                                    <div class="card-body1">
-                                        <p>Please send a check to Store Name, Store Street, Store Town, Store State /
-                                            County, Store Postcode.</p>
+                        <div class="payment_method mt-4">
+                            <div class="row text-center">
+
+                                <div class="col-lg-4 mb-20">
+                                    <div class="panel-default">
+                                        <input id="payment" name="stripe" type="radio" data-target="createp_account" />
+                                        <a href="#method" data-bs-toggle="collapse" aria-controls="method">Stripe <i
+                                                class="fa-brands fa-cc-stripe fa-2x"></i> </a>
+                                        <div id="method" class="collapse one" data-parent="#accordion">
+                                            <div class="card-body1">
+                                                <p>Please send a check to Store Name, Store Street, Store Town, Store
+                                                    State
+                                                    /
+                                                    County, Store Postcode.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="panel-default">
-                                <input id="payment_defult" name="check_method" type="radio"
-                                    data-target="createp_account" />
-                                <a href="#collapsedefult" data-bs-toggle="collapse"
-                                    aria-controls="collapsedefult">PayPal <img src="assets/img/icon/papyel.png"
-                                        alt=""></a>
-                                <div id="collapsedefult" class="collapse one" data-parent="#accordion">
-                                    <div class="card-body1">
-                                        <p>Pay via PayPal; you can pay with your credit card if you don’t have a PayPal
-                                            account.</p>
+
+                                <div class="col-lg-4 mb-20">
+                                    <div class="panel-default">
+                                        <input id="payment_defult" name="card" type="radio"
+                                            data-target="createp_account" />
+                                        <a href="#method" data-bs-toggle="collapse" aria-controls="collapsedefult">Plata
+                                            cu Card <i class="fa-brands fa-cc-visa fa-2x"></i><i
+                                                class="fa-brands fa-cc-mastercard fa-2x"></i><i
+                                                class="fa-solid fa-credit-card fa-2x"></i><img
+                                                src="assets/img/icon/papyel.png" alt=""></a>
+                                        <div id="method" class="collapse one" data-parent="#accordion">
+                                            <div class="card-body1">
+                                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a
+                                                    PayPal
+                                                    account.</p>
+                                            </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div class="order_button">
-                                <button type="submit">Finalizeaza Comanda</button>
+
+                                <div class="col-lg-4 mb-20">
+                                    <div class="panel-default">
+                                        <input id="payment" name="cash" type="radio" data-target="createp_account" />
+                                        <a href="#method" data-bs-toggle="collapse" aria-controls="method">Plata
+                                            Cash <i class="fa-solid fa-money-bill-wave fa-2x"></i></a>
+                                        <div id="method" class="collapse one" data-parent="#accordion">
+                                            <div class="card-body1">
+                                                <p>Please send a check to Store Name, Store Street, Store Town, Store
+                                                    State
+                                                    /
+                                                    County, Store Postcode.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-lg-12 mb-20 text-center">
+                                    <div class="order_button">
+                                        <button type="submit">Finalizeaza Comanda</button>
+                                    </div>
+                                </div>
                             </div>
                         </div>
                     </form>
