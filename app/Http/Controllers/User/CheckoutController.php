@@ -16,9 +16,33 @@ class CheckoutController extends Controller
         // returnam toate datele in format json
         return response()->json($ship);
     }
-
+    // functia de preluare a datelor din formularul de casa -> adresa de livrare
     public function CheckoutStore(Request $request)
     {
-        dd($request->all());
+        // dd($request->all());
+        // cream in variabila $data ca array() care va contine toate datele din formular
+        $data = array();
+        $data['shipping_first_name'] = $request->shipping_first_name;
+        $data['shipping_last_name'] = $request->shipping_last_name;
+        $data['shipping_phone'] = $request->shipping_phone;
+        $data['shipping_email'] = $request->shipping_email;
+        $data['division_id'] = $request->division_id;
+        $data['district_id'] = $request->district_id;
+        $data['shipping_street'] = $request->shipping_street;
+        $data['shipping_street_number'] = $request->shipping_street_number;
+        $data['shipping_building'] = $request->shipping_building;
+        $data['shipping_apartment'] = $request->shipping_apartment;
+        $data['notes'] = $request->notes;
+
+        // toate campurile input radio din formular au numele payment_method
+        // functie de valoarea atributului value al inputului selectat (stripe,card,cash)
+        // trimitem valorile din $data (datele din formular - adresa de livrare) catre pagina de plata corespunzatoare
+        if ($request->payment_method == 'stripe') {
+            return view('frontend.payment.stripe', compact('data'));
+        } elseif ($request->payment_method == 'card') {
+            return 'card';
+        } else {
+            return 'cash';
+        }
     }
 }

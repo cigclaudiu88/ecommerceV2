@@ -234,7 +234,8 @@
 
                                 <div class="col-lg-4 mb-20">
                                     <div class="panel-default">
-                                        <input id="payment" name="stripe" type="radio" data-target="createp_account" />
+                                        <input type="radio" name="payment_method" value="stripe" id="stripe"
+                                            data-target="createp_account" />
                                         <a href="#method" data-bs-toggle="collapse" aria-controls="method">Stripe <i
                                                 class="fa-brands fa-cc-stripe fa-2x"></i> </a>
                                         <div id="method" class="collapse one" data-parent="#accordion">
@@ -250,7 +251,7 @@
 
                                 <div class="col-lg-4 mb-20">
                                     <div class="panel-default">
-                                        <input id="payment_defult" name="card" type="radio"
+                                        <input type="radio" name="payment_method" value="card" id="card"
                                             data-target="createp_account" />
                                         <a href="#method" data-bs-toggle="collapse" aria-controls="collapsedefult">Plata
                                             cu Card <i class="fa-brands fa-cc-visa fa-2x"></i><i
@@ -269,7 +270,8 @@
 
                                 <div class="col-lg-4 mb-20">
                                     <div class="panel-default">
-                                        <input id="payment" name="cash" type="radio" data-target="createp_account" />
+                                        <input type="radio" name="payment_method" value="cash" id="cash"
+                                            data-target="createp_account" />
                                         <a href="#method" data-bs-toggle="collapse" aria-controls="method">Plata
                                             Cash <i class="fa-solid fa-money-bill-wave fa-2x"></i></a>
                                         <div id="method" class="collapse one" data-parent="#accordion">
