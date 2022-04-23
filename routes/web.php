@@ -121,6 +121,15 @@ Route::post('/user/profile/store', [IndexController::class, 'UserProfileStore'])
 Route::get('/user/change/password', [IndexController::class, 'UserChangePassword'])->name('user.change.password');
 // ruta de actualizare parola profil utilizator 
 Route::post('/user/password/update', [IndexController::class, 'UserPasswordUpdate'])->name('user.profile.password.update');
+// ruta spre adrese livrare
+Route::get('/user/profile/address', [IndexController::class, 'UserProfileAddress'])->name('user.address');
+// ruta care preia in selectul localitatile din judetul selectat
+Route::get('/user/profile/address/{state_id}', [IndexController::class, 'GetCity']);
+// ruta de inserare adresa noua pentru utilizator
+Route::post('/user/profile/address/store', [IndexController::class, 'UserProfileAddressStore'])->name('user.profile.address.store');
+// ruta de actualizare adresa utilizator
+Route::post('/user/profile/address/update/{id}', [IndexController::class, 'UserProfileAddressUpdate'])->name('user.profile.address.update');
+
 
 
 // Admin Brand Rute Grupate si prefixate cu brand

@@ -23,9 +23,10 @@
                                 <li><a href="{{ route('user.change.password') }}" class="nav-link active">Schimba
                                         Parola</a>
                                 </li>
+                                <li><a href="{{ route('user.address') }}" data-toggle="tab" class="nav-link">Adrese
+                                        Livrare</a></li>
                                 <li> <a href="#orders" data-toggle="tab" class="nav-link">Istoric Comenzi</a></li>
                                 <li><a href="#downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>
-                                <li><a href="#address" data-toggle="tab" class="nav-link">Adrese</a></li>
                                 {{-- adaugat ruta de logout --}}
                                 <li><a href="{{ route('user.logout') }}" class="nav-link">logout</a></li>
                             </ul>

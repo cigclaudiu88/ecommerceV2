@@ -13,6 +13,9 @@ use App\Models\Product;
 use App\Models\Category;
 use App\Models\MultiImg;
 // adaugam namespace-ul pentru clasa Auth
+use App\Models\UserAddress;
+use App\Models\ShipDistrict;
+use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
@@ -180,6 +183,134 @@ class IndexController extends Controller
             // returns user to the priviouse page
             return redirect()->route('dashboard');
         }
+    }
+
+    public function UserProfileAddress()
+    {
+        // $id salveaza id-ul utilizatorului autentificat
+        $id = Auth::user()->id;
+        // $user cauta in modelul User utilizatorul autentificat 
+        $user = User::find($id);
+        // address preia din tabela useraddresses adresa utilizatorului autentificat
+        // dupa inregistrare utilizator acesta variabila este goala
+        $address = UserAddress::where('user_id', $id)->first();
+        // $divions preia lista judetelor din tabelul shipdivisions
+        $divisions = ShipDivision::all();
+        // $districts preia lista oraselor din tabelul districts
+        $districts = ShipDistrict::with('division')->get();
+        // returnam pagina de profil userului resources\views\frontend\user_profile_address.blade.php
+        return view('frontend.profile.user_profile_address', compact('user', 'divisions', 'districts', 'address',));
+    }
+
+    public function GetCity($state_id)
+    {
+        // $state preia din tabelul divisions judetul selectat
+        $state = ShipDivision::where('division_name', $state_id)->first();
+        // preluam in variabila $cities acele localitati care au division_id = $state_id primit ca parametru
+        $cities = ShipDistrict::where('division_id', $state->id)->orderBy('district_name', 'ASC')->get();
+        // returnam un json cu datele din $cities
+        return response()->json($cities);
+    }
+
+    public function UserProfileAddressStore(Request $request)
+    {
+        // $id salveaza id-ul utilizatorului autentificat
+        $id = Auth::user()->id;
+        // validare campurile din formular adresa de livrare
+        $request->validate(
+            [
+                'first_name' => 'required|min:3',
+                'last_name' => 'required|min:3',
+                'phone' => 'required',
+                'state' => 'required',
+                'city' => 'required',
+                'street' => 'required',
+                'street_number' => 'required',
+            ],
+            // mesaje pentru inserarea datelor
+            [
+                'first_name.required' => 'Numele este obligatoriu!',
+                'first_name.min' => 'Numele trebuie sa contina minim 3 caractere!',
+                'last_name.required' => 'Prenumele este obligatoriu!',
+                'last_name.min' => 'Prenumele trebuie sa contina minim 3 caractere!',
+                'phone.required' => 'Numarul de telefon este obligatoriu!',
+                'state.required' => 'Judetul este obligatoriu!',
+                'city.required' => 'Orasul este obligatoriu!',
+                'street.required' => 'Strada este obligatorie!',
+                'street_number.required' => 'Numarul strazii este obligatoriu!',
+            ]
+        );
+
+        // se insereaza in tabelul useraddresses adresa utilizatorului autentificat
+        UserAddress::insert([
+            'user_id' => $id,
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'state' => $request->state,
+            'city' => $request->city,
+            'street' => $request->street,
+            'street_number' => $request->street_number,
+            'building' => $request->building,
+            'apartment' => $request->apartment,
+        ]);
+
+        // adaugam notificare de succes la inserarea subcategoriei de produse
+        $notification = array(
+            'message' => 'Adresa de livrare a fost adaugata cu succes!',
+            'alert-type' => 'success'
+        );
+        // redirectionam la aceeasi pagina cu mesajul $notification
+        return redirect()->back()->with($notification);
+    }
+
+    public function UserProfileAddressUpdate(Request $request)
+    {
+        // $id salveaza id-ul utilizatorului autentificat
+        $address_id = $request->id;
+        // validare campurile din formular adresa de livrare
+        $request->validate(
+            [
+                'first_name' => 'required',
+                'last_name' => 'required',
+                'phone' => 'required',
+                'state' => 'required',
+                'city' => 'required',
+                'street' => 'required',
+                'street_number' => 'required',
+            ],
+            // mesaje pentru inserarea datelor
+            [
+                'first_name.required' => 'Numele este obligatoriu!',
+                'last_name.required' => 'Prenumele este obligatoriu!',
+                'phone.required' => 'Numarul de telefon este obligatoriu!',
+                'state.required' => 'Judetul este obligatoriu!',
+                'city.required' => 'Orasul este obligatoriu!',
+                'street.required' => 'Strada este obligatorie!',
+                'street_number.required' => 'Numarul strazii este obligatoriu!',
+            ]
+        );
+
+        // se insereaza in tabelul useraddresses adresa utilizatorului autentificat
+        UserAddress::findOrFail($address_id)->update([
+            'first_name' => $request->first_name,
+            'last_name' => $request->last_name,
+            'phone' => $request->phone,
+            'state' => $request->state,
+            'city' => $request->city,
+            'street' => $request->street,
+            'street_number' => $request->street_number,
+            'building' => $request->building,
+            'apartment' => $request->apartment,
+        ]);
+
+        // adaugam notificare de succes la inserarea subcategoriei de produse
+        $notification = array(
+            'message' => 'Adresa de livrare a fost actualizata cu succes!',
+            'alert-type' => 'success'
+        );
+        // redirectionam la aceeasi pagina cu mesajul $notification
+        return redirect()->back()->with($notification);
     }
     // functia de redirectare la pagina de detalii produse
     public function ProductDetails($id, $slug)
