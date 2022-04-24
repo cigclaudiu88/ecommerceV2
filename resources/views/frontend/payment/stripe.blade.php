@@ -168,7 +168,25 @@
                         <div class="form-row">
                             <label for="card-element">
                                 Card de Credit sau Debit
+                                {{-- datele provin din array()-ul cu datele de adresa livrare oferite de CheckoutStore() -> CheckoutController --}}
+                                <input type="hidden" name="shipping_first_name"
+                                    value="{{ $data['shipping_first_name'] }}">
+                                <input type="hidden" name="shipping_last_name"
+                                    value="{{ $data['shipping_last_name'] }}">
+                                <input type="hidden" name="shipping_phone" value="{{ $data['shipping_phone'] }}">
+                                <input type="hidden" name="shipping_email" value="{{ $data['shipping_email'] }}">
+                                <input type="hidden" name="division_id" value="{{ $data['division_id'] }}">
+                                <input type="hidden" name="district_id" value="{{ $data['district_id'] }}">
+                                <input type="hidden" name="shipping_street" value="{{ $data['shipping_street'] }}">
+                                <input type="hidden" name="shipping_street_number"
+                                    value="{{ $data['shipping_street_number'] }}">
+                                <input type="hidden" name="shipping_building"
+                                    value="{{ $data['shipping_building'] }}">
+                                <input type="hidden" name="shipping_apartment"
+                                    value="{{ $data['shipping_apartment'] }}">
+                                <input type="hidden" name="notes" value="{{ $data['notes'] }}">
                             </label>
+
 
                             <div id="card-element">
                                 <!-- A Stripe Element will be inserted here. -->

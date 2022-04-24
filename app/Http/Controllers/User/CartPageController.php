@@ -23,7 +23,11 @@ class CartPageController extends Controller
         // $carQty preia numarul total de produse din mini cosul de cumparaturi
         $cartQty = Cart::count();
         // $cartSubtotal preia pretul total al produselor din mini cosul de cumparaturi fara TVA
-        $cartSubTotal = Cart::subtotal();
+        if (Session::has('voucher')) {
+            $cartSubTotal = Cart::priceTotal();
+        } else {
+            $cartSubTotal = Cart::subtotal();
+        }
         // $cartTax preia TVA-ul total al produselor din mini cosul de cumparaturi
         $cartTax = Cart::tax();
         // $cartTotal preia pretul total al produselor din mini cosul de cumparaturi cu tot cu tva

@@ -79,7 +79,11 @@ class CartController extends Controller
         // $carQty preia numarul total de produse din mini cosul de cumparaturi
         $cartQty = Cart::count();
         // $cartSubtotal preia pretul total al produselor din mini cosul de cumparaturi fara TVA
-        $cartSubTotal = Cart::subtotal();
+        if (Session::has('voucher')) {
+            $cartSubTotal = Cart::pricetotal();
+        } else {
+            $cartSubTotal = Cart::subtotal();
+        }
         // $cartTax preia TVA-ul total al produselor din mini cosul de cumparaturi
         $cartTax = Cart::tax();
         // $cartTotal preia pretul total al produselor din mini cosul de cumparaturi cu tot cu tva
@@ -176,10 +180,11 @@ class CartController extends Controller
                 'tax' => session()->get('voucher')['tax'],
                 'grandtotal' => session()->get('voucher')['grandtotal'],
             ));
-            // daca nu avem voucher afisam pretul total al produselor din cosul de cumparaturi fara voucher
+            // daca nu avem voucher calculam pretul total al produselor din cosul de cumparaturi fara voucher
         } else {
             return response()->json(array(
-                'subtotal' => Cart::subtotal(),
+                'subtotal' => Cart::pricetotal(),
+                'voucher_discount' => Cart::setGlobalDiscount(0),
                 'tax' => Cart::tax(),
                 'total' => Cart::total(),
             ));
@@ -197,21 +202,20 @@ class CartController extends Controller
     // functia de Spre Casa
     public function CheckoutCreate()
     {
-        // $id salveaza id-ul utilizatorului autentificat
-        $id = Auth::user()->id;
-        // $user cauta in modelul User utilizatorul autentificat 
-        $user = User::find($id)->first();
-        // address preia din tabela useraddresses adresa utilizatorului autentificat
-        // dupa inregistrare utilizator acesta variabila este goala
-        // de asemenea foloseste functia user() din modelul UserAddress pentru a accesa campurile din tabelul users $var->user->email etc
-        $address = UserAddress::with('user', 'district')->where('user_id', $id)->first();
-        // $divions preia lista judetelor din tabelul shipdivisions
-        $divisions = ShipDivision::all();
-        // $districts preia lista oraselor din tabelul districts
-        $districts = ShipDistrict::with('division')->get();
-
         // verificam daca utilizatorul este autentificat
         if (Auth::check()) {
+            // $id salveaza id-ul utilizatorului autentificat
+            $id = Auth::user()->id;
+            // $user cauta in modelul User utilizatorul autentificat 
+            $user = User::find($id)->first();
+            // address preia din tabela useraddresses adresa utilizatorului autentificat
+            // dupa inregistrare utilizator acesta variabila este goala
+            // de asemenea foloseste functia user() din modelul UserAddress pentru a accesa campurile din tabelul users $var->user->email etc
+            $address = UserAddress::with('user', 'district')->where('user_id', $id)->first();
+            // $divions preia lista judetelor din tabelul shipdivisions
+            $divisions = ShipDivision::all();
+            // $districts preia lista oraselor din tabelul districts
+            $districts = ShipDistrict::with('division')->get();
             // daca utilizatorul este autentificat, iar cosul de de cumparaturi nu este gol, atunci afisam formularul de checkout
             if (Cart::total() > 0) {
                 // daca sesiunea are voucher afisam totalurile cu voucher

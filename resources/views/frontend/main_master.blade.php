@@ -647,6 +647,9 @@
                 url: "{{ url('/voucher-apply') }}",
                 success: function(data) {
                     voucherCalculation();
+                    // actualizam cart() si miniCart()
+                    cart();
+                    miniCart();
                     // dupa ce aplicam voucherul campul de adaugare voucher dispare
                     $('#voucherField').hide();
                     if (data.validity == true) {
@@ -677,7 +680,6 @@
 
                 }
             });
-            voucherCalculation();
         }
 
         // functia de calculare valoare Voucher
@@ -758,6 +760,10 @@
                 success: function(data) {
                     // apelez functia de calculare cos de cumparaturi cu sau fara voucher
                     voucherCalculation();
+                    // actualizam cart
+                    cart();
+                    // actualizam minicart
+                    miniCart();
                     // dupa ce stergem voucherul, afisam din nou campul de adaugare voucher
                     $('#voucherField').show();
                     // dupa ce stergem voucherul campul de adaugare voucher valoarea din campul de adaugare voucher devine gol
