@@ -457,15 +457,15 @@
                                         <td class="product_name"><a >${value.product.product_name}</a></td>
                                         <td class="product-price">${value.product.discount_price == null ? `<span class="current_price">${value.product.selling_price} RON</span>`:`<span class="current_price">${value.product.discount_price} RON</span> <span class="old_price">${value.product.selling_price} RON</span>`}</td>
                                         <td class="product_quantity">${value.product.product_quantity==0 ? `<span id="stockout">Stoc Epuizat</span>`:`<span id="aviable">In Stoc</span>`}</td>
-                                        <td class="product_total"> <span><a
-                                                                    data-tippy="quick view" data-tippy-placement="top"
-                                                                    data-tippy-arrow="true" data-tippy-inertia="true"
-                                                                    data-bs-toggle="modal" data-bs-target="#modal_box"
-                                                                    onclick="productView(this.id)"
-                                                                    id="${value.product_id}">Adauga in Cos</span></td>
+                                        <td class="product_total"> <span> <a data-tippy="Add to cart"
+                                                                    data-tippy-placement="top" data-tippy-arrow="true"
+                                                                    data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                                    id="${value.product_id}"
+                                                                    name="${value.product.product_name}"
+                                                                    onclick="addToCartButton(this.id, this.name)">
+                                                                    <span class="lnr lnr-cart"> Adauga in Cos</span></a></td>
                                     </tr>`
                     });
-
                     $('#wishlist').html(rows);
                 }
             })
