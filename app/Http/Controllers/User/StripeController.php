@@ -9,6 +9,10 @@ use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
+// adaugat pentru email comanda
+use Illuminate\Support\Facades\Mail;
+// inclus OrderMail creat pt email cu datele comenzii
+use App\Mail\OrderMail;
 use Illuminate\Support\Facades\Session;
 use Gloudemans\Shoppingcart\Facades\Cart;
 
@@ -73,6 +77,24 @@ class StripeController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
+        // trasmite mailul cu datele comenzii dupa finalizare plata
+        // $invoice preia din tabelul acea comanda care are id=$order_id
+        $invoice = Order::findOrFail($order_id);
+        // $products preia din tabelul order_items produsele pentru care order_id=$order_id inserat mai sus
+        // $products = OrderItem::with('order')->where('order_id', $order_id)->get();
+
+        // $data preia datele comenzii
+        $data = [
+            'invoice_no' => $invoice->invoice_no,
+            'amount' => $total_amount,
+            'name' => $invoice->name,
+            'email' => $invoice->email,
+        ];
+        // trimite spre mail-ul din request afereten adresei de livrare (user email) 
+        // toate datele comenzii (data, numarul comenzii, totalul comenzii) prin custom mail creat -> app\Mail\OrderMail.php
+        Mail::to($request->shipping_email)->send(new OrderMail($data));
+
+
         // $carts preia din cosul de cumparaturi toate produsele produsele
         $carts = Cart::content();
         // iteram cu $carts ca sa preluam fiecare produs din cosul de cumparaturi
@@ -102,6 +124,6 @@ class StripeController extends Controller
             'message' => 'Comanda a fost inregistrata cu succes!',
             'alert-type' => 'success'
         );
-        return redirect()->route('dashboard')->with($notification);
+        return redirect()->route('welcome')->with($notification);
     }
 }    // functia pentru plata prin Stripe inserare comanda - sfarsit
