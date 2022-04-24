@@ -14,7 +14,7 @@ use Gloudemans\Shoppingcart\Facades\Cart;
 
 class StripeController extends Controller
 {
-    //functia pentru plata prin Stripe
+    // functia pentru plata prin Stripe inserare comanda - start
     public function StripeOrder(Request $request)
     {
         // daca sesiunea are voucher totalul de plata va curpinde reducerea din voucher
@@ -38,15 +38,13 @@ class StripeController extends Controller
             'metadata' => ['order_id' => uniqid()],
         ]);
 
-        dd($charge);
-        // $id salveaza id-ul utilizatorului autentificat
-        $id = Auth::user()->id;
-        // $user_id cauta in modelul User utilizatorul autentificat 
-        $user_id = User::find($id)->first();
+        // dd($charge);
 
-        // inseram datele in tabelul orders
+
+        // inseram datele de livrare si cele legate de plata in tabelul orders
+        // $orders_id preia id-ul comenzii (id din tabelul orders)
         $order_id = Order::insertGetId([
-            'user_id' => $user_id,
+            'user_id' => Auth::id(),
             'division_id' => $request->division_id,
             'district_id' => $request->district_id,
             'shipping_first_name' => $request->shipping_first_name,
@@ -54,7 +52,7 @@ class StripeController extends Controller
             'shipping_phone' => $request->shipping_phone,
             'shipping_email' => $request->shipping_email,
             'shipping_street' => $request->shipping_street,
-            'shipping_street_number	' => $request->shipping_street_number,
+            'shipping_street_number' => $request->shipping_street_number,
             'shipping_building' => $request->shipping_building,
             'shipping_apartment' => $request->shipping_apartment,
             'notes' => $request->notes,
@@ -67,12 +65,43 @@ class StripeController extends Controller
             'amount' => $total_amount,
             'order_number' => $charge->metadata->order_id,
 
-            'invoice_no' => 'UPT' . $charge->metadata->order_id,
+            'invoice_no' => 'UPT_' . $charge->metadata->order_id,
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
             'status' => 'In procesare',
             'created_at' => Carbon::now(),
         ]);
+
+        // $carts preia din cosul de cumparaturi toate produsele produsele
+        $carts = Cart::content();
+        // iteram cu $carts ca sa preluam fiecare produs din cosul de cumparaturi
+        // si il inseram in tabelul order_items (produse comandate)
+        foreach ($carts as $cart) {
+            OrderItem::insert([
+                // inseram in order_id id-ul comenzii inserate mai sus in tabelul orders
+                // si restul datelor preluate din cosul de cumparaturi
+                'order_id' => $order_id,
+                'product_id' => $cart->id,
+                'product_name' => $cart->name,
+                // 'color' => $cart->options->color,
+                // 'size' => $cart->options->size,
+                'qty' => $cart->qty,
+                'price' => $cart->price,
+                'created_at' => Carbon::now(),
+            ]);
+        }
+        // dupa inserare comanda daca sesiunea are voucher stergem voucherul din sesiune
+        if (Session::has('voucher')) {
+            Session::forget('voucher');
+        }
+
+        // stergere cosul de cumparaturi dupa inserare comanda
+        Cart::destroy();
+        $notification = array(
+            'message' => 'Comanda a fost inregistrata cu succes!',
+            'alert-type' => 'success'
+        );
+        return redirect()->route('dashboard')->with($notification);
     }
-}
+}    // functia pentru plata prin Stripe inserare comanda - sfarsit
