@@ -4,37 +4,38 @@ use App\Models\User;
 //8. Laravel 8 Multi Auth Part 1
 
 // 6. Admin Profile & Image Update Part 1
-use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 // 6. Admin Profile & Image Update Part 1
 // 1. Frontend Template Setup Part 2
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
-use App\Http\Controllers\Frontend\IndexController;
+use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CartController;
-use App\Http\Controllers\User\WishlistController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
-use App\Http\Controllers\Backend\AdminProfileController;
 // 1. Frontend Template Setup Part 2
 // 3. User Profile Design Part 3
-use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\User\WishlistController;
 // 3. User Profile Design Part 3
 // 1. Brand Page Design Part 1
-use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\SliderController;
 // 1. Brand Page Design Part 1
 // 1. Category Crud Part 1
-use App\Http\Controllers\Backend\CategoryController;
+use App\Http\Controllers\Frontend\IndexController;
 // 1. Category Crud Part 1
 // 5. Subcategory Crud Part 1
-use App\Http\Controllers\Backend\SubCategoryController;
-use App\Http\Controllers\Backend\SubSubCategoryController;
+use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\VoucherController;
 // 5. Subcategory Crud Part 1
 // 1. Add Product Database and Page Design Part 1
-use App\Http\Controllers\Backend\ProductController;
+use App\Http\Controllers\Backend\CategoryController;
 // 1. Add Product Database and Page Design Part 1
 // 1. Upload Slider and Show All Slider List Part 1
-use App\Http\Controllers\Backend\SliderController;
-use App\Http\Controllers\Backend\VoucherController;
+use App\Http\Controllers\Backend\SubCategoryController;
+use App\Http\Controllers\Backend\AdminProfileController;
 use App\Http\Controllers\Backend\ShippingAreaController;
+use App\Http\Controllers\Backend\SubSubCategoryController;
 // 1. Upload Slider and Show All Slider List Part 1
 
 /*
@@ -277,6 +278,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/get-wishlist-product', [WishlistController::class, 'GetWishlistProduct']);
     // ruta de stergere produse din wishlist
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
+    // rupta pt plata cu cardul stripe
+    Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
 });
 // ruta spre pagina cosului de cumparaturi
 Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');

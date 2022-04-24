@@ -49,6 +49,8 @@
     <script src="https://kit.fontawesome.com/e4b2d9b481.js" crossorigin="anonymous"></script>
     {{-- SweetAlert CDN --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    {{-- script js modalitate de plata prin STRIPE --}}
+    <script src="https://js.stripe.com/v3/"></script>
 </head>
 
 <body>
