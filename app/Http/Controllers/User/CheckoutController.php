@@ -5,6 +5,8 @@ namespace App\Http\Controllers\User;
 use App\Models\ShipDistrict;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Session;
+use Gloudemans\Shoppingcart\Facades\Cart;
 
 class CheckoutController extends Controller
 {
@@ -34,15 +36,50 @@ class CheckoutController extends Controller
         $data['shipping_apartment'] = $request->shipping_apartment;
         $data['notes'] = $request->notes;
 
-        // toate campurile input radio din formular au numele payment_method
-        // functie de valoarea atributului value al inputului selectat (stripe,card,cash)
-        // trimitem valorile din $data (datele din formular - adresa de livrare) catre pagina de plata corespunzatoare
-        if ($request->payment_method == 'stripe') {
-            return view('frontend.payment.stripe', compact('data'));
-        } elseif ($request->payment_method == 'card') {
-            return 'card';
-        } else {
-            return 'cash';
+        if (Session::has('voucher')) {
+            // $carts preia toate produsele din cosul de cumparaturi
+            $carts = Cart::content();
+            // $cartQty preia numarul de produse din cosul de cumparaturi
+            $cartQty = Cart::count();
+            // $cartTotal preia pretul subtotal al produselor din cosul de cumparaturi inainte de voucher si tva
+            $cartSubTotal = Cart::priceTotal();
+            // $cartTax preia TVA al produselor din cosul de cumparaturi dupa voucher
+            $cartTax = Cart::tax();
+            // $cartTotal preia pretul total al produselor din cosul de cumparaturi dupa voucher si tva
+            $cartTotal = Cart::total();
+            // toate campurile input radio din formular au numele payment_method
+            // functie de valoarea atributului value al inputului selectat (stripe,card,cash)
+            // trimitem valorile din $data (datele din formular - adresa de livrare) catre pagina de plata corespunzatoare
+            if ($request->payment_method == 'stripe') {
+                return view('frontend.payment.stripe', compact('data', 'carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
+            } elseif ($request->payment_method == 'card') {
+                return 'card';
+            } else {
+                return 'cash';
+            }
+        }
+        // daca sesiunea nu voucher afisam totalurile fara voucher
+        else {
+            // $carts preia toate produsele din cosul de cumparaturi
+            $carts = Cart::content();
+            // $cartQty preia numarul de produse din cosul de cumparaturi
+            $cartQty = Cart::count();
+            // $cartTotal preia  subtotal al produselor din cosul de cumparaturi
+            $cartSubTotal = Cart::subtotal();
+            // $cartTax preia TVA al produselor din cosul de cumparaturi
+            $cartTax = Cart::tax();
+            // $cartTotal preia totalul produselor din cosul de cumparaturi cu TVA
+            $cartTotal = Cart::total();
+            // toate campurile input radio din formular au numele payment_method
+            // functie de valoarea atributului value al inputului selectat (stripe,card,cash)
+            // trimitem valorile din $data (datele din formular - adresa de livrare) catre pagina de plata corespunzatoare
+            if ($request->payment_method == 'stripe') {
+                return view('frontend.payment.stripe', compact('data', 'carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
+            } elseif ($request->payment_method == 'card') {
+                return 'card';
+            } else {
+                return 'cash';
+            }
         }
     }
 }
