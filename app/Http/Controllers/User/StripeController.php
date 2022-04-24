@@ -17,7 +17,7 @@ class StripeController extends Controller
         $charge = \Stripe\Charge::create([
             'amount' => 999 * 100,
             'currency' => 'ron',
-            'description' => 'Easy Online Store',
+            'description' => 'eShop UPT',
             'source' => $token,
             'metadata' => ['order_id' => '6735'],
         ]);

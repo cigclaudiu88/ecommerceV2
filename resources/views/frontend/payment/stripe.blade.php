@@ -177,7 +177,7 @@
                             <div id="card-errors" role="alert"></div>
                         </div>
                         <br>
-                        <button class="btn btn-primary">Efectueaza Plata</button>
+                        <button class="btn btn-success">Efectueaza Plata</button>
                     </form>
                 </div>
                 {{-- formular de efectuare plata cu cardul Stripe sfarsit --}}
