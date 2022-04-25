@@ -3,8 +3,11 @@
 namespace App\Http\Controllers\User;
 
 use App\Models\Order;
+// use Barryvdh\DomPDF\PDF;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use PDF;
+// includem pt a folosim DOMPDF
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,7 +47,14 @@ class AllUserController extends Controller
         // folosim functia product() din modelul OrderItem pentru a preia informatiile din tabelul products
         $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         // returnam pagina cu detaliile comenzii cu continutul din variabilele $order si $orderItem
-        return view('frontend.profile.order_invoice', compact('order', 'orderItem'));
+        // return view('frontend.profile.order_invoice', compact('order', 'orderItem'));
+
+        // $pdf preia in PDF pagina order_invoice.blade.php cu datele trimite prin variabilele $order si $orderItem ca pagina a4
+        $pdf = PDF::loadView('frontend.profile.order_invoice', compact('order', 'orderItem'))->setPaper('a4')->setOptions([
+            'tempDir' => public_path(),
+            'chroot' => public_path(),
+        ]);
+        return $pdf->download('invoice.pdf');
     } // end mehtod 
 
 }

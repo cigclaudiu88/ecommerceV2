@@ -25,7 +25,7 @@
         }
 
         .font {
-            font-size: 15px;
+            font-size: 12px;
         }
 
         .authority {
@@ -71,7 +71,6 @@
             </pre>
             </td>
         </tr>
-
     </table>
 
 
@@ -81,17 +80,29 @@
         <tr>
             <td>
                 <p class="font" style="margin-left: 20px;">
-                    <strong>Nume client:</strong> Name <br>
-                    <strong>Adresa e-mail:</strong> Email <br>
-                    <strong>Telefon:</strong> Phone <br>
-                    <strong>Adresa:</strong> Address <br>
+                    <strong>Nume client:</strong> {{ $order->shipping_first_name }}<span>
+                    </span>{{ $order->shipping_last_name }}<br>
+                    <strong>Adresa e-mail:</strong> {{ $order->shipping_email }} <br>
+                    <strong>Telefon:</strong> {{ $order->shipping_phone }} <br>
+
+                    @php
+                        // preluam judetul si localitatea
+                        $div = $order->division->division_name;
+                        $dis = $order->district->district_name;
+                    @endphp
+
+                    <strong>Adresa:</strong>Str.{{ $order->shipping_street }}<span>
+                        Nr.</span>{{ $order->shipping_street_number }}<span> Bloc
+                    </span>{{ $order->shipping_building }}
+                    <span>Apartament Nr.</span>{{ $order->shipping_apartment }} <br><span>Judet:</span>
+                    {{ $div }}<span> Localitate: </span>{{ $dis }}<br>
                 </p>
             </td>
             <td>
-                <p class="font">
-                <h3><span style="color: green;">Factura:</span> #Invoice</h3>
-                <strong>Data comanda</strong> : Order Date <br>
-                <strong>Modalitate de plata</strong> : Payment Type </span>
+                <p class="font" style="margin-left: 20px;">
+                <h3><span style="color: green;">Factura:</span> <strong>{{ $order->invoice_no }}</strong></h3>
+                <strong>Data comanda: </strong>{{ $order->order_date }} <br>
+                <strong>Modalitate de plata: <br></strong>{{ $order->payment_method }} </span>
                 </p>
             </td>
         </tr>
@@ -104,40 +115,45 @@
             <tr class="font">
                 <th>Poza Produs</th>
                 <th>Nume Produs</th>
-                <th>Code Produs</th>
+                {{-- <th>Code Produs</th> --}}
                 <th>Cantitate</th>
                 <th>Pret Unitar </th>
-                <th>Total </th>
+                <th>Total</th>
             </tr>
         </thead>
         <tbody>
-            <tr class="font">
-                <td align="center">
-                    <img src=" " height="60px;" width="60px;" alt="">
-                </td>
-                <td align="center">product_name</td>
-                <td align="center">product_code</td>
-                <td align="center">cantitate</td>
-                <td align="center">pret</td>
-                <td align="center">price Tk</td>
-
-            </tr>
-
+            @foreach ($orderItem as $item)
+                <tr class="font">
+                    <td align="center">
+                        <img src="{{ public_path($item->product->product_thumbnail) }}" height="60px;" width="60px;"
+                            alt="">
+                    </td>
+                    <td align="left">{{ $item->product->product_name }}</td>
+                    {{-- <td align="center">{{ $item->product->product_code }}</td> --}}
+                    <td align="center">{{ $item->qty }} BUC</td>
+                    <td align="center">{{ number_format($item->price, 2, '.', ',') }} RON</td>
+                    <td align="center">{{ number_format($item->price * $item->qty, 2, '.', ',') }} RON</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
     <br>
     <table width="100%" style=" padding:0 10px 0 10px;">
+
         <tr>
             <td align="right">
-                <h2><span style="color: green;">Subtotal:</span> Subtotal RON</h2>
-                <h2><span style="color: green;">TVA:</span> TVA RON</h2>
-                <h2><span style="color: green;">Total:</span> Total RON</h2>
+                {{-- <h2><span style="color: green;">Subtotal:</span> Subtotal RON</h2>
+                <h2><span style="color: green;">TVA:</span> TVA RON</h2> --}}
+                <h2><span style="color: green;">Total:</span> {{ $order->amount }} RON</h2>
                 <h2><span style="color: green;">Plata efectuata</h2>
             </td>
         </tr>
+
     </table>
     <div class="thanks mt-3">
-        <p>Multumim pentru ca a-ti cumparat de la eShop UPT</p>
+        <strong>
+            <p>Multumim pentru ca a-ti cumparat de la eShop UPT</p>
+        </strong>
     </div>
 </body>
 

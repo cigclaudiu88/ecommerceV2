@@ -43,7 +43,8 @@
                                                         class="view"><i
                                                             class="fa-solid fa-magnifying-glass"></i></a><span
                                                         class="text-white"> ---- </span>
-                                                    <a href="{{ url('user/invoice_download/' . $order->id) }}"
+                                                    <a target="_blank"
+                                                        href="{{ url('user/invoice_download/' . $order->id) }}"
                                                         class="view"><i class="fa-solid fa-angles-down"></i></a>
                                                 </td>
                                             </tr>
