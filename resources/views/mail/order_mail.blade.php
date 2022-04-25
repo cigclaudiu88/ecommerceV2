@@ -601,28 +601,31 @@
                                                                 &nbsp;
                                                             </td>
                                                         </tr>
-                                                        <tr>
-                                                            <td align="left" valign="top" style="
-                                      color: #0079d7;
-                                      text-align: left;
-                                      font-size: 13px;
-                                      font-weight: 600;
-                                      font-family: 'Open Sans', sans-serif,
-                                        Helvetica, Arial;
-                                    ">
-                                                                Referinţă:
-                                                            </td>
-                                                            <td align="left" valign="top" style="
-                                      color: #5a5a5a;
-                                      text-align: left;
-                                      font-size: 13px;
-                                      font-weight: normal;
-                                      font-family: 'Open Sans', sans-serif,
-                                        Helvetica, Arial;
-                                    ">
-                                                                {{ $order['transaction_id'] }}
-                                                            </td>
-                                                        </tr>
+                                                        @if ($order['transaction_id'] == null)
+                                                        @else
+                                                            <tr>
+                                                                <td align="left" valign="top" style="
+                                  color: #0079d7;
+                                  text-align: left;
+                                  font-size: 13px;
+                                  font-weight: 600;
+                                  font-family: 'Open Sans', sans-serif,
+                                    Helvetica, Arial;
+                                ">
+                                                                    Referinţă:
+                                                                </td>
+                                                                <td align="left" valign="top" style="
+                                  color: #5a5a5a;
+                                  text-align: left;
+                                  font-size: 13px;
+                                  font-weight: normal;
+                                  font-family: 'Open Sans', sans-serif,
+                                    Helvetica, Arial;
+                                ">
+                                                                    {{ $order['transaction_id'] }}
+                                                                </td>
+                                                            </tr>
+                                                        @endif
 
                                                         <tr>
                                                             <td colspan="2" align="center" style="

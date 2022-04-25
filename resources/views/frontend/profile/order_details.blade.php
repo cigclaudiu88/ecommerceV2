@@ -86,13 +86,18 @@
                                                                     href="#">{{ $order->payment_method }}</a>
                                                             </th>
                                                         </tr>
-                                                        <tr>
-                                                            <th class="product_name"><a href="#">ID Tranzatie</a>
-                                                            </th>
-                                                            <th class="product_name"><a
-                                                                    href="#">{{ $order->transaction_id }}</a>
-                                                            </th>
-                                                        </tr>
+                                                        {{-- daca nu avem transction_id nu afisam campul altfel il afisam --}}
+                                                        @if ($order->transaction_id == null)
+                                                        @else
+                                                            <tr>
+                                                                <th class="product_name"><a href="#">ID Tranzatie</a>
+                                                                </th>
+                                                                <th class="product_name"><a
+                                                                        href="#">{{ $order->transaction_id }}</a>
+                                                                </th>
+                                                            </tr>
+                                                        @endif
+
                                                         <tr>
                                                             <th class="product_name"><a href="#">Total Comanda</a>
                                                             </th>

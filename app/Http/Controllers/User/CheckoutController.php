@@ -55,7 +55,7 @@ class CheckoutController extends Controller
             } elseif ($request->payment_method == 'card') {
                 return 'card';
             } else {
-                return 'cash';
+                return view('frontend.payment.cash', compact('data', 'carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
             }
         }
         // daca sesiunea nu voucher afisam totalurile fara voucher
@@ -78,7 +78,7 @@ class CheckoutController extends Controller
             } elseif ($request->payment_method == 'card') {
                 return 'card';
             } else {
-                return 'cash';
+                return view('frontend.payment.cash', compact('data', 'carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal'));
             }
         }
     }

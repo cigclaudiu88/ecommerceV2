@@ -230,7 +230,8 @@
                                                                 <li><a href="{{ route('user.change.password') }}">Schimba
                                                                         Parola</a>
                                                                 </li>
-                                                                <li><a href="#">Comenzi</a></li>
+                                                                <li><a href="{{ route('my.orders') }}">Istoric
+                                                                        Comenzi</a></li>
                                                                 <li><a href="{{ route('user.logout') }}">Logout</a></li>
                                                             </ul>
                                                         </li>

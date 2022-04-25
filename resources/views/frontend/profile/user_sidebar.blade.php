@@ -24,18 +24,18 @@
                  <li><a href="{{ route('dashboard') }}"
                          class="nav-link {{ Request::routeIs('dashboard') ? 'active' : '' }}">Acasa</a>
                  </li>
-                 <li><a href=" {{ route('user.profile') }}"
+                 <li><a href="{{ route('user.profile') }}"
                          class="nav-link {{ Request::routeIs('user.profile') ? 'active' : '' }}">Detalii
                          Cont</a>
                  </li>
-                 <li><a href=" {{ route('user.change.password') }}"
+                 <li><a href="{{ route('user.change.password') }}"
                          class="nav-link {{ Request::routeIs('user.change.password') ? 'active' : '' }}">Schimba
                          Parola</a>
                  </li>
-                 <li><a href=" {{ route('user.address') }}" data-toggle="tab"
+                 <li><a href="{{ route('user.address') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('user.address') ? 'active' : '' }}">Adrese
                          Livrare</a></li>
-                 <li> <a href=" {{ route('my.orders') }}" data-toggle="tab"
+                 <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Istoric
                          Comenzi</a></li>
                  <li><a href=" #downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>

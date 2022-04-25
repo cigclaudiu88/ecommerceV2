@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\StripeController;
+use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
@@ -281,6 +282,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
     // rupta pt plata cu cardul stripe
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+    // ruta pt plata comanda cu cash
+    Route::post('/cash/order', [CashController::class, 'CashOrder'])->name('cash.order');
     // ruta pt vizualizare comenzile in user dashboard
     Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
     // ruta pt vizualizare detalii comanda in user dashboard
