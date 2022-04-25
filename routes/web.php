@@ -281,8 +281,10 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
     // rupta pt plata cu cardul stripe
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
-    // ruta pt vizualizare comenzile
+    // ruta pt vizualizare comenzile in user dashboard
     Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
+    // ruta pt vizualizare detalii comanda in user dashboard
+    Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
 });
 // ruta spre pagina cosului de cumparaturi
 Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
