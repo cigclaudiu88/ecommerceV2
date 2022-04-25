@@ -13,6 +13,7 @@ class OrderMail extends Mailable
 
     // aici primim datele StripeController
     public $data;
+
     /**
      * Create a new message instance.
      *

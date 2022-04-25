@@ -77,24 +77,6 @@ class StripeController extends Controller
             'created_at' => Carbon::now(),
         ]);
 
-        // trasmite mailul cu datele comenzii dupa finalizare plata
-        // $invoice preia din tabelul acea comanda care are id=$order_id
-        $invoice = Order::findOrFail($order_id);
-        // $products preia din tabelul order_items produsele pentru care order_id=$order_id inserat mai sus
-        // $products = OrderItem::with('order')->where('order_id', $order_id)->get();
-
-        // $data preia datele comenzii
-        $data = [
-            'invoice_no' => $invoice->invoice_no,
-            'amount' => $total_amount,
-            'name' => $invoice->name,
-            'email' => $invoice->email,
-        ];
-        // trimite spre mail-ul din request afereten adresei de livrare (user email) 
-        // toate datele comenzii (data, numarul comenzii, totalul comenzii) prin custom mail creat -> app\Mail\OrderMail.php
-        Mail::to($request->shipping_email)->send(new OrderMail($data));
-
-
         // $carts preia din cosul de cumparaturi toate produsele produsele
         $carts = Cart::content();
         // iteram cu $carts ca sa preluam fiecare produs din cosul de cumparaturi
@@ -113,6 +95,43 @@ class StripeController extends Controller
                 'created_at' => Carbon::now(),
             ]);
         }
+
+        // trasmite mailul cu datele comenzii dupa finalizare plata
+        // $invoice preia din tabelul acea comanda care are id=$order_id
+        $invoice = Order::findOrFail($order_id);
+        // $data preia datele comenzii
+        $data = [
+            'order_number' => $invoice->order_number,
+            'first_name' => $invoice->shipping_first_name,
+            'last_name' => $invoice->shipping_last_name,
+            'phone' => $invoice->shipping_phone,
+            'email' => $invoice->shipping_email,
+            'amount' => $total_amount,
+            'street' => $invoice->shipping_street,
+            'street_number' => $invoice->shipping_street_number,
+            'building' => $invoice->shipping_building,
+            'apartment' => $invoice->shipping_apartment,
+            'payment_method' => $invoice->payment_method,
+            'transaction_id' => $invoice->transaction_id,
+            'amount' => $total_amount,
+            'order_date' => $invoice->order_date,
+        ];
+
+        // $products preia din tabelul order_items produsele pentru care order_id=$order_id inserat mai sus
+        // $products = OrderItem::where('order_id', $order_id)->get();
+
+        // foreach ($products as $product=>$key) {
+        //     $item['products'][] = [
+        //         'name' => $product->product_name,
+        //         'qty' => $product->qty,
+        //         'price' => $product->price,
+        //     ];
+        // }
+
+        // trimite spre mail-ul din request afereten adresei de livrare (user email) 
+        // toate datele comenzii (data, numarul comenzii, totalul comenzii) prin custom mail creat -> app\Mail\OrderMail.php
+        Mail::to($request->shipping_email)->send(new OrderMail($data));
+
         // dupa inserare comanda daca sesiunea are voucher stergem voucherul din sesiune
         if (Session::has('voucher')) {
             Session::forget('voucher');
