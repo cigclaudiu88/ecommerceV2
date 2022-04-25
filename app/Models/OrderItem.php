@@ -15,4 +15,10 @@ class OrderItem extends Model
         // leaga tabelul multimgs (category_id) cu tabelul products (id)
         return $this->belongsTo(Order::class, 'order_id', 'id');
     }
+
+    // legatura intre tabelul order_items si tabelul products
+    public function product()
+    {
+        return $this->belongsTo(Product::class, 'product_id', 'id');
+    }
 }

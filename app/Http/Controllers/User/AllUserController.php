@@ -28,7 +28,8 @@ class AllUserController extends Controller
         // order cu functiile division(), district() si user() preia informatiile din acele tabele prin intermediul comenzii
         $order = Order::with('division', 'district', 'user')->where('id', $order_id)->where('user_id', Auth::id())->first();
         // $orderItem preia din tabelul order_items toate produsele din comanda cu id-ul = $order_id primit ca parametru
-        $orderItem = OrderItem::where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+        // folosim functia product() din modelul OrderItem pentru a preia informatiile din tabelul products
+        $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         // returnam pagina cu detaliile comenzii cu continutul din variabilele $order si $orderItem
         return view('frontend.profile.order_details', compact('order', 'orderItem'));
     }
