@@ -14,6 +14,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
+use App\Http\Controllers\User\AllUserController;
 // 1. Frontend Template Setup Part 2
 // 3. User Profile Design Part 3
 use App\Http\Controllers\User\WishlistController;
@@ -280,6 +281,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/wishlist-remove/{id}', [WishlistController::class, 'RemoveWishlistProduct']);
     // rupta pt plata cu cardul stripe
     Route::post('/stripe/order', [StripeController::class, 'StripeOrder'])->name('stripe.order');
+    // ruta pt vizualizare comenzile
+    Route::get('/my/orders', [AllUserController::class, 'MyOrders'])->name('my.orders');
 });
 // ruta spre pagina cosului de cumparaturi
 Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');

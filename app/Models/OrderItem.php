@@ -10,4 +10,9 @@ class OrderItem extends Model
     use HasFactory;
     // face toate campurile prezente sau viitoare din tabelul products accesibile
     protected $guarded = [];
+    public function order()
+    {
+        // leaga tabelul multimgs (category_id) cu tabelul products (id)
+        return $this->belongsTo(Order::class, 'order_id', 'id');
+    }
 }

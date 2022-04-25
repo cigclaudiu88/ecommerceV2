@@ -11,32 +11,9 @@
             <div class="account_dashboard">
                 <div class="row">
                     {{-- meniu navigare --}}
-                    <div class="col-sm-12 col-md-3 col-lg-3">
-                        {{-- daca campul profile_photo_path din tabela users nu este goala se afiseaza poza de profil --}}
-                        {{-- daca campul profile_photo_path din tabela users este goala se afiseaza poza de profil implicita upload/default_profile.png --}}
-                        <img class="card-img-top" style="border-radius:20%"
-                            src="{{ !empty($user->profile_photo_path)? url('upload/user_images/' . $user->profile_photo_path): url('upload/default_profile.png') }}"
-                            alt="" height="40%" width="40%"><br><br>
-                        <!-- Nav tabs -->
-                        <div class="dashboard_tab_button">
-                            <ul role="tablist" class="nav flex-column dashboard-list">
-                                <li><a href="{{ route('dashboard') }}" class="nav-link">Acasa</a>
-                                </li>
-                                <li><a href="{{ route('user.profile') }}" class="nav-link active">Detalii
-                                        Cont</a>
-                                </li>
-                                <li><a href="{{ route('user.change.password') }}" class="nav-link">Schimba
-                                        Parola</a>
-                                </li>
-                                <li><a href="{{ route('user.address') }}" data-toggle="tab" class="nav-link">Adrese
-                                    Livrare</a></li>
-                                <li> <a href="#orders" data-toggle="tab" class="nav-link">Istoric Comenzi</a></li>
-                                <li><a href="#downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>
-                                {{-- adaugat ruta de logout --}}
-                                <li><a href="{{ route('user.logout') }}" class="nav-link">logout</a></li>
-                            </ul>
-                        </div>
-                    </div>
+
+                    @include('frontend.profile.user_sidebar')
+
                     {{-- meniu navigare --}}
                     <div class="col-sm-12 col-md-9 col-lg-9">
                         <!-- Tab panes -->
