@@ -162,7 +162,10 @@ class CartController extends Controller
                 // pretul total dupa voucher cu tva
                 'grandtotal' => Cart::total(),
             ]);
-            return response()->json(array('success' => 'Voucherul a fost aplicat cu success',));
+            return response()->json(array(
+                'validity' => true,
+                'success' => 'Voucherul a fost aplicat cu success',
+            ));
         } else {
             return response()->json(['error' => 'Voucherul nu este valid sau a expirat']);
         }

@@ -650,8 +650,8 @@
                     // actualizam cart() si miniCart()
                     cart();
                     miniCart();
-                    // dupa ce aplicam voucherul campul de adaugare voucher dispare
-                    $('#voucherField').hide();
+                    // dupa ce aplicam voucherul campul de adaugare voucher dispare                    
+                    // ascundem campul de voucher doar daca validity este true
                     if (data.validity == true) {
                         $('#VoucherField').hide();
                     }
