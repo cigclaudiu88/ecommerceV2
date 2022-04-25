@@ -168,6 +168,8 @@ return [
 
         // Install Image Intervention Package 
         Intervention\Image\ImageServiceProvider::class,
+        // adaugat DOMPDF la provider
+        Barryvdh\DomPDF\ServiceProvider::class,
         // Install Image Intervention Package
 
         /*
@@ -238,6 +240,8 @@ return [
         // Install Image Intervention Package 
         'Image' => Intervention\Image\Facades\Image::class,
         // Install Image Intervention Package 
+        // adaugat DOMPDF
+        'PDF' => Barryvdh\DomPDF\Facade::class
 
     ],
 

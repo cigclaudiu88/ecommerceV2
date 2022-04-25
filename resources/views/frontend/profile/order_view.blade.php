@@ -43,8 +43,8 @@
                                                         class="view"><i
                                                             class="fa-solid fa-magnifying-glass"></i></a><span
                                                         class="text-white"> ---- </span>
-                                                    <a href="cart.html" class="view"><i
-                                                            class="fa-solid fa-angles-down"></i></a>
+                                                    <a href="{{ url('user/invoice_download/' . $order->id) }}"
+                                                        class="view"><i class="fa-solid fa-angles-down"></i></a>
                                                 </td>
                                             </tr>
                                         @endforeach
