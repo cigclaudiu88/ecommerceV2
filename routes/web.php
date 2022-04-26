@@ -12,6 +12,7 @@ use App\Http\Controllers\AdminController;
 use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\Backend\BrandController;
+use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
@@ -340,3 +341,9 @@ Route::get('/checkout', [CartController::class, 'CheckoutCreate'])->name('checko
 Route::get('/district-get/ajax/{division_id}', [CheckoutController::class, 'DistrictGetAjax']);
 // ruta pentru preluare date adresa pagina de casa -> adresa livrare
 Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->name('checkout.store');
+
+// Admin Rute Comenzi
+Route::prefix('orders')->group(function () {
+    // ruta de afisare comenzi in asteptare
+    Route::get('/pending/orders', [OrderController::class, 'PendingOrders'])->name('pending-orders');
+});
