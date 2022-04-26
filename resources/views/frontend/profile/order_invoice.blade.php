@@ -142,10 +142,20 @@
 
         <tr>
             <td align="right">
-                {{-- <h2><span style="color: green;">Subtotal:</span> Subtotal RON</h2>
-                <h2><span style="color: green;">TVA:</span> TVA RON</h2> --}}
-                <h2><span style="color: green;">Total:</span> {{ $order->amount }} RON</h2>
-                <h2><span style="color: green;">Plata efectuata</h2>
+                <h2><span style="color: green; font-size: 14px;">Subtotal:</span> {{ $order->subtotal }} RON</h2>
+                @if ($order->voucher_name == null)
+                @else
+                    <h2><span style="color: green;font-size: 14px;">Voucher:</span> {{ $order->voucher_name }}
+                    </h2>
+                    <h2><span style="color: green;font-size: 14px;">Reducere:</span> - {{ $order->discount_amount }}
+                        RON</h2>
+                @endif
+                <h2><span style="color: green;font-size: 14px;">TVA:</span> {{ $order->tax }} RON</h2>
+                <h2><span style="color: green;font-size: 14px;">Total:</span> {{ $order->amount }} RON</h2>
+                @if ($order->transaction_id == null)
+                @else
+                    <h2><span style="color: green">Plata efectuata</h2>
+                @endif
             </td>
         </tr>
 
