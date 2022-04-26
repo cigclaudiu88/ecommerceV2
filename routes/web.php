@@ -360,6 +360,16 @@ Route::prefix('orders')->group(function () {
     Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
     // ruta de vizualizare detalii comenzi anulate in admin dashboard
     Route::get('/cancel/orders', [OrderController::class, 'CancelOrders'])->name('cancel-orders');
-    // ruta de confirmare a unei comenzi in astepatare in admin dashboard
+    // ruta de modificare status comanda din "In asteptare" -> "Confirmata"
     Route::get('/pending/confirm/{order_id}', [OrderController::class, 'PendingToConfirm'])->name('pending-confirm');
+    // ruta de modificare status comanda din "Confirmata" -> "Procesata"
+    Route::get('/confirm/processing/{order_id}', [OrderController::class, 'ConfirmToProcessing'])->name('confirm.processing');
+    // ruta de modificare status comanda din "Procesata" -> "Preluata de curier"
+    Route::get('/processing/picked/{order_id}', [OrderController::class, 'ProcessingToPicked'])->name('processing.picked');
+    // ruta de modificare status comanda din "Preluata de curier" -> "In tranzit"
+    Route::get('/picked/shipped/{order_id}', [OrderController::class, 'PickedToShipped'])->name('picked.shipped');
+    // ruta de modificare status comanda din "In tranzit" -> "Livrata"
+    Route::get('/shipped/delivered/{order_id}', [OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
+    // ruta de modificare status comanda din "Livrata" -> "Anulata"
+    Route::get('/shipped/delivered/canceled/{order_id}', [OrderController::class, 'DeliveredToCanceled'])->name('delivered.canceled');
 });

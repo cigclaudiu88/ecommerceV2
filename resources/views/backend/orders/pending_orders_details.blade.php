@@ -118,6 +118,28 @@
             @if ($order->status == 'In asteptare')
                 <a href="{{ route('pending-confirm', $order->id) }}" class="btn btn-block btn-success"
                     id="confirm"><strong>Confirma Comanda</strong></a>
+            @elseif($order->status == 'Confirmata')
+                <a href="{{ route('confirm.processing', $order->id) }}" class="btn btn-block btn-success"
+                    id="processing">Proceseaza Comanda</a>
+            @elseif($order->status == 'Procesata')
+                <a href="{{ route('processing.picked', $order->id) }}" class="btn btn-block btn-success"
+                    id="picked">Preda Comanda Curierului</a>
+            @elseif($order->status == 'Preluata de curier')
+                <a href="{{ route('picked.shipped', $order->id) }}" class="btn btn-block btn-success"
+                    id="shipped">Expediaza Comanda</a>
+            @elseif($order->status == 'In tranzit')
+                <a href="{{ route('shipped.delivered', $order->id) }}" class="btn btn-block btn-success"
+                    id="delivered">Comanda livrata</a>
+            @elseif($order->status == 'Livrata')
+                <a href="{{ route('delivered.canceled', $order->id) }}" class="btn btn-block btn-success"
+                    id="cancel_order">Anuleaza Comanda</a>
+            @endif
+        </div>
+        <div class="col-8 mb-30"></div>
+        <div class="col-2 mb-30">
+            @if ($order->status == 'In asteptare')
+                <a href="{{ route('delivered.canceled', $order->id) }}" class="btn btn-block btn-danger"
+                    id="cancel_order"><strong>Anuleaza Comanda</strong></a>
             @endif
         </div>
 
@@ -142,9 +164,10 @@
                                         height="100px;" width="100px;"></td>
                                 <td class="col-md-2"> {{ $item->product->product_code }}</td>
                                 <td class="col-md-6"><a href="#">{{ $item->product->product_name }}</a></td>
-                                <td class="col-md-1">{{ $item->price }} RON</td>
+                                <td class="col-md-1">{{ number_format($item->price, 2, '.', ',') }} RON</td>
                                 <td class="col-md-1">{{ $item->qty }} BUC</td>
-                                <td class="col-md-1">{{ $item->price * $item->qty }} RON</td>
+                                <td class="col-md-1">{{ number_format($item->price * $item->qty, 2, '.', ',') }}
+                                    RON</td>
                             </tr>
                         @endforeach
                     </tbody>

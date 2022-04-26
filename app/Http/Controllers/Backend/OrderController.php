@@ -81,4 +81,71 @@ class OrderController extends Controller
 
         return redirect()->route('pending-orders')->with($notification);
     }
+    // functia pentru modificare statusului comenzii Confirmata -> Procesata
+    public function ConfirmToProcessing($order_id)
+    {
+        // schimbam statusul comenzii in Procesata
+        Order::findOrFail($order_id)->update(['status' => 'Procesata']);
+
+        $notification = array(
+            'message' => 'Comanda a fost procesata cu succes!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('confirmed-orders')->with($notification);
+    }
+    // functia pentru modificare statusului comenzii Procesata -> Preluata de curier
+    public function ProcessingToPicked($order_id)
+    {
+        // schimbam statusul comenzii in Preluata de curier
+        Order::findOrFail($order_id)->update(['status' => 'Preluata de curier']);
+
+        $notification = array(
+            'message' => 'Comanda a fost preluata de curier cu succes!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('processing-orders')->with($notification);
+    }
+    // functia pentru modificare statusului comenzii Preluata de curier -> In tranzit
+    public function PickedToShipped($order_id)
+    {
+        // schimbam statusul comenzii in In tranzit
+        Order::findOrFail($order_id)->update(['status' => 'In tranzit']);
+
+        $notification = array(
+            'message' => 'Comanda a fost expediata cu succes!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('picked-orders')->with($notification);
+    } // end method
+
+    // functia pentru modificare statusului comenzii In tranzit -> Livrata
+    public function ShippedToDelivered($order_id)
+    {
+        // schimbam statusul comenzii in Livrata
+        Order::findOrFail($order_id)->update(['status' => 'Livrata']);
+
+        $notification = array(
+            'message' => 'Comanda a fost livrata cu succes!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('shipped-orders')->with($notification);
+    }
+
+    // functia pentru modificare statusului comenzii in Anulata
+    public function DeliveredToCanceled($order_id)
+    {
+        // schimbam statusul comenzii in Livrata
+        Order::findOrFail($order_id)->update(['status' => 'Anulata']);
+
+        $notification = array(
+            'message' => 'Comanda a fost anulata cu succes!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('pending-orders')->with($notification);
+    }
 }

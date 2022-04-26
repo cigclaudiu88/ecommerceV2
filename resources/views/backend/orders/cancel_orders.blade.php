@@ -34,8 +34,9 @@
                                     <td>{{ $item->order_number }}</td>
                                     <td>{{ $item->amount }} RON</td>
                                     <td>{{ $item->payment_method }}</td>
-                                    <td class="text-center"><span
-                                            class="badge badge-pill badge-primary">{{ $item->status }}</span></td>
+                                    <td class="text-center">
+                                        <h4><span class="badge badge-pill badge-danger">{{ $item->status }}</span></h4>
+                                    </td>
                                     </td>
                                     <td width="30%">
                                         {{-- adaugat ruta de vizualizare comanda in asteptare --}}
