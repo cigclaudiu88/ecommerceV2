@@ -184,35 +184,8 @@
 
     {{-- Adding SweetAlerts CDN to ask user if they want to delete a brand --}}
     <script src="//cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.js"></script>
-
-    {{-- Sweet Alert Script --}}
-    <script type="text/javascript">
-        $(function() {
-            $(document).on('click', '#delete', function(e) {
-                e.preventDefault();
-                var link = $(this).attr("href");
-                Swal.fire({
-                    title: 'Sigur doriti sa stergeti inregistrarea?',
-                    // text: "Stergerea este ireversibila",
-                    icon: 'question',
-                    iconColor: 'red',
-                    showCancelButton: true,
-                    confirmButtonColor: '#3085d6',
-                    cancelButtonColor: '#d33',
-                    confirmButtonText: 'Da sterge inregistrarea!'
-                }).then((result) => {
-                    if (result.isConfirmed) {
-                        window.location.href = link
-                        Swal.fire(
-                            'Stearsa',
-                            'Inregistrarea a fost stearsa cu success.',
-                            'success'
-                        )
-                    }
-                })
-            });
-        });
-    </script>
+    {{-- script js pt notificare sweet alert pentru butonul de delete --}}
+    <script src="{{ asset('backend\js\sweet_alert_backend.js') }}"></script>
 
 </body>
 

@@ -17,7 +17,7 @@ $route = Route::current()->getName();
                         class="ti-home"></i>
                     <span>Branduri</span></a>
                 <ul class="side-header-sub-menu">
-                    <li class="has-sub-menu {{ $prefix == '/brand' ? 'active' : '' }}"><a
+                    <li class="{{ $prefix == '/brand' ? 'active' : '' }}"><a
                             href="{{ route('all.brand') }}"><span>Management Branduri </span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>

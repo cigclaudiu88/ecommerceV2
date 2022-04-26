@@ -113,6 +113,13 @@
             </div>
         </div>
         <!--Order Details Customer Information Start-->
+        {{-- daca status comanda este in asteptare trimitem comanda spre confirmare --}}
+        <div class="col-2 mb-30">
+            @if ($order->status == 'In asteptare')
+                <a href="{{ route('pending-confirm', $order->id) }}" class="btn btn-block btn-success"
+                    id="confirm"><strong>Confirma Comanda</strong></a>
+            @endif
+        </div>
 
         <!--Order Details List Start-->
         <div class="col-12 mb-30">

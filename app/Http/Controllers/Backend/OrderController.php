@@ -32,40 +32,53 @@ class OrderController extends Controller
         // returnam pagina cu detaliile comenzii cu continutul din variabilele $order si $orderItem
         return view('backend.orders.pending_orders_details', compact('order', 'orderItem'));
     }
-
+    // functia pt vizualizarea a comenzilor confirmate in admin dashboard
     public function ConfirmedOrders()
     {
         $orders = Order::where('status', 'Confirmata')->orderBy('id', 'DESC')->get();
         return view('backend.orders.confirmed_orders', compact('orders'));
     }
-
+    // functia pt vizualizarea a comenzilor procesate in admin dashboard
     public function ProcessingOrders()
     {
         $orders = Order::where('status', 'Procesata')->orderBy('id', 'DESC')->get();
         return view('backend.orders.processing_orders', compact('orders'));
     }
-
+    // functia pt vizualizarea a comenzilor preluate decurier in admin dashboard
     public function PickedOrders()
     {
         $orders = Order::where('status', 'Preluata de curier')->orderBy('id', 'DESC')->get();
         return view('backend.orders.picked_orders', compact('orders'));
     }
-
+    // functia pt vizualizarea a comenzilor livratein tranzit in admin dashboard
     public function ShippedOrders()
     {
         $orders = Order::where('status', 'In tranzit')->orderBy('id', 'DESC')->get();
         return view('backend.orders.shipped_orders', compact('orders'));
     }
-
+    // functia pt vizualizarea a comenzilor livrate in admin dashboard
     public function DeliveredOrders()
     {
         $orders = Order::where('status', 'Livrata')->orderBy('id', 'DESC')->get();
         return view('backend.orders.delivered_orders', compact('orders'));
     }
-
+    // functia pt vizualizarea a comenzilor anulate in admin dashboard
     public function CancelOrders()
     {
         $orders = Order::where('status', 'Anulata')->orderBy('id', 'DESC')->get();
         return view('backend.orders.cancel_orders', compact('orders'));
+    }
+    // functia pentru modificare statusului comenzii din in asteptare -> confirmata
+    public function PendingToConfirm($order_id)
+    {
+
+        Order::findOrFail($order_id)->update(['status' => 'Confirmata']);
+
+        $notification = array(
+            'message' => 'Comanda a fost confirmata cu succes!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('pending-orders')->with($notification);
     }
 }

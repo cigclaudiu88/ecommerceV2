@@ -360,4 +360,6 @@ Route::prefix('orders')->group(function () {
     Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
     // ruta de vizualizare detalii comenzi anulate in admin dashboard
     Route::get('/cancel/orders', [OrderController::class, 'CancelOrders'])->name('cancel-orders');
+    // ruta de confirmare a unei comenzi in astepatare in admin dashboard
+    Route::get('/pending/confirm/{order_id}', [OrderController::class, 'PendingToConfirm'])->name('pending-confirm');
 });
