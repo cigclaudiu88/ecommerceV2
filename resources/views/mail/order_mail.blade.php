@@ -377,7 +377,99 @@
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                [Total:]
+                                                                                Subtotal:
+                                                                            </td>
+                                                                            <td align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              font-weight: 600;
+                                              color: #5a5a5a;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                {{ $order['subtotal'] }} RON
+                                                                            </td>
+                                                                        </tr>
+                                                                        @if ($order['discount_amount'] == null)
+                                                                        @else
+                                                                            <tr>
+                                                                                <td colspan="3" align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              color: #40d114;
+                                              font-weight: 600;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                    Voucher:
+                                                                                </td>
+                                                                                <td align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              font-weight: 600;
+                                              color: #40d114;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                    {{ $order['voucher_name'] }} RON
+                                                                                </td>
+                                                                            </tr>
+                                                                            <tr>
+                                                                                <td colspan="3" align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              color: #40d114;
+                                              font-weight: 600;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                    Reducere:
+                                                                                </td>
+                                                                                <td align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              font-weight: 600;
+                                              color: #40d114;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                    -{{ $order['discount_amount'] }}
+                                                                                    RON
+                                                                                </td>
+                                                                            </tr>
+                                                                        @endif
+                                                                        <tr>
+                                                                            <td colspan="3" align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              color: #5a5a5a;
+                                              font-weight: 600;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                TVA:
+                                                                            </td>
+                                                                            <td align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              font-weight: 600;
+                                              color: #5a5a5a;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                {{ $order['tax'] }} RON
+                                                                            </td>
+                                                                        </tr>
+                                                                        <tr>
+                                                                            <td colspan="3" align="right" style="
+                                              text-align: right;
+                                              font-size: 13px;
+                                              color: #5a5a5a;
+                                              font-weight: 600;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                Total:
                                                                             </td>
                                                                             <td align="right" style="
                                               text-align: right;

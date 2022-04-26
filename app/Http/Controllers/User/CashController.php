@@ -24,9 +24,18 @@ class CashController extends Controller
     {
         // daca sesiunea are voucher totalul de plata va curpinde reducerea din voucher
         if (Session::has('voucher')) {
+            $voucher_name = Session::get('voucher')['voucher_name'];
+            $discount_amount = Session::get('voucher')['discount_amount'];
+            $subtotal = Session::get('voucher')['subtotal'];
+            $tax = Session::get('voucher')['tax'];
             $total_amount = Session::get('voucher')['grandtotal'];
             // daca nu avem voucher totalul va fi totalul de plata fara reducere voucher
         } else {
+            $voucher_name = null;
+            $discount_amount = null;
+            $subtotal = Cart::pricetotal();
+            $voucher_discount = Cart::setGlobalDiscount(0);
+            $tax = Cart::tax();
             $total_amount = Cart::total();
         }
         // pentru generare id-ului comenzii unic
@@ -50,6 +59,10 @@ class CashController extends Controller
             'payment_type' => 'Cash la livrare',
             'payment_method' => 'Cash la livrare',
             'currency' => 'ron',
+            'voucher_name' => $voucher_name,
+            'discount_amount' => $discount_amount,
+            'subtotal' => $subtotal,
+            'tax' => $tax,
             'amount' => $total_amount,
             'order_number' =>  $order_number_id,
 
@@ -97,6 +110,10 @@ class CashController extends Controller
             'apartment' => $invoice->shipping_apartment,
             'payment_method' => $invoice->payment_method,
             'transaction_id' => $invoice->transaction_id,
+            'voucher_name' => $invoice->voucher_name,
+            'discount_amount' => $invoice->discount_amount,
+            'subtotal' => $invoice->subtotal,
+            'tax' => $invoice->tax,
             'amount' => $total_amount,
             'order_date' => $invoice->order_date,
         ];

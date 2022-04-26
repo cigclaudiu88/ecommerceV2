@@ -99,6 +99,44 @@
                                                         @endif
 
                                                         <tr>
+                                                            <th class="product_name"><a href="#">Subtotal</a>
+                                                            </th>
+                                                            <th class="product_name"><a href="#">{{ $order->subtotal }}
+                                                                    RON</a>
+                                                            </th>
+                                                        </tr>
+
+                                                        @if ($order->voucher_name == null)
+                                                        @else
+                                                            <tr>
+                                                                <th class="product_name"><a href="#">Voucher</a>
+                                                                </th>
+                                                                <th class="product_name text-success"><a
+                                                                        href="#">{{ $order->voucher_name }}
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+
+                                                            <tr>
+                                                                <th class="product_name"><a href="#">Reducere Voucher</a>
+                                                                </th>
+                                                                <th class="product_name text-success"><a
+                                                                        href="#">-{{ $order->discount_amount }}
+                                                                        RON</a>
+                                                                </th>
+                                                            </tr>
+                                                        @endif
+
+                                                        <tr>
+                                                            <th class="product_name"><a href="#">TVA</a>
+                                                            </th>
+                                                            <th class="product_name"><a href="#">{{ $order->tax }}
+                                                                    RON</a>
+                                                            </th>
+                                                        </tr>
+
+
+                                                        <tr>
                                                             <th class="product_name"><a href="#">Total Comanda</a>
                                                             </th>
                                                             <th class="product_name"><a href="#">{{ $order->amount }}
