@@ -344,6 +344,8 @@ Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->na
 
 // Admin Rute Comenzi
 Route::prefix('orders')->group(function () {
-    // ruta de afisare comenzi in asteptare
+    // ruta de vizualizare comenzi in asteptare
     Route::get('/pending/orders', [OrderController::class, 'PendingOrders'])->name('pending-orders');
+    // ruta de vizualizare detalii comenzi in asteptare
+    Route::get('/pending/orders/details/{order_id}', [OrderController::class, 'PendingOrdersDetails'])->name('pending.order.details');
 });

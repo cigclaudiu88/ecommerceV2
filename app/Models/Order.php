@@ -26,4 +26,10 @@ class Order extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+
+    // legatura cu tabelul user_addresses
+    public function user_address()
+    {
+        return $this->belongsTo(UserAddress::class, 'user_id', 'user_id');
+    }
 }

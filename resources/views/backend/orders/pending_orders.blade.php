@@ -38,10 +38,13 @@
                                             class="badge badge-pill badge-primary">{{ $item->status }}</span></td>
                                     </td>
                                     <td width="30%">
-                                        {{-- adaugat ruta de editare categorie --}}
-                                        <a href="" class="btn btn-info">Edit</a>
+                                        {{-- adaugat ruta de vizualizare comanda in asteptare --}}
+                                        <a href="{{ route('pending.order.details', $item->id) }}"
+                                            class="button button-primary"><i
+                                                class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="" class="btn btn-danger" id="delete">Delete</a>
+                                        <a href="" class="button button-danger" id="delete"><i
+                                                class="fa-solid fa-trash-can"></i>Delete</a>
                                     </td>
                                 </tr>
                             @endforeach
