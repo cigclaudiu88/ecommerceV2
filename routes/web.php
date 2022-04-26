@@ -344,8 +344,20 @@ Route::post('/checkout/store', [CheckoutController::class, 'CheckoutStore'])->na
 
 // Admin Rute Comenzi
 Route::prefix('orders')->group(function () {
-    // ruta de vizualizare comenzi in asteptare
+    // ruta de vizualizare comenzi in asteptare in admin dashboard
     Route::get('/pending/orders', [OrderController::class, 'PendingOrders'])->name('pending-orders');
-    // ruta de vizualizare detalii comenzi in asteptare
+    // ruta de vizualizare detalii comenzi in asteptare in admin dashboard
     Route::get('/pending/orders/details/{order_id}', [OrderController::class, 'PendingOrdersDetails'])->name('pending.order.details');
+    // ruta de vizualizare detalii comenzi confirmate in admin dashboard
+    Route::get('/confirmed/orders', [OrderController::class, 'ConfirmedOrders'])->name('confirmed-orders');
+    // ruta de vizualizare detalii comenzi in procesare in admin dashboard
+    Route::get('/processing/orders', [OrderController::class, 'ProcessingOrders'])->name('processing-orders');
+    // ruta de vizualizare detalii comenzi preluate de curier in admin dashboard
+    Route::get('/picked/orders', [OrderController::class, 'PickedOrders'])->name('picked-orders');
+    // ruta de vizualizare detalii comenzi in tranzit in admin dashboard
+    Route::get('/shipped/orders', [OrderController::class, 'ShippedOrders'])->name('shipped-orders');
+    // rula de vizualizare detalii comenzi livrate in admin dashboard
+    Route::get('/delivered/orders', [OrderController::class, 'DeliveredOrders'])->name('delivered-orders');
+    // ruta de vizualizare detalii comenzi anulate in admin dashboard
+    Route::get('/cancel/orders', [OrderController::class, 'CancelOrders'])->name('cancel-orders');
 });

@@ -70,7 +70,7 @@ class CashController extends Controller
             'order_date' => Carbon::now()->format('d F Y'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
-            'status' => 'In procesare',
+            'status' => 'In asteptare',
             'created_at' => Carbon::now(),
         ]);
 

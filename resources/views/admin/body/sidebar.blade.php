@@ -13,10 +13,11 @@ $route = Route::current()->getName();
             <li class="{{ $route == 'dashboard' ? 'active' : '' }}"><a href="{{ url('admin/dashboard') }}"><i
                         class="ti-home"></i>
                     <span>Dashboard</span></a>
-            <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}"><a href="#"><i class="ti-home"></i>
+            <li class="has-sub-menu {{ $prefix == '/brand' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
                     <span>Branduri</span></a>
                 <ul class="side-header-sub-menu">
-                    <li class="treeview {{ $prefix == '/brand' ? 'active' : '' }}"><a
+                    <li class="has-sub-menu {{ $prefix == '/brand' ? 'active' : '' }}"><a
                             href="{{ route('all.brand') }}"><span>Management Branduri </span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>
@@ -25,7 +26,8 @@ $route = Route::current()->getName();
 
             {{-- sectiune meniu navigare admin categorii incepe --}}
             {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
-            <li class="treeview {{ $prefix == '/category' ? 'active' : '' }}"><a href="#"><i class="ti-home"></i>
+            <li class="has-sub-menu {{ $prefix == '/category' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
                     <span>Categorii Produse</span></a>
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'all.category' ? 'active' : '' }}"><a
@@ -41,7 +43,7 @@ $route = Route::current()->getName();
             {{-- sectiune meniu navigare admin categorii termina --}}
 
             {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
-            <li class="treeview {{ $prefix == '/product' ? 'active' : '' }}"><a href="#"><i
+            <li class="has-sub-menu {{ $prefix == '/product' ? 'active' : '' }}"><a href="#"><i
                         class="ti-home"></i>
                     <span>Produse</span></a>
                 <ul class="side-header-sub-menu">
@@ -99,6 +101,18 @@ $route = Route::current()->getName();
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'pending-orders' ? 'active' : '' }}"><a
                             href="{{ route('pending-orders') }}"><span>Comenzi in asteptare</span></a></li>
+                    <li class="{{ $route == 'confirmed-orders' ? 'active' : '' }}"><a
+                            href="{{ route('confirmed-orders') }}"><span>Comenzi confirmate</span></a></li>
+                    <li class="{{ $route == 'processing-orders' ? 'active' : '' }}"><a
+                            href="{{ route('processing-orders') }}"><span>Comenzi procesate</span></a></li>
+                    <li class="{{ $route == 'picked-orders' ? 'active' : '' }}"><a
+                            href="{{ route('picked-orders') }}"><span>Comenzi preluate de curier</span></a></li>
+                    <li class="{{ $route == 'shipped-orders' ? 'active' : '' }}"><a
+                            href="{{ route('shipped-orders') }}"><span>Comenzi in tranzit</span></a></li>
+                    <li class="{{ $route == 'delivered-orders' ? 'active' : '' }}"><a
+                            href="{{ route('delivered-orders') }}"><span>Comenzi livrate</span></a></li>
+                    <li class="{{ $route == 'cancel-orders' ? 'active' : '' }}"><a
+                            href="{{ route('cancel-orders') }}"><span>Comenzi anulate</span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>
             </li>

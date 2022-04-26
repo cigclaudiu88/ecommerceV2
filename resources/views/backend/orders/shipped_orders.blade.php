@@ -6,7 +6,7 @@
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Comenzi in Asteptare</h3>
+                    <h3 class="title">Lista Comenzi In Tranzit</h3>
                 </div>
                 <div class="box-body">
 
