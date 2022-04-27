@@ -367,8 +367,6 @@
                 url: '/minicart/product-remove/' + rowId,
                 dataType: 'json',
                 success: function(data) {
-                    // cam redundant pt ca voucherRemove faci si voucherCalculation...
-                    voucherRemove();
                     // adaugat functia de calculare voucher ca atunci cand se sterge un produs din cosul de cumparaturi se recalculeaza pretul total
                     voucherCalculation();
                     cart();
@@ -561,7 +559,6 @@
                 url: '/user/cart-remove/' + id,
                 dataType: 'json',
                 success: function(data) {
-                    voucherRemove();
                     // adaugat functia de calculare voucher ca atunci cand se sterge un produs din cosul de cumparaturi se recalculeaza pretul total
                     // voucherCalculation();
                     cart();

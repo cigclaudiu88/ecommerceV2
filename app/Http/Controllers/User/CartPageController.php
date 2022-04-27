@@ -50,9 +50,9 @@ class CartPageController extends Controller
         Cart::remove($rowId);
         // cand stergem un produs din pagina cosului de cumparaturi 
         // daca sesiunea are voucher, atunci il stergem
-        if (Session::has('voucher')) {
-            Session::forget('voucher');
-        }
+        // if (Session::has('voucher')) {
+        //     Session::forget('voucher');
+        // }
         // returnam mesajul de succes
         return response()->json(['success' => 'Produsul a fost sters cu succes din Cosul de Cumparaturi']);
     }

@@ -117,7 +117,6 @@ class CashController extends Controller
             'amount' => $total_amount,
             'order_date' => $invoice->order_date,
         ];
-
         // trimite spre mail-ul din request afereten adresei de livrare (user email) 
         // toate datele comenzii (data, numarul comenzii, totalul comenzii) prin custom mail creat -> app\Mail\OrderMail.php
         Mail::to($request->shipping_email)->send(new OrderMail($data));
