@@ -406,4 +406,12 @@ Route::prefix('alluser')->group(function () {
 Route::prefix('blog')->group(function () {
     // ruta pentru vizualizare sectiunea de categorii de blog in admin dashboard
     Route::get('/category', [BlogController::class, 'BlogCategory'])->name('blog.category');
+    // ruta pentru inserare categorie postare blog in tabelul blog_categories
+    Route::post('/store', [BlogController::class, 'BlogCategoryStore'])->name('blogcategory.store');
+    // ruta pentru editare categorie postare blog in tabelul blog_categories
+    Route::get('/category/edit/{id}', [BlogController::class, 'BlogCategoryEdit'])->name('blog.category.edit');
+    // ruta pentru actualizare categorie postare blog in tabelul blog_categories
+    Route::post('/update/{id}', [BlogController::class, 'BlogCategoryUpdate'])->name('blog.category.update');
+    // ruta pentru stergere categorie postare blog in tabelul blog_categories
+    Route::get('/category/delete/{id}', [BlogController::class, 'BlogCategoryDelete'])->name('blog.category.delete');
 });

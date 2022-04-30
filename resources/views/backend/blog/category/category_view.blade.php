@@ -22,13 +22,13 @@
                             {{-- iteram cu variabila $categories (CategoryView() din CategoryController) ca $item si afisam in tabel toate valorile din tabelul categories --}}
                             @foreach ($blogcategory as $item)
                                 <tr>
-                                    <td><span><i class="{{ $item->category_icon }} text-white fa-4x "></i></span></td>
-                                    <td>{{ $item->category_name }}</td>
+                                    <td>{{ $item->blog_category_name }}</td>
                                     <td>
                                         {{-- adaugat ruta de editare categorie --}}
-                                        <a href="{{ route('category.edit', $item->id) }}" class="btn btn-info">Edit</a>
+                                        <a href="{{ route('blog.category.edit', $item->id) }}"
+                                            class="btn btn-info">Edit</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="{{ route('category.delete', $item->id) }}" class="btn btn-danger"
+                                        <a href="{{ route('blog.category.delete', $item->id) }}" class="btn btn-danger"
                                             id="delete">Delete</a>
                                     </td>
                                 </tr>
@@ -48,7 +48,7 @@
                 <div class="box-body">
                     {{-- formular de adaugare categorii in tabelul categories folosind ruta category.store si functia CategoryStore() din CategoryController --}}
                     {{-- enctype pentru lucrul cu imagini si protectie csrf --}}
-                    <form method="POST" action="{{ route('category.store') }}">
+                    <form method="POST" action="{{ route('blogcategory.store') }}">
                         @csrf
                         <div class="row mbn-20">
 
