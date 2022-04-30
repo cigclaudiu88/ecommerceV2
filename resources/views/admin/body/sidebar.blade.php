@@ -130,6 +130,18 @@ $route = Route::current()->getName();
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}
 
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="has-sub-menu {{ $prefix == '/alluser' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
+                    <span>Clienti</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="{{ $route == 'all-users' ? 'active' : '' }}"><a
+                            href="{{ route('all-users') }}"><span>Toti Clientii</span></a></li>
+                    {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
+
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
                         Elements</span></a>
                 <ul class="side-header-sub-menu">

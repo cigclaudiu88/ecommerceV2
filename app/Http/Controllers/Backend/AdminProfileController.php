@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\User;
 use App\Models\Admin;
+use App\Models\UserAddress;
+// pentru actualizare parola avem nevoie de Auth si Hash
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-// pentru actualizare parola avem nevoie de Auth si Hash
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\AdminPasswordRequest;
@@ -124,5 +126,12 @@ class AdminProfileController extends Controller
             // redirectionam admin-ul la pagina precedenta
             return redirect()->back();
         }
+    }
+    // functia de vizualizare toti utlizatori
+    public function AllUsers()
+    {   // $users preia datele din tabela users
+        $usersdata = UserAddress::with('user')->latest()->get();
+        // returnam pagina de vizualizare toti utilizatorii cu datele din tabela users
+        return view('backend.user.all_user', compact('usersdata'));
     }
 }

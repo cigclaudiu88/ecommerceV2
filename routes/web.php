@@ -394,3 +394,9 @@ Route::prefix('reports')->group(function () {
     // ruta pt vizualizare raport vanzari in admin dashboard pe an
     Route::post('/search/by/year', [ReportController::class, 'ReportByYear'])->name('search-by-year');
 });
+
+// Admin rute vizualizare utilizatori
+Route::prefix('alluser')->group(function () {
+    // ruta de vizualizare utilizatori in admin dashboard
+    Route::get('/view', [AdminProfileController::class, 'AllUsers'])->name('all-users');
+});
