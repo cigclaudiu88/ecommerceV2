@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Backend;
 
+use App\Models\BlogPost;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use App\Models\BlogPostCategory;
@@ -87,5 +88,15 @@ class BlogController extends Controller
         );
         // redirect spre ruta all.branduri (vizualizare branduri) cu mesajul de succes
         return redirect()->route('blog.category')->with($notification);
+    }
+    // functia de afisare postari blog
+    public function ViewBlogPost()
+    {
+        // $blogpost preia toate categoriile de postari din tabelul blog_post_categories
+        $blogcategory = BlogPostCategory::latest()->get();
+        // $blogpost preia toate postarile din tabelul blog_post
+        $blogpost = BlogPost::latest()->get();
+        // returnam pagina blogpost.blade.php si trimitem ca parametrii $blogpost si $blogcategory
+        return view('backend.blog.post.post_view', compact('blogpost', 'blogcategory'));
     }
 }
