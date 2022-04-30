@@ -27,7 +27,7 @@
                             </tr>
                         </thead>
                         <tbody>
-                            {{-- iteram cu variabila $brands (BrandView() din BrandController) ca $item si afisam in tabel toate valorile din tabelul brands --}}
+                            {{-- iteram cu variabila $usersdata (AllUsers() din AdminProfileController) ca $data si afisam in tabel toate valorile din tabelul users + user_addresses --}}
                             @foreach ($usersdata as $data)
                                 <tr>
                                     <td>
@@ -45,7 +45,15 @@
                                     <td class="col-md-1">{{ $data->building }}</td>
                                     <td class="col-md-1">{{ $data->apartment }}</td>
                                     <td class="col-md-1">
-                                        <h5> <span class="badge badge-pill badge-success">Online</span></h5>
+                                        {{-- daca exista date de utilizator in functia UserOnline() din UserAdress Model --}}
+                                        @if ($data->UserOnline())
+                                            {{-- afisam ca utilizatorul este online --}}
+                                            <span class="badge badge-pill badge-success">Online</span>
+                                        @else
+                                            {{-- altfel afisam ultima logare conform camp last_seen din tabelul users --}}
+                                            <span
+                                                class="badge badge-pill badge-danger">{{ Carbon\Carbon::parse($data->user->last_seen)->diffForHumans() }}</span>
+                                        @endif
                                     </td>
                                     <td>
                                         <a href="" class="btn btn-info">Edit</a>
