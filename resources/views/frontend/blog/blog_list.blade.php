@@ -21,11 +21,12 @@
                         <article class="single_blog">
                             <figure>
                                 <div class="blog_thumb">
-                                    <a href="blog-details.html"><img class="img-responsive"
+                                    <a href="{{ route('post.details', $blog->id) }}"><img class="img-responsive"
                                             src="{{ asset($blog->post_image) }}" alt=""></a>
                                 </div>
                                 <figcaption class="blog_content">
-                                    <h4 class="post_title"><a href="blog-details.html">{{ $blog->post_title }}</a>
+                                    <h4 class="post_title"><a
+                                            href="{{ route('post.details', $blog->id) }}">{{ $blog->post_title }}</a>
                                     </h4>
                                     <div class="articles_date">
                                         <p>{{ Carbon\Carbon::parse($blog->created_at)->diffForHumans() }} | <a
@@ -33,7 +34,7 @@
                                     </div>
                                     <p class="post_desc">{!! Str::limit($blog->post_details, 200) !!}</p>
                                     <footer class="btn_more">
-                                        <a href="blog-details.html"> Afla mai multe</a>
+                                        <a href="{{ route('post.details', $blog->id) }}"> Afla mai multe</a>
                                     </footer>
                                 </figcaption>
                             </figure>

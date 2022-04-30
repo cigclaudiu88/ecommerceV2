@@ -429,5 +429,7 @@ Route::prefix('blog')->group(function () {
     Route::get('/post/delete/{id}', [BlogController::class, 'BlogPostDelete'])->name('post.delete');
 });
 
-// Frontend Afisare Blog
+// ruta Frontend Afisare Blog
 Route::get('/blog', [HomeBlogController::class, 'AddBlogPost'])->name('home.blog');
+// ruta frontend Afisare Postare Blog Detalii
+Route::get('/post/details/{id}', [HomeBlogController::class, 'DetailsBlogPost'])->name('post.details');
