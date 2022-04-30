@@ -74,7 +74,15 @@ class AllUserController extends Controller
             'message' => 'Returul a fost inregistrat cu succes!',
             'alert-type' => 'success'
         );
-
+        // returnam la pagina comenzi cu notificare
         return redirect()->route('my.orders')->with($notification);
+    }
+    // functia de afisare in user dashboard comenzile cu retur
+    public function ReturnOrderList()
+    {
+        // $orders preia toate comenzile unui user autentificat in care campul return_reason nu este gol
+        $orders = Order::where('user_id', Auth::id())->where('return_reason', '!=', NULL)->orderBy('id', 'DESC')->get();
+        // returnam pagina de vizualizare comenzi cu retur si tirma variabila $orders
+        return view('frontend.profile.return_order_view', compact('orders'));
     }
 }

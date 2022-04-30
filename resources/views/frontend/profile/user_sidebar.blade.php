@@ -38,8 +38,9 @@
                  <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Istoric
                          Comenzi</a></li>
-                 <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
-                         class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Comenzi cu Retur</a>
+                 <li> <a href="{{ route('return.order.list') }}" data-toggle="tab"
+                         class="nav-link {{ Request::routeIs('return.order.list') ? 'active' : '' }}">Comenzi cu
+                         Retur</a>
                  </li>
                  <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Comenzi Anulate</a>

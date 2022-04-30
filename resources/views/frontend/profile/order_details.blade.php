@@ -202,19 +202,31 @@
                                             {{-- atunci cand statusulu comenzii este Livrata afisam camp pt retur --}}
                                             @if ($order->status !== 'Livrata')
                                             @else
-                                                <form action="{{ route('return.order',$order->id) }}" method="POST">
-                                                    @csrf
-                                                    <div class="coupon_code left">
-                                                        <h3>Retur</h3>
-                                                        <div class="coupon_inner">
-                                                            <p>Aici puteti face retur la produsele din comanda</p>
+                                                @php
+                                                    //  $orders preia din tabelul orders id-ul comenzii unde campul return_reason este null
+                                                    $order = App\Models\Order::where('id', $order->id)
+                                                        ->where('return_reason', '=', null)
+                                                        ->first();
+                                                @endphp
+                                                @if ($order)
+                                                    <form action="{{ route('return.order', $order->id) }}" method="POST">
+                                                        @csrf
+                                                        <div class="coupon_code left">
+                                                            <h3>Retur</h3>
+                                                            <div class="coupon_inner">
+                                                                <p>Aici puteti face retur la produsele din comanda</p>
 
-                                                            {{-- <input type="text" placeholder="Cod Voucher"> --}}
-                                                            <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Motiv Retur</textarea><br>
-                                                            <button type="submit mt-2">Retur</button>
+                                                                {{-- <input type="text" placeholder="Cod Voucher"> --}}
+                                                                <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Motiv Retur</textarea><br>
+                                                                <button type="submit mt-2">Retur</button>
+                                                            </div>
                                                         </div>
-                                                    </div>
-                                                </form>
+                                                    </form>
+                                                @else
+                                                    <span id="stockout"
+                                                        style="width:100% !important; margin-top:5px">Returul a fost deja
+                                                        solicitat!</span>
+                                                @endif
                                             @endif
                                         </div>
                                     </div>

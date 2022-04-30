@@ -293,6 +293,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/invoice_download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
     // ruta retur comanda - user dashboard
     Route::post('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
+    // ruta afisare comenzi returnate - user dashboar
+    Route::get('/return/order/list', [AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
 });
 // ruta spre pagina cosului de cumparaturi
 Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
