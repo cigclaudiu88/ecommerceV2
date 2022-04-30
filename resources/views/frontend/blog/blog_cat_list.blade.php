@@ -8,7 +8,7 @@
         crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 
 @section('title')
-    Blog
+    Blog functie de categorie
 @endsection
 
 <!--blog area start-->

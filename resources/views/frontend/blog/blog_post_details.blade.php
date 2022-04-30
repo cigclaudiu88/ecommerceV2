@@ -124,7 +124,9 @@
                         </div>
                         @foreach ($blogcategory as $category)
                             <ul>
-                                <li><a href="#">{{ $category->blog_category_name }}</a></li>
+                                <li><a
+                                        href="{{ url('blog/category/post/' . $category->id) }}">{{ $category->blog_category_name }}</a>
+                                </li>
                             </ul>
                         @endforeach
                     </div>

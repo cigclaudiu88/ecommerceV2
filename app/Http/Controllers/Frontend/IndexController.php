@@ -10,9 +10,10 @@ use App\Models\Brand;
 use App\Models\Slider;
 use App\Models\Product;
 // adaugam namespace-ul pentru clasa Hash - cryptare parola
+use App\Models\BlogPost;
 use App\Models\Category;
-use App\Models\MultiImg;
 // adaugam namespace-ul pentru clasa Auth
+use App\Models\MultiImg;
 use App\Models\UserAddress;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
@@ -59,10 +60,11 @@ class IndexController extends Controller
         // $skip_brand_product_0 foloseste modelul Product pentru a preluat doar acele inregistrari care au status = 1 din tabelul products
         // si unde brand_id (products) corespunde $skip_brand_0->id, ordoneaza dupa id Descending
         $skip_brand_product_0 = Product::where('status', 1)->where('brand_id', $skip_brand_0->id)->orderBy('id', 'DESC')->get();
-        // 5. Product Show With Skip Category & Brand Part 2
+        // blogpost preia toate postarile din tabelul blog_posts
+        $blogpost = BlogPost::with('category')->latest()->get();
 
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_subsubcategory_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_brand_product_0'));
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_subsubcategory_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_brand_product_0', 'blogpost'));
     }
 
     // functia de logout user

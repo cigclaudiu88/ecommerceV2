@@ -581,93 +581,37 @@
                 <div class="section_title">
                     {{-- <p>Our recent articles about Organic</p> --}}
                     <a href="{{ route('home.blog') }}">
-                        <h2>Blog eShop UPT</h2>
+                        <h2>Blog</h2>
                     </a>
                 </div>
             </div>
         </div>
         <div class="row">
             <div class="blog_carousel blog_column3 owl-carousel">
-                <div class="col-lg-3">
-                    <article class="single_blog">
-                        <figure>
-                            <div class="blog_thumb">
-                                <a href="blog-details.html"><img src="{{ asset('frontend/img/blog/blog1.jpg') }}"
-                                        alt=""></a>
-                            </div>
-                            <figcaption class="blog_content">
-                                <div class="articles_date">
-                                    <p>23/06/2021 | <a href="#">eCommerce</a> </p>
+
+                @foreach ($blogpost as $blog)
+                    <div class="col-lg-3">
+                        <article class="single_blog">
+                            <figure>
+                                <div class="blog_thumb">
+                                    <a href="{{ route('post.details', $blog->id) }}"><img
+                                            src="{{ asset($blog->post_image) }}" alt=""></a>
                                 </div>
-                                <h4 class="post_title"><a href="blog-details.html">Lorem ipsum dolor sit amet,
-                                        elit. Impedit, aliquam animi, saepe ex.</a></h4>
-                                <footer class="blog_footer">
-                                    <a href="blog-details.html">Show more</a>
-                                </footer>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
-                <div class="col-lg-3">
-                    <article class="single_blog">
-                        <figure>
-                            <div class="blog_thumb">
-                                <a href="blog-details.html"><img src="{{ asset('frontend/img/blog/blog2.jpg') }}"
-                                        alt=""></a>
-                            </div>
-                            <figcaption class="blog_content">
-                                <div class="articles_date">
-                                    <p>23/06/2021 | <a href="#">eCommerce</a> </p>
-                                </div>
-                                <h4 class="post_title"><a href="blog-details.html"> dolor sit amet, elit. Illo
-                                        iste sed animi quaerat nobis odit nulla.</a></h4>
-                                <footer class="blog_footer">
-                                    <a href="blog-details.html">Show more</a>
-                                </footer>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
-                <div class="col-lg-3">
-                    <article class="single_blog">
-                        <figure>
-                            <div class="blog_thumb">
-                                <a href="blog-details.html"><img src="{{ asset('frontend/img/blog/blog3.jpg') }}"
-                                        alt=""></a>
-                            </div>
-                            <figcaption class="blog_content">
-                                <div class="articles_date">
-                                    <p>23/06/2021 | <a href="#">eCommerce</a> </p>
-                                </div>
-                                <h4 class="post_title"><a href="blog-details.html">maxime laborum voluptas minus,
-                                        est, unde eaque esse tenetur.</a></h4>
-                                <footer class="blog_footer">
-                                    <a href="blog-details.html">Show more</a>
-                                </footer>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
-                <div class="col-lg-3">
-                    <article class="single_blog">
-                        <figure>
-                            <div class="blog_thumb">
-                                <a href="blog-details.html"><img src="{{ asset('frontend/img/blog/blog2.jpg') }}"
-                                        alt=""></a>
-                            </div>
-                            <figcaption class="blog_content">
-                                <div class="articles_date">
-                                    <p>23/06/2021 | <a href="#">eCommerce</a> </p>
-                                </div>
-                                <h4 class="post_title"><a href="blog-details.html">Lorem ipsum dolor sit amet,
-                                        elit. Impedit, aliquam animi, saepe ex.</a></h4>
-                                <footer class="blog_footer">
-                                    <a href="blog-details.html">Show more</a>
-                                </footer>
-                            </figcaption>
-                        </figure>
-                    </article>
-                </div>
+                                <figcaption class="blog_content">
+                                    <div class="articles_date">
+                                        <p>{{ Carbon\Carbon::parse($blog->created_at)->diffForHumans() }} | <a
+                                                href="#">{{ $blog->category->blog_category_name }}</a> </p>
+                                    </div>
+                                    <h4 class="post_title"><a href="{{ route('post.details', $blog->id) }}">
+                                            {{ $blog->post_title }}</a></h4>
+                                    <footer class="blog_footer">
+                                        <a href="{{ route('post.details', $blog->id) }}">Afla mai multe</a>
+                                    </footer>
+                                </figcaption>
+                            </figure>
+                        </article>
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -433,3 +433,5 @@ Route::prefix('blog')->group(function () {
 Route::get('/blog', [HomeBlogController::class, 'AddBlogPost'])->name('home.blog');
 // ruta frontend Afisare Postare Blog Detalii
 Route::get('/post/details/{id}', [HomeBlogController::class, 'DetailsBlogPost'])->name('post.details');
+// ruta filtrare postari blog dupa categorie - frontend
+Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'HomeBlogCatPost']);
