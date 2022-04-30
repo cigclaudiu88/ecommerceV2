@@ -13,6 +13,7 @@ use App\Http\Controllers\User\StripeController;
 use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
+use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
@@ -380,4 +381,10 @@ Route::prefix('orders')->group(function () {
     Route::get('/shipped/delivered/canceled/{order_id}', [OrderController::class, 'DeliveredToCanceled'])->name('delivered.canceled');
     // ruta pentru descarcat factura PDF in admin dashboard din pagina comenzi confirmate
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
+});
+
+// Admin Rute pentru Rapoarte 
+Route::prefix('reports')->group(function () {
+
+    Route::get('/view', [ReportController::class, 'ReportView'])->name('all-reports');
 });
