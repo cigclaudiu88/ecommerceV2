@@ -291,6 +291,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/order_details/{order_id}', [AllUserController::class, 'OrderDetails']);
     // ruta pt descarcare factura din user dashboard
     Route::get('/invoice_download/{order_id}', [AllUserController::class, 'InvoiceDownload']);
+    // ruta retur comanda - user dashboard
+    Route::post('/return/order/{order_id}', [AllUserController::class, 'ReturnOrder'])->name('return.order');
 });
 // ruta spre pagina cosului de cumparaturi
 Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');

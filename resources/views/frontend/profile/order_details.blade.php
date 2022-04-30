@@ -199,19 +199,22 @@
                                                     </tbody>
                                                 </table>
                                             </div>
-                                            {{-- atunci cand statusulu comenzii este delivered (livrat) afisam camp pt retur --}}
-                                            @if ($order->status !== 'delivered')
+                                            {{-- atunci cand statusulu comenzii este Livrata afisam camp pt retur --}}
+                                            @if ($order->status !== 'Livrata')
                                             @else
-                                                <div class="coupon_code left">
-                                                    <h3>Retur</h3>
-                                                    <div class="coupon_inner">
-                                                        <p>Aici puteti face retur la produsele din comanda</p>
+                                                <form action="{{ route('return.order',$order->id) }}" method="POST">
+                                                    @csrf
+                                                    <div class="coupon_code left">
+                                                        <h3>Retur</h3>
+                                                        <div class="coupon_inner">
+                                                            <p>Aici puteti face retur la produsele din comanda</p>
 
-                                                        {{-- <input type="text" placeholder="Cod Voucher"> --}}
-                                                        <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Return Reason</textarea><br>
-                                                        <button type="submit mt-2">Retur</button>
+                                                            {{-- <input type="text" placeholder="Cod Voucher"> --}}
+                                                            <textarea name="return_reason" id="" class="form-control" cols="30" rows="05">Motiv Retur</textarea><br>
+                                                            <button type="submit mt-2">Retur</button>
+                                                        </div>
                                                     </div>
-                                                </div>
+                                                </form>
                                             @endif
                                         </div>
                                     </div>

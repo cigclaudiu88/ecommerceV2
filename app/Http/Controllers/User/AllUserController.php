@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\User;
 
-use App\Models\Order;
+use PDF;
 // use Barryvdh\DomPDF\PDF;
+use App\Models\Order;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
-use PDF;
 // includem pt a folosim DOMPDF
+use Illuminate\Support\Carbon;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 
@@ -57,4 +58,23 @@ class AllUserController extends Controller
         return $pdf->download('factura.pdf');
     } // end mehtod 
 
+    // functia pentru retur comenzi
+    public function ReturnOrder(Request $request, $order_id)
+    {
+        // cautam in tabelul orders id-ul comenzii pentru retur
+        // actualizam data retur si motivul returului in tabelul orders
+        // din formularul din detalii unei comenzi livrate
+        Order::findOrFail($order_id)->update([
+            'return_date' => Carbon::now()->format('d F Y'),
+            'return_reason' => $request->return_reason,
+        ]);
+
+        // notificarea utilizatorul ca returul a fost inregistrat
+        $notification = array(
+            'message' => 'Returul a fost inregistrat cu succes!',
+            'alert-type' => 'success'
+        );
+
+        return redirect()->route('my.orders')->with($notification);
+    }
 }

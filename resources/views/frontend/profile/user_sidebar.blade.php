@@ -38,6 +38,12 @@
                  <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Istoric
                          Comenzi</a></li>
+                 <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
+                         class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Comenzi cu Retur</a>
+                 </li>
+                 <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
+                         class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Comenzi Anulate</a>
+                 </li>
                  <li><a href=" #downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>
 
                  {{-- adaugat ruta de logout --}}
