@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
+use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\AllUserController;
@@ -427,3 +428,6 @@ Route::prefix('blog')->group(function () {
     // ruta de stergere postare blog din tabelul blog_posts in admin dashboard
     Route::get('/post/delete/{id}', [BlogController::class, 'BlogPostDelete'])->name('post.delete');
 });
+
+// Frontend Afisare Blog
+Route::get('/blog', [HomeBlogController::class, 'AddBlogPost'])->name('home.blog');

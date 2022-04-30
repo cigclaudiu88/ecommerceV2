@@ -579,8 +579,10 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <p>Our recent articles about Organic</p>
-                    <h2>Our Blog Posts</h2>
+                    {{-- <p>Our recent articles about Organic</p> --}}
+                    <a href="{{ route('home.blog') }}">
+                        <h2>Blog eShop UPT</h2>
+                    </a>
                 </div>
             </div>
         </div>

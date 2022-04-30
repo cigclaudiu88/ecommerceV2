@@ -27,7 +27,7 @@
                             {{-- iteram cu variabila $blogcategory (ListBlogPost() din BlogController) ca $item si afisam in tabel toate valorile din tabelul blog_posts --}}
                             @foreach ($blogpost as $item)
                                 <tr>
-                                    <td>{{ $item->category_id }}</td>
+                                    <td>{{ $item->category->blog_category_name }}</td>
                                     <td> <img src="{{ asset($item->post_image) }}" style="width: 100px; height: 50px;">
                                     </td>
                                     <td>{{ $item->post_title }}</td>

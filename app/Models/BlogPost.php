@@ -11,7 +11,7 @@ class BlogPost extends Model
     // face toate campurile prezente sau viitoare din tabelul brands accesibile
     protected $guarded = [];
 
-    // legatura dintre tabelul blog_post si tabelul blog_post_categories
+    // legatura dintre tabelul blog_post (category_id) si tabelul blog_post_categories (id)
     public function category()
     {
         return $this->belongsTo(BlogPostCategory::class, 'category_id', 'id');

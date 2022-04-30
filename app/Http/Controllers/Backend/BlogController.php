@@ -104,7 +104,7 @@ class BlogController extends Controller
     // functia de viaualizare lista postari
     public function ListBlogPost()
     {   // $blogpost preia toate postarile din tabelul blog_post
-        $blogpost = BlogPost::latest()->get();
+        $blogpost = BlogPost::with('category')->latest()->get();
         // returnam pagina blogpost.blade.php si trimitem ca parametru $blogpost
         return view('backend.blog.post.post_list', compact('blogpost'));
     }
