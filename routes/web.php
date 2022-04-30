@@ -14,6 +14,7 @@ use App\Http\Controllers\User\CashController;
 use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ReportController;
+use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
@@ -399,4 +400,10 @@ Route::prefix('reports')->group(function () {
 Route::prefix('alluser')->group(function () {
     // ruta de vizualizare utilizatori in admin dashboard
     Route::get('/view', [AdminProfileController::class, 'AllUsers'])->name('all-users');
+});
+
+// Admin rute pt sectiunea de blog 
+Route::prefix('blog')->group(function () {
+    // ruta pentru vizualizare sectiunea de categorii de blog in admin dashboard
+    Route::get('/category', [BlogController::class, 'BlogCategory'])->name('blog.category');
 });
