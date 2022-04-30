@@ -149,8 +149,10 @@ $route = Route::current()->getName();
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'blog.category' ? 'active' : '' }}"><a
                             href="{{ route('blog.category') }}"><span>Categorii Blog</span></a></li>
-                    <li class="{{ $route == 'view.post' ? 'active' : '' }}"><a
-                            href="{{ route('view.post') }}"><span>Vizualizare Postari</span></a></li>
+                    <li class="{{ $route == 'add.post' ? 'active' : '' }}"><a
+                            href="{{ route('add.post') }}"><span>Adauga Postare</span></a></li>
+                    <li class="{{ $route == 'list.post' ? 'active' : '' }}"><a
+                            href="{{ route('list.post') }}"><span>Lista Postari</span></a></li>
                 </ul>
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}

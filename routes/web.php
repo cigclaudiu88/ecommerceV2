@@ -414,6 +414,16 @@ Route::prefix('blog')->group(function () {
     Route::post('/update/{id}', [BlogController::class, 'BlogCategoryUpdate'])->name('blog.category.update');
     // ruta pentru stergere categorie postare blog in tabelul blog_categories
     Route::get('/category/delete/{id}', [BlogController::class, 'BlogCategoryDelete'])->name('blog.category.delete');
-    // ruta de vizualizare postare blog in admin dashboard
-    Route::get('/view/post', [BlogController::class, 'ViewBlogPost'])->name('view.post');
+    // ruta de adaugare postare blog in admin dashboard
+    Route::get('/add/post', [BlogController::class, 'AddBlogPost'])->name('add.post');
+    // ruta de vizualizare lista postari blog in admin dashboard
+    Route::get('/list/post', [BlogController::class, 'ListBlogPost'])->name('list.post');
+    // ruta de inserare postare blog in tabelul blog_posts in admin dashboard
+    Route::post('/post/store', [BlogController::class, 'BlogPostStore'])->name('post.store');
+    // ruta de editare postare blog din tabelul blog_posts in admin dashboard
+    Route::get('/post/edit/{id}', [BlogController::class, 'BlogPostEdit'])->name('post.edit');
+    // ruta de actualizare postare blog din tabelul blog_posts in admin dashboard
+    Route::post('/post/update', [BlogController::class, 'BlogPostUpdate'])->name('post.update');
+    // ruta de stergere postare blog din tabelul blog_posts in admin dashboard
+    Route::get('/post/delete/{id}', [BlogController::class, 'BlogPostDelete'])->name('post.delete');
 });

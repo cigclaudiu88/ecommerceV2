@@ -10,4 +10,10 @@ class BlogPost extends Model
     use HasFactory;
     // face toate campurile prezente sau viitoare din tabelul brands accesibile
     protected $guarded = [];
+
+    // legatura dintre tabelul blog_post si tabelul blog_post_categories
+    public function category()
+    {
+        return $this->belongsTo(BlogPostCategory::class, 'category_id', 'id');
+    }
 }

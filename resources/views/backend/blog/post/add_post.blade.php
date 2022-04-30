@@ -13,7 +13,7 @@
                 <h4 class="title">Adauga Postare Blog</h4>
             </div>
             <div class="box-body">
-                <form method="post" action="" enctype="multipart/form-data">
+                <form method="post" action="{{ route('post.store') }}" enctype="multipart/form-data">
                     @csrf
                     <div class="row mbn-20">
 
@@ -54,6 +54,9 @@
                         <div class="col-12 mb-20">
                             <label for="formLayoutMessage1">Continut Postare</label>
                             <textarea class="summernote form-control" name="post_details"></textarea>
+                            @error('post_details')
+                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                            @enderror
                         </div>
 
 
