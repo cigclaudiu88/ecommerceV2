@@ -5,7 +5,8 @@
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Utilizatori</h3>
+                    <h3 class="title">Total Utilizatori <span class="badge badge badge-danger">
+                            {{ count($usersdata) }} </span></h3>
                 </div>
                 <div class="box-body">
 

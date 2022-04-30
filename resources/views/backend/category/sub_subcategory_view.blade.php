@@ -9,7 +9,8 @@
         <div class="col-8 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">SubSubCategorii Produse</h3>
+                    <h3 class="title">SubSubCategorii Produse <span class="badge badge badge-danger">
+                            {{ count($subsubcategories) }} </span></h3>
                 </div>
                 <div class="box-body">
 

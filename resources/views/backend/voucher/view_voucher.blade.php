@@ -6,7 +6,8 @@
         <div class="col-8 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Voucher-uri</h3>
+                    <h3 class="title">Lista Voucher-uri <span class="badge badge badge-danger">
+                            {{ count($vouchers) }} </span></h3>
                 </div>
                 <div class="box-body">
 

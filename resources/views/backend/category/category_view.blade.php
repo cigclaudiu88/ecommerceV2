@@ -6,7 +6,8 @@
         <div class="col-8 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Categorii Produse</h3>
+                    <h3 class="title">Categorii Produse <span class="badge badge badge-danger">
+                            {{ count($categories) }} </span></h3>
                 </div>
                 <div class="box-body">
 
