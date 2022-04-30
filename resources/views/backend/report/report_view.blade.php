@@ -9,7 +9,7 @@
                     <h4 class="title">Cauta dupa data</h4>
                 </div>
                 <div class="box-body">
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('search-by-date') }}">
                         @csrf
                         <div class="row mbn-20">
 
@@ -40,7 +40,7 @@
                 </div>
                 <div class="box-body">
 
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('search-by-month') }}">
                         @csrf
                         <div class="row mbn-20">
 
@@ -50,10 +50,10 @@
                                     <option value="" selected="" disabled="">Alege luna
                                     </option>
                                     <option value="January">Ianuarie</option>
-                                    <option value="February">Martie</option>
-                                    <option value="March">Aprilie</option>
-                                    <option value="April">Mai</option>
-                                    <option value="May">May</option>
+                                    <option value="February">Februarie</option>
+                                    <option value="March">Martie</option>
+                                    <option value="April">Aprilie</option>
+                                    <option value="May">Mai</option>
                                     <option value="Jun">Iunie</option>
                                     <option value="July">Iulie</option>
                                     <option value="August">August</option>
@@ -103,7 +103,7 @@
                 </div>
                 <div class="box-body">
 
-                    <form method="POST" action="">
+                    <form method="POST" action="{{ route('search-by-year') }}">
                         @csrf
                         <div class="row mbn-20">
 

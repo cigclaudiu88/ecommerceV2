@@ -385,6 +385,12 @@ Route::prefix('orders')->group(function () {
 
 // Admin Rute pentru Rapoarte 
 Route::prefix('reports')->group(function () {
-
+    // ruta pentru vizualizare pagina selectare raport vanzari in admin dashboard
     Route::get('/view', [ReportController::class, 'ReportView'])->name('all-reports');
+    // ruta pt vizualizare raport vanzari in admin dashboard pe zi
+    Route::post('/search/by/date', [ReportController::class, 'ReportByDate'])->name('search-by-date');
+    // ruta pt vizualizare raport vanzari in admin dashboard pe luna si an
+    Route::post('/search/by/month', [ReportController::class, 'ReportByMonth'])->name('search-by-month');
+    // ruta pt vizualizare raport vanzari in admin dashboard pe an
+    Route::post('/search/by/year', [ReportController::class, 'ReportByYear'])->name('search-by-year');
 });

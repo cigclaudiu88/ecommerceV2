@@ -67,7 +67,7 @@ class CashController extends Controller
             'order_number' =>  $order_number_id,
 
             'invoice_no' => 'UPT_' .  $order_number_id,
-            'order_date' => Carbon::now()->format('d F Y'),
+            'order_date' => Carbon::now()->format('d/m/Y'),
             'order_month' => Carbon::now()->format('F'),
             'order_year' => Carbon::now()->format('Y'),
             'status' => 'In asteptare',
