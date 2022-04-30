@@ -136,7 +136,7 @@ $route = Route::current()->getName();
                     <span>Clienti</span></a>
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'all-users' ? 'active' : '' }}"><a
-                            href="{{ route('all-users') }}"><span>Toti Clientii</span></a></li>
+                            href="{{ route('all-users') }}"><span>Lista Clienti</span></a></li>
                     {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
                 </ul>
             </li>

@@ -22,7 +22,14 @@ class AllUserController extends Controller
         foreach ($orders as $order) {
             $order_items[] = OrderItem::where('order_id', $order->id)->orderBy('order_id', 'DESC')->get();
         }
-        return view('frontend.profile.order_view', compact('orders', 'order_items'));
+        // daca utilizatorul are produse setate in comenzi afisam comenzile
+        if (isset($order_items)) {
+            return view('frontend.profile.order_view', compact('orders', 'order_items'));
+            // daca nu are produse setate in comenzi nu afisam comenzile
+        } else {
+            return view('frontend.profile.order_view', compact('orders'));
+        }
+        // return view('frontend.profile.order_view', compact('orders', 'order_items'));
     }
     // functia pt vizualizare detaliile comenzii si produsele din comanda in user dashboard
     public function OrderDetails($order_id)
