@@ -85,4 +85,12 @@ class AllUserController extends Controller
         // returnam pagina de vizualizare comenzi cu retur si tirma variabila $orders
         return view('frontend.profile.return_order_view', compact('orders'));
     }
+    // functia de vizualizare detaliilor comenziilor anulate
+    public function CancelOrders()
+    {
+        // $orders preia toate comenzile unui user autentificat in care campul status este Anulat
+        $orders = Order::where('user_id', Auth::id())->where('status', 'Anulata')->orderBy('id', 'DESC')->get();
+        // returnam pagina de vizualizare comenzi anulate si trimitem variabila orders
+        return view('frontend.profile.cancel_order_view', compact('orders'));
+    }
 }

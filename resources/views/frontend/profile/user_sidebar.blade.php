@@ -42,8 +42,8 @@
                          class="nav-link {{ Request::routeIs('return.order.list') ? 'active' : '' }}">Comenzi cu
                          Retur</a>
                  </li>
-                 <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
-                         class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Comenzi Anulate</a>
+                 <li> <a href="{{ route('cancel.orders') }}" data-toggle="tab"
+                         class="nav-link {{ Request::routeIs('cancel.orders') ? 'active' : '' }}">Comenzi Anulate</a>
                  </li>
                  <li><a href=" #downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>
 

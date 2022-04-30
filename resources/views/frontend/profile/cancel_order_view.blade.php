@@ -1,6 +1,5 @@
 @extends('frontend.main_master')
 @section('content')
-
     @extends('frontend.main_master')
 @section('content')
     {{-- jQuerry CDN link pentru scriptul de vizualizare imagine profil --}}
@@ -20,7 +19,7 @@
                         <!-- Tab panes -->
                         <div class="tab-content dashboard_content">
 
-                            <h3>Lista Comenzi cu Retur</h3>
+                            <h3>Lista Comenzi Anulate</h3>
                             <div class="table-responsive">
                                 <table class="table">
                                     <thead>
@@ -33,15 +32,13 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($orders as $order)
+                                        @forelse ($orders as $order)
                                             <tr>
                                                 <td>{{ $order->order_date }}</td>
                                                 <td>{{ $order->order_number }}</td>
                                                 <td>
-                                                    <span id="aviable"
+                                                    <span id="stockout"
                                                         style="width:100% !important;">{{ $order->status }}</span>
-                                                    <span id="stockout" style="width:100% !important; margin-top:5px">Retur
-                                                        solicitat</span>
                                                 </td>
                                                 <td style="text-align: right">{{ $order->amount }} RON</td>
                                                 <td><a href="{{ url('user/order_details/' . $order->id) }}"
@@ -53,7 +50,9 @@
                                                         class="view"><i class="fa-solid fa-angles-down"></i></a>
                                                 </td>
                                             </tr>
-                                        @endforeach
+                                        @empty
+                                            <h3 class="text-danger"><strong>Nici o comanda anulata!</strong></h3>
+                                        @endforelse
                                     </tbody>
                                 </table>
                             </div>
