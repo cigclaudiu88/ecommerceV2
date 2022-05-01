@@ -456,4 +456,8 @@ Route::prefix('setting')->group(function () {
 Route::prefix('return')->group(function () {
     // ruta de vizualizare retururi in admin dashboard
     Route::get('/admin/request', [ReturnController::class, 'ReturnRequest'])->name('return.request');
+    // ruta pentru aprobare retur comanda in admin dashboard
+    Route::get('/admin/return/approve/{order_id}', [ReturnController::class, 'ReturnRequestApprove'])->name('return.approve');
+    // ruta de viauzliare toate returuile in admin dashboard
+    Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all.request');
 });

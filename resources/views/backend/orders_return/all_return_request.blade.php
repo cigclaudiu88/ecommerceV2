@@ -6,7 +6,7 @@
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Comenzi cu Solictare de Retur</h3>
+                    <h3 class="title">Lista Retur Comenzi</h3>
                 </div>
                 <div class="box-body">
 
@@ -44,8 +44,7 @@
                                     </td>
                                     </td>
                                     <td width="30%">
-                                        <a href="{{ route('return.approve', $item->id) }}" class="btn btn-danger">Aproba
-                                            Retur </a>
+                                        <h4><span class="badge badge-success">Retur finalizat</span></h4>
                                     </td>
                                 </tr>
                             @endforeach

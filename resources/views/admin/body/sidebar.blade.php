@@ -170,18 +170,18 @@ $route = Route::current()->getName();
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}
 
-                {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
-                <li class="has-sub-menu {{ $prefix == '/return' ? 'active' : '' }}"><a href="#"><i
-                    class="ti-home"></i>
-                <span>Retur comenzi</span></a>
-            <ul class="side-header-sub-menu">
-                <li class="{{ $route == 'site.setting' ? 'active' : '' }}"><a
-                        href="{{ route('return.request') }}"><span>Solictiare Retur</span></a></li>
-                <li class="{{ $route == 'seo.setting' ? 'active' : '' }}"><a
-                        href="{{ route('seo.setting') }}"><span>Toate Solictarile</span></a></li>
-            </ul>
-        </li>
-        {{-- sectiune meniu navigare admin branduri termina --}}
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="has-sub-menu {{ $prefix == '/return' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
+                    <span>Retur comenzi</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="{{ $route == 'return.request' ? 'active' : '' }}"><a
+                            href="{{ route('return.request') }}"><span>Solictiare Retur</span></a></li>
+                    <li class="{{ $route == 'all.request' ? 'active' : '' }}"><a
+                            href="{{ route('all.request') }}"><span>Toate Solictarile</span></a></li>
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
 
 
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
