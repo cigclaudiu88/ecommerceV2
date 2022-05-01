@@ -35,8 +35,28 @@
                                                 <td>{{ $order->order_date }}</td>
                                                 <td>{{ $order->order_number }}</td>
                                                 <td>
-                                                    <span id="aviable"
-                                                        style="width:100% !important;">{{ $order->status }}</span>
+                                                    @if ($order->status == 'In asteptare')
+                                                        <span id="order_pending"
+                                                            style="width:100% !important;">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Confirmata')
+                                                        <span id="order_confirmed"
+                                                            style="width:100% !important;">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Procesata')
+                                                        <span id="order_procesed"
+                                                            style="width:100% !important;">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Preluata de curier')
+                                                        <span id="order_shipped"
+                                                            style="width:100% !important;">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'In tranzit')
+                                                        <span id="order_omw"
+                                                            style="width:100% !important;">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Livrata')
+                                                        <span id="order_delivered"
+                                                            style="width:100% !important;">{{ $order->status }}</span>
+                                                    @elseif($order->status == 'Anulata')
+                                                        <span id="order_canceled"
+                                                            style="width:100% !important;">{{ $order->status }}</span>
+                                                    @endif
                                                 </td>
                                                 <td style="text-align: right">{{ $order->amount }} RON</td>
                                                 <td><a href="{{ url('user/order_details/' . $order->id) }}"

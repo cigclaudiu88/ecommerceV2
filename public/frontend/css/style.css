@@ -3713,6 +3713,111 @@ span#stockout {
   border-radius: 5px;
 }
 
+span#order_pending {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #bb3e03;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#order_confirmed {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #ca6702;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#order_procesed {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #ee9b00;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#order_shipped {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #0a9396;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#order_omw {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #06d6a0;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#order_delivered {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #38b000;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
+span#order_canceled {
+  top: 20px;
+  right: 20px;
+  text-transform: uppercase;
+  color: #ffffff;
+  background: #ae2012;
+  font-size: 12px;
+  height: 20px;
+  line-height: 20px;
+  width: 100px;
+  text-align: center;
+  display: block;
+  border-radius: 5px;
+}
+
 .product_content {
   margin-top: 16px;
   text-align: center;

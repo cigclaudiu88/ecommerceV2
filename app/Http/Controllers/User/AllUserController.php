@@ -72,8 +72,9 @@ class AllUserController extends Controller
         // actualizam data retur si motivul returului in tabelul orders
         // din formularul din detalii unei comenzi livrate
         Order::findOrFail($order_id)->update([
-            'return_date' => Carbon::now()->format('d F Y'),
+            'return_date' => Carbon::now()->format('d/m/Y'),
             'return_reason' => $request->return_reason,
+            'return_order' => 1,
         ]);
 
         // notificarea utilizatorul ca returul a fost inregistrat
