@@ -59,7 +59,11 @@
                                                     @endif
                                                 </td>
                                                 <td style="text-align: right">{{ $order->amount }} RON</td>
-                                                <td style="text-align: left">{{ $order->return_reason }}</td>
+                                                <td style="text-align: left">{{ $order->return_reason }} <a
+                                                        href="{{ url('user/order_details/' . $order->id) }}"
+                                                        class="view"><i
+                                                            class="fa-solid fa-magnifying-glass"></i></a><span
+                                                        class="text-white"> ---- </span></td>
                                                 {{-- <td><a href="{{ url('user/order_details/' . $order->id) }}"
                                                         class="view"><i
                                                             class="fa-solid fa-magnifying-glass"></i></a><span

@@ -130,9 +130,9 @@
             @elseif($order->status == 'In tranzit')
                 <a href="{{ route('shipped.delivered', $order->id) }}" class="btn btn-block btn-success"
                     id="delivered">Comanda livrata</a>
-            @elseif($order->status == 'Livrata')
+                {{-- @elseif($order->status == 'Livrata')
                 <a href="{{ route('delivered.canceled', $order->id) }}" class="btn btn-block btn-success"
-                    id="cancel_order">Anuleaza Comanda</a>
+                    id="cancel_order">Anuleaza Comanda</a> --}}
             @endif
         </div>
         <div class="col-8 mb-30"></div>
@@ -155,6 +155,11 @@
                             <th>Pret</th>
                             <th>Cantitate</th>
                             <th>Subtotal</th>
+                            @if ($order->status == 'Livrata')
+                                <th>Actiuni</th>
+                            @else
+                            @endif
+
                         </tr>
                     </thead>
                     <tbody>
@@ -168,6 +173,22 @@
                                 <td class="col-md-1">{{ $item->qty }} BUC</td>
                                 <td class="col-md-1">{{ number_format($item->price * $item->qty, 2, '.', ',') }}
                                     RON</td>
+                                @if ($item->return_order_item == 0 && $order->status == 'Livrata')
+                                    <td class="col-md-1">
+                                        <a href="{{ route('return.item.approve', $item->id) }}"
+                                            class="btn btn-danger">Aproba
+                                            Retur </a>
+                                    </td>
+                                @elseif($item->return_order_item == 1)
+                                    <td class="col-md-1">
+                                        <a href="{{ route('return.item.finalized', $item->id) }}"
+                                            class="btn btn-danger">Finalizeaza retur</a>
+                                    </td>
+                                @elseif($item->return_order_item == 2)
+                                    <td class="col-md-1">
+                                        <h4><span class="badge badge-pill badge-success">Produs returnat</span></h4>
+                                    </td>
+                                @endif
                             </tr>
                         @endforeach
                     </tbody>

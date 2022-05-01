@@ -460,4 +460,8 @@ Route::prefix('return')->group(function () {
     Route::get('/admin/return/approve/{order_id}', [ReturnController::class, 'ReturnRequestApprove'])->name('return.approve');
     // ruta de viauzliare toate returuile in admin dashboard
     Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all.request');
+    // ruta pentru aprobare retur comanda in admin dashboard
+    Route::get('/admin/return/item/approve/{order_item_id}', [ReturnController::class, 'ReturnItemRequestApprove'])->name('return.item.approve');
+    // ruta pentru aprobare retur comanda in admin dashboard
+    Route::get('/admin/return/item/finalized/{order_item_id}', [ReturnController::class, 'ReturnItemFinalized'])->name('return.item.finalized');
 });

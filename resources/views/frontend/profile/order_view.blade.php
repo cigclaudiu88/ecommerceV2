@@ -53,7 +53,7 @@
                                                     @elseif($order->status == 'Livrata')
                                                         <span id="order_delivered"
                                                             style="width:100% !important;">{{ $order->status }}</span>
-                                                        @if ($order->return_order == 1)
+                                                        @if ($order->return_order == 1 || $order->return_order == 2)
                                                             <span id="order_canceled"
                                                                 style="width:100% !important; margin-top:5px">Retur
                                                                 solicitat

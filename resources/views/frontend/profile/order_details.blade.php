@@ -212,8 +212,14 @@
                                                                 <td class="col-md-1">{{ $item->qty }}
                                                                 </td>
                                                                 <td class="col-md-2">
-                                                                    {{ number_format($item->price * $item->qty, 2, '.', ',') }}
-                                                                    RON
+                                                                    @if ($item->return_order_item == 0)
+                                                                        {{ number_format($item->price * $item->qty, 2, '.', ',') }}
+                                                                        RON
+                                                                    @elseif($item->return_order_item == 1)
+                                                                        <span id="order_procesed">Retur</span>
+                                                                    @elseif($item->return_order_item == 2)
+                                                                        <span id="order_canceled">Returnat</span>
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                         @endforeach

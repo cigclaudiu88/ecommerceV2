@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Order;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 
@@ -37,5 +38,28 @@ class ReturnController extends Controller
         $orders = Order::where('return_order', 2)->orderBy('id', 'DESC')->get();
         //  returnam pagina cu comenzile returnate cu continutul din variabila $orders
         return view('backend.orders_return.all_return_request', compact('orders'));
+    }
+
+    public function ReturnItemRequestApprove($order_item_id)
+    {
+        OrderItem::where('id', $order_item_id)->update(['return_order_item' => 1]);
+        $notification = array(
+            'message' => 'Produsul a fost acceptat pentru retur!',
+            'alert-type' => 'success'
+        );
+        //redirectiom inapoi la pagina de vizualizare comenzi de returnat cu notificare
+        return redirect()->back()->with($notification);
+    }
+
+
+    public function ReturnItemFinalized($order_item_id)
+    {
+        OrderItem::where('id', $order_item_id)->update(['return_order_item' => 2]);
+        $notification = array(
+            'message' => 'Produsul a fost returnat cu succes!',
+            'alert-type' => 'success'
+        );
+        //redirectiom inapoi la pagina de vizualizare comenzi de returnat cu notificare
+        return redirect()->back()->with($notification);
     }
 }
