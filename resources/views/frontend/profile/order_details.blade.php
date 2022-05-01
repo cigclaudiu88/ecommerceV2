@@ -13,7 +13,7 @@
                     {{-- meniu navigare --}}
                     @include('frontend.profile.user_sidebar')
                     {{-- meniu navigare --}}
-                    <div class="col-sm-12 col-md-9 col-lg-9">
+                    <div class="col-sm-12 col-md-9 col-lg-9" style="margin-top:-100px;">
                         <!-- Tab panes -->
                         <div class="shopping_cart_area mt-70">
                             <div class="container">
