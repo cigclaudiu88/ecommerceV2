@@ -244,7 +244,7 @@
                                                         </div>
                                                     </form>
                                                 @else
-                                                    <span id="stockout"
+                                                    <span id="order_canceled"
                                                         style="width:100% !important; margin-top:5px">Returul a fost deja
                                                         solicitat!</span>
                                                 @endif

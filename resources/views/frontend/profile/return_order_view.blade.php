@@ -29,7 +29,7 @@
                                             <th>Numar Comanda</th>
                                             <th>Status</th>
                                             <th>Total</th>
-                                            <th>Actiuni</th>
+                                            {{-- <th>Actiuni</th> --}}
                                         </tr>
                                     </thead>
                                     <tbody>
@@ -38,20 +38,34 @@
                                                 <td>{{ $order->order_date }}</td>
                                                 <td>{{ $order->order_number }}</td>
                                                 <td>
-                                                    <span id="aviable"
-                                                        style="width:100% !important;">{{ $order->status }}</span>
-                                                    <span id="stockout" style="width:100% !important; margin-top:5px">Retur
-                                                        solicitat</span>
+                                                    @if ($order->return_order == 0)
+                                                        <span id="order_delivered"
+                                                            style="width:100% !important; margin-top:5px">Fara Solictiare de
+                                                            Retur
+                                                        </span>
+                                                    @elseif($order->return_order == 1)
+                                                        <span id="order_pending"
+                                                            style="width:100% !important; margin-top:5px">Retur in asteptare
+                                                        </span>
+                                                        <span id="order_canceled"
+                                                            style="width:100% !important; margin-top:5px">Retur
+                                                            solicitat
+                                                        </span>
+                                                    @elseif($order->return_order == 2)
+                                                        <span id="order_delivered"
+                                                            style="width:100% !important; margin-top:5px">Retur
+                                                            finalizat</span>
+                                                    @endif
                                                 </td>
                                                 <td style="text-align: right">{{ $order->amount }} RON</td>
-                                                <td><a href="{{ url('user/order_details/' . $order->id) }}"
+                                                {{-- <td><a href="{{ url('user/order_details/' . $order->id) }}"
                                                         class="view"><i
                                                             class="fa-solid fa-magnifying-glass"></i></a><span
                                                         class="text-white"> ---- </span>
                                                     <a target="_blank"
                                                         href="{{ url('user/invoice_download/' . $order->id) }}"
                                                         class="view"><i class="fa-solid fa-angles-down"></i></a>
-                                                </td>
+                                                </td> --}}
                                             </tr>
                                         @endforeach
                                     </tbody>
