@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\SiteSetting;
+use App\Models\SEO;
 // adaugam clasa de lucru cu imagini din Image Intervention Package
-use Intervention\Image\ImageManagerStatic as Image;
+use App\Models\SiteSetting;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Intervention\Image\ImageManagerStatic as Image;
 
 class SiteSettingController extends Controller
 {
@@ -80,5 +81,13 @@ class SiteSettingController extends Controller
             // redirectionam inapoi la pagina de actualizare date companie cu notificare
             return redirect()->back()->with($notification);
         }
+    }
+    // functia pt administrarenta SEO
+    public function SeoSetting()
+    {
+        // $seo primeste toate datele din tabela s_e_o_s folosind modelul SEO si functia first()
+        $seo = SEO::find(1);
+        // returnam view-ul seo_update.blade.php si trimitem ca parametru $seo
+        return view('backend.setting.seo_update', compact('seo'));
     }
 }

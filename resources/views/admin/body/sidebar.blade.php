@@ -163,7 +163,9 @@ $route = Route::current()->getName();
                     <span>Setari Site</span></a>
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'site.setting' ? 'active' : '' }}"><a
-                            href="{{ route('site.setting') }}"><span>Setari</span></a></li>
+                            href="{{ route('site.setting') }}"><span>Date Companie</span></a></li>
+                    <li class="{{ $route == 'seo.setting' ? 'active' : '' }}"><a
+                            href="{{ route('seo.setting') }}"><span>Setari SEO</span></a></li>
                 </ul>
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}

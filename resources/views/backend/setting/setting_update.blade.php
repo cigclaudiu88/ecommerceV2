@@ -127,7 +127,7 @@
                         </div>
 
                         <div class="col-12 mb-20">
-                            <input type="submit" value="Actualizeaza Setari" class="button button-primary">
+                            <input type="submit" value="Actualizeaza Date Companie" class="button button-primary">
                             <a href="{{ url('/admin/dashboard') }}"><button class="button button-danger">Anuleaza
                                 </button></a>
                         </div>
