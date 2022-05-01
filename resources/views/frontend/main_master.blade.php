@@ -1,11 +1,16 @@
 <!DOCTYPE html>
 <html lang="zxx">
+@php
+$seo = App\Models\SEO::find(1);
+@endphp
 
 <head>
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <title>@yield('title')</title>
-    <meta name="description" content="">
+    <meta name="title" content="{{ $seo->meta_author }}">
+    <meta name="keywords" content="{{ $seo->meta_keyword }}">
+    <meta name="description" content="{{ $seo->meta_description }}">
     {{-- csrf token pentru scriptul de modal conform script de jos --}}
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <meta name="viewport" content="width=device-width, initial-scale=1">

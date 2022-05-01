@@ -446,4 +446,6 @@ Route::prefix('setting')->group(function () {
     Route::post('/site/update', [SiteSettingController::class, 'SiteSettingUpdate'])->name('update.site.setting');
     // ruta pentru SEO in admin dashboard
     Route::get('/seo', [SiteSettingController::class, 'SeoSetting'])->name('seo.setting');
+    // functia de actualizare SEO in admin dashboard
+    Route::post('/seo/update', [SiteSettingController::class, 'SeoSettingUpdate'])->name('update.seo.setting');
 });

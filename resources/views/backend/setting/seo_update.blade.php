@@ -21,7 +21,7 @@
             </div>
             {{-- formular de actualizare date admin pe ruta admin.profile.store cu enctype="multipart/form-data pentru lucrul cu imagini si @csrf --}}
             <div class="box-body">
-                <form method="post" action="{{ route('update.site.setting') }}">
+                <form method="post" action="{{ route('update.seo.setting') }}">
                     @csrf
                     <div class="row mbn-20">
 
@@ -64,7 +64,7 @@
                         </div>
 
                         <div class="col-6 mb-20">
-                            <label for="google_analytics">Meta Descriere</label>
+                            <label for="google_analytics">Google Analytics</label>
                             <textarea name="google_analytics" id="google_analytics" class="form-control" rows="16"
                                 cols="80">{{ $seo->google_analytics }}</textarea>
                             @error('google_analytics')

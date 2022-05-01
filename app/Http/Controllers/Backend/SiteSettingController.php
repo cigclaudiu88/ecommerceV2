@@ -90,4 +90,25 @@ class SiteSettingController extends Controller
         // returnam view-ul seo_update.blade.php si trimitem ca parametru $seo
         return view('backend.setting.seo_update', compact('seo'));
     }
+    // functia de actualizare date SEO pe site
+    public function SeoSettingUpdate(Request $request)
+    {
+        // Seo_id preia id-ul din campul ascuns din formularul de actualizare
+        $seo_id = $request->id;
+        // actualizam datele in tabela s_e_o_s pentru inregistrarea cu id-ul $seo_id
+        Seo::findOrFail($seo_id)->update([
+            'meta_title' => $request->meta_title,
+            'meta_author' => $request->meta_author,
+            'meta_keyword' => $request->meta_keyword,
+            'meta_description' => $request->meta_description,
+            'google_analytics' => $request->google_analytics,
+        ]);
+        // notificare
+        $notification = array(
+            'message' => 'Datele SEO au fost actualizate cu succes!',
+            'alert-type' => 'info'
+        );
+        // redirectionare cu notificare
+        return redirect()->back()->with($notification);
+    }
 }
