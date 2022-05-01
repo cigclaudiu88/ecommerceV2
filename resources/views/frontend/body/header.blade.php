@@ -95,8 +95,11 @@
                     <div class="row align-items-center">
                         <div class="col-lg-2 col-md-3 col-sm-3 col-3">
                             <div class="logo">
-                                <a href="{{ url('/') }}"><img src="{{ asset('frontend/img/logo/logo.png') }}"
-                                        alt=""></a>
+                                @php
+                                    $setting = App\Models\SiteSetting::find(1);
+                                @endphp
+
+                                <a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt=""></a>
                             </div>
                         </div>
                         <div class="col-lg-7 col-md-6 col-sm-7 col-8">

@@ -32,7 +32,7 @@ class SiteSettingController extends Controller
             // $name_gen primeste un nume generat random pentru imaginea din campul logo din formularul de actualizare
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             // salvam imaginea in folderul public/images/logo la o anumita rezolutie
-            Image::make($image)->resize(152, 159)->save('upload/logo/' . $name_gen);
+            Image::make($image)->resize(80, 80)->save('upload/logo/' . $name_gen);
             // $save_url primeste adresa de salvare a imaginii din campul logo din formularul de actualizare
             $save_url = 'upload/logo/' . $name_gen;
 

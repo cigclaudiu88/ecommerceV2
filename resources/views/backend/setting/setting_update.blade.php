@@ -85,7 +85,7 @@
                             @error('logo')
                                 <span class="text-danger"><strong>{{ $message }}</strong></span>
                             @enderror
-                            <img src="{{ asset($setting->logo) }}" alt="" id="showImage" width="200px" height="100px">
+                            <img src="{{ asset($setting->logo) }}" alt="" id="showImage">
                         </div>
 
 
@@ -148,7 +148,7 @@
             if (input.files && input.files[0]) {
                 var reader = new FileReader();
                 reader.onload = function(e) {
-                    $('#mainThumbnail').attr('src', e.target.result).width(152).height(159);
+                    $('#mainThumbnail').attr('src', e.target.result).width(139).height(139);
                 };
                 reader.readAsDataURL(input.files[0]);
             }

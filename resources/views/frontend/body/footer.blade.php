@@ -1,18 +1,24 @@
 <!--footer area start-->
 <footer class="footer_widgets">
+
     <div class="footer_top">
         <div class="container">
             <div class="row">
                 <div class="col-lg-4 col-md-12 col-sm-7">
                     <div class="widgets_container contact_us">
+                        @php
+                            $setting = App\Models\SiteSetting::find(1);
+                        @endphp
+
+                        <p class="footer_desc">eShop este o echipa dedicata comertului online.</p>
+                        <p><strong>{{ $setting->company_name }}</strong></p>
+                        <p><span>Adresa:</span> {{ $setting->company_address }}</p>
+                        <p><span>Email:</span> <a>{{ $setting->email }}</a></p>
+                        <p><span>Telefoane:</span> <br> {{ $setting->phone_one }} <br> {{ $setting->phone_two }}
+                        </p>
                         <div class="footer_logo">
-                            <a href="index.html"><img src="assets/img/logo/logo.png" alt=""></a>
+                            {{-- <a href="index.html"><img src="{{ asset($setting->logo) }}" alt=""></a> --}}
                         </div>
-                        <p class="footer_desc">We are a team of designers and developers that create high quality
-                            eCommerce, WordPress, Shopify .</p>
-                        <p><span>Address:</span> 4710-4890 Breckinridge USA</p>
-                        <p><span>Email:</span> <a href="#">demo@hasthemes.com</a></p>
-                        <p><span>Call us:</span> <a href="tel:(08)23456789">(08) 23 456 789</a> </p>
                     </div>
                 </div>
                 <div class="col-lg-2 col-md-3 col-sm-5">
@@ -73,8 +79,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-7">
                     <div class="copyright_area">
-                        <p>Copyright © 2021 <a href="#">Safira</a> . All Rights Reserved.Design by <a
-                                href="#">Safira</a></p>
+                        <p>Copyright © 2022 <a href="#">eShop UPT</a></p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
