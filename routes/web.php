@@ -15,6 +15,7 @@ use App\Http\Controllers\Backend\BrandController;
 use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
+use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\CartPageController;
@@ -435,3 +436,10 @@ Route::get('/blog', [HomeBlogController::class, 'AddBlogPost'])->name('home.blog
 Route::get('/post/details/{id}', [HomeBlogController::class, 'DetailsBlogPost'])->name('post.details');
 // ruta filtrare postari blog dupa categorie - frontend
 Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'HomeBlogCatPost']);
+
+
+// Admin rute pentru sectiunea setari site
+Route::prefix('setting')->group(function () {
+
+    Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');
+});

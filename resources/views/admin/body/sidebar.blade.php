@@ -157,6 +157,17 @@ $route = Route::current()->getName();
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}
 
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="has-sub-menu {{ $prefix == '/setting' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
+                    <span>Setari Site</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="{{ $route == 'site.setting' ? 'active' : '' }}"><a
+                            href="{{ route('site.setting') }}"><span>Setari</span></a></li>
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
+
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
                         Elements</span></a>
                 <ul class="side-header-sub-menu">
