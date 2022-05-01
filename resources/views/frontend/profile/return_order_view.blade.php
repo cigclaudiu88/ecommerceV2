@@ -29,6 +29,7 @@
                                             <th>Numar Comanda</th>
                                             <th>Status</th>
                                             <th>Total</th>
+                                            <th>Motiv Retur</th>
                                             {{-- <th>Actiuni</th> --}}
                                         </tr>
                                     </thead>
@@ -58,6 +59,7 @@
                                                     @endif
                                                 </td>
                                                 <td style="text-align: right">{{ $order->amount }} RON</td>
+                                                <td style="text-align: left">{{ $order->return_reason }}</td>
                                                 {{-- <td><a href="{{ url('user/order_details/' . $order->id) }}"
                                                         class="view"><i
                                                             class="fa-solid fa-magnifying-glass"></i></a><span

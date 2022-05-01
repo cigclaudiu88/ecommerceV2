@@ -16,6 +16,7 @@ use App\Http\Controllers\Backend\OrderController;
 use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\SiteSettingController;
+use App\Http\Controllers\Backend\ReturnController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\CartPageController;
@@ -448,4 +449,11 @@ Route::prefix('setting')->group(function () {
     Route::get('/seo', [SiteSettingController::class, 'SeoSetting'])->name('seo.setting');
     // functia de actualizare SEO in admin dashboard
     Route::post('/seo/update', [SiteSettingController::class, 'SeoSettingUpdate'])->name('update.seo.setting');
+});
+
+
+// Admin rute retur comenzi
+Route::prefix('return')->group(function () {
+    // ruta de vizualizare retururi in admin dashboard
+    Route::get('/admin/request', [ReturnController::class, 'ReturnRequest'])->name('return.request');
 });
