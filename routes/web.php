@@ -440,6 +440,8 @@ Route::get('/blog/category/post/{category_id}', [HomeBlogController::class, 'Hom
 
 // Admin rute pentru sectiunea setari site
 Route::prefix('setting')->group(function () {
-
+    // ruta de directionare spre pagina de actualizare date companie site
     Route::get('/site', [SiteSettingController::class, 'SiteSetting'])->name('site.setting');
+    // functia de actualizare date companie site
+    Route::post('/site/update', [SiteSettingController::class, 'SiteSettingUpdate'])->name('update.site.setting');
 });
