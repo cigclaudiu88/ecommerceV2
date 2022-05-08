@@ -54,7 +54,7 @@
 
             <div class="col-lg-6 col-md-6">
                 <div class="product_d_right">
-                    <form action="#">
+                    <form action="">
                         {{-- adaugat id="pname" pentru AddToCart() --}}
                         <h1 id="pname"><a href="#">{{ $product->product_name }}</a></h1>
                         {{-- <div class="product_nav">
@@ -66,13 +66,70 @@
                             </ul>
                         </div> --}}
                         <div class=" product_ratting">
+                            @php
+                                // $avg_rating preia din tabelul reviews valorile medii din coloana rating
+                                // pentru produsul curent rotunjit la 0 zecimale
+                                $avg_rating = round(
+                                    App\Models\Review::where('product_id', $product->id)
+                                        ->where('status', 1)
+                                        ->avg('rating'),
+                                    0,
+                                );
+                                
+                            @endphp
                             <ul>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li><a href="#"><i class="icon-star"></i></a></li>
-                                <li class="review"><a href="#"> (customer review ) </a></li>
+                                @if ($avg_rating == null)
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                @elseif($avg_rating == 1)
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                @elseif($avg_rating == 2)
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                @elseif($avg_rating == 3)
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                @elseif($avg_rating == 4)
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="icon-star"></i></a></li>
+                                @elseif($avg_rating == 5)
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                    </li>
+                                @endif
                             </ul>
 
                         </div>
@@ -162,8 +219,18 @@
                                     aria-selected="false">Specificatii</a>
                             </li>
                             <li>
+                                @php
+                                    // $reviews preiau toate recenziile din tabelul reviews care au product_id = id-ul produsului curent
+                                    // si status = 1 adica aprobate de admin
+                                    $reviews = App\Models\Review::where('product_id', $product->id)
+                                        ->where('status', 1)
+                                        ->latest()
+                                        ->limit(5)
+                                        ->get();
+                                @endphp
+
                                 <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                    aria-selected="false">Recenzii (1)</a>
+                                    aria-selected="false">Recenzii ({{ count($reviews) }})</a>
                             </li>
                         </ul>
                     </div>
@@ -179,30 +246,93 @@
                         </div>
 
                         {{-- sectiunea de recenzii din detalii produse --}}
+
+
+
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
                             <div class="reviews_wrapper">
-                                <h2>1 review for Donec eu furniture</h2>
-                                <div class="reviews_comment_box">
-                                    <div class="comment_thmb">
-                                        <img src="{{ asset('frontend/img/blog/comment2.jpg') }}" alt="">
-                                    </div>
-                                    <div class="comment_text">
-                                        <div class="reviews_meta">
-                                            <div class="star_rating">
-                                                <ul>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                                </ul>
+                                {{-- <h2>1 review for Donec eu furniture</h2> --}}
+                                @foreach ($reviews as $item)
+                                    {{-- daca statusul recenziei este 0 nu se afiseaza (nu e aprobat de admin) --}}
+                                    @if ($item->status == 0)
+                                        {{-- daca statusul nu este 0 afisam recenziile (recenzie aprobata de admin) --}}
+                                    @else
+                                        <div class="reviews_comment_box">
+                                            <div class="comment_thmb">
+                                                <img src="
+                                                    {{ !empty($item->user->profile_photo_path) ? url('upload/user_images/' . $item->user->profile_photo_path) : url('upload/default_profile.png') }}"
+                                                    width="40px;" height="40px;" alt="">
                                             </div>
-                                            <p><strong>admin </strong>- September 12, 2018</p>
-                                            <span>roadthemes</span>
-                                        </div>
-                                    </div>
+                                            <div class="comment_text">
+                                                <div class="reviews_meta">
+                                                    <div class="star_rating">
+                                                        <ul>
+                                                            @if ($item->rating == null)
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            @elseif($item->rating == 1)
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            @elseif($item->rating == 2)
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            @elseif($item->rating == 3)
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            @elseif($item->rating == 4)
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="icon-star"></i></a></li>
+                                                            @elseif($item->rating == 5)
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                                <li><a href="#"><i class="fa-solid fa-star"></i></a>
+                                                                </li>
+                                                            @endif
+                                                        </ul>
+                                                    </div>
+                                                    <span><strong>{{ $item->user->name }}
+                                                        </strong>-
+                                                        {{ Carbon\Carbon::parse($item->created_at)->diffForHumans() }}</strong></span>
 
-                                </div>
+                                                    <h4>{{ $item->summary }}</h4>
+                                                    <span>{{ $item->comment }}</span>
+                                                </div>
+                                            </div>
+
+                                        </div>
+                                    @endif
+                                @endforeach
                                 {{-- sectiunea de adauga recenzie este vizibila doar pentru utlizatorii autentificati --}}
                                 @guest
                                     {{-- mesaj pentru utilizatorii neautentificati --}}
@@ -222,24 +352,23 @@
                                             @csrf
                                             <div class="row">
                                                 <div class="product_ratting mb-10">
-                                                    {{-- <h3>Your rating</h3> --}}
+                                                    <h3>Adauga rating produs</h3>
                                                     <div class="rate">
                                                         <input type="radio" id="star5" name="rating" value="5" />
-                                                        <label for="star5" title="text">5 stars</label>
+                                                        <label for="star5">5 stars</label>
                                                         <input type="radio" id="star4" name="rating" value="4" />
-                                                        <label for="star4" title="text">4 stars</label>
+                                                        <label for="star4">4 stars</label>
                                                         <input type="radio" id="star3" name="rating" value="3" />
-                                                        <label for="star3" title="text">3 stars</label>
+                                                        <label for="star3">3 stars</label>
                                                         <input type="radio" id="star2" name="rating" value="2" />
-                                                        <label for="star2" title="text">2 stars</label>
+                                                        <label for="star2">2 stars</label>
                                                         <input type="radio" id="star1" name="rating" value="1" />
-                                                        <label for="star1" title="text">1 star</label>
-                                                        @error('rating')
-                                                            <span
-                                                                class="text-danger"><strong>{{ $message }}</strong></span>
-                                                        @enderror
+                                                        <label for="star1">1 star</label>
                                                     </div>
                                                 </div>
+                                                @error('rating')
+                                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                                @enderror
 
                                                 <input type="hidden" name="product_id" value="{{ $product->id }}">
 
@@ -480,7 +609,9 @@
 
     .rate:not(:checked)>input {
         position: absolute;
-        top: -9999px;
+        /* top: -9999px; */
+        /* stops from scrolling to top of page */
+        clip: rect(0, 0, 0, 0);
     }
 
     .rate:not(:checked)>label {
@@ -498,12 +629,12 @@
     }
 
     .rate>input:checked~label {
-        color: #ffc700;
+        color: #1aa726;
     }
 
     .rate:not(:checked)>label:hover,
     .rate:not(:checked)>label:hover~label {
-        color: #deb217;
+        color: #1aa726;
     }
 
     .rate>input:checked+label:hover,
@@ -511,7 +642,7 @@
     .rate>input:checked~label:hover,
     .rate>input:checked~label:hover~label,
     .rate>label:hover~input:checked~label {
-        color: #c59b08;
+        color: #1aa726;
     }
 
     /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */

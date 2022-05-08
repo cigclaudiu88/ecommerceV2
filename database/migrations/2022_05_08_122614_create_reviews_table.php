@@ -28,8 +28,9 @@ class CreateReviewsTable extends Migration
             $table->foreign('user_id')
                 ->references('id')->on('users')
                 ->onDelete('cascade');
+            // statusul recenziei 0 = in asteptare, 1 = aprobata, 2 = respinsa
             $table->string('status')->default(0);
-            $table->integer('rating')->default(0);
+            $table->integer('rating');
             $table->timestamps();
         });
     }

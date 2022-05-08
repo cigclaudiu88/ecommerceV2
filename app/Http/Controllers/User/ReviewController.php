@@ -22,11 +22,13 @@ class ReviewController extends Controller
             [
                 'summary' => 'required',
                 'comment' => 'required',
+                'rating' => 'required',
             ],
             // mesaje pentru validare recenzii
             [
                 'summary.required' => 'Titlul recenziei este necesar',
                 'comment.required' => 'Cuprinsul recenziei este necesar',
+                'rating.required' => 'Ratingul recenziei este necesar',
             ]
         );
         // inseram review-ul in tabelul reviews
