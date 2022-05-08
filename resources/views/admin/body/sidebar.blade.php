@@ -190,8 +190,8 @@ $route = Route::current()->getName();
                 <ul class="side-header-sub-menu">
                     <li class="{{ $route == 'pending.review' ? 'active' : '' }}"><a
                             href="{{ route('pending.review') }}"><span>Recenzii in asteptare</span></a></li>
-                    <li class="{{ $route == 'all.request' ? 'active' : '' }}"><a
-                            href="{{ route('all.request') }}"><span>Recenzii aprobate</span></a></li>
+                    <li class="{{ $route == 'publish.review' ? 'active' : '' }}"><a
+                            href="{{ route('publish.review') }}"><span>Recenzii publicate</span></a></li>
                 </ul>
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}

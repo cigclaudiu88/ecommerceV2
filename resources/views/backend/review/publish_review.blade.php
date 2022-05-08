@@ -6,7 +6,7 @@
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Recenzii in asteptare</h3>
+                    <h3 class="title">Lista Recenzii Publicate</h3>
                 </div>
                 <div class="box-body">
 
@@ -27,13 +27,13 @@
                                 <tr>
                                     <td>{{ $item->summary }}</td>
                                     <td>{{ Str::limit($item->comment, 50) }}</td>
-                                    <td>{{ $item->user?->name }}</td>
-                                    <td>{{ Str::limit($item->product?->product_name, 50) }}</td>
+                                    <td>{{ $item->user->name }}</td>
+                                    <td>{{ Str::limit($item->product->product_name, 50) }}</td>
                                     <td class="text-center">
                                         @if ($item->status == 0)
                                             <h4> <span class="badge badge-pill badge-warning">In asteptare</span></h4>
-                                        @elseif($item->return_order == 1)
-                                            <h4> <span class="badge badge-pill badge-success">Publicat</span></h4>
+                                        @elseif($item->status == 1)
+                                            <h4> <span class="badge badge-pill badge-info">Publicat</span></h4>
                                         @endif
                                         {{-- <h4><span class="badge badge-pill badge-primary">{{ $item->status }}</span></h4> --}}
                                     </td>
@@ -42,8 +42,6 @@
                                         <a href="{{ route('pending.review.details', $item->id) }}"
                                             class="btn btn-primary"><i class="fa-solid fa-magnifying-glass"></i>
                                             Vizualizare</a>
-                                        <a href="{{ route('review.approve', $item->id) }}" class="btn btn-success">Aproba
-                                            Recenzie </a>
                                         <a href="{{ route('delete.review', $item->id) }}" class="btn btn-danger"
                                             id="delete"> Sterge
                                         </a>

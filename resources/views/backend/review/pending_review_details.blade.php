@@ -12,12 +12,12 @@
                     <div class=row>
                         <div class="col-6 mb-20">
                             <label for="comment"><strong>Utilizator</strong></label>
-                            <p>{{ $pending_review->user->name }}</p>
+                            <p>{{ $pending_review->user?->name }}</p>
                         </div>
 
                         <div class="col-6 mb-20">
                             <label for="comment"><strong>Produs</strong></label>
-                            <p>{{ $pending_review->product->product_name }}</p>
+                            <p>{{ $pending_review->product?->product_name }}</p>
                         </div>
                     </div>
 
@@ -35,7 +35,10 @@
 
                     <a href="{{ route('review.approve', $pending_review->id) }}" class="btn btn-success">Aproba
                         Recenzie </a>
-                    <a href="{{ url('/admin/dashboard') }}" class="btn btn-danger">Cancel</a>
+                    <a href="{{ route('delete.review', $pending_review->id) }}" class="btn btn-danger" id="delete">
+                        Sterge
+                    </a>
+                    <a href="{{ url('/admin/dashboard') }}" class="btn btn-default">Cancel</a>
 
                 </div>
             </div>

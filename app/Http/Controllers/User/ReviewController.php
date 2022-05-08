@@ -53,7 +53,7 @@ class ReviewController extends Controller
     // functia de vizualizare a recenziilor in asteptare
     public function PendingReview()
     {
-        // $reviewpreia din tabelul reviews toate recenzile in asteptare cu status 0 
+        // $review preia din tabelul reviews toate recenzile in asteptare cu status 0 
         $review = Review::where('status', 0)->orderBy('id', 'DESC')->get();
         // returneaza pagina de recenzii in asteptare cu datele din $review
         return view('backend.review.pending_review', compact('review'));
@@ -78,5 +78,27 @@ class ReviewController extends Controller
         );
         // returneaza pagina de recenzii in asteptare cu mesajul de notificare
         return redirect()->route('pending.review')->with($notification);
+    }
+    // functia de vizualizare a recenziilor aprobate
+    public function PublishReview()
+    {
+        // $review preia din tabelul reviews toate recenzile aprobate cu status 1
+        $review = Review::where('status', 1)->orderBy('id', 'DESC')->get();
+        // returneaza pagina de recenzii aprobate cu datele din $review
+        return view('backend.review.publish_review', compact('review'));
+    }
+
+    // functia de stergere recenzie
+    public function DeleteReview($id)
+    {
+        // stergem recenzia cu id-ul $id din tabelul reviews
+        Review::findOrFail($id)->delete();
+        // mesaj de notificare pentru stergere recenzie
+        $notification = array(
+            'message' => 'Recenzia a fost stearsa!',
+            'alert-type' => 'success'
+        );
+        // returneaza pagina de recenzii aprobate cu mesajul de notificare
+        return redirect()->back()->with($notification);
     }
 }

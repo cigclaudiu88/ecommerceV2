@@ -480,4 +480,8 @@ Route::prefix('review')->group(function () {
     Route::get('/admin/approve/{id}', [ReviewController::class, 'ReviewApprove'])->name('review.approve');
     // ruta de vizualizare toate recenziile
     Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all.request');
+    // ruta de vizualizare recenzii  publicate in admin dashboard
+    Route::get('/publish', [ReviewController::class, 'PublishReview'])->name('publish.review');
+    // ruta de stergere recenzii in admin dashboard
+    Route::get('/delete/{id}', [ReviewController::class, 'DeleteReview'])->name('delete.review');
 });
