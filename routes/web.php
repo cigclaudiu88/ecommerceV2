@@ -470,3 +470,14 @@ Route::prefix('return')->group(function () {
 // Rute Recenzii User - Frontend
 // ruta pentru salvare recenzii user in tabelul reviews
 Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');
+// Rute Recenzii - Admin Dashboard 
+Route::prefix('review')->group(function () {
+    // ruta de vizualizare recenzii in asteptare in admin dashboard
+    Route::get('/pending', [ReviewController::class, 'PendingReview'])->name('pending.review');
+    // ruta de vizualizare detalii recenzii in admin dashboard
+    Route::get('/pending/details/{id}', [ReviewController::class, 'PendingReviewDetails'])->name('pending.review.details');
+    // ruta de aprobare recenzii in admin dashboard
+    Route::get('/admin/approve/{id}', [ReviewController::class, 'ReviewApprove'])->name('review.approve');
+    // ruta de vizualizare toate recenziile
+    Route::get('/admin/all/request', [ReturnController::class, 'ReturnAllRequest'])->name('all.request');
+});

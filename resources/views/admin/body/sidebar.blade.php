@@ -183,6 +183,18 @@ $route = Route::current()->getName();
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}
 
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="has-sub-menu {{ $prefix == '/review' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
+                    <span>Recenzii</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="{{ $route == 'pending.review' ? 'active' : '' }}"><a
+                            href="{{ route('pending.review') }}"><span>Recenzii in asteptare</span></a></li>
+                    <li class="{{ $route == 'all.request' ? 'active' : '' }}"><a
+                            href="{{ route('all.request') }}"><span>Recenzii aprobate</span></a></li>
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
 
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
                         Elements</span></a>
