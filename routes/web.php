@@ -466,3 +466,7 @@ Route::prefix('return')->group(function () {
     // ruta pentru aprobare retur comanda in admin dashboard
     Route::get('/admin/return/item/finalized/{order_item_id}', [ReturnController::class, 'ReturnItemFinalized'])->name('return.item.finalized');
 });
+
+// Rute Recenzii User - Frontend
+// ruta pentru salvare recenzii user in tabelul reviews
+Route::post('/review/store', [ReviewController::class, 'ReviewStore'])->name('review.store');

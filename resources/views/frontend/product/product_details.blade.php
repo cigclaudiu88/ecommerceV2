@@ -159,7 +159,7 @@
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
-                                    aria-selected="false">Spceficicatii</a>
+                                    aria-selected="false">Specificatii</a>
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
@@ -213,39 +213,55 @@
                                     </div>
                                 @else
                                     {{-- utilizatorii autentificati au acess la formularul pentru adaugare recenzii --}}
-                                    <div class="comment_title">
+                                    {{-- <div class="comment_title">
                                         <h2>Adauga recenzie </h2>
                                         <p>Your email address will not be published. Required fields are marked </p>
-                                    </div>
-                                    <div class="product_ratting mb-10">
-                                        <h3>Your rating</h3>
-                                        <ul>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                            <li><a href="#"><i class="icon-star"></i></a></li>
-                                        </ul>
-                                    </div>
-
+                                    </div> --}}
                                     <div class="product_review_form">
-                                        <form action="#">
+                                        <form role="form" method="post" action="{{ route('review.store') }}">
+                                            @csrf
                                             <div class="row">
-                                                <div class="col-12">
-                                                    <label for="review_comment">Your review </label>
-                                                    <textarea name="comment" id="review_comment"></textarea>
+                                                <div class="product_ratting mb-10">
+                                                    {{-- <h3>Your rating</h3> --}}
+                                                    <div class="rate">
+                                                        <input type="radio" id="star5" name="rating" value="5" />
+                                                        <label for="star5" title="text">5 stars</label>
+                                                        <input type="radio" id="star4" name="rating" value="4" />
+                                                        <label for="star4" title="text">4 stars</label>
+                                                        <input type="radio" id="star3" name="rating" value="3" />
+                                                        <label for="star3" title="text">3 stars</label>
+                                                        <input type="radio" id="star2" name="rating" value="2" />
+                                                        <label for="star2" title="text">2 stars</label>
+                                                        <input type="radio" id="star1" name="rating" value="1" />
+                                                        <label for="star1" title="text">1 star</label>
+                                                        @error('rating')
+                                                            <span
+                                                                class="text-danger"><strong>{{ $message }}</strong></span>
+                                                        @enderror
+                                                    </div>
                                                 </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="author">Name</label>
-                                                    <input id="author" type="text">
 
+                                                <input type="hidden" name="product_id" value="{{ $product->id }}">
+
+                                                <div class="col-12">
+                                                    <label for="summary">Titlu </label>
+                                                    <input type="text" name="summary">
+                                                    @error('summary')
+                                                        <span
+                                                            class="text-danger"><strong>{{ $message }}</strong></span>
+                                                    @enderror
                                                 </div>
-                                                <div class="col-lg-6 col-md-6">
-                                                    <label for="email">Email </label>
-                                                    <input id="email" type="text">
+                                                <div class="col-12">
+                                                    <label for="comment">Cuprins Recenzie </label>
+                                                    <textarea name="comment"></textarea>
+                                                    @error('comment')
+                                                        <span
+                                                            class="text-danger"><strong>{{ $message }}</strong></span>
+                                                    @enderror
                                                 </div>
+
                                             </div>
-                                            <button type="submit">Submit</button>
+                                            <button type="submit">Trimite</button>
                                         </form>
                                     </div>
                                 @endguest
@@ -449,6 +465,56 @@
         display: block;
         /* remove extra space below image */
     }
+
+    /*
+    * {
+        margin: 0;
+        padding: 0;
+    } */
+
+    .rate {
+        float: left;
+        height: 25px;
+        padding: 0 10px;
+    }
+
+    .rate:not(:checked)>input {
+        position: absolute;
+        top: -9999px;
+    }
+
+    .rate:not(:checked)>label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+    }
+
+    .rate:not(:checked)>label:before {
+        content: '★ ';
+    }
+
+    .rate>input:checked~label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked)>label:hover,
+    .rate:not(:checked)>label:hover~label {
+        color: #deb217;
+    }
+
+    .rate>input:checked+label:hover,
+    .rate>input:checked+label:hover~label,
+    .rate>input:checked~label:hover,
+    .rate>input:checked~label:hover~label,
+    .rate>label:hover~input:checked~label {
+        color: #c59b08;
+    }
+
+    /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
 
 </style>
 @endsection

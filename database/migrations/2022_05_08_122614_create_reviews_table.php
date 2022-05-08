@@ -18,7 +18,7 @@ class CreateReviewsTable extends Migration
             $table->id();
             $table->unSignedBigInteger('product_id')->unsigned();
             $table->unSignedBigInteger('user_id')->unsigned();
-            $table->string('comment');
+            $table->text('comment');
             $table->string('summary');
             // la stergerea produsului se sterge si review-ul aferente
             $table->foreign('product_id')
