@@ -22,6 +22,7 @@ use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\CartPageController;
 use App\Http\Controllers\User\CheckoutController;
 use App\Http\Controllers\User\AllUserController;
+use App\Http\Controllers\User\ReviewController;
 // 1. Frontend Template Setup Part 2
 // 3. User Profile Design Part 3
 use App\Http\Controllers\User\WishlistController;

@@ -155,15 +155,15 @@
                         <ul class="nav" role="tablist" id="nav-tab">
                             <li>
                                 <a class="active" data-toggle="tab" href="#info" role="tab" aria-controls="info"
-                                    aria-selected="false">Description</a>
+                                    aria-selected="false">Descriere</a>
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#sheet" role="tab" aria-controls="sheet"
-                                    aria-selected="false">Specification</a>
+                                    aria-selected="false">Spceficicatii</a>
                             </li>
                             <li>
                                 <a data-toggle="tab" href="#reviews" role="tab" aria-controls="reviews"
-                                    aria-selected="false">Reviews (1)</a>
+                                    aria-selected="false">Recenzii (1)</a>
                             </li>
                         </ul>
                     </div>
@@ -178,6 +178,7 @@
                             <p>{!! $product->specifications !!}</p>
                         </div>
 
+                        {{-- sectiunea de recenzii din detalii produse --}}
                         <div class="tab-pane fade" id="reviews" role="tabpanel">
                             <div class="reviews_wrapper">
                                 <h2>1 review for Donec eu furniture</h2>
@@ -202,42 +203,55 @@
                                     </div>
 
                                 </div>
-                                <div class="comment_title">
-                                    <h2>Add a review </h2>
-                                    <p>Your email address will not be published. Required fields are marked </p>
-                                </div>
-                                <div class="product_ratting mb-10">
-                                    <h3>Your rating</h3>
-                                    <ul>
-                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                        <li><a href="#"><i class="icon-star"></i></a></li>
-                                    </ul>
-                                </div>
-                                <div class="product_review_form">
-                                    <form action="#">
-                                        <div class="row">
-                                            <div class="col-12">
-                                                <label for="review_comment">Your review </label>
-                                                <textarea name="comment" id="review_comment"></textarea>
-                                            </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <label for="author">Name</label>
-                                                <input id="author" type="text">
+                                {{-- sectiunea de adauga recenzie este vizibila doar pentru utlizatorii autentificati --}}
+                                @guest
+                                    {{-- mesaj pentru utilizatorii neautentificati --}}
+                                    <div class="comment_title">
+                                        <h2>Adauga recenzie </h2>
+                                        <p>Pentru a adauga recenzii trebuie sa va <a href="{{ route('login') }}">
+                                                <strong class="text-success">autentificati! </strong></a> </p>
+                                    </div>
+                                @else
+                                    {{-- utilizatorii autentificati au acess la formularul pentru adaugare recenzii --}}
+                                    <div class="comment_title">
+                                        <h2>Adauga recenzie </h2>
+                                        <p>Your email address will not be published. Required fields are marked </p>
+                                    </div>
+                                    <div class="product_ratting mb-10">
+                                        <h3>Your rating</h3>
+                                        <ul>
+                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                            <li><a href="#"><i class="icon-star"></i></a></li>
+                                        </ul>
+                                    </div>
 
+                                    <div class="product_review_form">
+                                        <form action="#">
+                                            <div class="row">
+                                                <div class="col-12">
+                                                    <label for="review_comment">Your review </label>
+                                                    <textarea name="comment" id="review_comment"></textarea>
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <label for="author">Name</label>
+                                                    <input id="author" type="text">
+
+                                                </div>
+                                                <div class="col-lg-6 col-md-6">
+                                                    <label for="email">Email </label>
+                                                    <input id="email" type="text">
+                                                </div>
                                             </div>
-                                            <div class="col-lg-6 col-md-6">
-                                                <label for="email">Email </label>
-                                                <input id="email" type="text">
-                                            </div>
-                                        </div>
-                                        <button type="submit">Submit</button>
-                                    </form>
-                                </div>
+                                            <button type="submit">Submit</button>
+                                        </form>
+                                    </div>
+                                @endguest
                             </div>
                         </div>
+
                     </div>
                 </div>
             </div>
