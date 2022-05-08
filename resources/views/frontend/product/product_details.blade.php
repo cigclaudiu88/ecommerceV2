@@ -180,7 +180,10 @@
                         </div>
 
                     </form>
-                    <div class="priduct_social">
+
+                    <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                    <div class="addthis_inline_share_toolbox_wup6"></div>
+                    {{-- <div class="priduct_social">
                         <ul>
                             <li><a class="facebook" href="#" title="facebook"><i class="fa fa-facebook"></i>
                                     Like</a></li>
@@ -193,7 +196,7 @@
                             <li><a class="linkedin" href="#" title="linkedin"><i class="fa fa-linkedin"></i>
                                     linked</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
 
                 </div>
             </div>
@@ -201,6 +204,7 @@
     </div>
 </div>
 <!--product details end-->
+
 
 <!--product info start-->
 <div class="product_d_info mb-65">
@@ -648,4 +652,12 @@
     /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
 
 </style>
+
+{{-- script addthis.com pentru butoane de social media share --}}
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6278053b87584298"></script>
+
+
+
+
 @endsection

@@ -65,7 +65,10 @@
 
                             </figcaption>
                         </figure>
+                        <!-- Go to www.addthis.com/dashboard to customize your tools -->
+                        <div class="addthis_inline_share_toolbox_wup6"></div>
                     </article>
+
 
 
                     <div class="comments_box">
@@ -137,5 +140,7 @@
     </div>
 </div>
 <!--blog section area end-->
-
+{{-- script addthis.com pentru butoane de social media share --}}
+<!-- Go to www.addthis.com/dashboard to customize your tools -->
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6278053b87584298"></script>
 @endsection
