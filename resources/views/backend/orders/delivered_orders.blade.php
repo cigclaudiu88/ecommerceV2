@@ -44,8 +44,8 @@
                                             class="button button-primary"><i
                                                 class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="" class="button button-danger" id="delete"><i
-                                                class="fa-solid fa-trash-can"></i>Delete</a>
+                                        {{-- <a href="" class="button button-danger" id="delete"><i
+                                                class="fa-solid fa-trash-can"></i>Delete</a> --}}
                                     </td>
                                 </tr>
                             @endforeach

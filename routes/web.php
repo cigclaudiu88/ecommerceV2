@@ -386,6 +386,8 @@ Route::prefix('orders')->group(function () {
     Route::get('/shipped/delivered/canceled/{order_id}', [OrderController::class, 'DeliveredToCanceled'])->name('delivered.canceled');
     // ruta pentru descarcat factura PDF in admin dashboard din pagina comenzi confirmate
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
+
+    Route::post('/invoice/awb/{order_id}', [OrderController::class, 'AddAWB'])->name('add.awb.orders');
 });
 
 // Admin Rute pentru Rapoarte 

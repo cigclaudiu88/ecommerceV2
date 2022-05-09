@@ -143,6 +143,27 @@
                                                                     RON</a>
                                                             </th>
                                                         </tr>
+
+                                                        @if ($order->awb_code == null)
+                                                        @else
+                                                            <tr>
+                                                                <th class="product_name"><a href="#">Cod AWB</a>
+                                                                </th>
+                                                                <th class="product_name"><a
+                                                                        href="#">{{ $order->awb_code }}
+                                                                    </a>
+                                                                </th>
+                                                            <tr>
+                                                            <tr>
+                                                                <th class="product_name"><a href="#">Nume Courier</a>
+                                                                </th>
+                                                                <th class="product_name"><a
+                                                                        href="">{{ $order->courier_name }}
+                                                                    </a>
+                                                                </th>
+                                                            </tr>
+                                                        @endif
+
                                                         <tr>
                                                             <th class="product_name"><a href="#">Status Comanda</a>
                                                             </th>

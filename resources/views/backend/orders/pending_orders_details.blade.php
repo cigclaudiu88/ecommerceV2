@@ -20,15 +20,24 @@
         <!--Order Details Head Start-->
         <div class="col-12 mb-30">
             <div class="row mbn-15">
-                <div class="col-12 col-md-4 mb-15">
+                <div class="col-4 col-md-4 mb-15">
                     <h4>Numar Comanda: </h4>
                     <h4 class="text-primary fw-600 m-0">{{ $order->order_number }}</h4>
                 </div>
-                <div class="text-left text-md-center col-12 col-md-4 mb-15">
+                <div class="col-4 col-md-4 mb-15">
                     <h4>Status: <span><span class="badge badge-round badge-primary">
                                 {{ $order->status }}</span></span></h4>
                 </div>
 
+                @if ($order->status == 'Preluata de curier' && $order->awb_code == null)
+                @elseif($order->status == 'Preluata de curier' && $order->awb_code != null)
+                    <div class="col-4 col-md-4 mb-15">
+                        <h4>AWB : <span><span class="badge badge-round badge-primary">
+                                    {{ $order->awb_code }} </span></span></h4>
+                        <h4>Curier: <span><span class="badge badge-round badge-primary">
+                                    {{ $order->courier_name }}</span></span></h4>
+                    </div>
+                @endif
             </div>
         </div>
         <!--Order Details Head End-->
@@ -124,7 +133,7 @@
             @elseif($order->status == 'Procesata')
                 <a href="{{ route('processing.picked', $order->id) }}" class="btn btn-block btn-success"
                     id="picked">Preda Comanda Curierului</a>
-            @elseif($order->status == 'Preluata de curier')
+            @elseif($order->status == 'Preluata de curier' && $order->awb_code != null)
                 <a href="{{ route('picked.shipped', $order->id) }}" class="btn btn-block btn-success"
                     id="shipped">Expediaza Comanda</a>
             @elseif($order->status == 'In tranzit')
@@ -142,6 +151,63 @@
                     id="cancel_order"><strong>Anuleaza Comanda</strong></a>
             @endif
         </div>
+
+        @if ($order->status == 'Preluata de curier' && $order->awb_code == null)
+            <div class="col-lg-12 col-12 mb-30">
+                <div class="box">
+                    <div class="box-head">
+                        <h4 class="title">Date Expeditie Curier</h4>
+                    </div>
+                    <div class="box-body">
+                        <form method="post" action="{{ route('add.awb.orders', $order->id) }}">
+                            @csrf
+                            <div class="row mbn-20">
+
+                                <div class="col-3 mb-20">
+                                    <label for="formLayoutUsername3">Cod AWB</label>
+                                    <input type="text" id="formLayoutUsername3" class="form-control" name="awb_code"
+                                        placeholder="Adauga Codul AWB de la Curier">
+                                    @error('awb_code')
+                                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-3 mb-20">
+                                    <div class="row mbn-20">
+                                        <div class="col-lg-12 mb-20">
+                                            <label for="formLayoutState1">Nume Curier</label>
+                                            <select id="formLayoutState1" class="form-control" name="courier_name">
+                                                <option>Alege Firma de Courier</option>
+                                                <option value="Fan Courier">Fan Courier</option>
+                                                <option value="Cargus">Cargus</option>
+                                                <option value="SameDay">SameDay</option>
+                                            </select>
+                                            @error('courier_name')
+                                                <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                            @enderror
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-3 mb-20">
+                                    <label for="formLayoutUsername3">Data Ridicare Curier</label>
+                                    <input type="text" id="formLayoutUsername3" class="form-control" name="pickup_date"
+                                        value="{{ Carbon\Carbon::now()->format('d/m/Y H:i:s') }}">
+                                    @error('pickup_date')
+                                        <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+
+                                <div class="col-3 mt-25">
+                                    <input type="submit" value="Adauga AWB si Curier" class="button button-primary">
+                                </div>
+
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        @endif
 
         <!--Order Details List Start-->
         <div class="col-12 mb-30">
@@ -196,6 +262,7 @@
             </div>
         </div>
         <!--Order Details List End-->
+
 
     </div>
 

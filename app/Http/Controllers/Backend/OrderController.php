@@ -168,4 +168,42 @@ class OrderController extends Controller
         ]);
         return $pdf->download('factura.pdf');
     } // end method 
+
+    public function AddAWB(Request $request, $order_id)
+    {
+
+        // validari pentru adaugare courier si awb
+        $request->validate(
+            [
+                // awb_code este obligatoriu marime 10 caractere si unic in tabelul awb
+                'awb_code' => 'required|size:10|unique:orders',
+                // imaginea este necesara si trebuie sa fie de tipul jpeg, png gif sau svg
+                'courier_name' => 'required',
+                'pickup_date' => 'required',
+            ],
+            // mesaje speciale pentru fiecare tip de eraore
+            [
+                'awb_code.required' => 'AWB-ul este obligatoriu!',
+                'awb_code.size' => 'AWB-ul trebuie sa aibe 10 caractere!',
+                'awb_code.unique' => 'AWB-ul este deja folosit!',
+                'courier_name.required' => 'Numele curierului este obligatoriu!',
+                'pickup_date.required' => 'Data de preluare este obligatorie!',
+            ]
+        );
+
+        // dd($request->all());
+        // cautam in tabelul orders comanda cu id-ul = $order_id si actualizam awb_code, courier_name si pickup_date cu datele din formular
+        Order::findOrFail($order_id)->update([
+            'awb_code' => $request->awb_code,
+            'courier_name' => $request->courier_name,
+            'pickup_date' => $request->pickup_date,
+        ]);
+        // afisam mesajul de succes
+        $notification = array(
+            'message' => 'AWB-ul a fost adaugat cu succes!',
+            'alert-type' => 'success'
+        );
+        // redirectam utilizatorul catre pagina cu comenzile cu notificare
+        return redirect()->back()->with($notification);
+    }
 }
