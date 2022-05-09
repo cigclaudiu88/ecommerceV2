@@ -1,101 +1,194 @@
 @extends('admin.admin_master')
 @section('admin')
-    <!-- Content Body Start -->
+    @php
+    // format pentru data
+    $today_date = Carbon\Carbon::now()->format('d/m/Y');
+    // $today preia toate comenzile din ziua curenta si insumeaza valoarea totala a lor
+    $today = App\Models\Order::where('order_date', $today_date)->sum('amount');
+    // $month format pentru luna
+    $month_date = Carbon\Carbon::now()->format('F');
+    // $monthly preia toate comenzile din luna curenta si insumeaza valoarea totala a lor
+    $month = App\Models\Order::where('order_month', $month_date)->sum('amount');
+    $year_date = Carbon\Carbon::now()->format('Y');
+    // $year preia toate comenzile din anul curent si insumeaza valoarea totala a lor
+    $year = App\Models\Order::where('order_year', $year_date)->sum('amount');
+    // $pending preia toate comenzile in asteptare
+    $pending = App\Models\Order::where('status', 'In asteptare')->get();
+    $pending_value = App\Models\Order::where('status', 'In asteptare')->sum('amount');
+    @endphp
+
+
     <!-- Page Headings Start -->
     <div class="row justify-content-between align-items-center mb-10">
 
+
+
     </div><!-- Page Headings End -->
 
-    <div class="row mbn-30">
-        <!-- Recent Transaction Start -->
+    <!-- Top Report Wrap Start -->
+    <div class="row">
+        <!-- Top Report Start -->
+        <div class="col-xlg-3 col-md-6 col-12 mb-30">
+            <div class="top-report">
+
+                <!-- Head -->
+                <div class="head">
+                    <h4>Total Vanzari Ziua Curenta</h4>
+                    {{-- <a href="#" class="view"><i class="zmdi zmdi-eye"></i></a> --}}
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <h5>{{ $today_date }}</h5>
+                    <h2>{{ number_format($today, 2, '.', ',') }} RON</h2>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <div class="progess">
+                        <div class="progess-bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- Top Report End -->
+
+        <!-- Top Report Start -->
+        <div class="col-xlg-3 col-md-6 col-12 mb-30">
+            <div class="top-report">
+
+                <!-- Head -->
+                <div class="head">
+                    <h4>Total Vanzari Luna Curenta</h4>
+                    {{-- <a href="#" class="view"><i class="zmdi zmdi-eye"></i></a> --}}
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <h5>{{ $month_date }} {{ $year_date }}</h5>
+                    <h2>{{ number_format($month, 2, '.', ',') }} RON</h2>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <div class="progess">
+                        <div class="progess-bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- Top Report End -->
+
+        <!-- Top Report Start -->
+        <div class="col-xlg-3 col-md-6 col-12 mb-30">
+            <div class="top-report">
+
+                <!-- Head -->
+                <div class="head">
+                    <h4>Total Vanzari Anul Curent</h4>
+                    {{-- <a href="#" class="view"><i class="zmdi zmdi-eye"></i></a> --}}
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <h5>{{ $year_date }}</h5>
+                    <h2>{{ number_format($year, 2, '.', ',') }} RON</h2>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <div class="progess">
+                        <div class="progess-bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- Top Report End -->
+
+        <!-- Top Report Start -->
+        <div class="col-xlg-3 col-md-6 col-12 mb-30">
+            <div class="top-report">
+
+                <!-- Head -->
+                <div class="head">
+                    <h4>Total Comenzi In Asteptare</h4>
+                    {{-- <a href="#" class="view"><i class="zmdi zmdi-eye"></i></a> --}}
+                </div>
+
+                <!-- Content -->
+                <div class="content">
+                    <h5>Numar : {{ count($pending) }}</h5>
+                    <h2>{{ number_format($pending_value, 2, '.', ',') }} RON</h2>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    <div class="progess">
+                        <div class="progess-bar" style="width: 100%;"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div><!-- Top Report End -->
+
+        @php
+            $orders = App\Models\Order::where('status', 'In asteptare')
+                ->orderBy('id', 'DESC')
+                ->get();
+        @endphp
+
+        <!--Default Data Table Start-->
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h4 class="title">Recent Transaction</h4>
+                    <h3 class="title">Lista Comenzi in Asteptare</h3>
                 </div>
                 <div class="box-body">
-                    <div class="table-responsive">
-                        <table class="table table-vertical-middle table-selectable">
 
-                            <!-- Table Head Start -->
-                            <thead>
+                    <table class="table table-bordered data-table data-table-default">
+                        <thead>
+                            <tr>
+                                <th>Data Comanda</th>
+                                <th>Nume Client</th>
+                                <th>Telefon</th>
+                                <th>Numar Comanda</th>
+                                <th>Total Comanda</th>
+                                <th>Modalitate de Plata</th>
+                                <th>Status Comanda</th>
+                                <th>Actiuni</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {{-- iteram cu variabila $vouchers (VoucherView() din VoucherController) ca $item si afisam in tabel toate valorile din tabelul vouchers --}}
+                            @foreach ($orders as $item)
                                 <tr>
-                                    <th class="selector"><label class="adomx-checkbox"><input type="checkbox"> <i
-                                                class="icon"></i></label></th>
-                                    <!--<th class="selector h5"><button class="button-check"></button></th>-->
-                                    <th><span>Image</span></th>
-                                    <th><span>Product Name</span></th>
-                                    <th><span>ID</span></th>
-                                    <th><span>Quantity</span></th>
-                                    <th><span>Price</span></th>
-                                    <th><span>Status</span></th>
-                                    <th></th>
-                                </tr>
-                            </thead><!-- Table Head End -->
-
-                            <!-- Table Body Start -->
-                            <tbody>
-                                <tr>
-                                    <td class="selector"><label class="adomx-checkbox"><input type="checkbox"> <i
-                                                class="icon"></i></label></td>
-                                    <td><img src="{{ asset('backend/images/product/list-product-1.jpg') }}" alt=""
-                                            class="table-product-image rounded-circle"></td>
-                                    <td><a href="#">Microsoft surface pro 4</a></td>
-                                    <td>#MSP40022</td>
-                                    <td>05 - Products</td>
-                                    <td>$60000000.00</td>
-                                    <td><span class="badge badge-success">Paid</span></td>
-                                    <td><a class="h3" href="#"><i class="zmdi zmdi-more"></i></a>
+                                    <td class="col-md-1">{{ $item->order_date }}</td>
+                                    <td class="col-md-3">{{ $item->user->name }}</td>
+                                    <td class="col-md-1">{{ $item->shipping_phone }}</td>
+                                    <td class="col-md-1">{{ $item->order_number }}</td>
+                                    <td class="col-md-1">{{ number_format($item->amount, 2, '.', ',') }} RON</td>
+                                    <td class="col-md-1">{{ $item->payment_method }}</td>
+                                    <td class="text-center">
+                                        <h4><span class="badge badge-pill badge-warning">{{ $item->status }}</span></h4>
+                                    </td>
+                                    </td>
+                                    <td width="30%">
+                                        {{-- adaugat ruta de vizualizare comanda in asteptare --}}
+                                        <a href="{{ route('pending.order.details', $item->id) }}"
+                                            class="button button-primary"><i
+                                                class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
+                                        {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert
+                                        <a href="" class="button button-danger" id="delete"><i
+                                                class="fa-solid fa-trash-can"></i>Delete</a> --}}
                                     </td>
                                 </tr>
-                                <tr class="selected">
-                                    <td class="selector"><label class="adomx-checkbox"><input type="checkbox"> <i
-                                                class="icon"></i></label></td>
-                                    <td><img src="{{ asset('backend/images/product/list-product-2.jpg') }}" alt=""
-                                            class="table-product-image rounded-circle"></td>
-                                    <td><a href="#">Microsoft surface pro 4</a></td>
-                                    <td>#MSP40022</td>
-                                    <td>05 - Products</td>
-                                    <td>$60000000.00</td>
-                                    <td><span class="badge badge-success">Paid</span></td>
-                                    <td><a class="h3" href="#"><i class="zmdi zmdi-more"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="selector"><label class="adomx-checkbox"><input type="checkbox"> <i
-                                                class="icon"></i></label></td>
-                                    <td><img src="{{ asset('backend/images/product/list-product-3.jpg') }}" alt=""
-                                            class="table-product-image rounded-circle"></td>
-                                    <td><a href="#">Microsoft surface pro 4</a></td>
-                                    <td>#MSP40022</td>
-                                    <td>05 - Products</td>
-                                    <td>$60000000.00</td>
-                                    <td><span class="badge badge-warning">Due</span></td>
-                                    <td><a class="h3" href="#"><i class="zmdi zmdi-more"></i></a>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td class="selector"><label class="adomx-checkbox"><input type="checkbox">
-                                            <i class="icon"></i></label></td>
-                                    <td><img src="{{ asset('backend/images/product/list-product-4.jpg') }}" alt=""
-                                            class="table-product-image rounded-circle"></td>
-                                    <td><a href="#">Microsoft surface pro 4</a></td>
-                                    <td>#MSP40022</td>
-                                    <td>05 - Products</td>
-                                    <td>$60000000.00</td>
-                                    <td><span class="badge badge-danger">Reject</span></td>
-                                    <td><a class="h3" href="#"><i class="zmdi zmdi-more"></i></a>
-                                    </td>
-                                </tr>
-                            </tbody><!-- Table Body End -->
-
-                        </table>
-                    </div>
+                            @endforeach
+                        </tbody>
+                    </table>
                 </div>
             </div>
-        </div><!-- Recent Transaction End -->
+        </div>
+        <!--Default Data Table End-->
 
     </div>
-
-    <!-- Content Body End -->
 @endsection

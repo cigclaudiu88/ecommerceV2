@@ -32,17 +32,17 @@ class StripeController extends Controller
         } else {
             $voucher_name = null;
             $discount_amount = null;
-            $subtotal = Cart::pricetotal();
+            $subtotal = round(Cart::priceTotalFloat(), 2);
             $voucher_discount = Cart::setGlobalDiscount(0);
-            $tax = Cart::tax();
-            $total_amount = Cart::total();
+            $tax = round(Cart::taxFloat(), 2);
+            $total_amount = round(Cart::totalFloat(), 2);
         }
 
         \Stripe\Stripe::setApiKey('sk_test_51Ks1SYI2h4zccwc7VN6nWUxYHmjRd5Onpporbhdz9FUhXn5tdIIyGG9G6KDPDC7ieh3DIVWdVDrrOZTY2T5Drj0N002ERXChzi');
         // datele trimise spre portalul stripe legat de comanda
         $token = $_POST['stripeToken'];
         $charge = \Stripe\Charge::create([
-            // atentie ca valoarea adusa de cart::total() este string ex : 2,150.53 
+            // atentie ca valoarea adusa de cart::totalFloat() este string ex : 2,150.53 
             // trebuie scos ' ,' si inlocuita cu nimica si inmultia cu 100 pt a da valoarea corecta
             'amount' => floatval(str_replace(',', '', $total_amount) * 100),
             'currency' => 'ron',

@@ -352,7 +352,7 @@ $seo = App\Models\SEO::find(1);
                                                                 </div>
                                                                 <div class="cart_info">
                                                                     <a href="#">${value.name}</a>
-                                                                    <p> <span>  ${value.qty}*${value.price} RON </span></p>
+                                                                    <p> <span>  ${value.qty}*${value.price.toLocaleString()} RON </span></p>
                                                                 </div>
                                                                 <div class="cart_remove">
                                                                     <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="icon-x"></i></button>
@@ -696,17 +696,17 @@ $seo = App\Models\SEO::find(1);
                         $('#voucherCalField').html(
                             `<div class="cart_subtotal">
                                 <p>Subtotal</p>
-                                <p class="cart_amount">${data.subtotal} RON</p>
+                                <p class="cart_amount">${data.subtotal.toLocaleString()} RON</p>
                             </div>
 
                             <div class="cart_subtotal ">
                                 <p>TVA</p>
-                                <p class="cart_amount">${data.tax} RON</p>
+                                <p class="cart_amount">${data.tax.toLocaleString()} RON</p>
                             </div>
 
                             <div class="cart_subtotal">
                                 <p>Total</p>
-                                <p class="cart_amount">${data.total} RON</p>
+                                <p class="cart_amount">${data.total.toLocaleString()} RON</p>
                             </div>
 
                             <div class="checkout_btn">
@@ -719,22 +719,22 @@ $seo = App\Models\SEO::find(1);
                         $('#voucherCalField').html(
                             `<div class="cart_subtotal">
                                 <p>Subtotal</p>
-                                <p class="cart_amount">${data.subtotal} RON</p>
+                                <p class="cart_amount">${data.subtotal.toLocaleString()} RON</p>
                             </div>
 
                             <div class="cart_subtotal ">
                                 <p>Voucher: ${data.voucher_name}</p>
-                                <p class="cart_amount text-danger">-${data.discount_amount} RON</p>
+                                <p class="cart_amount text-danger">-${data.discount_amount.toLocaleString()} RON</p>
                             </div>
 
                             <div class="cart_subtotal ">
                                 <p>TVA</p>
-                                <p class="cart_amount">${data.tax} RON</p>
+                                <p class="cart_amount">${data.tax.toLocaleString()} RON</p>
                             </div>
 
                             <div class="cart_subtotal">
                                 <p>Total</p>
-                                <p class="cart_amount">${data.grandtotal} RON</p>
+                                <p class="cart_amount">${data.grandtotal.toLocaleString()} RON</p>
                             </div> 
 
                             <div class="checkout_btn">

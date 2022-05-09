@@ -80,14 +80,14 @@ class CartController extends Controller
         $cartQty = Cart::count();
         // $cartSubtotal preia pretul total al produselor din mini cosul de cumparaturi fara TVA
         if (Session::has('voucher')) {
-            $cartSubTotal = Cart::pricetotal();
+            $cartSubTotal = number_format(Cart::priceTotalFloat(), 2, '.', ',');
         } else {
-            $cartSubTotal = Cart::subtotal();
+            $cartSubTotal = number_format(Cart::subtotalFloat(), 2, '.', ',');
         }
         // $cartTax preia TVA-ul total al produselor din mini cosul de cumparaturi
-        $cartTax = Cart::tax();
+        $cartTax = number_format(Cart::taxFloat(), 2, '.', ',');
         // $cartTotal preia pretul total al produselor din mini cosul de cumparaturi cu tot cu tva
-        $cartTotal = Cart::total();
+        $cartTotal = number_format(Cart::totalFloat(), 2, '.', ',');
 
         // returnam toate datele in format json
         return response()->json(array(
@@ -152,15 +152,15 @@ class CartController extends Controller
             Session::put('voucher', [
                 'voucher_name' => $voucherName,
                 // pretul inainte de voucher si tva
-                'subtotal' => Cart::priceTotal(),
+                'subtotal' => round(Cart::priceTotalFloat(), 2),
                 // setarea discountului in functie de voucher
                 'voucher_discount' => Cart::setGlobalDiscount($voucherDiscount),
                 // pretul dupa voucher
-                'discount_amount' => Cart::discount(),
+                'discount_amount' => round(Cart::discountFloat(), 2),
                 // pretul dupa voucher cu tva
-                'tax' => Cart::tax(),
+                'tax' => round(Cart::taxFloat(), 2),
                 // pretul total dupa voucher cu tva
-                'grandtotal' => Cart::total(),
+                'grandtotal' => round(Cart::totalFloat(), 2),
             ]);
             return response()->json(array(
                 'validity' => true,
@@ -186,10 +186,10 @@ class CartController extends Controller
             // daca nu avem voucher calculam pretul total al produselor din cosul de cumparaturi fara voucher
         } else {
             return response()->json(array(
-                'subtotal' => Cart::pricetotal(),
-                'voucher_discount' => Cart::setGlobalDiscount(0),
-                'tax' => Cart::tax(),
-                'total' => Cart::total(),
+                'subtotal' => round(Cart::priceTotalFloat(), 2),
+                'voucher_discount' => round(Cart::setGlobalDiscount(0), 2),
+                'tax' => round(Cart::taxFloat(), 2),
+                'total' => round(Cart::totalFloat(), 2),
             ));
         }
     }
@@ -230,11 +230,11 @@ class CartController extends Controller
                     // $cartQty preia numarul de produse din cosul de cumparaturi
                     $cartQty = Cart::count();
                     // $cartTotal preia pretul subtotal al produselor din cosul de cumparaturi inainte de voucher si tva
-                    $cartSubTotal = Cart::priceTotal();
+                    $cartSubTotal = round(Cart::priceTotalFloat(), 2);
                     // $cartTax preia TVA al produselor din cosul de cumparaturi dupa voucher
-                    $cartTax = Cart::tax();
+                    $cartTax = round(Cart::taxFloat(), 2);
                     // $cartTotal preia pretul total al produselor din cosul de cumparaturi dupa voucher si tva
-                    $cartTotal = Cart::total();
+                    $cartTotal = round(Cart::totalFloat(), 2);
                     // returnam pagina de casa in care trimitem datele din variabilele $carts, $cartQty, $cartTotal
                     return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal', 'address', 'divisions', 'districts'));
                 }
@@ -245,11 +245,11 @@ class CartController extends Controller
                     // $cartQty preia numarul de produse din cosul de cumparaturi
                     $cartQty = Cart::count();
                     // $cartTotal preia  subtotal al produselor din cosul de cumparaturi
-                    $cartSubTotal = Cart::subtotal();
+                    $cartSubTotal = round(Cart::subtotalFloat(), 2);
                     // $cartTax preia TVA al produselor din cosul de cumparaturi
-                    $cartTax = Cart::tax();
+                    $cartTax = round(Cart::taxFloat(), 2);
                     // $cartTotal preia totalul produselor din cosul de cumparaturi cu TVA
-                    $cartTotal = Cart::total();
+                    $cartTotal = round(Cart::totalFloat(), 2);
                     // returnam pagina de casa in care trimitem datele din variabilele $carts, $cartQty, $cartTotal
                     return view('frontend.checkout.checkout_view', compact('carts', 'cartQty', 'cartSubTotal', 'cartTax', 'cartTotal', 'address', 'divisions', 'districts'));
                 }

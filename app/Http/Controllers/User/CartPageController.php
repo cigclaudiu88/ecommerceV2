@@ -24,14 +24,14 @@ class CartPageController extends Controller
         $cartQty = Cart::count();
         // $cartSubtotal preia pretul total al produselor din mini cosul de cumparaturi fara TVA
         if (Session::has('voucher')) {
-            $cartSubTotal = Cart::priceTotal();
+            $cartSubTotal = round(Cart::priceTotalFloat(), 2);
         } else {
-            $cartSubTotal = Cart::subtotal();
+            $cartSubTotal = round(Cart::subtotalFloat(), 2);
         }
         // $cartTax preia TVA-ul total al produselor din mini cosul de cumparaturi
-        $cartTax = Cart::tax();
+        $cartTax = round(Cart::taxFloat(), 2);
         // $cartTotal preia pretul total al produselor din mini cosul de cumparaturi cu tot cu tva
-        $cartTotal = Cart::total();
+        $cartTotal = round(Cart::totalFloat(), 2);
 
         // returnam toate datele in format json
         return response()->json(array(
@@ -79,15 +79,15 @@ class CartPageController extends Controller
             Session::put('voucher', [
                 'voucher_name' => $voucherName,
                 // pretul inainte de voucher si tva
-                'subtotal' => Cart::priceTotal(),
+                'subtotal' => round(Cart::priceTotalFloat(), 2),
                 // setarea discountului in functie de voucher
                 'voucher_discount' => Cart::setGlobalDiscount($voucherDiscount),
                 // pretul dupa voucher
-                'discount_amount' => Cart::discount(),
+                'discount_amount' => round(Cart::discountFloat(), 2),
                 // pretul dupa voucher cu tva
-                'tax' => Cart::tax(),
+                'tax' => round(Cart::taxFloat(), 2),
                 // pretul total dupa voucher cu tva
-                'grandtotal' => Cart::total(),
+                'grandtotal' => round(Cart::totalFloat(), 2),
             ]);
         }
         // returnam raspunsul json increment
@@ -115,15 +115,15 @@ class CartPageController extends Controller
             Session::put('voucher', [
                 'voucher_name' => $voucherName,
                 // pretul inainte de voucher si tva
-                'subtotal' => Cart::priceTotal(),
+                'subtotal' => round(Cart::priceTotalFloat(), 2),
                 // setarea discountului in functie de voucher
                 'voucher_discount' => Cart::setGlobalDiscount($voucherDiscount),
                 // pretul dupa voucher
-                'discount_amount' => Cart::discount(),
+                'discount_amount' => round(Cart::discountFloat(), 2),
                 // pretul dupa voucher cu tva
-                'tax' => Cart::tax(),
+                'tax' => round(Cart::taxFloat(), 2),
                 // pretul total dupa voucher cu tva
-                'grandtotal' => Cart::total(),
+                'grandtotal' => round(Cart::totalFloat(), 2),
             ]);
         }
         // returnam raspunsul json increment

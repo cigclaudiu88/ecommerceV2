@@ -33,10 +33,10 @@ class CashController extends Controller
         } else {
             $voucher_name = null;
             $discount_amount = null;
-            $subtotal = Cart::pricetotal();
+            $subtotal = round(Cart::priceTotalFloat(), 2);
             $voucher_discount = Cart::setGlobalDiscount(0);
-            $tax = Cart::tax();
-            $total_amount = Cart::total();
+            $tax = round(Cart::taxFloat(), 2);
+            $total_amount = round(Cart::totalFloat(), 2);
         }
         // pentru generare id-ului comenzii unic
         $order_number_id = uniqid();

@@ -42,11 +42,11 @@ class CheckoutController extends Controller
             // $cartQty preia numarul de produse din cosul de cumparaturi
             $cartQty = Cart::count();
             // $cartTotal preia pretul subtotal al produselor din cosul de cumparaturi inainte de voucher si tva
-            $cartSubTotal = Cart::priceTotal();
+            $cartSubTotal = round(Cart::priceTotalFloat(), 2);
             // $cartTax preia TVA al produselor din cosul de cumparaturi dupa voucher
-            $cartTax = Cart::tax();
+            $cartTax = round(Cart::taxFloat(), 2);
             // $cartTotal preia pretul total al produselor din cosul de cumparaturi dupa voucher si tva
-            $cartTotal = Cart::total();
+            $cartTotal = round(Cart::totalFloat(), 2);
             // toate campurile input radio din formular au numele payment_method
             // functie de valoarea atributului value al inputului selectat (stripe,card,cash)
             // trimitem valorile din $data (datele din formular - adresa de livrare) catre pagina de plata corespunzatoare
@@ -65,11 +65,11 @@ class CheckoutController extends Controller
             // $cartQty preia numarul de produse din cosul de cumparaturi
             $cartQty = Cart::count();
             // $cartTotal preia  subtotal al produselor din cosul de cumparaturi
-            $cartSubTotal = Cart::subtotal();
+            $cartSubTotal = round(Cart::subtotalFloat(), 2);
             // $cartTax preia TVA al produselor din cosul de cumparaturi
-            $cartTax = Cart::tax();
+            $cartTax = round(Cart::taxFloat(), 2);
             // $cartTotal preia totalul produselor din cosul de cumparaturi cu TVA
-            $cartTotal = Cart::total();
+            $cartTotal = round(Cart::totalFloat(), 2);
             // toate campurile input radio din formular au numele payment_method
             // functie de valoarea atributului value al inputului selectat (stripe,card,cash)
             // trimitem valorile din $data (datele din formular - adresa de livrare) catre pagina de plata corespunzatoare
