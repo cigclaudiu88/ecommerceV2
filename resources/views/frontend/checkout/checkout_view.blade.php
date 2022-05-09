@@ -80,7 +80,7 @@
                                             {{-- preluam din variabila $cartSubTotal din CheckoutCreate() din CartController subtotalul inainte de voucher --}}
                                             <th colspan="3" style="text-align:right !important;">Subtotal</th>
                                             <td colspan="3" style="text-align:right !important;">
-                                                <strong>{{ $cartSubTotal }} RON</strong>
+                                                <strong>{{ number_format($cartSubTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         <tr>
@@ -94,7 +94,8 @@
                                             {{-- preluam din sesiune reducerea voucherului (voucherapply() vouchercalculation() din CartController) --}}
                                             <th colspan="3" style="text-align:right !important;">Reducere</th>
                                             <td colspan="3" style="text-align:right !important;" class="text-danger">
-                                                <strong>- {{ session()->get('voucher')['discount_amount'] }}
+                                                <strong>-
+                                                    {{ number_format(session()->get('voucher')['discount_amount'], 2, '.', ',') }}
                                                     RON</strong>
                                             </td>
                                         </tr>
@@ -102,14 +103,14 @@
                                             {{-- preluam din variabila $cartTax din CheckoutCreate() din CartController tva dupa de voucher --}}
                                             <th colspan="3" style="text-align:right !important;">TVA</th>
                                             <td colspan="3" style="text-align:right !important;">
-                                                <strong>{{ $cartTax }} RON</strong>
+                                                <strong>{{ number_format($cartTax, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         {{-- preluam din variabila $cartTotal din CheckoutCreate() din CartController total dupa voucher si tva --}}
                                         <tr class="order_total">
                                             <th colspan="3" style="text-align:right !important;">Total</th>
                                             <td colspan="3" style="text-align:right !important;">
-                                                <strong>{{ $cartTotal }} RON</strong>
+                                                <strong>{{ number_format($cartTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                     @else
@@ -117,21 +118,21 @@
                                             {{-- preluam din variabila $cartSubTotal din CheckoutCreate() din CartController subtotal fara voucher --}}
                                             <th colspan="3" style="text-align:right !important;">Subtotal</th>
                                             <td colspan="3" style="text-align:right !important;">
-                                                <strong>{{ $cartSubTotal }} RON</strong>
+                                                <strong>{{ number_format($cartSubTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         <tr>
                                             {{-- preluam din variabila $cartTax din CheckoutCreate() din CartController tva fara voucher --}}
                                             <th colspan="3" style="text-align:right !important;">TVA</th>
                                             <td colspan="3" style="text-align:right !important;">
-                                                <strong>{{ $cartTax }} RON</strong>
+                                                <strong>{{ number_format($cartTax, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         {{-- preluam din variabila $cartTotal din CheckoutCreate() din CartController total cu tva si fara voucher --}}
                                         <tr class="order_total">
                                             <th colspan="3" style="text-align:right !important;">Total</th>
                                             <td colspan="3" style="text-align:right !important;">
-                                                <strong>{{ $cartTotal }} RON</strong>
+                                                <strong>{{ number_format($cartTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                     @endif

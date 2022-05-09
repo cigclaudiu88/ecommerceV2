@@ -503,4 +503,13 @@ class ProductController extends Controller
         // redirectionam catre pagina de management a unui produs cu notificare
         return redirect()->back()->with($notification);
     }
+
+    // functia pentru management stocuri 
+    public function ProductStock()
+    {
+        // $products preia datele tuturor produselor din tabela products
+        $products = Product::latest()->get();
+        // returnam view-ul pentru management stocuri
+        return view('backend.product.product_stock', compact('products'));
+    }
 }

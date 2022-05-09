@@ -485,3 +485,9 @@ Route::prefix('review')->group(function () {
     // ruta de stergere recenzii in admin dashboard
     Route::get('/delete/{id}', [ReviewController::class, 'DeleteReview'])->name('delete.review');
 });
+
+// Admin Manage Review Routes 
+Route::prefix('stock')->group(function () {
+    // ruta pentru management stocuri in admin dashboard
+    Route::get('/product', [ProductController::class, 'ProductStock'])->name('product.stock');
+});

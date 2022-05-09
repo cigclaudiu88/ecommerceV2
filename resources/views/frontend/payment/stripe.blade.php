@@ -89,7 +89,7 @@
                                             <th style="border-left: 1px solid #ededed; border-bottom: 1px solid #ddd;">
                                                 Subtotal</th>
                                             <td style="text-align:right !important;">
-                                                <strong>{{ $cartSubTotal }} RON</strong>
+                                                <strong>{{ number_format($cartSubTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         <tr>
@@ -105,7 +105,8 @@
                                             <th style="border-left: 1px solid #ededed; border-bottom: 1px solid #ddd;">
                                                 Reducere</th>
                                             <td class="text-danger" style="text-align:right !important;">
-                                                <strong>- {{ session()->get('voucher')['discount_amount'] }}
+                                                <strong>-
+                                                    {{ number_format(session()->get('voucher')['discount_amount'], 2, '.', ',') }}
                                                     RON</strong>
                                             </td>
                                         </tr>
@@ -114,7 +115,7 @@
                                             <th style="border-left: 1px solid #ededed; border-bottom: 1px solid #ddd;">
                                                 TVA</th>
                                             <td style="text-align:right !important;">
-                                                <strong>{{ $cartTax }} RON</strong>
+                                                <strong>{{ number_format($cartTax, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         {{-- preluam din variabila $cartTotal din CheckoutCreate() din CartController total dupa voucher si tva --}}
@@ -122,7 +123,7 @@
                                             <th style="border-left: 1px solid #ededed; border-bottom: 1px solid #ddd;">
                                                 Total de Plata</th>
                                             <td style="text-align:right !important;">
-                                                <strong>{{ $cartTotal }} RON</strong>
+                                                <strong>{{ number_format($cartTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                     @else
@@ -131,7 +132,7 @@
                                             <th style="border-left: 1px solid #ededed; border-bottom: 1px solid #ddd;">
                                                 Subtotal</th>
                                             <td style="text-align:right !important;">
-                                                <strong>{{ $cartSubTotal }} RON</strong>
+                                                <strong>{{ number_format($cartSubTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         <tr>
@@ -139,7 +140,7 @@
                                             <th style="border-left: 1px solid #ededed; border-bottom: 1px solid #ddd;">
                                                 TVA</th>
                                             <td style="text-align:right !important;">
-                                                <strong>{{ $cartTax }} RON</strong>
+                                                <strong>{{ number_format($cartTax, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                         {{-- preluam din variabila $cartTotal din CheckoutCreate() din CartController total cu tva si fara voucher --}}
@@ -147,7 +148,7 @@
                                             <th style="border-left: 1px solid #ededed; border-bottom: 1px solid #ddd;">
                                                 Total De Plata</th>
                                             <td style="text-align:right !important;">
-                                                <strong>{{ $cartTotal }} RON</strong>
+                                                <strong>{{ number_format($cartTotal, 2, '.', ',') }} RON</strong>
                                             </td>
                                         </tr>
                                     @endif

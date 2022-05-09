@@ -119,6 +119,18 @@ $route = Route::current()->getName();
             {{-- sectiune meniu navigare admin branduri termina --}}
 
             {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="has-sub-menu {{ $prefix == '/stock' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
+                    <span>Stocuri</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="{{ $route == 'product.stock' ? 'active' : '' }}"><a
+                            href="{{ route('product.stock') }}"><span>Stoc Produse</span></a></li>
+                    {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
+
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
             <li class="has-sub-menu {{ $prefix == '/reports' ? 'active' : '' }}"><a href="#"><i
                         class="ti-home"></i>
                     <span>Rapoarte Vanzari</span></a>
