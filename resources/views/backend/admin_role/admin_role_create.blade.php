@@ -87,41 +87,44 @@
                                         class="icon"></i>Management Categorii</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="subcategory" value="1">
                                     <i class="icon"></i>Management Subcategorii</label>
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="subsubcategory"
+                                        value="1">
+                                    <i class="icon"></i>Management SubSubcategorii</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="product" value="1"> <i
                                         class="icon"></i>Management Produse</label>
+
                             </div>
 
                             <div class="col-3 mb-20">
-
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="stock" value="1"> <i
+                                        class="icon"></i>Stocuri Produse</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="slider" value="1"> <i
                                         class="icon"></i>Management Reclame Slider</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="voucher" value="1"> <i
                                         class="icon"></i>Management Voucher-uri</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="shipping" value="1"> <i
-                                        class="icon"></i>Management Locatii</label>
+
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="orders" value="1"> <i
                                         class="icon"></i>Management Comenzi</label>
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="return_order" value="1">
+                                    <i class="icon"></i>Management Retur Produse</label>
                             </div>
 
                             <div class="col-3 mb-20">
-
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="stock" value="1"> <i
-                                        class="icon"></i>Stocuri Produse</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="reports" value="1"> <i
                                         class="icon"></i>Rapoarte vanzari</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="alluser" value="1"> <i
                                         class="icon"></i>Lista Clienti</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="blog" value="1"> <i
                                         class="icon"></i>Management Blog</label>
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="review" value="1"> <i
+                                        class="icon"></i>Management Recenzii Produse</label>
                             </div>
 
                             <div class="col-3 mb-20">
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="setting" value="1"> <i
                                         class="icon"></i>Setari Site</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="return_order" value="1">
-                                    <i class="icon"></i>Management Retur Produse</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="review" value="1"> <i
-                                        class="icon"></i>Management Recenzii Produse</label>
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="shipping" value="1"> <i
+                                        class="icon"></i>Management Locatii</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="admin_user_role"
                                         value="1">
                                     <i class="icon"></i>Rol Administrator</label>

@@ -34,16 +34,103 @@
                                     </td>
                                     <td> {{ $item->email }} </td>
                                     <td> {{ $item->phone }} </td>
-                                    <td class="text-center">
-                                        <h4><span class="badge badge-pill badge-primary">{{ $item->status }}</span></h4>
+                                    <td>
+                                        @if ($item->brand == 1)
+                                            <span class="badge btn-primary">Management Branduri</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->category == 1)
+                                            <span class="badge btn-primary">Management Categorii</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->subcategory == 1)
+                                            <span class="badge btn-primary">Management Subcategorii</span><br>
+                                        @else
+                                        @endif
+
+                                        @if ($item->subsubcategory == 1)
+                                            <span class="badge btn-primary">Management Subcategorii</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->product == 1)
+                                            <span class="badge btn-primary">Management Produse</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->stock == 1)
+                                            <span class="badge btn-primary">Stocuri Produse </span><br>
+                                        @else
+                                        @endif
+
+                                        @if ($item->slider == 1)
+                                            <span class="badge btn-info">Management Reclame Slider</span>
+                                        @else
+                                        @endif
+
+
+                                        @if ($item->voucher == 1)
+                                            <span class="badge btn-info">Management Voucher-uri</span>
+                                        @else
+                                        @endif
+
+
+                                        @if ($item->orders == 1)
+                                            <span class="badge btn-info">Management Comenzi</span><br>
+                                        @else
+                                        @endif
+
+                                        @if ($item->return_order == 1)
+                                            <span class="badge btn-info">Management Retur Produse</span>
+                                        @else
+                                        @endif
+
+
+                                        @if ($item->reports == 1)
+                                            <span class="badge btn-success">Rapoarte vanzari</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->alluser == 1)
+                                            <span class="badge btn-success">Lista Clienti</span><br>
+                                        @else
+                                        @endif
+
+                                        @if ($item->blog == 1)
+                                            <span class="badge btn-warning">Management Blog</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->review == 1)
+                                            <span class="badge btn-warning">Management Recenzii Produse</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->setting == 1)
+                                            <span class="badge btn-warning">Setari Site</span><br>
+                                        @else
+                                        @endif
+
+                                        @if ($item->shipping == 1)
+                                            <span class="badge btn-warning">Management Locatii</span>
+                                        @else
+                                        @endif
+
+                                        @if ($item->admin_user_role == 1)
+                                            <span class="badge btn-dark">Rol Administrator</span>
+                                        @else
+                                        @endif
                                     </td>
                                     </td>
-                                    <td width="30%">
-                                        <a href="{{ route('pending.order.details', $item->id) }}"
-                                            class="button button-primary"><i
-                                                class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
-                                        <a href="{{ route('invoice.download', $item->id) }}" class="button button-info"><i
-                                                class="fa-solid fa-circle-down"></i>Factura</a>
+                                    <td>
+                                        {{-- adaugat ruta de editare categorie --}}
+                                        <a href="{{ route('blog.category.edit', $item->id) }}"
+                                            class="btn btn-info">Edit</a>
+                                        {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
+                                        <a href="{{ route('blog.category.delete', $item->id) }}" class="btn btn-danger"
+                                            id="delete">Delete</a>
                                     </td>
                                 </tr>
                             @endforeach

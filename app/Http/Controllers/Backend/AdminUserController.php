@@ -44,27 +44,30 @@ class AdminUserController extends Controller
             'email' => $request->email,
             'password' => Hash::make($request->password),
             'phone' => $request->phone,
+            'profile_photo_path' => $save_url,
+
             'brand' => $request->brand,
             'category' => $request->category,
+            'subcategory' => $request->subcategory,
+            'subsubcategory' => $request->subcategory,
             'product' => $request->product,
+            'stock' => $request->stock,
+
             'slider' => $request->slider,
             'voucher' => $request->voucher,
-
             'shipping' => $request->shipping,
-            'blog' => $request->blog,
-            'setting' => $request->setting,
-            'return_order' => $request->return_order,
-            'review' => $request->review,
-
             'orders' => $request->orders,
-            'stock' => $request->stock,
+            'return_order' => $request->return_order,
+
             'reports' => $request->reports,
             'alluser' => $request->alluser,
-            'admin_user_role' => $request->admin_user_role,
+            'blog' => $request->blog,
+            'review' => $request->review,
+            'setting' => $request->setting,
             // adminiul principal este de tip 1
             // restul adminilor este de tip 2
             'type' => 2,
-            'profile_photo_path' => $save_url,
+            'admin_user_role' => $request->admin_user_role,
             'created_at' => Carbon::now(),
         ]);
         // mesaje de notificare
