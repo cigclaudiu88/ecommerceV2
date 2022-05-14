@@ -208,6 +208,19 @@ $route = Route::current()->getName();
             </li>
             {{-- sectiune meniu navigare admin branduri termina --}}
 
+            {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+            <li class="has-sub-menu {{ $prefix == '/admin_user_role' ? 'active' : '' }}"><a href="#"><i
+                        class="ti-home"></i>
+                    <span>Nivel Acces Administratori</span></a>
+                <ul class="side-header-sub-menu">
+                    <li class="{{ $route == 'all.admin.user' ? 'active' : '' }}"><a
+                            href="{{ route('all.admin.user') }}"><span>Lista Administratori</span></a></li>
+                    {{-- adaugat valoarea de active in clasa functie de ruta activa --}}
+                </ul>
+            </li>
+            {{-- sectiune meniu navigare admin branduri termina --}}
+
+
             <li class="has-sub-menu"><a href="#"><i class="ti-package"></i> <span>Basic
                         Elements</span></a>
                 <ul class="side-header-sub-menu">

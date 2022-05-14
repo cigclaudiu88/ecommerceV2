@@ -17,6 +17,7 @@ use App\Http\Controllers\Backend\ReportController;
 use App\Http\Controllers\Backend\BlogController;
 use App\Http\Controllers\Backend\SiteSettingController;
 use App\Http\Controllers\Backend\ReturnController;
+use App\Http\Controllers\Backend\AdminUserController;
 use App\Http\Controllers\Frontend\CartController;
 use App\Http\Controllers\Frontend\HomeBlogController;
 use App\Http\Controllers\User\CartPageController;
@@ -492,4 +493,10 @@ Route::prefix('review')->group(function () {
 Route::prefix('stock')->group(function () {
     // ruta pentru management stocuri in admin dashboard
     Route::get('/product', [ProductController::class, 'ProductStock'])->name('product.stock');
+});
+
+// Admin Rute administrare roluri useri admin
+Route::prefix('admin_user_role')->group(function () {
+
+    Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all.admin.user');
 });
