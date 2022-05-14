@@ -497,6 +497,10 @@ Route::prefix('stock')->group(function () {
 
 // Admin Rute administrare roluri useri admin
 Route::prefix('admin_user_role')->group(function () {
-
+    // ruta de vizualizare pagina cu toti administratorii in admin dashboard
     Route::get('/all', [AdminUserController::class, 'AllAdminRole'])->name('all.admin.user');
+    // ruta pentru pagina de adaugare roluri administratori in admin dashboard
+    Route::get('/add', [AdminUserController::class, 'AddAdminRole'])->name('add.admin');
+    // ruta de inserare nou administrator in admin dashboard
+    Route::post('/store', [AdminUserController::class, 'StoreAdminRole'])->name('admin.user.store');
 });

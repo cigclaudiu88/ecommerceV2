@@ -6,7 +6,10 @@
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Administratori</h3>
+                    <a href="{{ route('add.admin') }}" class="btn btn-warning" style="float: right;"><strong>Adauga
+                            Administrator<strong></a>
+                    <h3 class="title">Lista Administratori <span class="badge badge badge-danger">
+                            {{ count($adminuser) }} </span></h3>
                 </div>
                 <div class="box-body">
 
@@ -25,12 +28,12 @@
                             {{-- iteram cu variabila $vouchers (VoucherView() din VoucherController) ca $item si afisam in tabel toate valorile din tabelul vouchers --}}
                             @foreach ($adminuser as $item)
                                 <tr>
-                                    <td> <img src="{{ asset($item->profile_photo_path) }}"> </td>
+                                    <td> <img src="{{ asset($item->profile_photo_path) }}" width="80px" height="80px">
+                                    </td>
                                     <td> {{ $item->name }} </td>
                                     </td>
-                                    <td> ${{ $item->email }} </td>
-                                    <td> ${{ $item->phone }} </td>
-                                    <td></td>
+                                    <td> {{ $item->email }} </td>
+                                    <td> {{ $item->phone }} </td>
                                     <td class="text-center">
                                         <h4><span class="badge badge-pill badge-primary">{{ $item->status }}</span></h4>
                                     </td>
