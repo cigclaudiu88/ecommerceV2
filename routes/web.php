@@ -507,4 +507,6 @@ Route::prefix('admin_user_role')->group(function () {
     Route::get('/edit/{id}', [AdminUserController::class, 'EditAdminRole'])->name('edit.admin.user');
     // ruta de actualizare roluri administratori in admin dashboard
     Route::post('/update', [AdminUserController::class, 'UpdateAdminRole'])->name('admin.user.update');
+    // ruta de stergere administratori in admin dashboard
+    Route::get('/delete/{id}', [AdminUserController::class, 'DeleteAdminRole'])->name('delete.admin.user');
 });

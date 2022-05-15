@@ -129,7 +129,7 @@
                                         <a href="{{ route('edit.admin.user', $item->id) }}"
                                             class="btn btn-info">Edit</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="{{ route('blog.category.delete', $item->id) }}" class="btn btn-danger"
+                                        <a href="{{ route('delete.admin.user', $item->id) }}" class="btn btn-danger"
                                             id="delete">Delete</a>
                                     </td>
                                 </tr>

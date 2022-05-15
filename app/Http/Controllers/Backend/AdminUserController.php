@@ -190,4 +190,23 @@ class AdminUserController extends Controller
             return redirect()->route('all.admin.user')->with($notification);
         }
     }
+    // functia de stergere a unui utilizator admin
+    public function DeleteAdminRole($id)
+    {
+        // $adminimg preia toate datele pentru adminul cu id-ul primit ca parametru
+        $adminimg = Admin::findOrFail($id);
+        // $img preia poza de profil a unui utilizator admin
+        $img = $adminimg->profile_photo_path;
+        // stergem poza de profil din folderul public/upload/admin_images/ pentru adminul cu id-ul $id
+        unlink($img);
+        // cautam adminul cu id-ul $id in tabelul admins si il stergem
+        Admin::findOrFail($id)->delete();
+
+        $notification = array(
+            'message' => 'Administratorul a fost sters cu succes!',
+            'alert-type' => 'info'
+        );
+        // returnam spre pagina de vizualizare a tuturor utilizatorilor admin cu mesajul de notificare
+        return redirect()->back()->with($notification);
+    }
 }
