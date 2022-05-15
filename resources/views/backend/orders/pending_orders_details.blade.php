@@ -192,7 +192,7 @@
                                 <div class="col-3 mb-20">
                                     <label for="formLayoutUsername3">Data Ridicare Curier</label>
                                     <input type="text" id="formLayoutUsername3" class="form-control" name="pickup_date"
-                                        value="{{ Carbon\Carbon::now()->format('d/m/Y H:i:s') }}">
+                                        value="{{ Carbon\Carbon::now()->format('d/m/Y H:i') }}">
                                     @error('pickup_date')
                                         <span class="text-danger"><strong>{{ $message }}</strong></span>
                                     @enderror

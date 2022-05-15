@@ -73,7 +73,10 @@ class OrderController extends Controller
     public function PendingToConfirm($order_id)
     {
 
-        Order::findOrFail($order_id)->update(['status' => 'Confirmata']);
+        Order::findOrFail($order_id)->update([
+            'status' => 'Confirmata',
+            'confirmed_date' => Carbon::now()->format('d/m/Y H:i')
+        ]);
 
         $notification = array(
             'message' => 'Comanda a fost confirmata cu succes!',
@@ -86,7 +89,10 @@ class OrderController extends Controller
     public function ConfirmToProcessing($order_id)
     {
         // schimbam statusul comenzii in Procesata
-        Order::findOrFail($order_id)->update(['status' => 'Procesata']);
+        Order::findOrFail($order_id)->update([
+            'status' => 'Procesata',
+            'processing_date' => Carbon::now()->format('d/m/Y H:i')
+        ]);
 
         $notification = array(
             'message' => 'Comanda a fost procesata cu succes!',
@@ -99,7 +105,10 @@ class OrderController extends Controller
     public function ProcessingToPicked($order_id)
     {
         // schimbam statusul comenzii in Preluata de curier
-        Order::findOrFail($order_id)->update(['status' => 'Preluata de curier']);
+        Order::findOrFail($order_id)->update([
+            'status' => 'Preluata de curier',
+            'picked_date' => Carbon::now()->format('d/m/Y H:i')
+        ]);
 
         $notification = array(
             'message' => 'Comanda a fost preluata de curier cu succes!',
@@ -112,7 +121,10 @@ class OrderController extends Controller
     public function PickedToShipped($order_id)
     {
         // schimbam statusul comenzii in In tranzit
-        Order::findOrFail($order_id)->update(['status' => 'In tranzit']);
+        Order::findOrFail($order_id)->update([
+            'status' => 'In tranzit',
+            'shipped_date' => Carbon::now()->format('d/m/Y H:i')
+        ]);
 
         $notification = array(
             'message' => 'Comanda a fost expediata cu succes!',
@@ -126,7 +138,10 @@ class OrderController extends Controller
     public function ShippedToDelivered($order_id)
     {
         // schimbam statusul comenzii in Livrata
-        Order::findOrFail($order_id)->update(['status' => 'Livrata']);
+        Order::findOrFail($order_id)->update([
+            'status' => 'Livrata',
+            'delivered_date' => Carbon::now()->format('d/m/Y H:i')
+        ]);
 
         $notification = array(
             'message' => 'Comanda a fost livrata cu succes!',
@@ -140,7 +155,10 @@ class OrderController extends Controller
     public function DeliveredToCanceled($order_id)
     {
         // schimbam statusul comenzii in Livrata
-        Order::findOrFail($order_id)->update(['status' => 'Anulata']);
+        Order::findOrFail($order_id)->update([
+            'status' => 'Anulata',
+            'canceled_date' => Carbon::now()->format('d/m/Y H:i')
+        ]);
 
         $notification = array(
             'message' => 'Comanda a fost anulata cu succes!',

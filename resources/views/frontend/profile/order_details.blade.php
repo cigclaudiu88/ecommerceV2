@@ -24,6 +24,278 @@
 
                                                 <div class="row">
                                                     <div class="col-lg-12 col-md-6">
+
+                                                        <div class="row">
+
+                                                            @if ($order->status == 'In asteptare')
+                                                                <div class="col-md-2 text-center" style="margin-left:10px;">
+                                                                    {{ $order->order_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                            @endif
+
+                                                            @if ($order->status == 'Confirmata')
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->order_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->confirmed_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                            @endif
+
+                                                            @if ($order->status == 'Procesata')
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->order_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->confirmed_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->processing_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                            @endif
+
+                                                            @if ($order->status == 'Preluata de curier')
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->order_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->confirmed_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->processing_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->picked_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                            @endif
+
+                                                            @if ($order->status == 'In tranzit')
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->order_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->confirmed_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->processing_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->picked_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->shipped_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                            @endif
+
+                                                            @if ($order->status == 'Livrata')
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->order_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->confirmed_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->processing_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->picked_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->shipped_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                                <div class="col-md-2 text-center">
+                                                                    {{ $order->delivered_date }}
+                                                                </div> <!-- // end col md 2 -->
+                                                            @endif
+                                                        </div> <!-- // end row   -->
+
+
+                                                        <div class="track">
+
+                                                            @if ($order->status == 'In asteptare')
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-cart-arrow-down"></i> </span>
+                                                                    <span class="text">Comanda
+                                                                        Plasta</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa fa-check"></i> </span> <span
+                                                                        class="text"> Comanda Confirmata</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-boxes-packing"></i> </span>
+                                                                    <span class="text"> Comanda Procesata</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-people-carry-box"></i> </span>
+                                                                    <span class="text"> Preluata de Curier
+                                                                    </span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa fa-truck"></i> </span> <span
+                                                                        class="text">Comanda in Tranzit</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-box-open"></i> </span> <span
+                                                                        class="text">Comanda Livrata</span>
+                                                                </div>
+                                                            @endif
+
+                                                            @if ($order->status == 'Confirmata')
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-cart-arrow-down"></i> </span>
+                                                                    <span class="text">Comanda
+                                                                        Plasta</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa fa-check"></i> </span> <span
+                                                                        class="text"> Comanda Confirmata</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-boxes-packing"></i> </span>
+                                                                    <span class="text"> Comanda Procesata</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-people-carry-box"></i> </span>
+                                                                    <span class="text"> Preluata de Curier
+                                                                    </span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa fa-truck"></i> </span> <span
+                                                                        class="text">Comanda in Tranzit</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-box-open"></i> </span> <span
+                                                                        class="text">Comanda Livrata</span>
+                                                                </div>
+                                                            @endif
+
+                                                            @if ($order->status == 'Procesata')
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-cart-arrow-down"></i> </span>
+                                                                    <span class="text">Comanda
+                                                                        Plasta</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa fa-check"></i> </span> <span
+                                                                        class="text"> Comanda Confirmata</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-boxes-packing"></i> </span>
+                                                                    <span class="text"> Comanda Procesata</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-people-carry-box"></i> </span>
+                                                                    <span class="text"> Preluata de Curier
+                                                                    </span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa fa-truck"></i> </span> <span
+                                                                        class="text">Comanda in Tranzit</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-box-open"></i> </span> <span
+                                                                        class="text">Comanda Livrata</span>
+                                                                </div>
+                                                            @endif
+
+                                                            @if ($order->status == 'Preluata de curier')
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-cart-arrow-down"></i> </span>
+                                                                    <span class="text">Comanda
+                                                                        Plasta</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa fa-check"></i> </span> <span
+                                                                        class="text"> Comanda Confirmata</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-boxes-packing"></i> </span>
+                                                                    <span class="text"> Comanda Procesata</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-people-carry-box"></i>
+                                                                    </span>
+                                                                    <span class="text"> Preluata de Curier
+                                                                    </span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa fa-truck"></i> </span> <span
+                                                                        class="text">Comanda in Tranzit</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-box-open"></i> </span> <span
+                                                                        class="text">Comanda Livrata</span>
+                                                                </div>
+                                                            @endif
+
+                                                            @if ($order->status == 'In tranzit')
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-cart-arrow-down"></i> </span>
+                                                                    <span class="text">Comanda
+                                                                        Plasta</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa fa-check"></i> </span> <span
+                                                                        class="text"> Comanda Confirmata</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-boxes-packing"></i> </span>
+                                                                    <span class="text"> Comanda Procesata</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-people-carry-box"></i>
+                                                                    </span>
+                                                                    <span class="text"> Preluata de Curier
+                                                                    </span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa fa-truck"></i> </span> <span
+                                                                        class="text">Comanda in Tranzit</span>
+                                                                </div>
+                                                                <div class="step"> <span class="icon">
+                                                                        <i class="fa-solid fa-box-open"></i> </span> <span
+                                                                        class="text">Comanda Livrata</span>
+                                                                </div>
+                                                            @endif
+
+                                                            @if ($order->status == 'Livrata')
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-cart-arrow-down"></i> </span>
+                                                                    <span class="text">Comanda
+                                                                        Plasta</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa fa-check"></i> </span> <span
+                                                                        class="text"> Comanda Confirmata</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-boxes-packing"></i> </span>
+                                                                    <span class="text"> Comanda Procesata</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-people-carry-box"></i>
+                                                                    </span>
+                                                                    <span class="text"> Preluata de Curier
+                                                                    </span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa fa-truck"></i> </span> <span
+                                                                        class="text">Comanda in Tranzit</span>
+                                                                </div>
+                                                                <div class="step active"> <span class="icon">
+                                                                        <i class="fa-solid fa-box-open"></i> </span> <span
+                                                                        class="text">Comanda Livrata</span>
+                                                                </div>
+                                                            @endif
+                                                        </div>
+
+
+                                                    </div>
+                                                </div>
+
+                                                <div class="row">
+                                                    <div class="col-lg-12 col-md-6">
                                                         <div class="coupon_code right">
                                                             <h3>Detalii Comanda - {{ $order->order_number }} -
                                                                 {{ $order->order_date }}</h3>
@@ -101,7 +373,8 @@
                                                         <tr>
                                                             <th class="product_name"><a href="#">Subtotal</a>
                                                             </th>
-                                                            <th class="product_name"><a href="#">{{ $order->subtotal }}
+                                                            <th class="product_name"><a
+                                                                    href="#">{{ $order->subtotal }}
                                                                     RON</a>
                                                             </th>
                                                         </tr>
@@ -289,4 +562,108 @@
         </div>
     </section>
     <!-- my account end   -->
+
+    <style type="text/css">
+        .card-header:first-child {
+            border-radius: calc(0.37rem - 1px) calc(0.37rem - 1px) 0 0
+        }
+
+        .card-header {
+            padding: 0.75rem 1.25rem;
+            margin-bottom: 0;
+            background-color: #fff;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.1)
+        }
+
+        .track {
+            position: relative;
+            background-color: #ddd;
+            height: 7px;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            margin-bottom: 80px;
+            margin-top: 30px;
+        }
+
+        .track .step {
+            -webkit-box-flex: 1;
+            -ms-flex-positive: 1;
+            flex-grow: 1;
+            width: 25%;
+            margin-top: -18px;
+            text-align: center;
+            position: relative
+        }
+
+        .track .step.active:before {
+            background: #40a944
+        }
+
+        .track .step::before {
+            height: 7px;
+            position: absolute;
+            content: "";
+            width: 100%;
+            left: 0;
+            top: 18px
+        }
+
+        .track .step.active .icon {
+            background: #40a944;
+            color: #fff
+        }
+
+        .track .icon {
+            display: inline-block;
+            width: 40px;
+            height: 40px;
+            line-height: 40px;
+            position: relative;
+            border-radius: 100%;
+            background: #ddd
+        }
+
+        .track .step.active .text {
+            font-weight: 400;
+            color: #000
+        }
+
+        .track .text {
+            display: block;
+            margin-top: 7px
+        }
+
+        .itemside {
+            position: relative;
+            display: -webkit-box;
+            display: -ms-flexbox;
+            display: flex;
+            width: 100%
+        }
+
+        .itemside .aside {
+            position: relative;
+            -ms-flex-negative: 0;
+            flex-shrink: 0
+        }
+
+        .img-sm {
+            width: 80px;
+            height: 80px;
+            padding: 7px
+        }
+
+        .itemside .info {
+            padding-left: 15px;
+            padding-right: 7px
+        }
+
+        .itemside .title {
+            display: block;
+            margin-bottom: 5px;
+            color: #212529
+        }
+
+    </style>
 @endsection
