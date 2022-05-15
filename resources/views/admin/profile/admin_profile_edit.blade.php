@@ -27,7 +27,7 @@
                 <div class="inner">
                     <div class="author-profile">
                         <div class="image">
-                            <img src="{{ !empty($adminEditData->profile_photo_path)? url('upload/admin_images/' . $adminEditData->profile_photo_path): url('upload/default_profile.png') }}"
+                            <img src="{{ !empty($adminEditData->profile_photo_path) ? url($adminEditData->profile_photo_path) : url('upload/default_profile.png') }}"
                                 alt="" style="">
                         </div>
                         <div class="info">
@@ -78,7 +78,7 @@
 
                             <div class="col-12 mb-20">
                                 <img id="showImage"
-                                    src="{{ !empty($adminEditData->profile_photo_path)? url('upload/admin_images/' . $adminEditData->profile_photo_path): url('upload/default_profile.png') }}"
+                                    src="{{ !empty($adminEditData->profile_photo_path) ? url($adminEditData->profile_photo_path) : url('upload/default_profile.png') }}"
                                     style="width: 100px; height: 100px;" alt="">
                             </div>
 

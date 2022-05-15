@@ -24,7 +24,7 @@
                 <div class="inner">
                     <div class="author-profile">
                         <div class="image">
-                            <img src="{{ !empty($adminData->profile_photo_path)? url('upload/admin_images/' . $adminData->profile_photo_path): url('upload/default_profile.png') }}"
+                            <img src="{{ !empty($adminData->profile_photo_path) ? url($adminData->profile_photo_path) : url('upload/default_profile.png') }}"
                                 alt="" style="">
                             {{-- <button class="edit"><i class="zmdi zmdi-cloud-upload"></i>Change Image</button> --}}
                         </div>

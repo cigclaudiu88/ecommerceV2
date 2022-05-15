@@ -17,8 +17,10 @@ class AdminProfileController extends Controller
     // functia de vizualiare date profil admin
     public function AdminProfile()
     {
-        // $adminData preia datele din tabela admins primul rand
-        $adminData = Admin::find(1);
+        // $id preia id-ul adminului curent autentificat
+        $id = Auth::user()->id;
+        // $admin preia datele adminului curent autentificat cu id-ul $id
+        $adminData = Admin::find($id);
         // returnam datele in view-ul resources\views\admin\profile\admin_profile_view.blade.php
         return view('admin.profile.admin_profile_view', compact('adminData'));
     }
@@ -26,8 +28,10 @@ class AdminProfileController extends Controller
     // functia de editare date profil admin
     public function AdminProfileEdit()
     {
-        // $adminEditData preia datele din tabela admins primul rand
-        $adminEditData = Admin::find(1);
+        // $id preia id-ul adminului curent autentificat
+        $id = Auth::user()->id;
+        // $adminEditData preia datele adminului curent autentificat cu id-ul $id
+        $adminEditData = Admin::find($id);
         // returnam datele in view-ul resources\views\admin\profile\admin_profile_edit.php
         return view('admin.profile.admin_profile_edit', compact('adminEditData'));
     }
@@ -35,8 +39,10 @@ class AdminProfileController extends Controller
     // functia de actualizare date admin
     public function AdminProfileStore(Request $request)
     {
-        // $adminData preia datele din tabela admins primul rand
-        $data = Admin::find(1);
+        // $id preia id-ul adminului curent autentificat
+        $id = Auth::user()->id;
+        // $data preia datele din formularul de editare a datelor adminului curent autentificat cu id-ul $id
+        $data = Admin::find($id);
         // valoarea campului name din tabela admins va fi egal cu valoarea din campul name din formular
         $data->name = $request->name;
         // valoarea campului email din tabela admins va fi egal cu valoarea din campul email din formular
@@ -109,11 +115,11 @@ class AdminProfileController extends Controller
             ]
         );
         // $hashedPassword preia valoarea din tabela admins din campul password folosind modelul Admin
-        $hashedPassword = Admin::find(1)->password;
+        $hashedPassword = Auth::user()->password;
         // daca parola introdusa in campul parola curenta din formular corespunde cu parola din tabela admins
         if (Hash::check($request->current_password, $hashedPassword)) {
             // $adminData preia datele din tabela admins primul rand
-            $admin = Admin::find(1);
+            $admin = Admin::find(Auth::id());
             // valoarea campului password din tabela admins va fi egal cu valoarea hash-uita din campul password din formular folosind functia bcrypt
             $admin->password = Hash::make($request->password);
             // salvam datele in tabela admins

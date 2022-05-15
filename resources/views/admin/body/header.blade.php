@@ -241,7 +241,11 @@
                          </li> --}}
                          {{-- preluam in $adminData datele din tabelul admins --}}
                          @php
-                             $adminData = DB::table('admins')->first();
+                             // $id preia id-ul adminului curent autentificat
+                             $id = Illuminate\Support\Facades\Auth::user()->id;
+                             // $admin preia datele adminului curent autentificat cu id-ul $id
+                             $adminData = App\Models\Admin::find($id);
+                             
                          @endphp
 
                          <!--User-->
@@ -251,7 +255,7 @@
                                      <span class="avatar">
                                          {{-- daca adminul nu are imagine de profil se seteaza automat cu imaginea de profil default din upload/default_profile.png --}}
                                          {{-- daca adminul are imagine de profil se seteaza acea imagine --}}
-                                         <img src="{{ !empty($adminData->profile_photo_path)? url('upload/admin_images/' . $adminData->profile_photo_path): url('upload/default_profile.png') }}"
+                                         <img src="{{ !empty($adminData->profile_photo_path) ? url($adminData->profile_photo_path) : url('upload/default_profile.png') }}"
                                              alt="">
                                          <span class="status"></span>
                                      </span>
@@ -273,34 +277,33 @@
                                          {{-- adaugat admin.change.password route --}}
                                          <li><a href="{{ route('admin.change.password') }}"><i
                                                      class="zmdi zmdi-account"></i>Modifica Parola</a></li>
-                                         <li><a href="#"><i class="zmdi zmdi-email-open"></i>Inbox</a></li>
-                                         <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>Activity</a>
-                                         </li>
-                                     </ul>
-                                     <ul>
-                                         <li><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></li>
-                                         {{-- Adaugat log out route --}}
-                                         <li><a href="{{ route('admin.logout') }}"><i
-                                                     class="zmdi zmdi-lock-open"></i>Log out</a>
-                                         </li>
-                                     </ul>
-                                     <ul>
-                                         <li><a href="#"><i class="zmdi zmdi-paypal"></i>Payment</a></li>
-                                         <li><a href="#"><i class="zmdi zmdi-google-pages"></i>Invoice</a>
-                                         </li>
-                                     </ul>
-                                 </div>
-                             </div>
-
+                                         {{-- <li><a href="#"><i class="zmdi zmdi-email-open"></i>Inbox</a></li> --}}
+                                         {{-- <li><a href="#"><i class="zmdi zmdi-wallpaper"></i>Activity</a> --}}
                          </li>
-
                      </ul>
-
-                 </div><!-- Header Notifications Area End -->
-
+                     <ul>
+                         {{-- <li><a href="#"><i class="zmdi zmdi-settings"></i>Setting</a></li> --}}
+                         {{-- Adaugat log out route --}}
+                         <li><a href="{{ route('admin.logout') }}"><i class="zmdi zmdi-lock-open"></i>Log out</a>
+                         </li>
+                     </ul>
+                     {{-- <ul> --}}
+                     {{-- <li><a href="#"><i class="zmdi zmdi-paypal"></i>Payment</a></li> --}}
+                     {{-- <li><a href="#"><i class="zmdi zmdi-google-pages"></i>Invoice</a> --}}
+                     {{-- </li> --}}
+                     {{-- </ul> --}}
+                 </div>
              </div>
-         </div><!-- Header Right End -->
+
+             </li>
+
+             </ul>
+
+         </div><!-- Header Notifications Area End -->
 
      </div>
+ </div><!-- Header Right End -->
+
+ </div>
  </div>
  <!-- Header Section End -->
