@@ -126,7 +126,7 @@
                                     </td>
                                     <td>
                                         {{-- adaugat ruta de editare categorie --}}
-                                        <a href="{{ route('blog.category.edit', $item->id) }}"
+                                        <a href="{{ route('edit.admin.user', $item->id) }}"
                                             class="btn btn-info">Edit</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
                                         <a href="{{ route('blog.category.delete', $item->id) }}" class="btn btn-danger"

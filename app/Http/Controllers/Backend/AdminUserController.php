@@ -78,4 +78,116 @@ class AdminUserController extends Controller
         // returnam spre pagina de vizualizare a tuturor utilizatorilor admin cu mesajul de notificare
         return redirect()->route('all.admin.user')->with($notification);
     }
+
+    // functia de editare a unui utilizator admin
+    public function EditAdminRole($id)
+    {
+        // $adminuser preia datele unui utilizator admin dupa id-ul primit ca parametru
+        $adminuser = Admin::findOrFail($id);
+        // returnam pagina admin_role_edit.blade.php cu datele din $adminuser
+        return view('backend.admin_role.admin_role_edit', compact('adminuser'));
+    }
+
+    // functia de actualizare a unui utilizator admin
+    public function UpdateAdminRole(Request $request)
+    {
+        // $adminuser preia id-ul userului admin care va fi editat din campul hidden din formularul de actualizare
+        $admin_id = $request->id;
+        // $adminuser preia poza de profil curenta a unui utilizator admin din campul hidden din formularul de actualizare
+        $old_img = $request->old_image;
+
+        // daca exista o poza de profil actualizam toate datele + poza de profil
+        if ($request->file('profile_photo_path')) {
+
+            // stergem poza de profil veche din folderul public/upload/admin_images/
+            unlink($old_img);
+            // $image preia imaginea din inputul de tip file din formularul de adaugare a unui utilizator admin
+            $image = $request->file('profile_photo_path');
+            // $name_gen preia numele generat al imaginii din inputul de tip file din formularul de adaugare a unui utilizator admin
+            $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
+            // folosind Image cream imaginea si o salvam in folderul public/upload/admin_images/
+            Image::make($image)->save('upload/admin_images/' . $name_gen);
+            // $save_url preia locatia imaginii din folderul public/upload/admin_images/
+            $save_url = 'upload/admin_images/' . $name_gen;
+
+            // actualizam datele din tabelul admins pentru adminul cu id-ul $admin_id
+            Admin::findOrFail($admin_id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+                'profile_photo_path' => $save_url,
+
+                'brand' => $request->brand,
+                'category' => $request->category,
+                'subcategory' => $request->subcategory,
+                'subsubcategory' => $request->subcategory,
+                'product' => $request->product,
+                'stock' => $request->stock,
+
+                'slider' => $request->slider,
+                'voucher' => $request->voucher,
+                'shipping' => $request->shipping,
+                'orders' => $request->orders,
+                'return_order' => $request->return_order,
+
+                'reports' => $request->reports,
+                'alluser' => $request->alluser,
+                'blog' => $request->blog,
+                'review' => $request->review,
+                'setting' => $request->setting,
+                // adminiul principal este de tip 1
+                // restul adminilor este de tip 2
+                'type' => 2,
+                'admin_user_role' => $request->admin_user_role,
+                'created_at' => Carbon::now(),
+            ]);
+            // mesaj de notificare
+            $notification = array(
+                'message' => 'Administratorul a fost actualizat cu succes!',
+                'alert-type' => 'info'
+            );
+            // returnam spre pagina de vizualizare a tuturor utilizatorilor admin cu mesajul de notificare
+            return redirect()->route('all.admin.user')->with($notification);
+            // daca nu exista o poza de profil actualizam doar toate datele fara poza de profil
+        } else {
+            // actualizam datele din tabelul admins pentru adminul cu id-ul $admin_id
+            Admin::findOrFail($admin_id)->update([
+                'name' => $request->name,
+                'email' => $request->email,
+                'phone' => $request->phone,
+
+                'brand' => $request->brand,
+                'category' => $request->category,
+                'subcategory' => $request->subcategory,
+                'subsubcategory' => $request->subcategory,
+                'product' => $request->product,
+                'stock' => $request->stock,
+
+                'slider' => $request->slider,
+                'voucher' => $request->voucher,
+                'shipping' => $request->shipping,
+                'orders' => $request->orders,
+                'return_order' => $request->return_order,
+
+                'reports' => $request->reports,
+                'alluser' => $request->alluser,
+                'blog' => $request->blog,
+                'review' => $request->review,
+                'setting' => $request->setting,
+                // adminiul principal este de tip 1
+                // restul adminilor este de tip 2
+                'type' => 2,
+                'admin_user_role' => $request->admin_user_role,
+                'created_at' => Carbon::now(),
+
+            ]);
+            // mesaj de notificare
+            $notification = array(
+                'message' => 'Administratorul a fost actualizat cu succes!',
+                'alert-type' => 'info'
+            );
+            // returnam spre pagina de vizualizare a tuturor utilizatorilor admin cu mesajul de notificare
+            return redirect()->route('all.admin.user')->with($notification);
+        }
+    }
 }

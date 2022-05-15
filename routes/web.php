@@ -503,4 +503,8 @@ Route::prefix('admin_user_role')->group(function () {
     Route::get('/add', [AdminUserController::class, 'AddAdminRole'])->name('add.admin');
     // ruta de inserare nou administrator in admin dashboard
     Route::post('/store', [AdminUserController::class, 'StoreAdminRole'])->name('admin.user.store');
+    // ruta de editare roluri administratori in admin dashboard
+    Route::get('/edit/{id}', [AdminUserController::class, 'EditAdminRole'])->name('edit.admin.user');
+    // ruta de actualizare roluri administratori in admin dashboard
+    Route::post('/update', [AdminUserController::class, 'UpdateAdminRole'])->name('admin.user.update');
 });

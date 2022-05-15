@@ -23,11 +23,8 @@ class Admin extends Authenticatable
      *
      * @var string[]
      */
-    protected $fillable = [
-        'name',
-        'email',
-        'password',
-    ];
+    // face toate campurile prezente sau viitoare din tabelul brands accesibile
+    protected $guarded = [];
 
     /**
      * The attributes that should be hidden for serialization.

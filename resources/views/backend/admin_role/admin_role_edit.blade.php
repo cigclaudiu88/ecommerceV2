@@ -45,32 +45,31 @@
         <div class="col-lg-12 col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h4 class="title">Adauga User Administrator</h4>
+                    <h4 class="title">Actualizeaza User Administrator</h4>
                 </div>
                 {{-- formular de actualizare date admin pe ruta admin.profile.store cu enctype="multipart/form-data pentru lucrul cu imagini si @csrf --}}
                 <div class="box-body">
-                    <form method="POST" action="{{ route('admin.user.store') }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('admin.user.update') }}" enctype="multipart/form-data">
                         @csrf
+
+                        <input type="hidden" name="id" value="{{ $adminuser->id }}">
+                        <input type="hidden" name="old_image" value="{{ $adminuser->profile_photo_path }}">
+
                         <div class="row mb-20">
 
-                            <div class="col-3 mb-20">
+                            <div class="col-4 mb-20">
                                 <label for="name">Nume</label>
-                                <input type="text" name="name" class="form-control" placeholder="Adauga Nume">
+                                <input type="text" name="name" class="form-control" value="{{ $adminuser->name }}">
                             </div>
 
-                            <div class="col-3 mb-20">
+                            <div class="col-4 mb-20">
                                 <label for="email">Adresa Email</label>
-                                <input type="email" name="email" class="form-control" placeholder="Adauga Adresa Email">
+                                <input type="email" name="email" class="form-control" value="{{ $adminuser->email }}">
                             </div>
 
-                            <div class="col-3 mb-20">
-                                <label for="phone">Parola</label>
-                                <input type="password" name="password" class="form-control" placeholder="Adauga Parola">
-                            </div>
-
-                            <div class="col-3 mb-20">
+                            <div class="col-4 mb-20">
                                 <label for="phone">Telefon</label>
-                                <input type="text" name="phone" class="form-control" placeholder="Adauga Telefon">
+                                <input type="text" name="phone" class="form-control" value="{{ $adminuser->phone }}">
                             </div>
 
 
@@ -81,52 +80,66 @@
                         <div class="row mb-20">
 
                             <div class="col-3 mb-20">
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="brand" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="brand" value="1"
+                                        {{ $adminuser->brand == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Branduri</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="category" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="category" value="1"
+                                        {{ $adminuser->category == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Categorii</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="subcategory" value="1">
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="subcategory" value="1"
+                                        {{ $adminuser->subcategory == 1 ? 'checked' : '' }}>
                                     <i class="icon"></i>Management Subcategorii</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="subsubcategory"
-                                        value="1">
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="subsubcategory" value="1"
+                                        {{ $adminuser->subsubcategory == 1 ? 'checked' : '' }}>
                                     <i class="icon"></i>Management SubSubcategorii</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="product" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="product" value="1"
+                                        {{ $adminuser->product == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Produse</label>
 
                             </div>
 
                             <div class="col-3 mb-20">
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="stock" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="stock" value="1"
+                                        {{ $adminuser->stock == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Stocuri Produse</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="slider" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="slider" value="1"
+                                        {{ $adminuser->slider == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Reclame Slider</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="voucher" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="voucher" value="1"
+                                        {{ $adminuser->voucher == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Voucher-uri</label>
-
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="orders" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="orders" value="1"
+                                        {{ $adminuser->orders == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Comenzi</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="return_order" value="1">
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="return_order" value="1"
+                                        {{ $adminuser->return_order == 1 ? 'checked' : '' }}>
                                     <i class="icon"></i>Management Retur Produse</label>
                             </div>
 
                             <div class="col-3 mb-20">
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="reports" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="reports" value="1"
+                                        {{ $adminuser->reports == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Rapoarte vanzari</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="alluser" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="alluser" value="1"
+                                        {{ $adminuser->alluser == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Lista Clienti</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="blog" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="blog" value="1"
+                                        {{ $adminuser->blog == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Blog</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="review" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="review" value="1"
+                                        {{ $adminuser->review == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Recenzii Produse</label>
                             </div>
 
                             <div class="col-3 mb-20">
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="setting" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="setting" value="1"
+                                        {{ $adminuser->setting == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Setari Site</label>
-                                <label class="adomx-checkbox primary"><input type="checkbox" name="shipping" value="1"> <i
+                                <label class="adomx-checkbox primary"><input type="checkbox" name="shipping" value="1"
+                                        {{ $adminuser->shipping == 1 ? 'checked' : '' }}> <i
                                         class="icon"></i>Management Locatii</label>
                                 <label class="adomx-checkbox primary"><input type="checkbox" name="admin_user_role"
-                                        value="1">
+                                        value="1" {{ $adminuser->admin_user_role == 1 ? 'checked' : '' }}>
                                     <i class="icon"></i>Rol Administrator</label>
                             </div>
 
@@ -140,15 +153,14 @@
                                 <input type="file" name="profile_photo_path" class="form-control" id="imagedisplay">
                             </div>
 
+                            {{-- afisam imaginea salvata in tabela brands --}}
                             <div class="col-12 mb-20">
-                                <img id="showImage" src="{{ url('upload/default_profile.png') }}"
-                                    style="width: 100px; height: 100px;" alt="">
+                                <img src="{{ asset($adminuser->profile_photo_path) }}" alt="" id="showImage"
+                                    width="120px" height="120px">
                             </div>
 
-
-
                             <div class="col-12">
-                                <input type="submit" value="Adauga Administrator" class="button button-primary">
+                                <input type="submit" value="Actualizeaza Administrator" class="button button-primary">
                             </div>
 
                         </div>
@@ -161,17 +173,4 @@
         </div>
         <!--Default Form End-->
     </div>
-
-    {{-- javascript pentru a afisa imaginea selectata de profil inainte de inserare --}}
-    <script type="text/javascript">
-        $(document).ready(function() {
-            $('#imagedisplay').change(function(e) {
-                var reader = new FileReader();
-                reader.onload = function(e) {
-                    $('#showImage').attr('src', e.target.result);
-                }
-                reader.readAsDataURL(e.target.files['0']);
-            });
-        });
-    </script>
 @endsection
