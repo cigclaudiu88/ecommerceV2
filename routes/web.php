@@ -144,8 +144,11 @@ Route::post('/user/profile/address/update/{id}', [IndexController::class, 'UserP
 
 // Rute accessibile doar pentru utilizatori admin autentificati : meniuri - brand -> voucher - de adaugat si restul...
 Route::middleware(['auth:admin'])->group(function () {
-    // Admin Brand Rute Grupate si prefixate cu brand
-    Route::prefix('brand')->group(function () {
+
+    // Route::prefix('brand')->group(function () {
+
+    // Admin Brand Rute Grupate si prefixate cu brand si middleware admin_brand_access (custom middleware) pt access la modulele brand daca in tabelul admins 'brand' == 1
+    Route::group(['prefix' => 'brand', 'middleware' => 'admin_brand_access'], function () {
         // ruta pentru afisarea tuturor brandurilor
         Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
         // ruta de inserare in tabela branduri
