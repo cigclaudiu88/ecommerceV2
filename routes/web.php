@@ -142,124 +142,125 @@ Route::post('/user/profile/address/store', [IndexController::class, 'UserProfile
 // ruta de actualizare adresa utilizator
 Route::post('/user/profile/address/update/{id}', [IndexController::class, 'UserProfileAddressUpdate'])->name('user.profile.address.update');
 
+// Rute accessibile doar pentru utilizatori admin autentificati : meniuri - brand -> voucher - de adaugat si restul...
+Route::middleware(['auth:admin'])->group(function () {
+    // Admin Brand Rute Grupate si prefixate cu brand
+    Route::prefix('brand')->group(function () {
+        // ruta pentru afisarea tuturor brandurilor
+        Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
+        // ruta de inserare in tabela branduri
+        Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
+        // ruta de editare branduri din tabela brands
+        Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
+        // ruta de actualizare branduri din tabela brands
+        Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
+        // ruta de stergere branduri din tabela brands
+        Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+    });
+
+    // Admin Categorii Rute Grupate si prefixate cu category
+    Route::prefix('category')->group(function () {
+        // ruta pentru afisarea tuturor categoriilor
+        Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
+        // ruta de inserare in tabela categories
+        Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
+        // ruta de editare categorii din tabela categories
+        Route::get('/edit/{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
+        // ruta de actualizare categorii din tabela categories
+        Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
+        // ruta de stergere categorii din tabela categories
+        Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
+
+        // Admin Rute pentru Subcategorii 
+        // ruta de afisare tuturor subcategoriilor
+        Route::get('/subcategory/view', [SubCategoryController::class, 'SubCategoryView'])->name('all.subcategory');
+        // ruta de inserare in tabela subcategories
+        Route::post('/subcategory/store', [SubCategoryController::class, 'SubCategoryStore'])->name('subcategory.store');
+        // ruta de editare subcategorii din tabela subcategories
+        Route::get('/subcategory/edit/{id}', [SubCategoryController::class, 'SubCategoryEdit'])->name('subcategory.edit');
+        // ruta de actualizare subcategorii din tabela subcategories
+        Route::post('/subcategory/update', [SubCategoryController::class, 'SubCategoryUpdate'])->name('subcategory.update');
+        // ruta de stergere subcategorii din tabela subcategories
+        Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
+
+        // Admin Rute pentru SubSubcategorii 
+        // ruta de afisare tuturor subsubcategoriilor
+        Route::get('/subcategory/subcategory/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategory');
+        // ruta de preluare subcategorie din tabela subcategories
+        Route::get('/subcategory/subsubcategory/{category_id}', [SubSubCategoryController::class, 'GetSubCategory']);
+        // ruta de preluare subsubcategorie din tabela subcategories
+        Route::get('/subcategory/subsubcategory/product/{subcategory_id}', [SubSubCategoryController::class, 'GetSubSubCategory']);
+        // ruta de inserare in tabela subsubcategories
+        Route::post('/subcategory/subcategory/store', [SubSubCategoryController::class, 'SubSubCategoryStore'])->name('subsubcategory.store');
+        // ruta de editare subsubcategorii din tabela subsubcategories
+        Route::get('/subcategory/subcategory/edit/{id}', [SubSubCategoryController::class, 'SubSubCategoryEdit'])->name('subsubcategory.edit');
+        // ruta de actualizare subcategorii din tabela subcategories
+        Route::post('/subcategory/subcategory/update', [SubSubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
+        // ruta de stergere subsubcategorii din tabela subsubcategories
+        Route::get('/subcategory/subcategory/delete/{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
+    });
+
+    // Admin Produse Rute Grupate si prefixate cu product
+    Route::prefix('product')->group(function () {
+        // ruta de afisare tuturor produselor
+        Route::get('/add', [ProductController::class, 'AddProduct'])->name('add-product');
+        // ruta de inserare in tabela products
+        Route::post('/store', [ProductController::class, 'ProductStore'])->name('product-store');
+        // ruta de vizualizare / management produse
+        Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage-product');
+        // ruta de editare produse din tabela products
+        Route::get('/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
+        // ruta de actualizare produse din tabela products
+        Route::post('/data/update', [ProductController::class, 'ProductDataUpdate'])->name('product-data-update');
+        // ruta de actualizare multiImage produse
+        Route::post('/multi-image/update', [ProductController::class, 'ProductMultiImageUpdate'])->name('product-multi-image-update');
+        // ruta de actualizare poza principala produse
+        Route::post('/thumbnail-image/update', [ProductController::class, 'ProductThumbnailImageUpdate'])->name('product-thumbnail-image-update');
+        // ruta de stergere produse din tabela products
+        Route::get('/multi-image/update/{id}', [ProductController::class, 'ProductMultiImageDelete'])->name('product-multi-image-delete');
+        // ruta de dezactivare produse din tabela products
+        Route::get('/inactive/{id}', [ProductController::class, 'ProductInactive'])->name('product.inactive');
+        // ruta de activare produse din tabela products
+        Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
+        // ruta de stergere produse din tabela products
+        Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
+    });
 
 
-// Admin Brand Rute Grupate si prefixate cu brand
-Route::prefix('brand')->group(function () {
-    // ruta pentru afisarea tuturor brandurilor
-    Route::get('/view', [BrandController::class, 'BrandView'])->name('all.brand');
-    // ruta de inserare in tabela branduri
-    Route::post('/store', [BrandController::class, 'BrandStore'])->name('brand.store');
-    // ruta de editare branduri din tabela brands
-    Route::get('/edit/{id}', [BrandController::class, 'BrandEdit'])->name('brand.edit');
-    // ruta de actualizare branduri din tabela brands
-    Route::post('/update', [BrandController::class, 'BrandUpdate'])->name('brand.update');
-    // ruta de stergere branduri din tabela brands
-    Route::get('/delete/{id}', [BrandController::class, 'BrandDelete'])->name('brand.delete');
+    // Admin Sliders Rute Grupate si prefixate cu slider
+    Route::prefix('slider')->group(function () {
+        // ruta de afisare tuturor sliders
+        Route::get('/view', [SliderController::class, 'SliderView'])->name('manage-slider');
+        // ruta de inserare in tabela sliders
+        Route::post('/store', [SliderController::class, 'SliderStore'])->name('slider.store');
+        // ruta de editare sliders din tabela sliders
+        Route::get('/edit/{id}', [SliderController::class, 'SliderEdit'])->name('slider.edit');
+        // ruta de actualizare sliders din tabela sliders
+        Route::post('/update', [SliderController::class, 'SliderUpdate'])->name('slider.update');
+        // ruta de stergere sliders din tabela sliders
+        Route::get('/delete/{id}', [SliderController::class, 'SliderDelete'])->name('slider.delete');
+        // ruta de dezactivare sliders din tabela sliders
+        Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
+        // ruta de activare sliders din tabela sliders
+        Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
+    });
+
+
+    // Admin Vouchers Rute Grupate si prefixate cu voucher
+    Route::prefix('voucher')->group(function () {
+        // ruta de afisare tuturor voucher-urilor din tabelul vouchers
+        Route::get('/view', [VoucherController::class, 'VoucherView'])->name('manage-voucher');
+        // ruta de inserare voucher-uri in tabela vouchers
+        Route::post('/store', [VoucherController::class, 'VoucherStore'])->name('voucher.store');
+        // ruta de editare voucher-uri din tabela vouchers
+        Route::get('/edit/{id}', [VoucherController::class, 'VoucherEdit'])->name('voucher.edit');
+        // ruta de actualizare voucher-uri din tabela vouchers
+        Route::post('/update/{id}', [VoucherController::class, 'VoucherUpdate'])->name('voucher.update');
+        // ruta de stergere voucher-uri din tabela vouchers
+        Route::get('/delete/{id}', [VoucherController::class, 'VoucherDelete'])->name('voucher.delete');
+    });
 });
 
-
-// Admin Categorii Rute Grupate si prefixate cu category
-Route::prefix('category')->group(function () {
-    // ruta pentru afisarea tuturor categoriilor
-    Route::get('/view', [CategoryController::class, 'CategoryView'])->name('all.category');
-    // ruta de inserare in tabela categories
-    Route::post('/store', [CategoryController::class, 'CategoryStore'])->name('category.store');
-    // ruta de editare categorii din tabela categories
-    Route::get('/edit/{id}', [CategoryController::class, 'CategoryEdit'])->name('category.edit');
-    // ruta de actualizare categorii din tabela categories
-    Route::post('/update', [CategoryController::class, 'CategoryUpdate'])->name('category.update');
-    // ruta de stergere categorii din tabela categories
-    Route::get('/delete/{id}', [CategoryController::class, 'CategoryDelete'])->name('category.delete');
-
-    // Admin Rute pentru Subcategorii 
-    // ruta de afisare tuturor subcategoriilor
-    Route::get('/subcategory/view', [SubCategoryController::class, 'SubCategoryView'])->name('all.subcategory');
-    // ruta de inserare in tabela subcategories
-    Route::post('/subcategory/store', [SubCategoryController::class, 'SubCategoryStore'])->name('subcategory.store');
-    // ruta de editare subcategorii din tabela subcategories
-    Route::get('/subcategory/edit/{id}', [SubCategoryController::class, 'SubCategoryEdit'])->name('subcategory.edit');
-    // ruta de actualizare subcategorii din tabela subcategories
-    Route::post('/subcategory/update', [SubCategoryController::class, 'SubCategoryUpdate'])->name('subcategory.update');
-    // ruta de stergere subcategorii din tabela subcategories
-    Route::get('/subcategory/delete/{id}', [SubCategoryController::class, 'SubCategoryDelete'])->name('subcategory.delete');
-
-    // Admin Rute pentru SubSubcategorii 
-    // ruta de afisare tuturor subsubcategoriilor
-    Route::get('/subcategory/subcategory/view', [SubSubCategoryController::class, 'SubSubCategoryView'])->name('all.subsubcategory');
-    // ruta de preluare subcategorie din tabela subcategories
-    Route::get('/subcategory/subsubcategory/{category_id}', [SubSubCategoryController::class, 'GetSubCategory']);
-    // ruta de preluare subsubcategorie din tabela subcategories
-    Route::get('/subcategory/subsubcategory/product/{subcategory_id}', [SubSubCategoryController::class, 'GetSubSubCategory']);
-    // ruta de inserare in tabela subsubcategories
-    Route::post('/subcategory/subcategory/store', [SubSubCategoryController::class, 'SubSubCategoryStore'])->name('subsubcategory.store');
-    // ruta de editare subsubcategorii din tabela subsubcategories
-    Route::get('/subcategory/subcategory/edit/{id}', [SubSubCategoryController::class, 'SubSubCategoryEdit'])->name('subsubcategory.edit');
-    // ruta de actualizare subcategorii din tabela subcategories
-    Route::post('/subcategory/subcategory/update', [SubSubCategoryController::class, 'SubSubCategoryUpdate'])->name('subsubcategory.update');
-    // ruta de stergere subsubcategorii din tabela subsubcategories
-    Route::get('/subcategory/subcategory/delete/{id}', [SubSubCategoryController::class, 'SubSubCategoryDelete'])->name('subsubcategory.delete');
-});
-
-// Admin Produse Rute Grupate si prefixate cu product
-Route::prefix('product')->group(function () {
-    // ruta de afisare tuturor produselor
-    Route::get('/add', [ProductController::class, 'AddProduct'])->name('add-product');
-    // ruta de inserare in tabela products
-    Route::post('/store', [ProductController::class, 'ProductStore'])->name('product-store');
-    // ruta de vizualizare / management produse
-    Route::get('/manage', [ProductController::class, 'ManageProduct'])->name('manage-product');
-    // ruta de editare produse din tabela products
-    Route::get('/edit/{id}', [ProductController::class, 'ProductEdit'])->name('product.edit');
-    // ruta de actualizare produse din tabela products
-    Route::post('/data/update', [ProductController::class, 'ProductDataUpdate'])->name('product-data-update');
-    // ruta de actualizare multiImage produse
-    Route::post('/multi-image/update', [ProductController::class, 'ProductMultiImageUpdate'])->name('product-multi-image-update');
-    // ruta de actualizare poza principala produse
-    Route::post('/thumbnail-image/update', [ProductController::class, 'ProductThumbnailImageUpdate'])->name('product-thumbnail-image-update');
-    // ruta de stergere produse din tabela products
-    Route::get('/multi-image/update/{id}', [ProductController::class, 'ProductMultiImageDelete'])->name('product-multi-image-delete');
-    // ruta de dezactivare produse din tabela products
-    Route::get('/inactive/{id}', [ProductController::class, 'ProductInactive'])->name('product.inactive');
-    // ruta de activare produse din tabela products
-    Route::get('/active/{id}', [ProductController::class, 'ProductActive'])->name('product.active');
-    // ruta de stergere produse din tabela products
-    Route::get('/delete/{id}', [ProductController::class, 'ProductDelete'])->name('product.delete');
-});
-
-
-// Admin Sliders Rute Grupate si prefixate cu slider
-Route::prefix('slider')->group(function () {
-    // ruta de afisare tuturor sliders
-    Route::get('/view', [SliderController::class, 'SliderView'])->name('manage-slider');
-    // ruta de inserare in tabela sliders
-    Route::post('/store', [SliderController::class, 'SliderStore'])->name('slider.store');
-    // ruta de editare sliders din tabela sliders
-    Route::get('/edit/{id}', [SliderController::class, 'SliderEdit'])->name('slider.edit');
-    // ruta de actualizare sliders din tabela sliders
-    Route::post('/update', [SliderController::class, 'SliderUpdate'])->name('slider.update');
-    // ruta de stergere sliders din tabela sliders
-    Route::get('/delete/{id}', [SliderController::class, 'SliderDelete'])->name('slider.delete');
-    // ruta de dezactivare sliders din tabela sliders
-    Route::get('/inactive/{id}', [SliderController::class, 'SliderInactive'])->name('slider.inactive');
-    // ruta de activare sliders din tabela sliders
-    Route::get('/active/{id}', [SliderController::class, 'SliderActive'])->name('slider.active');
-});
-
-
-// Admin Vouchers Rute Grupate si prefixate cu voucher
-Route::prefix('voucher')->group(function () {
-    // ruta de afisare tuturor voucher-urilor din tabelul vouchers
-    Route::get('/view', [VoucherController::class, 'VoucherView'])->name('manage-voucher');
-    // ruta de inserare voucher-uri in tabela vouchers
-    Route::post('/store', [VoucherController::class, 'VoucherStore'])->name('voucher.store');
-    // ruta de editare voucher-uri din tabela vouchers
-    Route::get('/edit/{id}', [VoucherController::class, 'VoucherEdit'])->name('voucher.edit');
-    // ruta de actualizare voucher-uri din tabela vouchers
-    Route::post('/update/{id}', [VoucherController::class, 'VoucherUpdate'])->name('voucher.update');
-    // ruta de stergere voucher-uri din tabela vouchers
-    Route::get('/delete/{id}', [VoucherController::class, 'VoucherDelete'])->name('voucher.delete');
-});
 
 // Rutele pentru pagina de detalii produse
 // pagina frontend de detalii a unui produs

@@ -70,7 +70,6 @@
                                  <li><a href="#"><img src="{{ asset('backend/images/flags/flag-4.jpg') }}" alt="">
                                          Germany</a></li>
                              </ul>
-
                          </li>
 
                          <!--Mail-->
@@ -239,13 +238,13 @@
                              </div>
 
                          </li> --}}
+
                          {{-- preluam in $adminData datele din tabelul admins --}}
                          @php
                              // $id preia id-ul adminului curent autentificat
-                             $id = Illuminate\Support\Facades\Auth::user()->id;
+                             $id = Illuminate\Support\Facades\Auth::guard('admin')->user()->id;
                              // $admin preia datele adminului curent autentificat cu id-ul $id
-                             $adminData = App\Models\Admin::find($id);
-                             
+                             $adminData = App\Models\Admin::findorfail($id);
                          @endphp
 
                          <!--User-->
