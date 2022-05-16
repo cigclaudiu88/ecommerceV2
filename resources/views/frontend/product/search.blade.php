@@ -177,7 +177,7 @@
                         </form>
                     </div>
                     <div class="page_amount">
-                        <p>Showing 1–9 of 21 results</p>
+                        <strong class="text-success">{{ count($products) }} produse</strong>
                     </div>
                 </div>
 

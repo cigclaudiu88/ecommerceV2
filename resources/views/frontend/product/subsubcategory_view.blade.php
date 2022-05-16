@@ -4,6 +4,31 @@
     Produse functie de SubSubCategorie
 @endsection
 
+<!-- breadcrumbs_area_-->
+<div class="container">
+    <div class="row">
+        <div class="col-12 mt-4">
+            <div class="breadcrumb_content" style="text-align: left !important;">
+                <ul>
+                    <li><a href="{{ url('/') }}">Acasa</a></li>
+                    @foreach ($breadsubsubcat as $item)
+                        <li class="text-success">{{ $item->category->category_name }}</li>
+                    @endforeach
+
+                    @foreach ($breadsubsubcat as $item)
+                        <li class="text-success">{{ $item->subcategory->subcategory_name }}</li>
+                    @endforeach
+
+                    @foreach ($breadsubsubcat as $item)
+                        <li class="text-success">{{ $item->subsubcategory_name }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- breadcrumbs_area_end -->
+
 <!--shop  area start-->
 <div class="shop_area shop_reverse mt-70 mb-70">
     <div class="container">
@@ -178,7 +203,7 @@
                         </form>
                     </div>
                     <div class="page_amount">
-                        <p>Showing 1–9 of 21 results</p>
+                        <strong class="text-success">{{ count($products) }} produse</strong>
                     </div>
                 </div>
 

@@ -14,6 +14,7 @@ use App\Models\BlogPost;
 use App\Models\Category;
 // adaugam namespace-ul pentru clasa Auth
 use App\Models\MultiImg;
+use App\Models\SubCategory;
 use App\Models\UserAddress;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
@@ -344,8 +345,10 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->orderBy('id', 'DESC')->paginate(9);
         // $subcategory preia datele din tabela subcategories aferenta id-ului primit ca parametru
         $categories = Category::orderBy('id', 'ASC')->get();
-        // returnam pagina de produse functie de subcategorie cu datele din variabila $products si $categories
-        return view('frontend.product.subcategory_view', compact('products', 'categories'));
+        // $breadsubcat preia din tabela subcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories
+        $breadsubcat = SubCategory::with(['category'])->where('id', $subcategory_id)->get();
+        // returnam pagina de produse functie de subcategorie cu datele din variabila $products $categories si $breadsubcat
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat'));
     }
     // functia de afisare a produselor functie de subsubcategorie
     public function SubSubCategoryWiseProduct($subsubcategory_id, $slug)
@@ -355,8 +358,10 @@ class IndexController extends Controller
         $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
         // $subcategory preia datele din tabela subcategories aferenta id-ului primit ca parametru
         $categories = Category::orderBy('id', 'ASC')->get();
-        //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products si $categories
-        return view('frontend.product.subsubcategory_view', compact('products', 'categories'));
+        // $breadsubcat preia din tabela subsubcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories si subcategories
+        $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $subsubcategory_id)->get();
+        //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat'));
     }
 
     // functia de afisare a produselor in modal
