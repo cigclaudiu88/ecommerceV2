@@ -381,5 +381,19 @@ class IndexController extends Controller
             // 'size' => $product_size,
 
         ));
-    } // end method 
+    }
+
+    // functia de cautare produse si afisare in frontend
+    public function ProductSearch(Request $request)
+    {
+        // $item preia valoarea din input-ul de cautare
+        $item = $request->search;
+        // echo "$item";
+        //$categories preia din tabelul categories toate categoriile si le ordoneaza ascendent dupa nume
+        $categories = Category::orderBy('category_name', 'ASC')->get();
+        // $products preia din tabelul products toate produsele care au numele care contine valoarea din variabila $item
+        $products = Product::where('product_name', 'LIKE', "%$item%")->paginate(10);
+        // returnam pagina de cautare cu datele din variabila $products si $categories
+        return view('frontend.product.search', compact('products', 'categories'));
+    }
 }

@@ -514,3 +514,6 @@ Route::prefix('admin_user_role')->group(function () {
     // ruta de stergere administratori in admin dashboard
     Route::get('/delete/{id}', [AdminUserController::class, 'DeleteAdminRole'])->name('delete.admin.user');
 });
+
+/// Ruta pentru cautare produse frontend 
+Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');

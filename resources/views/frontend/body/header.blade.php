@@ -102,38 +102,23 @@
                                 <a href="{{ url('/') }}"><img src="{{ asset($setting->logo) }}" alt=""></a>
                             </div>
                         </div>
+
+                        {{-- sectiunea de cautare start --}}
                         <div class="col-lg-7 col-md-6 col-sm-7 col-8">
                             <div class="header_right_info">
                                 <div class="search_container mobail_s_none">
-                                    <form action="#">
-                                        <div class="hover_category">
-                                            <select class="select_option" name="select" id="categori2">
-                                                <option selected value="1">Select a categories</option>
-                                                <option value="2">Accessories</option>
-                                                <option value="3">Accessories & More</option>
-                                                <option value="4">Butters & Eggs</option>
-                                                <option value="5">Camera & Video </option>
-                                                <option value="6">Mornitors</option>
-                                                <option value="7">Tablets</option>
-                                                <option value="8">Laptops</option>
-                                                <option value="9">Handbags</option>
-                                                <option value="10">Headphone & Speaker</option>
-                                                <option value="11">Herbs & botanicals</option>
-                                                <option value="12">Vegetables</option>
-                                                <option value="13">Shop</option>
-                                                <option value="14">Laptops & Desktops</option>
-                                                <option value="15">Watchs</option>
-                                                <option value="16">Electronic</option>
-                                            </select>
-                                        </div>
+                                    <form method="post" action="{{ route('product.search') }}">
+                                        @csrf
+
                                         <div class="search_box">
-                                            <input placeholder="Search product..." type="text">
+                                            <input placeholder="Cauta produse..." type="text" name="search">
                                             <button type="submit"><span class="lnr lnr-magnifier"></span></button>
                                         </div>
                                     </form>
                                 </div>
                             </div>
                         </div>
+                        {{-- sectiunea de cautare sfarsit --}}
 
                         {{-- Meniu Utilizator Autentificat / Neautentificat start --}}
                         {{-- cand utilizatorul este autentificat are acces la rutele profilului --}}
