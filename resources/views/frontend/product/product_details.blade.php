@@ -65,74 +65,9 @@
                                             class="fa fa-angle-right"></i></a></li>
                             </ul>
                         </div> --}}
-                        <div class=" product_ratting">
-                            @php
-                                // $avg_rating preia din tabelul reviews valorile medii din coloana rating
-                                // pentru produsul curent rotunjit la 0 zecimale
-                                $avg_rating = round(
-                                    App\Models\Review::where('product_id', $product->id)
-                                        ->where('status', 1)
-                                        ->avg('rating'),
-                                    0,
-                                );
-                                
-                            @endphp
-                            <ul>
-                                @if ($avg_rating == null)
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                @elseif($avg_rating == 1)
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                @elseif($avg_rating == 2)
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                @elseif($avg_rating == 3)
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                @elseif($avg_rating == 4)
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="icon-star"></i></a></li>
-                                @elseif($avg_rating == 5)
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                    <li><a href="#"><i class="fa-solid fa-star"></i></a>
-                                    </li>
-                                @endif
-                            </ul>
 
-                        </div>
+                        {{-- inclus rating produse --}}
+                        @include('frontend.product.product_rating')
                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                         <div class="price_box">
                             @if ($product->discount_price == null)
@@ -152,18 +87,9 @@
                         <div class="product_desc">
                             <p>{{ $product->short_description }}</p>
                         </div>
-                        <div class="product_variant color">
-                            <h3>Available Options</h3>
-                            <label>color</label>
-                            <ul>
-                                <li class="color1"><a href="#"></a></li>
-                                <li class="color2"><a href="#"></a></li>
-                                <li class="color3"><a href="#"></a></li>
-                                <li class="color4"><a href="#"></a></li>
-                            </ul>
-                        </div>
+
                         <div class="product_variant quantity">
-                            <label>quantity</label>
+                            <label>Cantitate</label>
                             {{-- adaugat id="qty" pt scriptul AddToCart --}}
                             <input min="1" value="1" type="number" id="qty">
                             {{-- adaugat camp hiddent pentru product_id --}}
@@ -175,11 +101,12 @@
                         <div class=" product_d_action">
                             <ul>
                                 <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
-                                <li><a href="#" title="Add to wishlist">+ Compare</a></li>
                             </ul>
                         </div>
                         <div class="product_meta">
-                            <span>Category: <a href="#">Clothing</a></span>
+                            <p>Categoria: <a
+                                    href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                            </p>
                         </div>
 
                     </form>
@@ -642,12 +569,12 @@
     }
 
     .rate>input:checked~label {
-        color: #1aa726;
+        color: #feb954;
     }
 
     .rate:not(:checked)>label:hover,
     .rate:not(:checked)>label:hover~label {
-        color: #1aa726;
+        color: #feb954;
     }
 
     .rate>input:checked+label:hover,
@@ -655,7 +582,7 @@
     .rate>input:checked~label:hover,
     .rate>input:checked~label:hover~label,
     .rate>label:hover~input:checked~label {
-        color: #1aa726;
+        color: #feb954;
     }
 
     /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */

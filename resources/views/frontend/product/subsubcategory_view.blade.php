@@ -262,7 +262,11 @@
                                     <h4 class="product_name"><a
                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                     </h4>
-                                    {{-- <p><a href="#">Fruits</a></p> --}}
+                                    {{-- inclus rating produse --}}
+                                    @include('frontend.product.product_rating')
+                                    <p><a
+                                            href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                    </p>
                                     {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                     <div class="price_box">
                                         @if ($product->discount_price == null)
@@ -285,7 +289,11 @@
                                 {{-- LIST VIEW STARTS --}}
                                 <div class="product_content list_content">
                                     <h4 class="product_name"><a href="product-details.html">Aliquam Consequat</a></h4>
-                                    <p><a href="#">Fruits</a></p>
+                                    {{-- inclus rating produse --}}
+                                    @include('frontend.product.product_rating')
+                                    <p><a
+                                            href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                    </p>
                                     {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                     <div class="price_box">
                                         @if ($product->discount_price == null)

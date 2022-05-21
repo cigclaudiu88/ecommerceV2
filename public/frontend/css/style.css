@@ -6229,7 +6229,7 @@ span#order_canceled {
   display: inline-block;
 }
 .product_ratting ul li a {
-  color: #40a944;
+  color: #feb954;
 }
 
 @media only screen and (max-width: 767px) {
@@ -6669,7 +6669,7 @@ span#order_canceled {
   color: #252525;
 }
 .product_d_right h1 a:hover {
-  color: #40a944;
+  color: #feb954;
 }
 .product_d_right .product_ratting {
   margin-bottom: 17px;
@@ -6683,14 +6683,14 @@ span#order_canceled {
   color: #feb954;
 }
 .product_d_right .product_ratting ul li a:hover {
-  color: #40a944;
+  color: #feb954;
 }
 .product_d_right .product_ratting ul li.review a {
   color: #5a5a5a;
   margin-left: 10px;
 }
 .product_d_right .product_ratting ul li.review a:hover {
-  color: #40a944;
+  color: #feb954;
 }
 .product_d_right .price_box {
   margin-bottom: 14px;
@@ -7139,7 +7139,7 @@ span#order_canceled {
   margin-bottom: 20px;
 }
 .reviews_wrapper .product_ratting ul li a {
-  color: #40a944;
+  color: #feb954;
 }
 .reviews_wrapper .product_ratting h3 {
   font-size: 14px;
@@ -7178,7 +7178,7 @@ span#order_canceled {
   display: inline-block;
 }
 .star_rating ul li a {
-  color: #40a944;
+  color: #feb954;
 }
 
 .reviews_comment_box {

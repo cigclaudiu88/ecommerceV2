@@ -14,7 +14,7 @@
                                         style="width: 50px; height: 50px;">
 
                                     <div class="d-flex flex-column ml-3" style="margin-left: 10px;">
-                                        <span>{{ Str::limit($item->product_name, 40) }} </span>
+                                        <span><strong>{{ Str::limit($item->product_name, 40) }} </strong></span>
                                         @if ($item->discount_price == null)
                                             <small>
                                                 {{ number_format($item->selling_price * 0.19 + $item->selling_price, 2, '.', ',') }}
@@ -89,6 +89,10 @@
 
     .list small {
         color: #2da71d
+    }
+
+    a:hover {
+        color: #40a944;
     }
 
 </style>

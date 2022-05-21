@@ -108,6 +108,8 @@
                                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                                     </h4>
                                                     {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                                    {{-- inclus rating produse --}}
+                                                    @include('frontend.product.product_rating')
                                                     <p><a
                                                             href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                                     </p>
@@ -211,6 +213,8 @@
                                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                                         </h4>
                                                         {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                                        {{-- inclus rating produse --}}
+                                                        @include('frontend.product.product_rating')
                                                         <p><a
                                                                 href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                                         </p>
@@ -344,6 +348,8 @@
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
                                         {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        {{-- inclus rating produse --}}
+                                        @include('frontend.product.product_rating')
                                         <p><a
                                                 href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                         </p>
@@ -429,6 +435,8 @@
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                             </h4>
                                             {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                            {{-- inclus rating produse --}}
+                                            @include('frontend.product.product_rating')
                                             <p><a
                                                     href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                             </p>
@@ -556,6 +564,8 @@
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
                                         {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        {{-- inclus rating produse --}}
+                                        @include('frontend.product.product_rating')
                                         <p><a
                                                 href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                         </p>
@@ -701,6 +711,8 @@
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
                                         {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        {{-- inclus rating produse --}}
+                                        @include('frontend.product.product_rating')
                                         <p><a
                                                 href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                         </p>
@@ -801,6 +813,8 @@
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
                                         {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        {{-- inclus rating produse --}}
+                                        @include('frontend.product.product_rating')
                                         <p><a
                                                 href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                         </p>
@@ -866,6 +880,8 @@
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                             </h4>
                                             {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                            {{-- inclus rating produse --}}
+                                            @include('frontend.product.product_rating')
                                             <p><a
                                                     href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
                                             </p>
