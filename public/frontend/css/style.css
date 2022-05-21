@@ -6099,11 +6099,11 @@ span#order_canceled {
   float: right;
   text-align: right;
   line-height: 31px;
-  width: 60px;
+  width: 140px;
 }
 @media only screen and (min-width: 992px) and (max-width: 1199px) {
   .widget_list.widget_filter form input {
-    width: 65px;
+    width: 140px;
   }
 }
 .widget_list.widget_filter form button {

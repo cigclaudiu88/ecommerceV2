@@ -354,4 +354,6 @@
     </div>
 </div>
 <!--shop  area end-->
+
+
 @endsection

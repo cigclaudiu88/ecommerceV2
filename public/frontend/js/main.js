@@ -712,16 +712,16 @@
   $("#slider-range").slider({
     range: true,
     min: 0,
-    max: 500,
-    values: [0, 500],
+    max: 15000,
+    values: [0, 15000],
     slide: function (event, ui) {
-      $("#amount").val("$" + ui.values[0] + " - $" + ui.values[1]);
+      $("#amount").val("RON " + ui.values[0] + " - RON " + ui.values[1]);
     },
   });
   $("#amount").val(
-    "$" +
+    "RON " +
       $("#slider-range").slider("values", 0) +
-      " - $" +
+      " - RON " +
       $("#slider-range").slider("values", 1)
   );
 
