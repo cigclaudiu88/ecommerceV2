@@ -846,6 +846,118 @@
 </div>
 {{-- Sectiunea de Produse a unui brand specific sfarsit --}}
 
+
+@auth
+
+    @if ($wishlist_products->isEmpty())
+    @else
+        {{-- Sectiunea de Produse din Wishlist pentru Utilizatorul autentificat start --}}
+        <div class="product_area mb-65">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12">
+                        <div class="section_title">
+                            <h2>Produse din Wishlist</h2>
+                        </div>
+                    </div>
+                </div>
+                <div class="product_container">
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="product_carousel product_column5 owl-carousel">
+                                @foreach ($wishlist_products as $product)
+                                    <article class="single_product">
+                                        <figure>
+                                            <div class="product_thumb">
+                                                <a class="primary_img"
+                                                    href="{{ url('product/details/' . $product->product->id . '/' . $product->product->product_slug) }}"><img
+                                                        src="{{ asset($product->product->product_thumbnail) }}"
+                                                        alt=""></a>
+                                                <a class="secondary_img"
+                                                    href="{{ url('product/details/' . $product->product->id . '/' . $product->product->product_slug) }}"><img
+                                                        src="{{ asset($product->product->product_thumbnail) }}"
+                                                        alt=""></a>
+                                                @php
+                                                    // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
+                                                    $amount = $product->product->selling_price - $product->product->discount_price;
+                                                    $discount = ($amount / $product->product->selling_price) * 100;
+                                                @endphp
+                                                <div class="label_product">
+                                                    {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                                    @if ($product->product->discount_price == null)
+                                                        <span class="label_new">Nou</span>
+                                                    @else
+                                                        {{-- daca produsul are pret de discount afisam % discount --}}
+                                                        <span class="label_sale">{{ round($discount) }}%</span>
+                                                    @endif
+                                                </div>
+                                                <div class="action_links">
+                                                    <ul>
+                                                        <li class="add_to_cart"><a data-tippy="Adauga in Cos"
+                                                                data-tippy-placement="top" data-tippy-arrow="true"
+                                                                data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                                id="{{ $product->product->id }}"
+                                                                name="{{ $product->product->product_name }}"
+                                                                onclick="addToCartButton(this.id, this.name)">
+                                                                <span class="lnr lnr-cart"></span></a></li>
+                                                        {{-- adaugat onclick event si id-ul produsului --}}
+                                                        <li class="quick_button"><a data-tippy="Previzualizare"
+                                                                data-tippy-placement="top" data-tippy-arrow="true"
+                                                                data-tippy-inertia="true" data-bs-toggle="modal"
+                                                                data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                                id="{{ $product->product->id }}">
+                                                                <span class="lnr lnr-magnifier"></span></a></li>
+                                                        {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                        <li class="wishlist"><a data-tippy="Adauga in Wishlist"
+                                                                data-tippy-placement="top" data-tippy-arrow="true"
+                                                                data-tippy-inertia="true"
+                                                                id="{{ $product->product->id }}"
+                                                                onclick="addToWishList(this.id)"><span
+                                                                    class="lnr lnr-heart"></span></a></li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <figcaption class="product_content">
+                                                <h4 class="product_name"><a
+                                                        href="{{ url('product/details/' . $product->product->id . '/' . $product->product->product_slug) }}">{{ Str::limit($product->product->product_name, 40) }}</a>
+                                                </h4>
+                                                {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                                {{-- inclus rating produse --}}
+                                                @include('frontend.product.product_rating')
+                                                <p><a
+                                                        href="{{ url('subsubcategory/product/' . $product->product->subsubcategory->id . '/' . $product->product->subsubcategory->subsubcategory_slug) }}">{{ $product->product->subsubcategory->subsubcategory_name }}</a>
+                                                </p>
+                                                {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
+                                                <div class="price_box">
+                                                    @if ($product->product->discount_price == null)
+                                                        <span
+                                                            class="current_price">{{ number_format($product->product->selling_price * 0.19 + $product->product->selling_price, 2, '.', ',') }}
+                                                            RON</span>
+                                                        {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
+                                                    @else
+                                                        <span
+                                                            class="current_price">{{ number_format($product->product->discount_price * 0.19 + $product->product->discount_price, 2, '.', ',') }}
+                                                            RON</span><br>
+                                                        <span
+                                                            class="old_price">{{ number_format($product->product->selling_price * 0.19 + $product->product->selling_price, 2, '.', ',') }}
+                                                            RON</span>
+                                                    @endif
+                                                </div>
+                                            </figcaption>
+                                        </figure>
+                                    </article>
+                                @endforeach
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{-- Sectiunea de Produse din Wishlist pentru Utilizatorul autentificat start --}}
+    @endif
+@endauth
+
+
 <!--custom product area start-->
 <div class="custom_product_area">
     <div class="container">

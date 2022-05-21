@@ -21,6 +21,7 @@ use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
+use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -63,9 +64,17 @@ class IndexController extends Controller
         $skip_brand_product_0 = Product::where('status', 1)->where('brand_id', $skip_brand_0->id)->orderBy('id', 'DESC')->get();
         // blogpost preia toate postarile din tabelul blog_posts
         $blogpost = BlogPost::with('category')->latest()->get();
-
+        // verificam daca utilizatorul este autentificat
+        if (Auth::check()) {
+            // daca este autentificat $wishlist_products preia din tabelul wishlist (cu functia product din model)
+            // toate produsele din wishlist ale utilizatorului logat (adica unde user_id = id-ul utilizatorului logat)
+            $wishlist_products = Wishlist::with('product')->where('user_id', Auth::user()->id)->get();
+        } else {
+            // daca nu este autentificat $wishlist_products array gol
+            $wishlist_products = [];
+        }
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_subsubcategory_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_brand_product_0', 'blogpost'));
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_subsubcategory_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_brand_product_0', 'blogpost', 'wishlist_products'));
     }
 
     // functia de logout user
