@@ -157,9 +157,6 @@
                         <button data-role="grid_3" type="button" class="active btn-grid-3" data-toggle="tooltip"
                             title="3"></button>
 
-                        <button data-role="grid_4" type="button" class=" btn-grid-4" data-toggle="tooltip"
-                            title="4"></button>
-
                         <button data-role="grid_list" type="button" class="btn-list" data-toggle="tooltip"
                             title="List"></button>
                     </div>
@@ -262,8 +259,11 @@
 
                                 {{-- LIST VIEW STARTS --}}
                                 <div class="product_content list_content">
-                                    <h4 class="product_name"><a href="product-details.html">Aliquam Consequat</a></h4>
-                                    <p><a href="#">Fruits</a></p>
+                                    <h4 class="product_name"><a
+                                            href="product-details.html">{{ $product->product_name }}</a></h4>
+                                    <p><a
+                                            href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                    </p>
                                     {{-- inclus rating produse --}}
                                     @include('frontend.product.product_rating')
                                     <p><a
@@ -286,11 +286,7 @@
                                         @endif
                                     </div>
                                     <div class="product_desc">
-                                        <p>Nunc facilisis sagittis ullamcorper. Proin lectus ipsum, gravida et mattis
-                                            vulputate, tristique ut lectus. Sed et lorem nunc. Vestibulum ante ipsum
-                                            primis
-                                            in faucibus orci luctus et ultrices posuere cubilia Curae; Aenean eleifend
-                                            laoreet congue. Viva..</p>
+                                        <p>{{ $product->short_description }}</p>
                                     </div>
                                     <div class="action_links list_action_right">
                                         <ul>
