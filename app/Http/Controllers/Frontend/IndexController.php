@@ -404,10 +404,17 @@ class IndexController extends Controller
         // returnam pagina de cautare cu datele din variabila $products si $categories
         return view('frontend.product.search', compact('products', 'categories'));
     }
-    // functia pentru cautare avansata
+    // functia pentru cautare avansata de produse in frontpage bara de cautare
     public function SearchProduct(Request $request)
     {
-        // returneaza solicitarea utilizatorului
-        return $request;
+        // campul de cautare din bara de cautare trebuie sa fie completat pentru a cauta produse
+        $request->validate(["search" => "required"]);
+        // $item preia valoarea din input-ul de cautare
+        $item = $request->search;
+        // $products preia din tabelul products toate produsele care au numele care contine valoarea din variabila $item
+        // selecteaza doar campurile product_name si product_thumbnail	 pentru afisarea in sugestii limitat la 5
+        $products = Product::where('product_name', 'LIKE', "%$item%")->select('product_name', 'product_thumbnail')->limit(5)->get();
+        // returnam pagina de sugestii cautare cu datele din variabila $products
+        return view('frontend.product.search_product', compact('products'));
     }
 }

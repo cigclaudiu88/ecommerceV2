@@ -1201,6 +1201,9 @@ $("body").on("keyup", "#search", function () {
       return request.setReuestHeader("X-CSRF-Token", "meta[name='csrf-token']");
     },
     // daca requestul a fost trimis cu succes
-    success: function (result) {},
+    success: function (result) {
+      // afiseaza in div-ul cu id-ul searchProduct din header rezultatul sugestiilor randate in html
+      $("#searchProducts").html(result);
+    },
   }); // end ajax
 }); //  script cautare avansata sugestii

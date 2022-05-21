@@ -111,10 +111,13 @@
                                         @csrf
 
                                         <div class="search_box">
-                                            <input placeholder="Cauta produse..." type="text" name="search" id="search">
+                                            <input placeholder="Cauta produse..." type="text" name="search" id="search"
+                                                onfocus="search_result_show()" onblur="search_result_hide()">
                                             <button type="submit"><span class="lnr lnr-magnifier"></span></button>
                                         </div>
                                     </form>
+                                    {{-- adaugat div cu id pentru lista de sugestii produse din script --}}
+                                    <div id="searchProducts"></div>
                                 </div>
                             </div>
                         </div>
@@ -439,7 +442,35 @@
 </header>
 {{-- Header Sfarsit --}}
 
+{{-- CSS pentru rezultatul sugestiilor din bara de cautare pentru cautare avansata --}}
+<style>
+    .header_right_info {
+        position: relative;
+    }
 
+    #searchProducts {
+        position: absolute;
+        top: 100%;
+        /* left: 20px; */
+        width: 73%;
+        background: #ffffff;
+        z-index: 999;
+        border-radius: 8px;
+        margin-top: 5px;
+    }
+
+</style>
+
+{{-- script pt afisarea sugestiilor de produse --}}
+<script>
+    function search_result_hide() {
+        $("#searchProducts").slideUp();
+    }
+
+    function search_result_show() {
+        $("#searchProducts").slideDown();
+    }
+</script>
 
 
 {{-- @auth
