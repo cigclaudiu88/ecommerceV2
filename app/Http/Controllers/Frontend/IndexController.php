@@ -391,6 +391,9 @@ class IndexController extends Controller
     // functia de cautare produse si afisare in frontend
     public function ProductSearch(Request $request)
     {
+        // campul de cautare din bara de cautare trebuie sa fie completat pentru a cauta produse
+        $request->validate(["search" => "required"]);
+
         // $item preia valoarea din input-ul de cautare
         $item = $request->search;
         // echo "$item";
@@ -400,5 +403,11 @@ class IndexController extends Controller
         $products = Product::where('product_name', 'LIKE', "%$item%")->paginate(10);
         // returnam pagina de cautare cu datele din variabila $products si $categories
         return view('frontend.product.search', compact('products', 'categories'));
+    }
+    // functia pentru cautare avansata
+    public function SearchProduct(Request $request)
+    {
+        // returneaza solicitarea utilizatorului
+        return $request;
     }
 }

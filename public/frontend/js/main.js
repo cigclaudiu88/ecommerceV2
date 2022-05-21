@@ -1182,3 +1182,25 @@
     }
   });
 })(jQuery);
+
+//  script cautare avansata sugestii
+// de schimbat URL cand site-ul e pe web host !!!!
+const site_url = "http://127.0.0.1:8000/";
+
+$("body").on("keyup", "#search", function () {
+  // variabila text preia valoarea din campul de cautare din bara de cautare
+  let text = $("#search").val();
+  // console.log(text);
+  // script ajax de trimitere a textului de cautare
+  $.ajax({
+    data: { search: text },
+    url: site_url + "search-product",
+    method: "post",
+    // inainte de a trimite requestul se face verificarea CSRF
+    beforSend: function (request) {
+      return request.setReuestHeader("X-CSRF-Token", "meta[name='csrf-token']");
+    },
+    // daca requestul a fost trimis cu succes
+    success: function (result) {},
+  }); // end ajax
+}); //  script cautare avansata sugestii

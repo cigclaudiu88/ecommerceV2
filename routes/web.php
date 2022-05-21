@@ -517,3 +517,5 @@ Route::prefix('admin_user_role')->group(function () {
 
 /// Ruta pentru cautare produse frontend 
 Route::post('/search', [IndexController::class, 'ProductSearch'])->name('product.search');
+// Ruta pentru cautare avansata produse frontend 
+Route::post('search-product', [IndexController::class, 'SearchProduct']);
