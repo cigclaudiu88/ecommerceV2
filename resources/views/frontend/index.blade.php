@@ -78,7 +78,7 @@
                                                     </div>
                                                     <div class="action_links">
                                                         <ul>
-                                                            <li class="add_to_cart"><a data-tippy="Add to cart"
+                                                            <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                                     data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
                                                                     id="{{ $product->id }}"
@@ -86,7 +86,7 @@
                                                                     onclick="addToCartButton(this.id, this.name)">
                                                                     <span class="lnr lnr-cart"></span></a></li>
                                                             {{-- adaugat onclick event si id-ul produsului --}}
-                                                            <li class="quick_button"><a data-tippy="quick view"
+                                                            <li class="quick_button"><a data-tippy="Previzualizare"
                                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                                     data-tippy-inertia="true" data-bs-toggle="modal"
                                                                     data-bs-target="#modal_box"
@@ -94,15 +94,12 @@
                                                                     id="{{ $product->id }}">
                                                                     <span class="lnr lnr-magnifier"></span></a></li>
                                                             {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
-                                                            <li class="wishlist"><a data-tippy="Add to Wishlist"
+                                                            <li class="wishlist"><a
+                                                                    data-tippy="Adauga in Wishlist"
                                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                                     data-tippy-inertia="true" id="{{ $product->id }}"
                                                                     onclick="addToWishList(this.id)"><span
                                                                         class="lnr lnr-heart"></span></a></li>
-                                                            <li class="compare"><a data-tippy="Add to Compare"
-                                                                    data-tippy-placement="top" data-tippy-arrow="true"
-                                                                    data-tippy-inertia="true"><span
-                                                                        class="lnr lnr-sync"></span></a></li>
                                                         </ul>
                                                     </div>
                                                 </div>
@@ -110,7 +107,10 @@
                                                     <h4 class="product_name"><a
                                                             href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                                     </h4>
-                                                    <p><a href="#">Fruits</a></p>
+                                                    {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                                    <p><a
+                                                            href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                                    </p>
                                                     {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                                     <div class="price_box">
                                                         @if ($product->discount_price == null)
@@ -176,33 +176,33 @@
                                                         </div>
                                                         <div class="action_links">
                                                             <ul>
-                                                                <li class="add_to_cart"><a href="cart.html"
-                                                                        data-tippy="Add to cart"
+                                                                <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                                         data-tippy-placement="top"
                                                                         data-tippy-arrow="true"
-                                                                        data-tippy-inertia="true"> <span
-                                                                            class="lnr lnr-cart"></span></a></li>
-                                                                <li class="quick_button"><a href="#"
-                                                                        data-tippy="quick view"
+                                                                        data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                                        id="{{ $product->id }}"
+                                                                        name="{{ $product->product_name }}"
+                                                                        onclick="addToCartButton(this.id, this.name)">
+                                                                        <span class="lnr lnr-cart"></span></a></li>
+                                                                {{-- adaugat onclick event si id-ul produsului --}}
+                                                                <li class="quick_button"><a
+                                                                        data-tippy="Previzualizare"
                                                                         data-tippy-placement="top"
                                                                         data-tippy-arrow="true"
                                                                         data-tippy-inertia="true" data-bs-toggle="modal"
                                                                         data-bs-target="#modal_box"
                                                                         onclick="productView(this.id)"
-                                                                        id="{{ $product->id }}"> <span
-                                                                            class="lnr lnr-magnifier"></span></a></li>
-                                                                <li class="wishlist"><a href="wishlist.html"
-                                                                        data-tippy="Add to Wishlist"
+                                                                        id="{{ $product->id }}">
+                                                                        <span class="lnr lnr-magnifier"></span></a></li>
+                                                                {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                                <li class="wishlist"><a
+                                                                        data-tippy="Adauga in Wishlist"
                                                                         data-tippy-placement="top"
                                                                         data-tippy-arrow="true"
-                                                                        data-tippy-inertia="true"><span
+                                                                        data-tippy-inertia="true"
+                                                                        id="{{ $product->id }}"
+                                                                        onclick="addToWishList(this.id)"><span
                                                                             class="lnr lnr-heart"></span></a></li>
-                                                                <li class="compare"><a href="#"
-                                                                        data-tippy="Add to Compare"
-                                                                        data-tippy-placement="top"
-                                                                        data-tippy-arrow="true"
-                                                                        data-tippy-inertia="true"><span
-                                                                            class="lnr lnr-sync"></span></a></li>
                                                             </ul>
                                                         </div>
                                                     </div>
@@ -210,20 +210,23 @@
                                                         <h4 class="product_name"><a
                                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                                         </h4>
-                                                        <p><a href="#">Fruits</a></p>
+                                                        {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                                        <p><a
+                                                                href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                                        </p>
                                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                                         <div class="price_box">
                                                             @if ($product->discount_price == null)
                                                                 <span
-                                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                                    class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                                     RON</span>
                                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                             @else
                                                                 <span
-                                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                                    class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                                     RON</span><br>
                                                                 <span
-                                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                                    class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                                     RON</span>
                                                             @endif
                                                         </div>
@@ -313,26 +316,26 @@
                                         </div>
                                         <div class="action_links">
                                             <ul>
-                                                <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                                <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"> <span
-                                                            class="lnr lnr-cart"></span></a>
-                                                </li>
-                                                <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                        data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                        id="{{ $product->id }}"
+                                                        name="{{ $product->product_name }}"
+                                                        onclick="addToCartButton(this.id, this.name)">
+                                                        <span class="lnr lnr-cart"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului --}}
+                                                <li class="quick_button"><a data-tippy="Previzualizare"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
                                                         data-bs-target="#modal_box" onclick="productView(this.id)"
-                                                        id="{{ $product->id }}"> <span
-                                                            class="lnr lnr-magnifier"></span></a></li>
-                                                <li class="wishlist"><a href="wishlist.html"
-                                                        data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                        data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                            class="lnr lnr-heart"></span></a></li>
-                                                <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                        id="{{ $product->id }}">
+                                                        <span class="lnr lnr-magnifier"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"><span
-                                                            class="lnr lnr-sync"></span></a>
-                                                </li>
+                                                        data-tippy-inertia="true" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"><span
+                                                            class="lnr lnr-heart"></span></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -340,20 +343,23 @@
                                         <h4 class="product_name"><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
-                                        <p><a href="#">Fruits</a></p>
+                                        {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        <p><a
+                                                href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                        </p>
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
                                                 <span
-                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
                                                 <span
-                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
                                                 <span
-                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -422,42 +428,47 @@
                                             <h4 class="product_name"><a
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
                                             </h4>
-                                            <p><a href="#">Fruits</a></p>
+                                            {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                            <p><a
+                                                    href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                            </p>
                                             <div class="action_links">
                                                 <ul>
-                                                    <li class="add_to_cart"><a href="cart.html"
-                                                            data-tippy="Add to cart" data-tippy-placement="top"
-                                                            data-tippy-arrow="true" data-tippy-inertia="true"> <span
-                                                                class="lnr lnr-cart"></span></a></li>
-                                                    <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                    <li class="add_to_cart"><a data-tippy="Adauga in Cos"
+                                                            data-tippy-placement="top" data-tippy-arrow="true"
+                                                            data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                            id="{{ $product->id }}"
+                                                            name="{{ $product->product_name }}"
+                                                            onclick="addToCartButton(this.id, this.name)">
+                                                            <span class="lnr lnr-cart"></span></a></li>
+                                                    {{-- adaugat onclick event si id-ul produsului --}}
+                                                    <li class="quick_button"><a data-tippy="Previzualizare"
                                                             data-tippy-placement="top" data-tippy-arrow="true"
                                                             data-tippy-inertia="true" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box" onclick="productView(this.id)"
-                                                            id="{{ $product->id }}"> <span
-                                                                class="lnr lnr-magnifier"></span></a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"
-                                                            data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                            data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                                class="lnr lnr-heart"></span></a></li>
-                                                    <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                            id="{{ $product->id }}">
+                                                            <span class="lnr lnr-magnifier"></span></a></li>
+                                                    {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                    <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                             data-tippy-placement="top" data-tippy-arrow="true"
-                                                            data-tippy-inertia="true"><span
-                                                                class="lnr lnr-sync"></span></a></li>
+                                                            data-tippy-inertia="true" id="{{ $product->id }}"
+                                                            onclick="addToWishList(this.id)"><span
+                                                                class="lnr lnr-heart"></span></a></li>
                                                 </ul>
                                             </div>
                                             {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                             <div class="price_box">
                                                 @if ($product->discount_price == null)
                                                     <span
-                                                        class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                        class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                     {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                 @else
                                                     <span
-                                                        class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                        class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                         RON</span><br>
                                                     <span
-                                                        class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                        class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                 @endif
                                             </div>
@@ -517,26 +528,26 @@
                                         </div>
                                         <div class="action_links">
                                             <ul>
-                                                <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                                <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"> <span
-                                                            class="lnr lnr-cart"></span></a>
-                                                </li>
-                                                <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                        data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                        id="{{ $product->id }}"
+                                                        name="{{ $product->product_name }}"
+                                                        onclick="addToCartButton(this.id, this.name)">
+                                                        <span class="lnr lnr-cart"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului --}}
+                                                <li class="quick_button"><a data-tippy="Previzualizare"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
                                                         data-bs-target="#modal_box" onclick="productView(this.id)"
-                                                        id="{{ $product->id }}"> <span
-                                                            class="lnr lnr-magnifier"></span></a></li>
-                                                <li class="wishlist"><a href="wishlist.html"
-                                                        data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                        data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                            class="lnr lnr-heart"></span></a></li>
-                                                <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                        id="{{ $product->id }}">
+                                                        <span class="lnr lnr-magnifier"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"><span
-                                                            class="lnr lnr-sync"></span></a>
-                                                </li>
+                                                        data-tippy-inertia="true" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"><span
+                                                            class="lnr lnr-heart"></span></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -544,20 +555,23 @@
                                         <h4 class="product_name"><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
-                                        <p><a href="#">Fruits</a></p>
+                                        {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        <p><a
+                                                href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                        </p>
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
                                                 <span
-                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
                                                 <span
-                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
                                                 <span
-                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -659,26 +673,26 @@
                                         </div>
                                         <div class="action_links">
                                             <ul>
-                                                <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                                <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"> <span
-                                                            class="lnr lnr-cart"></span></a>
-                                                </li>
-                                                <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                        data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                        id="{{ $product->id }}"
+                                                        name="{{ $product->product_name }}"
+                                                        onclick="addToCartButton(this.id, this.name)">
+                                                        <span class="lnr lnr-cart"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului --}}
+                                                <li class="quick_button"><a data-tippy="Previzualizare"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
                                                         data-bs-target="#modal_box" onclick="productView(this.id)"
-                                                        id="{{ $product->id }}"> <span
-                                                            class="lnr lnr-magnifier"></span></a></li>
-                                                <li class="wishlist"><a href="wishlist.html"
-                                                        data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                        data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                            class="lnr lnr-heart"></span></a></li>
-                                                <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                        id="{{ $product->id }}">
+                                                        <span class="lnr lnr-magnifier"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"><span
-                                                            class="lnr lnr-sync"></span></a>
-                                                </li>
+                                                        data-tippy-inertia="true" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"><span
+                                                            class="lnr lnr-heart"></span></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -686,20 +700,23 @@
                                         <h4 class="product_name"><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
-                                        <p><a href="#">Fruits</a></p>
+                                        {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        <p><a
+                                                href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                        </p>
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
                                                 <span
-                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
                                                 <span
-                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
                                                 <span
-                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -756,26 +773,26 @@
                                         </div>
                                         <div class="action_links">
                                             <ul>
-                                                <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                                <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"> <span
-                                                            class="lnr lnr-cart"></span></a>
-                                                </li>
-                                                <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                        data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                        id="{{ $product->id }}"
+                                                        name="{{ $product->product_name }}"
+                                                        onclick="addToCartButton(this.id, this.name)">
+                                                        <span class="lnr lnr-cart"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului --}}
+                                                <li class="quick_button"><a data-tippy="Previzualizare"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
                                                         data-tippy-inertia="true" data-bs-toggle="modal"
                                                         data-bs-target="#modal_box" onclick="productView(this.id)"
-                                                        id="{{ $product->id }}"> <span
-                                                            class="lnr lnr-magnifier"></span></a></li>
-                                                <li class="wishlist"><a href="wishlist.html"
-                                                        data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                        data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                            class="lnr lnr-heart"></span></a></li>
-                                                <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                        id="{{ $product->id }}">
+                                                        <span class="lnr lnr-magnifier"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                         data-tippy-placement="top" data-tippy-arrow="true"
-                                                        data-tippy-inertia="true"><span
-                                                            class="lnr lnr-sync"></span></a>
-                                                </li>
+                                                        data-tippy-inertia="true" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"><span
+                                                            class="lnr lnr-heart"></span></a></li>
                                             </ul>
                                         </div>
                                     </div>
@@ -783,20 +800,23 @@
                                         <h4 class="product_name"><a
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                         </h4>
-                                        <p><a href="#">Fruits</a></p>
+                                        {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        <p><a
+                                                href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                        </p>
                                         {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                         <div class="price_box">
                                             @if ($product->discount_price == null)
                                                 <span
-                                                    class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                                 {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                             @else
                                                 <span
-                                                    class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                    class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                     RON</span><br>
                                                 <span
-                                                    class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                    class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                     RON</span>
                                             @endif
                                         </div>
@@ -845,44 +865,47 @@
                                             <h4 class="product_name"><a
                                                     href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                             </h4>
-                                            <p><a href="#">Fruits</a></p>
+                                            {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                            <p><a
+                                                    href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                            </p>
                                             <div class="action_links">
                                                 <ul>
-                                                    <li class="add_to_cart"><a href="cart.html"
-                                                            data-tippy="Add to cart" data-tippy-placement="top"
-                                                            data-tippy-arrow="true" data-tippy-inertia="true"> <span
-                                                                class="lnr lnr-cart"></span></a>
-                                                    </li>
-                                                    <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                    <li class="add_to_cart"><a data-tippy="Adauga in Cos"
+                                                            data-tippy-placement="top" data-tippy-arrow="true"
+                                                            data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                            id="{{ $product->id }}"
+                                                            name="{{ $product->product_name }}"
+                                                            onclick="addToCartButton(this.id, this.name)">
+                                                            <span class="lnr lnr-cart"></span></a></li>
+                                                    {{-- adaugat onclick event si id-ul produsului --}}
+                                                    <li class="quick_button"><a data-tippy="Previzualizare"
                                                             data-tippy-placement="top" data-tippy-arrow="true"
                                                             data-tippy-inertia="true" data-bs-toggle="modal"
                                                             data-bs-target="#modal_box" onclick="productView(this.id)"
-                                                            id="{{ $product->id }}"> <span
-                                                                class="lnr lnr-magnifier"></span></a></li>
-                                                    <li class="wishlist"><a href="wishlist.html"
-                                                            data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                            data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                                class="lnr lnr-heart"></span></a></li>
-                                                    <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                            id="{{ $product->id }}">
+                                                            <span class="lnr lnr-magnifier"></span></a></li>
+                                                    {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                    <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                             data-tippy-placement="top" data-tippy-arrow="true"
-                                                            data-tippy-inertia="true"><span
-                                                                class="lnr lnr-sync"></span></a>
-                                                    </li>
+                                                            data-tippy-inertia="true" id="{{ $product->id }}"
+                                                            onclick="addToWishList(this.id)"><span
+                                                                class="lnr lnr-heart"></span></a></li>
                                                 </ul>
                                             </div>
                                             {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                             <div class="price_box">
                                                 @if ($product->discount_price == null)
                                                     <span
-                                                        class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                        class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                     {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                 @else
                                                     <span
-                                                        class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
-                                                        RON</span>
+                                                        class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
+                                                        RON</span><br>
                                                     <span
-                                                        class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                        class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                         RON</span>
                                                 @endif
                                             </div>

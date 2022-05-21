@@ -231,24 +231,25 @@
                                     </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                            <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                    data-tippy-inertia="true"> <span class="lnr lnr-cart"></span></a>
-                                            </li>
-                                            <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                    data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                    id="{{ $product->id }}" name="{{ $product->product_name }}"
+                                                    onclick="addToCartButton(this.id, this.name)">
+                                                    <span class="lnr lnr-cart"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului --}}
+                                            <li class="quick_button"><a data-tippy="Previzualizare"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                     data-tippy-inertia="true" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_box"> <span
-                                                        class="lnr lnr-magnifier"></span></a>
-                                            </li>
-                                            <li class="wishlist"><a href="wishlist.html"
-                                                    data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                    data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                        class="lnr lnr-heart"></span></a></li>
-                                            <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                    data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                    id="{{ $product->id }}">
+                                                    <span class="lnr lnr-magnifier"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                            <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                    data-tippy-inertia="true"><span class="lnr lnr-sync"></span></a>
-                                            </li>
+                                                    data-tippy-inertia="true" id="{{ $product->id }}"
+                                                    onclick="addToWishList(this.id)"><span
+                                                        class="lnr lnr-heart"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -262,15 +263,15 @@
                                     <div class="price_box">
                                         @if ($product->discount_price == null)
                                             <span
-                                                class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                 RON</span>
                                             {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                         @else
                                             <span
-                                                class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                 RON</span><br>
                                             <span
-                                                class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                 RON</span>
                                         @endif
                                     </div>
@@ -285,15 +286,15 @@
                                     <div class="price_box">
                                         @if ($product->discount_price == null)
                                             <span
-                                                class="current_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                 RON</span>
                                             {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                         @else
                                             <span
-                                                class="current_price">{{ number_format($product->discount_price, 2, '.', ',') }}
+                                                class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
                                                 RON</span><br>
                                             <span
-                                                class="old_price">{{ number_format($product->selling_price, 2, '.', ',') }}
+                                                class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
                                                 RON</span>
                                         @endif
                                     </div>
@@ -306,22 +307,25 @@
                                     </div>
                                     <div class="action_links list_action_right">
                                         <ul>
-                                            <li class="add_to_cart"><a href="cart.html" title="Add to cart">Add to
-                                                    Cart</a></li>
-                                            <li class="quick_button"><a href="#" data-tippy="quick view"
+                                            <li class="add_to_cart"><a data-tippy="Adauga in Cos"
+                                                    data-tippy-placement="top" data-tippy-arrow="true"
+                                                    data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                    id="{{ $product->id }}" name="{{ $product->product_name }}"
+                                                    onclick="addToCartButton(this.id, this.name)">
+                                                    <span class="lnr lnr-cart"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului --}}
+                                            <li class="quick_button"><a data-tippy="Previzualizare"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                     data-tippy-inertia="true" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_box"> <span
-                                                        class="lnr lnr-magnifier"></span></a>
-                                            </li>
-                                            <li class="wishlist"><a href="wishlist.html"
-                                                    data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                    data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                        class="lnr lnr-heart"></span></a></li>
-                                            <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                    data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                    id="{{ $product->id }}">
+                                                    <span class="lnr lnr-magnifier"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                            <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                    data-tippy-inertia="true"><span class="lnr lnr-sync"></span></a>
-                                            </li>
+                                                    data-tippy-inertia="true" id="{{ $product->id }}"
+                                                    onclick="addToWishList(this.id)"><span
+                                                        class="lnr lnr-heart"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>

@@ -343,7 +343,7 @@
                                         </select>
                                     </div>
                                     <div class="search_box">
-                                        <input placeholder="Search product..." type="text">
+                                        <input placeholder="Cauta produse..." type="text" name="search">
                                         <button type="submit"><span class="lnr lnr-magnifier"></span></button>
                                     </div>
                                 </form>
