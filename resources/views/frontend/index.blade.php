@@ -925,7 +925,7 @@
                                                 {{-- inclus rating produse --}}
                                                 @include('frontend.product.product_rating')
                                                 <p><a
-                                                        href="{{ url('subsubcategory/product/' . $product->product->subsubcategory->id . '/' . $product->product->subsubcategory->subsubcategory_slug) }}">{{ $product->product->subsubcategory->subsubcategory_name }}</a>
+                                                        href="{{ url('subsubcategory/product/' . $product->product->subsubcategory->id . '/' . $product->product->subsubcategory - subsubcategory_slug) }}">{{ $product->product->subsubcategory->subsubcategory_name }}</a>
                                                 </p>
                                                 {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                                 <div class="price_box">
