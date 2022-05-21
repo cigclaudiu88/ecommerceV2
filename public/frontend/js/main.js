@@ -1191,19 +1191,29 @@ $("body").on("keyup", "#search", function () {
   // variabila text preia valoarea din campul de cautare din bara de cautare
   let text = $("#search").val();
   // console.log(text);
-  // script ajax de trimitere a textului de cautare
-  $.ajax({
-    data: { search: text },
-    url: site_url + "search-product",
-    method: "post",
-    // inainte de a trimite requestul se face verificarea CSRF
-    beforSend: function (request) {
-      return request.setReuestHeader("X-CSRF-Token", "meta[name='csrf-token']");
-    },
-    // daca requestul a fost trimis cu succes
-    success: function (result) {
-      // afiseaza in div-ul cu id-ul searchProduct din header rezultatul sugestiilor randate in html
-      $("#searchProducts").html(result);
-    },
-  }); // end ajax
+
+  // afisam sugestii doar daca lungimea textului din bara de cautare este mai mare de 0
+  // daca avem text afisam sugestii
+  if (text.length > 0) {
+    // script ajax de trimitere a textului de cautare
+    $.ajax({
+      data: { search: text },
+      url: site_url + "search-product",
+      method: "post",
+      // inainte de a trimite requestul se face verificarea CSRF
+      beforSend: function (request) {
+        return request.setReuestHeader(
+          "X-CSRF-Token",
+          "meta[name='csrf-token']"
+        );
+      },
+      // daca requestul a fost trimis cu succes
+      success: function (result) {
+        // afiseaza in div-ul cu id-ul searchProduct din header rezultatul sugestiilor randate in html
+        $("#searchProducts").html(result);
+      },
+    }); // end ajax
+  }
+  // daca avem text nu afisam afisam sugestii
+  if (text.length < 1) $("#searchProducts").html("");
 }); //  script cautare avansata sugestii

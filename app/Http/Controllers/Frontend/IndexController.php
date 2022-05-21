@@ -413,7 +413,7 @@ class IndexController extends Controller
         $item = $request->search;
         // $products preia din tabelul products toate produsele care au numele care contine valoarea din variabila $item
         // selecteaza doar campurile product_name si product_thumbnail	 pentru afisarea in sugestii limitat la 5
-        $products = Product::where('product_name', 'LIKE', "%$item%")->select('product_name', 'product_thumbnail')->limit(5)->get();
+        $products = Product::where('product_name', 'LIKE', "%$item%")->select('product_name', 'product_thumbnail', 'selling_price', 'id', 'product_slug', 'discount_price')->limit(5)->get();
         // returnam pagina de sugestii cautare cu datele din variabila $products
         return view('frontend.product.search_product', compact('products'));
     }
