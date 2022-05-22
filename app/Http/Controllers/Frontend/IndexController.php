@@ -25,6 +25,7 @@ use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
+
 class IndexController extends Controller
 {
     public function index()
@@ -356,8 +357,25 @@ class IndexController extends Controller
         $categories = Category::orderBy('id', 'ASC')->get();
         // $breadsubcat preia din tabela subcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories
         $breadsubcat = SubCategory::with(['category'])->where('id', $subcategory_id)->get();
+
+        // SECTIUNE FILTRARE BRAND
+        $brand_filters = Product::with('brand')->select('brand_id')->where('subcategory_id', $subcategory_id)->distinct('brand_id')->get();
+
+        if (request()->get('filterbrand')) {
+
+            $checked = $_GET['filterbrand'];
+
+            $brands_filters = Brand::whereIN('brand_name', $checked)->get();
+            $brand_id = [];
+            foreach ($brands_filters as $brand_filter) {
+                array_push($brand_id, $brand_filter->id);
+            }
+            $products = Product::where('status', 1)->whereIN('brand_id', $brand_id)->where('subcategory_id', $subcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        }
+        // SECTIUNE FILTRARE BRAND
+
         // returnam pagina de produse functie de subcategorie cu datele din variabila $products $categories si $breadsubcat
-        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat'));
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat', 'brand_filters'));
     }
     // functia de afisare a produselor functie de subsubcategorie
     public function SubSubCategoryWiseProduct($subsubcategory_id, $slug)
