@@ -85,8 +85,8 @@
                                         $form_max = $_GET['max'];
                                     }
                                 @endphp
-                                <input type="text" class="form-control" name="form_min"><br>
-                                <input type="text" class="form-control" name="form_max">
+                                <input type="text" class="form-control" name="form_min" placeholder="Pret Minim"><br>
+                                <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
                                 <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
                             </form>
                         </div>

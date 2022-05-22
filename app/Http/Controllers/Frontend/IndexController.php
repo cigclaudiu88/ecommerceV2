@@ -390,10 +390,11 @@ class IndexController extends Controller
 
         // SECTIUNE FILTRARE PRET MIN MAX
         if (request()->get('form_min')) {
-            $min = request()->get('form_min');
-            $max = request()->get('form_max');
+            $min = round(request()->get('form_min') / 1.19, 2);
+            $max = round(request()->get('form_max') / 1.19, 2);
+
             // pretul introduse de utilizator in min / max este pretul u tva in products selling_price e fara TVA de aia trebuie sa scadem pretul de TVA in whereBetween
-            $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->whereBetween('selling_price', [round(($min - $min * 0.19), 2), round(($max - 0.19 * $max), 2)])->orderBy('id', 'DESC')->paginate(9);
+            $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
         }
         // SECTIUNE FILTRARE PRET MIN MAX
 
@@ -441,10 +442,11 @@ class IndexController extends Controller
 
         // SECTIUNE FILTRARE PRET MIN MAX
         if (request()->get('form_min')) {
-            $min = request()->get('form_min');
-            $max = request()->get('form_max');
+            $min = round(request()->get('form_min') / 1.19, 2);
+            $max = round(request()->get('form_max') / 1.19, 2);
+
             // pretul introduse de utilizator in min / max este pretul u tva in products selling_price e fara TVA de aia trebuie sa scadem pretul de TVA in whereBetween
-            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [round(($min - $min * 0.19), 2), round(($max - 0.19 * $max), 2)])->orderBy('id', 'DESC')->paginate(9);
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
         }
         // SECTIUNE FILTRARE PRET MIN MAX
 
