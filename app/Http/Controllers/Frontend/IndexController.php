@@ -7,22 +7,23 @@ use App\Models\User;
 // adaugam modelul Slider 
 use App\Models\Brand;
 // adaugam modelul Product
+use App\Models\Review;
 use App\Models\Slider;
-use App\Models\Product;
 // adaugam namespace-ul pentru clasa Hash - cryptare parola
+use App\Models\Product;
 use App\Models\BlogPost;
-use App\Models\Category;
 // adaugam namespace-ul pentru clasa Auth
+use App\Models\Category;
 use App\Models\MultiImg;
+use App\Models\Wishlist;
 use App\Models\SubCategory;
 use App\Models\UserAddress;
+use App\Models\ProductPhone;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
-use App\Models\ProductPhone;
-use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
@@ -359,6 +360,18 @@ class IndexController extends Controller
         // $breadsubcat preia din tabela subcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories
         $breadsubcat = SubCategory::with(['category'])->where('id', $subcategory_id)->get();
 
+        // SECTIUNE SORTARE PRODUSE
+        if (request()->get('sort') == 'price_asc') {
+            $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->orderBy('selling_price', 'ASC')->paginate(9);
+        } elseif (request()->get('sort') == 'price_desc') {
+            $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->orderBy('selling_price', 'DESC')->paginate(9);
+        } elseif (request()->get('sort') == 'newest') {
+            $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->orderBy('created_at', 'DESC')->paginate(9);
+        } elseif (request()->get('sort') == 'recommended') {
+            $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->where('featured', 1)->orderBy('product_name', 'ASC')->paginate(9);
+        }
+        // SECTIUNE SORTARE PRODUSE
+
         // SECTIUNE FILTRARE BRAND
         $brand_filters = Product::with('brand')->select('brand_id')->where('subcategory_id', $subcategory_id)->distinct('brand_id')->get();
 
@@ -388,6 +401,18 @@ class IndexController extends Controller
         $categories = Category::orderBy('id', 'ASC')->get();
         // $breadsubcat preia din tabela subsubcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories si subcategories
         $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $subsubcategory_id)->get();
+
+        // SECTIUNE SORTARE PRODUSE
+        if (request()->get('sort') == 'price_asc') {
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('selling_price', 'ASC')->paginate(9);
+        } elseif (request()->get('sort') == 'price_desc') {
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('selling_price', 'DESC')->paginate(9);
+        } elseif (request()->get('sort') == 'newest') {
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('created_at', 'DESC')->paginate(9);
+        } elseif (request()->get('sort') == 'recommended') {
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->where('featured', 1)->orderBy('product_name', 'ASC')->paginate(9);
+        }
+        // SECTIUNE SORTARE PRODUSE
 
         // SECTIUNE FILTRARE BRAND
         $brand_filters = Product::with('brand')->select('brand_id')->where('subsubcategory_id', $subsubcategory_id)->distinct('brand_id')->get();

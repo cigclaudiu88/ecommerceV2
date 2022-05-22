@@ -186,19 +186,21 @@
                         <button data-role="grid_list" type="button" class="btn-list" data-toggle="tooltip"
                             title="List"></button>
                     </div>
-                    <div class=" niceselect_option">
-                        <form class="select_option" action="#">
-                            <select name="orderby" id="short">
 
-                                <option selected value="1">Sort by average rating</option>
-                                <option value="2">Sort by popularity</option>
-                                <option value="3">Sort by newness</option>
-                                <option value="4">Sort by price: low to high</option>
-                                <option value="5">Sort by price: high to low</option>
-                                <option value="6">Product Name: Z</option>
-                            </select>
-                        </form>
+                    <div class="col-lg-4 col-md-12">
+                        <select class="form-select" name="orderby" id="short"
+                            onchange="window.location.href=this.options[this.selectedIndex].value;">
+                            <option value="">Sorteaza produsele</option>
+                            <option value="{{ URL::current() . '?sort=newest' }}">Sorteaza dupa noutati</option>
+                            <option value="{{ URL::current() . '?sort=recommended' }}">Produse recomandate
+                            </option>
+                            <option value="{{ URL::current() . '?sort=price_asc' }}">Sorteaza dupa Pret: Ascendent
+                            </option>
+                            <option value="{{ URL::current() . '?sort=price_desc' }}">Sorteaza dupa Pret: Descendent
+                            </option>
+                        </select>
                     </div>
+
                     <div class="page_amount">
                         <strong class="text-success">{{ count($products) }} produse</strong>
                     </div>
