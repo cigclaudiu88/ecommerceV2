@@ -89,27 +89,33 @@
 
                             </form>
                         </div>
-                        <div class="widget_list widget_color">
-                            <h3>Select By Color</h3>
-                            <ul>
-                                <li>
-                                    <a href="#">Black <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> Blue <span>(8)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Brown <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> Green <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Pink <span>(4)</span></a>
-                                </li>
 
-                            </ul>
+                        {{-- SECTIUNE FILTRARE BRAND --}}
+                        <div class="widget_list widget_color">
+                            <h3>Filtrare Brand</h3>
+                            <form action="{{ URL::current() }}" method="GET">
+                                @foreach ($brand_filters as $filterbrand)
+                                    @php
+                                        $checked = [];
+                                        if (isset($_GET['filterbrand'])) {
+                                            $checked = $_GET['filterbrand'];
+                                        }
+                                    @endphp
+
+                                    <div class="col-12">
+                                        <input type="checkbox" value={{ $filterbrand->brand->brand_name }}
+                                            name="filterbrand[]" @if (in_array($filterbrand->brand->brand_name, $checked)) checked @endif>
+
+                                        <label>{{ $filterbrand->brand->brand_name }}</label>
+                                    </div>
+                                @endforeach
+                                <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                            </form>
                         </div>
+                        {{-- SECTIUNE FILTRARE BRAND --}}
+
+
+
                         <div class="widget_list widget_color">
                             <h3>Select By SIze</h3>
                             <ul>

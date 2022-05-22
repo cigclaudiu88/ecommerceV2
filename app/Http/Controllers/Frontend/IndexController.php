@@ -21,6 +21,7 @@ use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
+use App\Models\ProductPhone;
 use App\Models\Wishlist;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
@@ -387,8 +388,25 @@ class IndexController extends Controller
         $categories = Category::orderBy('id', 'ASC')->get();
         // $breadsubcat preia din tabela subsubcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories si subcategories
         $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $subsubcategory_id)->get();
+
+        // SECTIUNE FILTRARE BRAND
+        $brand_filters = Product::with('brand')->select('brand_id')->where('subsubcategory_id', $subsubcategory_id)->distinct('brand_id')->get();
+
+        if (request()->get('filterbrand')) {
+
+            $checked = $_GET['filterbrand'];
+
+            $brands_filters = Brand::whereIN('brand_name', $checked)->get();
+            $brand_id = [];
+            foreach ($brands_filters as $brand_filter) {
+                array_push($brand_id, $brand_filter->id);
+            }
+            $products = Product::where('status', 1)->whereIN('brand_id', $brand_id)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        }
+        // SECTIUNE FILTRARE BRAND
+
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat
-        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat'));
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters'));
     }
 
     // functia de afisare a produselor in modal
@@ -428,6 +446,7 @@ class IndexController extends Controller
         $categories = Category::orderBy('category_name', 'ASC')->get();
         // $products preia din tabelul products toate produsele care au numele care contine valoarea din variabila $item
         $products = Product::where('product_name', 'LIKE', "%$item%")->paginate(9);
+
         // returnam pagina de cautare cu datele din variabila $products si $categories
         return view('frontend.product.search', compact('products', 'categories'));
     }
