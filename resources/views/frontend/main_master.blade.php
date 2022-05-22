@@ -122,45 +122,45 @@ $seo = App\Models\SEO::find(1);
         @if (Session::has('message'))
             // variabila type preia tipul de alerta si mesajul din sesiune
             var type = "{{ Session::get('alert-type', 'message') }}"
-        
+
             // optiuni de afisare a mesajului Toastr
             // pozitie sus in centru larg cu buton de close
             toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "rtl": false,
-            "positionClass": "toast-top-right",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": 300,
-            "hideDuration": 1000,
-            "timeOut": 5000,
-            "extendedTimeOut": 1000,
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "rtl": false,
+                "positionClass": "toast-top-right",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
             }
-        
+
             // functie de tipul de alerta din sesiune se apeleaza notificarea Toastr cu mesajul din sesiune
-            switch(type){
-            case 'info':
-            toastr.info(" {{ Session::get('message') }} ");
-            break;
-        
-            case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
-        
-            case 'warning':
-            toastr.warning(" {{ Session::get('message') }} ");
-            break;
-        
-            case 'error':
-            toastr.error(" {{ Session::get('message') }} ");
-            break;
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
             }
         @endif
     </script>
@@ -352,7 +352,7 @@ $seo = App\Models\SEO::find(1);
                                                                 </div>
                                                                 <div class="cart_info">
                                                                     <a href="#">${value.name}</a>
-                                                                    <p> <span>  ${value.qty}*${value.price.toLocaleString()} RON </span></p>
+                                                                    <p> <span>${value.qty}*${value.price.toLocaleString()} RON</span></p>
                                                                 </div>
                                                                 <div class="cart_remove">
                                                                     <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="icon-x"></i></button>
@@ -510,7 +510,7 @@ $seo = App\Models\SEO::find(1);
                 }
             });
         }
-        // End Wishlist remove   
+        // End Wishlist remove
     </script>
     {{-- script afisare produse din wishlist sfarsit --}}
 

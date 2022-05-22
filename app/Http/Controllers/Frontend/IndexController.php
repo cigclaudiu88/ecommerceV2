@@ -388,6 +388,15 @@ class IndexController extends Controller
         }
         // SECTIUNE FILTRARE BRAND
 
+        // SECTIUNE FILTRARE PRET MIN MAX
+        if (request()->get('form_min')) {
+            $min = request()->get('form_min');
+            $max = request()->get('form_max');
+            // pretul introduse de utilizator in min / max este pretul u tva in products selling_price e fara TVA de aia trebuie sa scadem pretul de TVA in whereBetween
+            $products = Product::where('status', 1)->where('subcategory_id', $subcategory_id)->whereBetween('selling_price', [round(($min - $min * 0.19), 2), round(($max - 0.19 * $max), 2)])->orderBy('id', 'DESC')->paginate(9);
+        }
+        // SECTIUNE FILTRARE PRET MIN MAX
+
         // returnam pagina de produse functie de subcategorie cu datele din variabila $products $categories si $breadsubcat
         return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat', 'brand_filters'));
     }
@@ -429,6 +438,15 @@ class IndexController extends Controller
             $products = Product::where('status', 1)->whereIN('brand_id', $brand_id)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
         }
         // SECTIUNE FILTRARE BRAND
+
+        // SECTIUNE FILTRARE PRET MIN MAX
+        if (request()->get('form_min')) {
+            $min = request()->get('form_min');
+            $max = request()->get('form_max');
+            // pretul introduse de utilizator in min / max este pretul u tva in products selling_price e fara TVA de aia trebuie sa scadem pretul de TVA in whereBetween
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [round(($min - $min * 0.19), 2), round(($max - 0.19 * $max), 2)])->orderBy('id', 'DESC')->paginate(9);
+        }
+        // SECTIUNE FILTRARE PRET MIN MAX
 
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat
         return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters'));

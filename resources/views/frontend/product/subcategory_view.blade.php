@@ -76,13 +76,18 @@
 
                         </div>
 
-                        <div class="widget_list widget_filter">
-                            <h3>Filter by price</h3>
-                            <form action="#">
-                                <div id="slider-range"></div>
-                                <button type="submit">Filter</button>
-                                <input type="text" name="text" id="amount" />
-
+                        <div class="widget_list widget_color">
+                            <h3>Filtreaza dupa pret</h3>
+                            <form action="{{ URL::current() }}" method="GET">
+                                @php
+                                    if (isset($_GET['min']) && isset($_GET['max'])) {
+                                        $form_min = $_GET['min'];
+                                        $form_max = $_GET['max'];
+                                    }
+                                @endphp
+                                <input type="text" class="form-control" name="form_min"><br>
+                                <input type="text" class="form-control" name="form_max">
+                                <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
                             </form>
                         </div>
 

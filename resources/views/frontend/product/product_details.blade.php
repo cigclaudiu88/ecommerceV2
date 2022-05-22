@@ -380,24 +380,25 @@
                                     </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                            <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                    data-tippy-inertia="true"> <span class="lnr lnr-cart"></span></a>
-                                            </li>
-                                            <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                    data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                    id="{{ $product->id }}" name="{{ $product->product_name }}"
+                                                    onclick="addToCartButton(this.id, this.name)">
+                                                    <span class="lnr lnr-cart"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului --}}
+                                            <li class="quick_button"><a data-tippy="Previzualizare"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                     data-tippy-inertia="true" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_box"> <span
-                                                        class="lnr lnr-magnifier"></span></a>
-                                            </li>
-                                            <li class="wishlist"><a href="wishlist.html"
-                                                    data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                    data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                        class="lnr lnr-heart"></span></a></li>
-                                            <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                    data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                    id="{{ $product->id }}">
+                                                    <span class="lnr lnr-magnifier"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                            <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                    data-tippy-inertia="true"><span class="lnr lnr-sync"></span></a>
-                                            </li>
+                                                    data-tippy-inertia="true" id="{{ $product->id }}"
+                                                    onclick="addToWishList(this.id)"><span
+                                                        class="lnr lnr-heart"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -473,24 +474,25 @@
                                     </div>
                                     <div class="action_links">
                                         <ul>
-                                            <li class="add_to_cart"><a href="cart.html" data-tippy="Add to cart"
+                                            <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                    data-tippy-inertia="true"> <span class="lnr lnr-cart"></span></a>
-                                            </li>
-                                            <li class="quick_button"><a href="#" data-tippy="quick view"
+                                                    data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                    id="{{ $product->id }}" name="{{ $product->product_name }}"
+                                                    onclick="addToCartButton(this.id, this.name)">
+                                                    <span class="lnr lnr-cart"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului --}}
+                                            <li class="quick_button"><a data-tippy="Previzualizare"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                     data-tippy-inertia="true" data-bs-toggle="modal"
-                                                    data-bs-target="#modal_box"> <span
-                                                        class="lnr lnr-magnifier"></span></a>
-                                            </li>
-                                            <li class="wishlist"><a href="wishlist.html"
-                                                    data-tippy="Add to Wishlist" data-tippy-placement="top"
-                                                    data-tippy-arrow="true" data-tippy-inertia="true"><span
-                                                        class="lnr lnr-heart"></span></a></li>
-                                            <li class="compare"><a href="#" data-tippy="Add to Compare"
+                                                    data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                    id="{{ $product->id }}">
+                                                    <span class="lnr lnr-magnifier"></span></a></li>
+                                            {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                            <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                     data-tippy-placement="top" data-tippy-arrow="true"
-                                                    data-tippy-inertia="true"><span class="lnr lnr-sync"></span></a>
-                                            </li>
+                                                    data-tippy-inertia="true" id="{{ $product->id }}"
+                                                    onclick="addToWishList(this.id)"><span
+                                                        class="lnr lnr-heart"></span></a></li>
                                         </ul>
                                     </div>
                                 </div>
