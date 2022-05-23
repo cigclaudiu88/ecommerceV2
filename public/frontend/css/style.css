@@ -10864,7 +10864,7 @@ td.product_quantity span {
 .modal_add_to_cart {
   margin-bottom: 25px;
 }
-.modal_add_to_cart form input {
+.modal_add_to_cart input {
   width: 95px;
   border: 1px solid #ededed;
   background: none;
@@ -10876,7 +10876,7 @@ td.product_quantity span {
     width: 75px;
   }
 }
-.modal_add_to_cart form button {
+.modal_add_to_cart button {
   background: none;
   border: 1px solid #222222;
   margin-left: 10px;
@@ -10894,11 +10894,11 @@ td.product_quantity span {
   cursor: pointer;
 }
 @media only screen and (max-width: 767px) {
-  .modal_add_to_cart form button {
+  .modal_add_to_cart button {
     width: 130px;
   }
 }
-.modal_add_to_cart form button:hover {
+.modal_add_to_cart button:hover {
   background: #40a944;
   color: #ffffff;
   border-color: #40a944;
@@ -11552,7 +11552,7 @@ td.product_quantity span {
 .color_six .modal_price span {
   color: #c0b07d;
 }
-.color_six .modal_add_to_cart form button:hover {
+.color_six .modal_add_to_cart button:hover {
   background: #c0b07d;
   border-color: #c0b07d;
 }
@@ -11933,7 +11933,7 @@ td.product_quantity span {
 .color_eight .modal_price span {
   color: #e81212;
 }
-.color_eight .modal_add_to_cart form button:hover {
+.color_eight .modal_add_to_cart button:hover {
   background: #e81212;
   border-color: #e81212;
 }
