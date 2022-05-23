@@ -54,10 +54,10 @@
 
             <div class="col-lg-6 col-md-6">
                 <div class="product_d_right">
-                    <form action="">
-                        {{-- adaugat id="pname" pentru AddToCart() --}}
-                        <h1 id="pname"><a href="#">{{ $product->product_name }}</a></h1>
-                        {{-- <div class="product_nav">
+
+                    {{-- adaugat id="pname" pentru AddToCart() --}}
+                    <h1 id="pname"><a href="#">{{ $product->product_name }}</a></h1>
+                    {{-- <div class="product_nav">
                             <ul>
                                 <li class="prev"><a href="product-details.html"><i
                                             class="fa fa-angle-left"></i></a></li>
@@ -66,50 +66,49 @@
                             </ul>
                         </div> --}}
 
-                        {{-- inclus rating produse --}}
-                        @include('frontend.product.product_rating')
-                        {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
-                        <div class="price_box">
-                            @if ($product->discount_price == null)
-                                <span
-                                    class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
-                                    RON</span>
-                                {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
-                            @else
-                                <span
-                                    class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
-                                    RON</span><br>
-                                <span
-                                    class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
-                                    RON</span>
-                            @endif
-                        </div>
-                        <div class="product_desc">
-                            <p>{{ $product->short_description }}</p>
-                        </div>
+                    {{-- inclus rating produse --}}
+                    @include('frontend.product.product_rating')
+                    {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
+                    <div class="price_box">
+                        @if ($product->discount_price == null)
+                            <span
+                                class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
+                                RON</span>
+                            {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
+                        @else
+                            <span
+                                class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
+                                RON</span><br>
+                            <span
+                                class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
+                                RON</span>
+                        @endif
+                    </div>
+                    <div class="product_desc">
+                        <p>{{ $product->short_description }}</p>
+                    </div>
 
-                        <div class="product_variant quantity">
-                            <label>Cantitate</label>
-                            {{-- adaugat id="qty" pt scriptul AddToCart --}}
-                            <input min="1" value="1" type="number" id="qty">
-                            {{-- adaugat camp hiddent pentru product_id --}}
-                            <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
-                            {{-- adaugat onclick="addToCart()" --}}
-                            <button class="button" type="submit" onclick="addToCart()">Adauga in Cos</button>
+                    <div class="product_variant quantity">
+                        <label>Cantitate</label>
+                        {{-- adaugat id="qty" pt scriptul AddToCart --}}
+                        <input min="1" value="1" type="number" id="qty">
+                        {{-- adaugat camp hiddent pentru product_id --}}
+                        <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
+                        {{-- adaugat onclick="addToCart()" --}}
+                        <button class="button" onclick="addToCart()">Adauga in Cos</button>
 
-                        </div>
-                        <div class=" product_d_action">
-                            <ul>
-                                <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
-                            </ul>
-                        </div>
-                        <div class="product_meta">
-                            <p>Categoria: <a
-                                    href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
-                            </p>
-                        </div>
+                    </div>
+                    <div class=" product_d_action">
+                        <ul>
+                            <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                        </ul>
+                    </div>
+                    <div class="product_meta">
+                        <p>Categoria: <a
+                                href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                        </p>
+                    </div>
 
-                    </form>
 
                     <!-- Go to www.addthis.com/dashboard to customize your tools -->
                     <div class="addthis_inline_share_toolbox_wup6"></div>
