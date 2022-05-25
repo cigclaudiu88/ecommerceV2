@@ -388,6 +388,22 @@ class IndexController extends Controller
         }
         // SECTIUNE FILTRARE BRAND
 
+
+        // SECTIUNE FILTRARE PHONE DISPLAY
+        $display_filters = ProductPhone::select('phone_display')->whereHas('product', function ($q) use ($subcategory_id) {
+            $q->where('subcategory_id', '=', $subcategory_id);
+        })->distinct('phone_display')->get();
+
+        if (request()->get('filterdisplay')) {
+
+            $checked = $_GET['filterdisplay'];
+
+            $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked) {
+                $q->whereIn('phone_display', $checked);
+            })->where('subcategory_id', $subcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        }
+        // SECTIUNE FILTRARE PHONE DISPLAY
+
         // SECTIUNE FILTRARE PRET MIN MAX
         if (request()->get('form_min')) {
             $min = round(request()->get('form_min') / 1.19, 2);
@@ -399,7 +415,7 @@ class IndexController extends Controller
         // SECTIUNE FILTRARE PRET MIN MAX
 
         // returnam pagina de produse functie de subcategorie cu datele din variabila $products $categories si $breadsubcat
-        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat', 'brand_filters'));
+        return view('frontend.product.subcategory_view', compact('products', 'categories', 'breadsubcat', 'brand_filters', 'display_filters'));
     }
     // functia de afisare a produselor functie de subsubcategorie
     public function SubSubCategoryWiseProduct($subsubcategory_id, $slug)
@@ -440,6 +456,21 @@ class IndexController extends Controller
         }
         // SECTIUNE FILTRARE BRAND
 
+        // SECTIUNE FILTRARE PHONE DISPLAY
+        $display_filters = ProductPhone::select('phone_display')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('phone_display')->get();
+
+        if (request()->get('filterdisplay')) {
+
+            $checked = $_GET['filterdisplay'];
+
+            $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked) {
+                $q->whereIn('phone_display', $checked);
+            })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        }
+        // SECTIUNE FILTRARE PHONE DISPLAY
+
         // SECTIUNE FILTRARE PRET MIN MAX
         if (request()->get('form_min')) {
             $min = round(request()->get('form_min') / 1.19, 2);
@@ -451,7 +482,7 @@ class IndexController extends Controller
         // SECTIUNE FILTRARE PRET MIN MAX
 
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat
-        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters'));
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters', 'display_filters'));
     }
 
     // functia de afisare a produselor in modal

@@ -115,6 +115,32 @@
                         </div>
                         {{-- SECTIUNE FILTRARE BRAND --}}
 
+                        {{-- SECTIUNE FILTRARE DISPLAY --}}
+                        @if ($display_filters->count())
+                            <div class="widget_list widget_color">
+                                <h3>Filtrare Display</h3>
+                                <form action="{{ URL::current() }}" method="GET">
+                                    @foreach ($display_filters as $filterdisplay)
+                                        @php
+                                            $checked = [];
+                                            if (isset($_GET['filterdisplay'])) {
+                                                $checked = $_GET['filterdisplay'];
+                                            }
+                                        @endphp
+
+                                        <div class="col-12">
+                                            <input type="checkbox" value="{{ $filterdisplay->phone_display }}"
+                                                name="filterdisplay[]" @if (in_array($filterdisplay->phone_display, $checked)) checked @endif>
+
+                                            <label>{{ $filterdisplay->phone_display }}</label>
+                                        </div>
+                                    @endforeach
+                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                </form>
+                            </div>
+                        @endif
+                        {{-- SECTIUNE FILTRARE DISPLAY --}}
+
                         <div class="widget_list widget_color">
                             <h3>Select By SIze</h3>
                             <ul>
