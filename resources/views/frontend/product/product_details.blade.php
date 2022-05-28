@@ -174,7 +174,7 @@
                                 <p>{!! $product->long_description !!}</p>
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="sheet" role="tabpanel">
+                        <div class="tab-pane fade tab-content_text_left" id="sheet" role="tabpanel">
                             <p>{!! $product->specifications !!}</p>
                         </div>
 

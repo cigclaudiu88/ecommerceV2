@@ -172,15 +172,15 @@
                                                         <div class="mini_cart_table">
                                                             <div class="cart_table_border">
                                                                 <div class="cart_total">
-                                                                    <span>Total Fara TVA (RON): </span>
+                                                                    <span>Total Fara TVA: </span>
                                                                     <span class="price" id="cartSubTotal"></span>
                                                                 </div>
                                                                 <div class="cart_total">
-                                                                    <span>TVA (RON): </span>
+                                                                    <span>TVA: </span>
                                                                     <span class="price" id="cartTax"></span>
                                                                 </div>
                                                                 <div class="cart_total mt-10">
-                                                                    <span>Total cu TVA (RON): </span>
+                                                                    <span>Total cu TVA: </span>
                                                                     <span class="price" id="cartTotal"></span>
                                                                 </div>
                                                             </div>
@@ -271,15 +271,15 @@
                                                         <div class="mini_cart_table">
                                                             <div class="cart_table_border">
                                                                 <div class="cart_total">
-                                                                    <span>Total Fara TVA (RON): </span>
+                                                                    <span>Total Fara TVA: </span>
                                                                     <span class="price" id="cartSubTotal"></span>
                                                                 </div>
                                                                 <div class="cart_total">
-                                                                    <span>TVA (RON): </span>
+                                                                    <span>TVA: </span>
                                                                     <span class="price" id="cartTax"></span>
                                                                 </div>
                                                                 <div class="cart_total mt-10">
-                                                                    <span>Total cu TVA (RON): </span>
+                                                                    <span>Total cu TVA: </span>
                                                                     <span class="price" id="cartTotal"></span>
                                                                 </div>
                                                             </div>

@@ -3430,6 +3430,10 @@ textarea:-ms-input-placeholder {
   overflow: hidden;
 }
 
+.tab-content_text_left td {
+  text-align: left !important;
+}
+
 @media only screen and (max-width: 767px) {
   .product_area {
     margin-bottom: 54px;
@@ -10835,6 +10839,10 @@ td.product_quantity span {
   line-height: 24px;
   font-size: 15px;
   margin: 0;
+}
+
+.modal_description_text_left td {
+  text-align: left !important;
 }
 
 .variants_size h2,

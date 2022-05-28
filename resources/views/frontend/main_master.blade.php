@@ -187,10 +187,10 @@ $seo = App\Models\SEO::find(1);
                     if (data.product.discount_price == null) {
                         $('#pprice').text('');
                         $('#oldprice').text('');
-                        $('#pprice').text(data.product.selling_price);
+                        $('#pprice').text(((data.product.selling_price * 1.19).toFixed(2)));
                     } else {
-                        $('#pprice').text(data.product.discount_price);
-                        $('#oldprice').text(data.product.selling_price);
+                        $('#pprice').text((data.product.discount_price * 1.19).toFixed(2));
+                        $('#oldprice').text((data.product.selling_price * 1.19).toFixed(2) + ' RON');
                     }
                     // folosind functia category din Product Model accesam numele categoriei
                     $('#psubsubcategory').text(data.product.subsubcategory.subsubcategory_name);
@@ -335,9 +335,9 @@ $seo = App\Models\SEO::find(1);
                 success: function(response) {
 
                     // afisam in span-urile care au id-urile valorile aduse de cartSubTotal, cartTax, cartTotal din functia AddMiniCart() din CartController
-                    $('span[id="cartSubTotal"]').text(response.cartSubTotal);
-                    $('span[id="cartTax"]').text(response.cartTax);
-                    $('span[id="cartTotal"]').text(response.cartTotal);
+                    $('span[id="cartSubTotal"]').text(response.cartSubTotal + ' RON');
+                    $('span[id="cartTax"]').text(response.cartTax + ' RON');
+                    $('span[id="cartTotal"]').text(response.cartTotal + ' RON');
                     $('#cartQty').text(response.cartQty);
 
                     var miniCart = ""
@@ -352,7 +352,7 @@ $seo = App\Models\SEO::find(1);
                                                                 </div>
                                                                 <div class="cart_info">
                                                                     <a href="#">${value.name}</a>
-                                                                    <p> <span>${value.qty}*${value.price.toLocaleString()} RON</span></p>
+                                                                    <p> <span>${value.qty}*${(value.price*1.19).toFixed(2)} RON</span></p>
                                                                 </div>
                                                                 <div class="cart_remove">
                                                                     <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="icon-x"></i></button>

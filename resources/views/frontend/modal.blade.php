@@ -71,7 +71,7 @@
 
 
                                     </div>
-                                    <div class="modal_description mb-15">
+                                    <div class="modal_description modal_description_text_left mb-15">
                                         <p><span id="pspecifications"></span></p>
                                     </div>
 
