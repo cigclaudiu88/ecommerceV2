@@ -39,7 +39,7 @@ class IndexController extends Controller
         // $products preia din tabela products doar datele care au statusul 1 (activ) si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $featured preia din tabela products doar datele care au campul featured 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
-        $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(3)->get();
         // $hot_deals preia din tabela products doar datele care au campul hot_deals 1 si le ordoneaza random si le limiteaza la 10 inregistrari
         $hot_deals = Product::where('hot_deal', 1)->where('discount_price', '!=', NULL)->inRandomOrder()->limit(10)->get();
         // $special_offer preia din tabela products doar datele care au campul special_offer 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari            
@@ -76,8 +76,10 @@ class IndexController extends Controller
             // daca nu este autentificat $wishlist_products array gol
             $wishlist_products = [];
         }
+        $brand_logo = Brand::all();
+
         // returnam pagina principala a aplicatiei resources\views\frontend\index.blade.php cu datele din variabilele $sliders si $categories
-        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_subsubcategory_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_brand_product_0', 'blogpost', 'wishlist_products'));
+        return view('frontend.index', compact('categories', 'sliders', 'products', 'featured', 'hot_deals', 'special_offer', 'special_deals', 'skip_subsubcategory_0', 'skip_product_0', 'skip_category_2', 'skip_product_2', 'skip_brand_0', 'skip_brand_product_0', 'blogpost', 'wishlist_products', 'brand_logo'));
     }
 
     // functia de logout user

@@ -60,12 +60,12 @@
                                     @csrf
                                     <div class="row">
                                         <div class="col-12 mb-20"><input class="form-control" type="email"
-                                                id="email" name="email" placeholder="User ID / Email"></div>
+                                                id="email" name="email" placeholder="Adresa de email"></div>
                                         <div class="col-12 mb-20"><input class="form-control" type="password"
-                                                id="password" name="password" placeholder="Password"></div>
-                                        <div class="col-12 mb-20"><label for="remember"
+                                                id="password" name="password" placeholder="Parola"></div>
+                                        {{-- <div class="col-12 mb-20"><label for="remember"
                                                 class="adomx-checkbox-2"><input id="remember" type="checkbox"><i
-                                                    class="icon"></i>Tine-ma minte.</label></div>
+                                                    class="icon"></i>Tine-ma minte.</label></div> --}}
                                         <div class="col-12">
                                             <div class="row justify-content-between">
                                                 <div class="col-auto mb-15"><a

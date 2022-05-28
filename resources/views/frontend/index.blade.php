@@ -2,7 +2,7 @@
 @section('content')
     {{-- sectiune de titlu --}}
 @section('title')
-    eShop
+    eShop UPT
 @endsection
 <!-- Main Slider Begin -->
 @include('frontend.main_slider.main_slider')
@@ -14,7 +14,7 @@
             <div class="col-12">
                 <div class="product_header">
                     <div class="section_title">
-                        <p>Recent adaugate in magazin</p>
+                        {{-- <p>Recent adaugate in magazin</p> --}}
                         <h2>Produse Curente</h2>
                     </div>
 
@@ -259,14 +259,14 @@
             <div class="col-lg-6 col-md-6">
                 <div class="single_banner">
                     <div class="banner_thumb">
-                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/banner1.jpg') }}" alt=""></a>
+                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/apple.png') }}" alt=""></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="single_banner">
                     <div class="banner_thumb">
-                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/banner2.jpg') }}" alt=""></a>
+                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/samsung.png') }}" alt=""></a>
                     </div>
                 </div>
             </div>
@@ -281,7 +281,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <p>Produse recent adaugate in magazin </p>
                     <h2>Mega Oferte</h2>
                 </div>
             </div>
@@ -315,9 +314,9 @@
                                                 <span class="label_sale">{{ round($discount) }}%</span>
                                             @endif
                                         </div>
-                                        <div class="product_timing">
+                                        {{-- <div class="product_timing">
                                             <div data-countdown="2022/06/20"></div>
-                                        </div>
+                                        </div> --}}
                                         <div class="action_links">
                                             <ul>
                                                 <li class="add_to_cart"><a data-tippy="Adauga in Cos"
@@ -387,9 +386,12 @@
         <div class="row">
             <div class="col-12">
                 <div class="banner_full_content">
-                    <p>Black Fridays !</p>
-                    <h2>Sale 50% OFf <span>all vegetable products</span></h2>
-                    <a href="shop.html">discover now</a>
+                    <strong>
+                        <p style="color:black !important;">Zilele eShop UPT</p>
+                    </strong>
+                    <h2>Foloseste Voucher-ul UPT22<span>pentru reducere de 10% la toate comenzile plasate in perioada
+                            01.06.2022 - 30.06.2022</span></h2>
+                    {{-- <a href="shop.html">discover now</a> --}}
                 </div>
             </div>
         </div>
@@ -403,21 +405,15 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <p>Recent adaugate in magazin </p>
                     <h2>Oferte Speciale</h2>
                 </div>
             </div>
         </div>
         <div class="product_banner_container">
             <div class="row">
-                <div class="col-lg-4 col-md-5">
-                    <div class="banner_thumb">
-                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/OferteSpeciale.jpg') }}" alt=""></a>
-                    </div>
-                </div>
-                <div class="col-lg-8 col-md-7">
+                <div class="col-lg-12 col-md-7">
                     @foreach ($special_offer->shuffle() as $product)
-                        <div class="small_product_area product_carousel  product_column2 owl-carousel">
+                        <div class="small_product_area product_carousel product_column3 owl-carousel mt-5">
 
                             <div class="product_items">
                                 <article class="single_product">
@@ -430,9 +426,25 @@
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
                                                     src="{{ asset($product->product_thumbnail) }}" alt=""></a>
                                         </div>
+
+                                        @php
+                                            // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
+                                            $amount = $product->selling_price - $product->discount_price;
+                                            $discount = ($amount / $product->selling_price) * 100;
+                                        @endphp
+                                        <div class="label_product">
+                                            {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                            @if ($product->discount_price == null)
+                                                <span class="label_new">Nou</span>
+                                            @else
+                                                {{-- daca produsul are pret de discount afisam % discount --}}
+                                                <span class="label_sale">{{ round($discount) }}%</span>
+                                            @endif
+                                        </div>
+
                                         <figcaption class="product_content">
                                             <h4 class="product_name"><a
-                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ $product->product_name }}</a>
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
                                             </h4>
                                             {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
                                             {{-- inclus rating produse --}}
@@ -483,9 +495,7 @@
                                         </figcaption>
                                     </figure>
                                 </article>
-
                             </div>
-
                         </div>
                     @endforeach
                 </div>
@@ -501,7 +511,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <p>Produse adaugate recent in magazin </p>
                     <h2>Ofertele Saptamanii</h2>
                 </div>
             </div>
@@ -648,7 +657,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <p>Produse adaugate recent in magazin </p>
                     <h2>Oferte de Telefoane</h2>
                 </div>
             </div>
@@ -750,8 +758,7 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <p>Produse adaugate recent in magazin </p>
-                    <h2>Oferte de la Samsung</h2>
+                    <h2>Oferte Produse Samsung</h2>
                 </div>
             </div>
         </div>
@@ -925,7 +932,7 @@
                                                 {{-- inclus rating produse --}}
                                                 @include('frontend.product.product_rating')
                                                 <p><a
-                                                        href="{{ url('subsubcategory/product/' . $product->product->subsubcategory->id . '/' . $product->product->subsubcategory ->subsubcategory_slug) }}">{{ $product->product->subsubcategory->subsubcategory_name }}</a>
+                                                        href="{{ url('subsubcategory/product/' . $product->product->subsubcategory->id . '/' . $product->product->subsubcategory->subsubcategory_slug) }}">{{ $product->product->subsubcategory->subsubcategory_name }}</a>
                                                 </p>
                                                 {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
                                                 <div class="price_box">
@@ -964,7 +971,6 @@
         <div class="row">
             <div class="col-12">
                 <div class="section_title">
-                    <p> Produse recent adaugate in magazin </p>
                     <h2>Produse Recomandate</h2>
                 </div>
             </div>
@@ -1057,21 +1063,11 @@
         <div class="row">
             <div class="col-12">
                 <div class="brand_container owl-carousel ">
-                    <div class="single_brand">
-                        <a href="#"><img src="{{ asset('frontend/img/brand/brand1.jpg') }}" alt=""></a>
-                    </div>
-                    <div class="single_brand">
-                        <a href="#"><img src="{{ asset('frontend/img/brand/brand2.jpg') }}" alt=""></a>
-                    </div>
-                    <div class="single_brand">
-                        <a href="#"><img src="{{ asset('frontend/img/brand/brand3.jpg') }}" alt=""></a>
-                    </div>
-                    <div class="single_brand">
-                        <a href="#"><img src="{{ asset('frontend/img/brand/brand4.jpg') }}" alt=""></a>
-                    </div>
-                    <div class="single_brand">
-                        <a href="#"><img src="{{ asset('frontend/img/brand/brand2.jpg') }}" alt=""></a>
-                    </div>
+                    @foreach ($brand_logo as $item)
+                        <div class="single_brand">
+                            <a href=""><img src="{{ asset($item->brand_image) }}" alt=""></a>
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>

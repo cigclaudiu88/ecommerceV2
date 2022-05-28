@@ -73,7 +73,7 @@
                                         </div>
 
                                         <div class="col-12 mb-20"><input class="form-control" type="text" id="phone"
-                                                name="phone" placeholder="Phone">
+                                                name="phone" placeholder="Telefon">
                                             @error('phone')
                                                 <span class="invalid-feedback" role="alert"></span>
                                                 <strong class="text-danger">{{ $message }}</strong>

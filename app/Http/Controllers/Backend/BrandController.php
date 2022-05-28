@@ -44,7 +44,7 @@ class BrandController extends Controller
         // $nume_gen genereaza un nume random pentru imaginea brandului folosind hexdec() cu uniqid()
         $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
         // folosind Image model (image intervention package) redimenzionam imaginea $image la latimea 300 si inaltimea 200 si salvam imaginea in upload/brand/ cu numele $name_gen
-        Image::make($image)->resize(300, 200)->save('upload/brand/' . $name_gen);
+        Image::make($image)->resize(185, 60)->save('upload/brand/' . $name_gen);
         // salvam imaginea $save_url in folderul upload/brand/ cu numele $name_gen
         $save_url = 'upload/brand/' . $name_gen;
 
@@ -111,7 +111,7 @@ class BrandController extends Controller
             // $nume_gen genereaza un nume random pentru imaginea brandului folosind hexdec() cu uniqid() + $image extension type ( jpg, png etc)
             $name_gen = hexdec(uniqid()) . '.' . $image->getClientOriginalExtension();
             // folosind Image model (image intervention package) redimenzionam imaginea $image la latimea 300 si inaltimea 200 si salvam imaginea in upload/brand/ cu numele $name_gen
-            Image::make($image)->resize(300, 200)->save('upload/brand/' . $name_gen);
+            Image::make($image)->resize(185, 60)->save('upload/brand/' . $name_gen);
             // salvam imaginea $save_url in folderul upload/brand/ cu numele $name_gen
             $save_url = 'upload/brand/' . $name_gen;
 

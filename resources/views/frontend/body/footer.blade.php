@@ -21,7 +21,7 @@
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-2 col-md-3 col-sm-5">
+                {{-- <div class="col-lg-2 col-md-3 col-sm-5">
                     <div class="widgets_container widget_menu">
                         <h3>Information</h3>
                         <div class="footer_menu">
@@ -36,8 +36,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-2 col-md-3 col-sm-4">
+                </div> --}}
+                {{-- <div class="col-lg-2 col-md-3 col-sm-4">
                     <div class="widgets_container widget_menu">
                         <h3>Extras</h3>
                         <div class="footer_menu">
@@ -51,8 +51,8 @@
                             </ul>
                         </div>
                     </div>
-                </div>
-                <div class="col-lg-4 col-md-6 col-sm-8">
+                </div> --}}
+                {{-- <div class="col-lg-4 col-md-6 col-sm-8">
                     <div class="widgets_container widget_newsletter">
                         <h3>Sign up newsletter</h3>
                         <p class="footer_desc">Get updates by subscribe our weekly newsletter</p>
@@ -69,7 +69,7 @@
                             </div><!-- mailchimp-alerts end -->
                         </div>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
