@@ -10901,6 +10901,31 @@ td.product_quantity span {
   transition: 0.3s;
   cursor: pointer;
 }
+
+.user_dashboard_form_button button {
+  background: none;
+  border: 1px solid #222222;
+  /* margin-left: 10px; */
+  font-size: 12px;
+  font-weight: 700;
+  height: 45px;
+  width: 230px;
+  line-height: 18px;
+  padding: 10px 15px;
+  text-transform: uppercase;
+  background: #222222;
+  color: #ffffff;
+  -webkit-transition: 0.3s;
+  transition: 0.3s;
+  cursor: pointer;
+}
+
+.user_dashboard_form_button button:hover {
+  background: #40a944;
+  color: #ffffff;
+  border-color: #40a944;
+}
+
 @media only screen and (max-width: 767px) {
   .modal_add_to_cart button {
     width: 130px;

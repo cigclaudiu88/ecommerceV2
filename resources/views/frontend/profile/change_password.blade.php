@@ -56,7 +56,7 @@
                                                     @enderror
                                                 </div>
 
-                                                <div class="form-group">
+                                                <div class="form-group user_dashboard_form_button">
                                                     <button type="submit" class="btn btn-success"
                                                         name="profile_photo_path"><strong>Actualizare
                                                             Parola</strong></button>

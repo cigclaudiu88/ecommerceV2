@@ -125,7 +125,7 @@
                         {{-- SECTIUNE FILTRARE DISPLAY --}}
                         @if ($display_filters->count())
                             <div class="widget_list widget_color">
-                                <h3>Filtrare Display</h3>
+                                <h3>Filtrare Dimensiune Ecran</h3>
                                 <form action="{{ URL::current() }}" method="GET">
                                     @foreach ($display_filters as $filterdisplay)
                                         @php
@@ -150,7 +150,7 @@
 
 
 
-                        <div class="widget_list widget_color">
+                        {{-- <div class="widget_list widget_color">
                             <h3>Select By SIze</h3>
                             <ul>
                                 <li>
@@ -210,7 +210,7 @@
                                 <a href="#"><img src="{{ asset('frontend/img/bg/banner17.jpg') }}" alt=""></a>
                             </div>
                         </div>
-                    </div>
+                    </div> --}}
                 </aside>
                 <!--sidebar widget end-->
             </div>

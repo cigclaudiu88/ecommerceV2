@@ -64,7 +64,8 @@
                                                             style="width:100% !important;">{{ $order->status }}</span>
                                                     @endif
                                                 </td>
-                                                <td style="text-align: right">{{ $order->amount }} RON</td>
+                                                <td style="text-align: right">
+                                                    {{ number_format($order->amount, 2, '.', ',') }} RON</td>
                                                 <td><a href="{{ url('user/order_details/' . $order->id) }}"
                                                         class="view"><i
                                                             class="fa-solid fa-magnifying-glass"></i></a><span

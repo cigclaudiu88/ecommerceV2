@@ -63,12 +63,12 @@
                                                 {{-- afisare poza de profil selectata de utlizator inainte de inserarea in baza de date --}}
                                                 <div class="form-group">
                                                     <img id="showImage"
-                                                        src="{{ !empty($user->profile_photo_path)? url('upload/user_images/' . $user->profile_photo_path): url('upload/default_profile.png') }}"
+                                                        src="{{ !empty($user->profile_photo_path) ? url('upload/user_images/' . $user->profile_photo_path) : url('upload/default_profile.png') }}"
                                                         alt="" height="10%" width="10%"><br><br>
                                                 </div>
 
-                                                <div class="form-group">
-                                                    <button type="submit" class="btn btn-success"
+                                                <div class="form-group user_dashboard_form_button">
+                                                    <button type="submit" class="button"
                                                         name="profile_photo_path"><strong>Actualizare
                                                             Date</strong></button>
                                                 </div>

@@ -16,7 +16,7 @@
          {{-- daca campul profile_photo_path din tabela users nu este goala se afiseaza poza de profil --}}
          {{-- daca campul profile_photo_path din tabela users este goala se afiseaza poza de profil implicita upload/default_profile.png --}}
          <img class="card-img-top" style="border-radius:20%"
-             src="{{ !empty($user->profile_photo_path)? url('upload/user_images/' . $user->profile_photo_path): url('upload/default_profile.png') }}"
+             src="{{ !empty($user->profile_photo_path) ? url('upload/user_images/' . $user->profile_photo_path) : url('upload/default_profile.png') }}"
              alt="" height="40%" width="40%"><br><br>
          <!-- Nav tabs -->
          <div class="dashboard_tab_button">
@@ -33,7 +33,7 @@
                          Parola</a>
                  </li>
                  <li><a href="{{ route('user.address') }}" data-toggle="tab"
-                         class="nav-link {{ Request::routeIs('user.address') ? 'active' : '' }}">Adrese
+                         class="nav-link {{ Request::routeIs('user.address') ? 'active' : '' }}">Adresa
                          Livrare</a></li>
                  <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Istoric
@@ -45,7 +45,7 @@
                  <li> <a href="{{ route('cancel.orders') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('cancel.orders') ? 'active' : '' }}">Comenzi Anulate</a>
                  </li>
-                 <li><a href=" #downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li>
+                 {{-- <li><a href=" #downloads" data-toggle="tab" class="nav-link">Istoric Facturi</a></li> --}}
 
                  {{-- adaugat ruta de logout --}}
                  <li><a href="{{ route('user.logout') }}" class="nav-link">Logout</a></li>

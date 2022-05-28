@@ -192,9 +192,9 @@
 
 
 
-                                                    <div class="form-group">
+                                                    <div class="form-group user_dashboard_form_button">
                                                         <button type="submit" class="btn btn-success"
-                                                            name="profile_photo_path"><strong>Actualizeaza Adresa de Livrare
+                                                            name="profile_photo_path"><strong>Actualizeaza Adresa
                                                             </strong></button>
                                                     </div>
 
@@ -356,7 +356,7 @@
 
 
 
-                                                    <div class="form-group">
+                                                    <div class="form-group user_dashboard_form_button">
                                                         <button type="submit" class="btn btn-success"
                                                             name="profile_photo_path"><strong>Adauga Adresa de Livrare
                                                             </strong></button>
