@@ -187,10 +187,19 @@ $seo = App\Models\SEO::find(1);
                     if (data.product.discount_price == null) {
                         $('#pprice').text('');
                         $('#oldprice').text('');
-                        $('#pprice').text(((data.product.selling_price * 1.19).toFixed(2)));
+                        $('#pprice').text(new Intl.NumberFormat('ro-RO', {
+                            style: 'currency',
+                            currency: 'RON'
+                        }).format((data.product.selling_price * 1.19).toFixed(2)));
                     } else {
-                        $('#pprice').text((data.product.discount_price * 1.19).toFixed(2));
-                        $('#oldprice').text((data.product.selling_price * 1.19).toFixed(2) + ' RON');
+                        $('#pprice').text(new Intl.NumberFormat('ro-RO', {
+                            style: 'currency',
+                            currency: 'RON'
+                        }).format((data.product.discount_price * 1.19).toFixed(2)));
+                        $('#oldprice').text(new Intl.NumberFormat('ro-RO', {
+                            style: 'currency',
+                            currency: 'RON'
+                        }).format((data.product.selling_price * 1.19).toFixed(2)));
                     }
                     // folosind functia category din Product Model accesam numele categoriei
                     $('#psubsubcategory').text(data.product.subsubcategory.subsubcategory_name);
@@ -352,7 +361,7 @@ $seo = App\Models\SEO::find(1);
                                                                 </div>
                                                                 <div class="cart_info">
                                                                     <a href="#">${value.name}</a>
-                                                                    <p> <span>${value.qty}*${(value.price*1.19).toFixed(2)} RON</span></p>
+                                                                    <p> <span>${value.qty}*${new Intl.NumberFormat('ro-RO', { style: 'currency', currency: 'RON' }).format((value.price*1.19).toFixed(2))}</span></p>
                                                                 </div>
                                                                 <div class="cart_remove">
                                                                     <button type="submit" id="${value.rowId}" onclick="miniCartRemove(this.id)"><i class="icon-x"></i></button>

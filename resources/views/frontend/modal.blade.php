@@ -55,7 +55,7 @@
                                         <strong>Pret: </strong> <span class="new_price"><strong
                                                 id="pprice"></strong>
                                             <strong>
-                                                RON</strong></span>
+                                                </strong></span>
                                         <span class="old_price"><strong id="oldprice"></strong> <strong>
                                             </strong></span>
                                     </div>

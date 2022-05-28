@@ -96,13 +96,17 @@
                         <input type="hidden" id="product_id" value="{{ $product->id }}" min="1">
                         {{-- adaugat onclick="addToCart()" --}}
                         <button class="button" onclick="addToCart()">Adauga in Cos</button>
-
+                        <button class="button"
+                            style="width: 40px !important; min-width:40px !important; padding: 0px !important; margin-left: 5px !important;"
+                            id="{{ $product->id }}" onclick="addToWishList(this.id)"><span
+                                class="lnr lnr-heart"></span></button>
                     </div>
-                    <div class=" product_d_action">
+                    {{-- <div class=" product_d_action">
                         <ul>
-                            <li><a href="#" title="Add to wishlist">+ Add to Wishlist</a></li>
+                            <li><a title="Add to wishlist">+
+                                    Adauga in Wishlist</a></li>
                         </ul>
-                    </div>
+                    </div> --}}
                     <div class="product_meta">
                         <p>Categoria: <a
                                 href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
