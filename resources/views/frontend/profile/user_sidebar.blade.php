@@ -39,7 +39,8 @@
                          class="nav-link {{ Route::is('my.orders', 'my.order.details') ? 'active' : '' }}">Istoric
                          Comenzi</a></li>
                  <li> <a href="{{ route('return.order.list') }}" data-toggle="tab"
-                         class="nav-link {{ Request::routeIs('return.order.list') ? 'active' : '' }}">Comenzi cu
+                         class="nav-link {{ Route::is('return.order.list', 'my.return.order.details') ? 'active' : '' }}">Comenzi
+                         cu
                          Retur</a>
                  </li>
                  <li> <a href="{{ route('cancel.orders') }}" data-toggle="tab"
