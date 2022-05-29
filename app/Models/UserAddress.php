@@ -29,4 +29,10 @@ class UserAddress extends Model
     {   // returnam Cache pentru userul logat
         return Cache::has('user-is-online' . $this->id);
     }
+
+    public function order()
+    {
+        // leaga tabelul multimgs (category_id) cu tabelul products (id)
+        return $this->belongsTo(Order::class, 'user_id', 'user_id');
+    }
 }

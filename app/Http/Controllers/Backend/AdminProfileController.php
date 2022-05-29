@@ -136,7 +136,7 @@ class AdminProfileController extends Controller
     // functia de vizualizare toti utlizatori
     public function AllUsers()
     {   // $users preia datele din tabela users
-        $usersdata = UserAddress::with('user')->latest()->get();
+        $usersdata = UserAddress::with('user', 'order')->withSum('order', 'amount')->latest()->get();
         // returnam pagina de vizualizare toti utilizatorii cu datele din tabela users
         return view('backend.user.all_user', compact('usersdata'));
     }

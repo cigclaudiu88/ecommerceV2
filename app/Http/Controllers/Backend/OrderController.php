@@ -29,7 +29,7 @@ class OrderController extends Controller
         $order = Order::with('division', 'district', 'user', 'user_address')->where('id', $order_id)->first();
         // $orderItem preia din tabelul order_items toate produsele din comanda cu id-ul = $order_id primit ca parametru
         // folosim functia product() din modelul OrderItem pentru a preia informatiile din tabelul products
-        $orderItem = OrderItem::with('product')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
+        $orderItem = OrderItem::with('product', 'voucher', 'order')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         // returnam pagina cu detaliile comenzii cu continutul din variabilele $order si $orderItem
         return view('backend.orders.pending_orders_details', compact('order', 'orderItem'));
     }

@@ -91,15 +91,17 @@
                 <div class="col-lg-4 col-md-6 col-12 mb-20">
                     <h4 class="mb-25">Date Plata Comanda</h4>
                     <ul>
-                        <li> <span>Subtotal</span> <span>{{ $order->subtotal }} RON</span> </li>
+                        <li> <span>Subtotal</span> <span>{{ number_format($order->subtotal, 2, '.', ',') }} RON</span>
+                        </li>
                         @if ($order->voucher_name == null)
                         @else
                             <li> <span>Voucher</span> <span>{{ $order->voucher_name }}</span> </li>
-                            <li> <span>Reducere</span> <span class="text-success">- {{ $order->discount_amount }}
+                            <li> <span>Reducere</span> <span class="text-success">-
+                                    {{ number_format($order->discount_amount, 2, '.', ',') }}
                                     RON</span> </li>
                         @endif
-                        <li> <span>TVA</span> <span>{{ $order->tax }} RON</span> </li>
-                        <li> <span>Total</span> <span>{{ $order->amount }}</span> </li>
+                        <li> <span>TVA</span> <span>{{ number_format($order->tax, 2, '.', ',') }} RON</span> </li>
+                        <li> <span>Total</span> <span>{{ number_format($order->amount, 2, '.', ',') }}</span> </li>
                         @if ($order->transaction_id == null)
                             <li> <span class="h5 fw-600">Tip</span> <span class="h5 fw-600 text-danger">Cash la
                                     livrare</span>
@@ -218,7 +220,7 @@
                             <th>Poza</th>
                             <th>Cod Produs</th>
                             <th>Nume Produs</th>
-                            <th>Pret</th>
+                            <th>Pret fara TVA</th>
                             <th>Cantitate</th>
                             <th>Subtotal</th>
                             {{-- @if ($order->status == 'Livrata')

@@ -13,7 +13,7 @@
                     <table class="table table-bordered data-table data-table-default">
                         <thead>
                             <tr>
-                                <th>Poza</th>
+                                <th>Poza Profil</th>
                                 <th>Nume Client</th>
                                 <th>Email</th>
                                 <th>Telefon</th>
@@ -24,7 +24,8 @@
                                 <th>Bloc</th>
                                 <th>Apartament</th>
                                 <th>Status</th>
-                                <th>Actiuni</th>
+                                <th>Total Comenzi</th>
+                                {{-- <th>Actiuni</th> --}}
                             </tr>
                         </thead>
                         <tbody>
@@ -32,7 +33,7 @@
                             @foreach ($usersdata as $data)
                                 <tr>
                                     <td>
-                                        <img src="{{ !empty($data->user->profile_photo_path)? url('upload/user_images/' . $data->user->profile_photo_path): url('upload/default_profile.png') }}"
+                                        <img src="{{ !empty($data->user->profile_photo_path) ? url('upload/user_images/' . $data->user->profile_photo_path) : url('upload/default_profile.png') }}"
                                             alt=""
                                             style="max-width:none !important; width:50px !important; height:50px !important;">
                                     </td>
@@ -56,10 +57,12 @@
                                                 class="badge badge-pill badge-danger">{{ Carbon\Carbon::parse($data->user->last_seen)->diffForHumans() }}</span>
                                         @endif
                                     </td>
-                                    <td>
+                                    <td><strong>{{ number_format($data->order_sum_amount, 2, '.', ',') }} RON</strong>
+                                    </td>
+                                    {{-- <td>
                                         <a href="" class="btn btn-info">Edit</a>
                                         <a href="" class="btn btn-danger" id="delete">Delete</a>
-                                    </td>
+                                    </td> --}}
                                 </tr>
                             @endforeach
                         </tbody>

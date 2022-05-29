@@ -362,7 +362,6 @@
                         </div>
                         <div class="col-12 mb-20 mt-10">
                             <input type="submit" value="Adauga Produs" class="button button-primary">
-                            <input type="submit" value="cancle" class="button button-danger">
                         </div>
                     </div>
                 </form>

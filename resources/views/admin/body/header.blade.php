@@ -4,13 +4,20 @@
 
          <!-- Header Logo (Header Left) Start -->
          <div class="header-logo col-auto">
+             @php
+                 $settings = App\Models\SiteSetting::find(1);
+             @endphp
+
+             <img src="{{ asset($settings->logo) }}" alt="" class="mr-3 mb-3">
+             {{-- <img src="{{ asset('/upload/logo/1731623075785961.png') }}" class="mr-3" alt=""> --}}
              {{-- <a href="index.html">
                  <img src="{{ asset('backend/images/logo/logo.png') }}" alt="">
                  <img src="{{ asset('backend/images/logo/logo-light.png') }}" class="logo-light" alt="">
              </a> --}}
              <a href="{{ url('/admin/dashboard') }}">
-                 <h3>eShop Admin Dashboard</h3>
+                 <h3 class="mt-3">Admin Dashboard</h3>
              </a>
+
          </div><!-- Header Logo (Header Left) End -->
 
          <!-- Header Right Start -->

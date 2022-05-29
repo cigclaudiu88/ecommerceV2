@@ -32,7 +32,7 @@
                                     </td>
                                     <td>{{ $item->shipping_phone }}</td>
                                     <td>{{ $item->order_number }}</td>
-                                    <td>{{ $item->amount }} RON</td>
+                                    <td>{{ number_format($item->amount, 2, '.', ',') }} RON</td>
                                     <td>{{ $item->payment_method }}</td>
                                     <td class="text-center">
                                         <h4><span class="badge badge-pill badge-warning">{{ $item->status }}</span></h4>
