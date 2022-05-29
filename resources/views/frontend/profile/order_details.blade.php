@@ -374,7 +374,7 @@
                                                             <th class="product_name"><a href="#">Subtotal</a>
                                                             </th>
                                                             <th class="product_name"><a
-                                                                    href="#">{{ $order->subtotal }}
+                                                                    href="#">{{ number_format($order->subtotal, 2, '.', ',') }}
                                                                     RON</a>
                                                             </th>
                                                         </tr>
@@ -394,7 +394,7 @@
                                                                 <th class="product_name"><a href="#">Reducere Voucher</a>
                                                                 </th>
                                                                 <th class="product_name text-success"><a
-                                                                        href="#">-{{ $order->discount_amount }}
+                                                                        href="#">-{{ number_format($order->discount_amount, 2, '.', ',') }}
                                                                         RON</a>
                                                                 </th>
                                                             </tr>
@@ -403,7 +403,8 @@
                                                         <tr>
                                                             <th class="product_name"><a href="#">TVA</a>
                                                             </th>
-                                                            <th class="product_name"><a href="#">{{ $order->tax }}
+                                                            <th class="product_name"><a
+                                                                    href="#">{{ number_format($order->tax, 2, '.', ',') }}
                                                                     RON</a>
                                                             </th>
                                                         </tr>
@@ -412,7 +413,8 @@
                                                         <tr>
                                                             <th class="product_name"><a href="#">Total Comanda</a>
                                                             </th>
-                                                            <th class="product_name"><a href="#">{{ $order->amount }}
+                                                            <th class="product_name"><a
+                                                                    href="#">{{ number_format($order->amount, 2, '.', ',') }}
                                                                     RON</a>
                                                             </th>
                                                         </tr>
@@ -501,13 +503,14 @@
                                                                         {{ $item->product->product_name }}</a>
                                                                 </td>
                                                                 <td class="col-md-2">
-                                                                    {{ number_format($item->price, 2, '.', ',') }} RON
+                                                                    {{ number_format($item->price * 1.19, 2, '.', ',') }}
+                                                                    RON
                                                                 </td>
                                                                 <td class="col-md-1">{{ $item->qty }}
                                                                 </td>
                                                                 <td class="col-md-2">
                                                                     @if ($item->return_order_item == 0)
-                                                                        {{ number_format($item->price * $item->qty, 2, '.', ',') }}
+                                                                        {{ number_format($item->price * 1.19 * $item->qty, 2, '.', ',') }}
                                                                         RON
                                                                     @elseif($item->return_order_item == 1)
                                                                         <span id="order_procesed">Retur</span>
