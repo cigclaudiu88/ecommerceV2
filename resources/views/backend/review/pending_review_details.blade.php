@@ -32,12 +32,17 @@
                             <p>{{ $pending_review->comment }}</p>
                         </div>
                     </div>
-
-                    <a href="{{ route('review.approve', $pending_review->id) }}" class="btn btn-success">Aproba
-                        Recenzie </a>
-                    <a href="{{ route('delete.review', $pending_review->id) }}" class="btn btn-danger" id="delete">
-                        Sterge
-                    </a>
+                    @if ($pending_review->status == 0)
+                        <a href="{{ route('review.approve', $pending_review->id) }}" class="btn btn-success">Aproba
+                            Recenzie </a>
+                        <a href="{{ route('delete.review', $pending_review->id) }}" class="btn btn-danger" id="delete">
+                            Sterge
+                        </a>
+                    @else()
+                        <a href="{{ route('delete.review', $pending_review->id) }}" class="btn btn-danger" id="delete">
+                            Sterge
+                        </a>
+                    @endif
                     <a href="{{ url('/admin/dashboard') }}" class="btn btn-default">Cancel</a>
 
                 </div>

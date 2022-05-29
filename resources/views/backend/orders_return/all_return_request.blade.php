@@ -45,7 +45,7 @@
                                     </td>
                                     <td width="30%">
                                         <h4><span class="badge badge-success">Retur finalizat</span></h4>
-                                        <a href="{{ route('pending.order.details', $item->id) }}"
+                                        <a href="{{ route('return.pending.order.details', $item->id) }}"
                                             class="button button-primary"><i
                                                 class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
                                     </td>

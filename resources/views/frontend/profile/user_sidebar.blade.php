@@ -36,7 +36,7 @@
                          class="nav-link {{ Request::routeIs('user.address') ? 'active' : '' }}">Adresa
                          Livrare</a></li>
                  <li> <a href="{{ route('my.orders') }}" data-toggle="tab"
-                         class="nav-link {{ Request::routeIs('my.orders') ? 'active' : '' }}">Istoric
+                         class="nav-link {{ Route::is('my.orders', 'my.order.details') ? 'active' : '' }}">Istoric
                          Comenzi</a></li>
                  <li> <a href="{{ route('return.order.list') }}" data-toggle="tab"
                          class="nav-link {{ Request::routeIs('return.order.list') ? 'active' : '' }}">Comenzi cu

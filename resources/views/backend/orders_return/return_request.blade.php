@@ -44,11 +44,11 @@
                                     </td>
                                     </td>
                                     <td width="30%">
-                                        <a href="{{ route('pending.order.details', $item->id) }}"
+                                        <a href="{{ route('return.pending.order.details', $item->id) }}"
                                             class="button button-primary"><i
                                                 class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
                                         <a href="{{ route('return.approve', $item->id) }}" class="btn btn-danger">Aproba
-                                            Retur </a>
+                                            Returul Comenzii </a>
                                     </td>
                                 </tr>
                             @endforeach
