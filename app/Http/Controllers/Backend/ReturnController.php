@@ -52,9 +52,12 @@ class ReturnController extends Controller
     }
 
 
-    public function ReturnItemFinalized($order_item_id)
+    public function ReturnItemFinalized(Request $request, $order_item_id)
     {
-        OrderItem::where('id', $order_item_id)->update(['return_order_item' => 2]);
+        OrderItem::where('id', $order_item_id)->update([
+            'return_order_item' => 2,
+            'return_qty' => $request->return_qty,
+        ]);
         $notification = array(
             'message' => 'Produsul a fost returnat cu succes!',
             'alert-type' => 'success'

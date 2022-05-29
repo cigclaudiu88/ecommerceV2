@@ -440,30 +440,24 @@
                                                         @endif
 
                                                         <tr>
-                                                            <th class="product_name"><a href="#">Status Comanda</a>
+                                                            <th class="product_name"><a href="#">Status Retur</a>
                                                             </th>
                                                             <th>
-                                                                @if ($order->status == 'In asteptare')
-                                                                    <span id="order_pending"
-                                                                        style="width:30% !important;">{{ $order->status }}</span>
-                                                                @elseif($order->status == 'Confirmata')
-                                                                    <span id="order_confirmed"
-                                                                        style="width:30% !important;">{{ $order->status }}</span>
-                                                                @elseif($order->status == 'Procesata')
-                                                                    <span id="order_procesed"
-                                                                        style="width:30% !important;">{{ $order->status }}</span>
-                                                                @elseif($order->status == 'Preluata de curier')
-                                                                    <span id="order_shipped"
-                                                                        style="width:30% !important;">{{ $order->status }}</span>
-                                                                @elseif($order->status == 'In tranzit')
-                                                                    <span id="order_omw"
-                                                                        style="width:30% !important;">{{ $order->status }}</span>
-                                                                @elseif($order->status == 'Livrata')
+                                                                @if ($order->return_order == 0)
                                                                     <span id="order_delivered"
-                                                                        style="width:30% !important;">{{ $order->status }}</span>
-                                                                @elseif($order->status == 'Anulata')
-                                                                    <span id="order_canceled"
-                                                                        style="width:30% !important;">{{ $order->status }}</span>
+                                                                        style="width:30% !important; margin-top:5px">Fara
+                                                                        Solictiare de
+                                                                        Retur
+                                                                    </span>
+                                                                @elseif($order->return_order == 1)
+                                                                    <span id="order_pending"
+                                                                        style="width:30% !important; margin-top:5px">Retur
+                                                                        in asteptare
+                                                                    </span>
+                                                                @elseif($order->return_order == 2)
+                                                                    <span id="order_delivered"
+                                                                        style="width:30% !important; margin-top:5px">Retur
+                                                                        finalizat</span>
                                                                 @endif
                                                             </th>
                                                         </tr>
@@ -506,17 +500,17 @@
                                                                     {{ number_format($item->price * 1.19, 2, '.', ',') }}
                                                                     RON
                                                                 </td>
-                                                                <td class="col-md-1">{{ $item->qty }}
+                                                                <td class="col-md-1">{{ $item->return_qty }} BUC
                                                                 </td>
                                                                 <td class="col-md-2">
-                                                                    {{-- @if ($item->return_order_item == 0) --}}
-                                                                    {{ number_format($item->price * 1.19 * $item->qty, 2, '.', ',') }}
-                                                                    RON
-                                                                    {{-- @elseif($item->return_order_item == 1)
+                                                                    @if ($item->return_order_item == 0)
+                                                                        {{ number_format($item->price * 1.19 * $item->qty, 2, '.', ',') }}
+                                                                        RON
+                                                                    @elseif($item->return_order_item == 1)
                                                                         <span id="order_procesed">Retur</span>
                                                                     @elseif($item->return_order_item == 2)
                                                                         <span id="order_canceled">Returnat</span>
-                                                                    @endif --}}
+                                                                    @endif
                                                                 </td>
                                                             </tr>
                                                         @endforeach

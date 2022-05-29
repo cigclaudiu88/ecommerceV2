@@ -60,7 +60,7 @@
                                                 </td>
                                                 <td style="text-align: right">{{ $order->amount }} RON</td>
                                                 <td style="text-align: left">{{ $order->return_reason }} <a
-                                                        href="{{ url('user/order_details/' . $order->id) }}"
+                                                        href="{{ route('my.return.order.details', $order->id) }}"
                                                         class="view"><i
                                                             class="fa-solid fa-magnifying-glass"></i></a><span
                                                         class="text-white"> ---- </span></td>

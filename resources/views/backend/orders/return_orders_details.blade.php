@@ -219,27 +219,41 @@
                             <th>Cod Produs</th>
                             <th>Nume Produs</th>
                             <th>Pret</th>
-                            <th>Cantitate</th>
+                            <th>Cantitate Comanda</th>
                             <th>Subtotal</th>
-                            {{-- @if ($order->status == 'Livrata')
+                            @if ($order->status == 'Livrata')
+                                <th>Cantitate Retur</th>
                                 <th>Actiuni</th>
                             @else
-                            @endif --}}
+                            @endif
 
                         </tr>
                     </thead>
                     <tbody>
                         @foreach ($orderItem as $item)
                             <tr>
+
                                 <td class="col-md-1"><img src="{{ asset($item->product->product_thumbnail) }}"
                                         height="100px;" width="100px;"></td>
                                 <td class="col-md-2"> {{ $item->product->product_code }}</td>
-                                <td class="col-md-6"><a href="#">{{ $item->product->product_name }}</a></td>
+                                <td class="col-md-5"><a href="#">{{ $item->product->product_name }}</a></td>
                                 <td class="col-md-1">{{ number_format($item->price, 2, '.', ',') }} RON</td>
+
                                 <td class="col-md-1">{{ $item->qty }} BUC</td>
-                                <td class="col-md-1">{{ number_format($item->price * $item->qty, 2, '.', ',') }}
+                                <td class="col-md-1">
+                                    {{ number_format($item->price * $item->qty, 2, '.', ',') }}
                                     RON</td>
-                                {{-- @if ($item->return_order_item == 0 && $order->status == 'Livrata')
+                                @if ($item->return_order_item == 1)
+                                    <td>
+                                        <form method="post" action="{{ route('return.item.finalized', $item->id) }}">
+                                            @csrf
+                                            <input type="text" id="formLayoutUsername3" class="form-control"
+                                                name="return_qty" placeholder="Cantitate">
+                                    </td>
+                                @elseif($item->return_order_item == 2 || $item->return_order_item == 0)
+                                    <td class="col-md-1">{{ $item->return_qty }} BUC</td>
+                                @endif
+                                @if ($item->return_order_item == 0 && $order->status == 'Livrata')
                                     <td class="col-md-1">
                                         <a href="{{ route('return.item.approve', $item->id) }}"
                                             class="btn btn-danger">Aproba
@@ -247,14 +261,16 @@
                                     </td>
                                 @elseif($item->return_order_item == 1)
                                     <td class="col-md-1">
-                                        <a href="{{ route('return.item.finalized', $item->id) }}"
-                                            class="btn btn-danger">Finalizeaza retur</a>
+                                        <button type="submit" class="btn btn-danger">Finalizeaza retur</button>
                                     </td>
+                                    </form>
                                 @elseif($item->return_order_item == 2)
                                     <td class="col-md-1">
                                         <h4><span class="badge badge-pill badge-success">Produs returnat</span></h4>
                                     </td>
-                                @endif --}}
+                                @endif
+
+
                             </tr>
                         @endforeach
                     </tbody>
@@ -262,6 +278,24 @@
             </div>
         </div>
         <!--Order Details List End-->
+
+        <div class="col-12 mb-30">
+            <div class="table-responsive">
+                <table class="table table-bordered table-vertical-middle">
+                    <thead class="thead-dark">
+                        <tr>
+                            <th>Motiv Retur</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <td>{{ $order->return_reason }}</td>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <!--Order Details List End-->
+
+
 
 
     </div>

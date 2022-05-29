@@ -308,6 +308,8 @@ Route::group(['prefix' => 'user', 'middleware' => ['user', 'auth'], 'namespace' 
     Route::get('/return/order/list', [AllUserController::class, 'ReturnOrderList'])->name('return.order.list');
     // ruta pt vizualizare comenzi anulate - user dashboard
     Route::get('/cancel/orders', [AllUserController::class, 'CancelOrders'])->name('cancel.orders');
+    // ruta pt vizualizare detalii comanda returnata in user dashboard
+    Route::get('/returned_order_details/{order_id}', [AllUserController::class, 'ReturnOrderDetails'])->name('my.return.order.details');
 });
 // ruta spre pagina cosului de cumparaturi
 Route::get('/user/mycart', [CartPageController::class, 'MyCart'])->name('mycart');
@@ -471,8 +473,9 @@ Route::prefix('return')->group(function () {
     // ruta pentru aprobare retur comanda in admin dashboard
     Route::get('/admin/return/item/approve/{order_item_id}', [ReturnController::class, 'ReturnItemRequestApprove'])->name('return.item.approve');
     // ruta pentru aprobare retur comanda in admin dashboard
-    Route::get('/admin/return/item/finalized/{order_item_id}', [ReturnController::class, 'ReturnItemFinalized'])->name('return.item.finalized');
-    Route::get('/pending/orders/details/{order_id}', [OrderController::class, 'PendingOrdersDetails'])->name('return.pending.order.details');
+    Route::post('/admin/return/item/finalized/{order_item_id}', [ReturnController::class, 'ReturnItemFinalized'])->name('return.item.finalized');
+    // ruta pentru detalii coamnda pentru retur in admin dashboard
+    Route::get('/pending/orders/details/{order_id}', [OrderController::class, 'PendingReturnOrdersDetails'])->name('return.pending.order.details');
 });
 
 // Rute Recenzii User - Frontend
