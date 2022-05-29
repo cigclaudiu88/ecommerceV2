@@ -116,7 +116,7 @@
                                                                 <div class="step active"> <span class="icon">
                                                                         <i class="fa-solid fa-cart-arrow-down"></i> </span>
                                                                     <span class="text">Comanda
-                                                                        Plasta</span>
+                                                                        Plasata</span>
                                                                 </div>
                                                                 <div class="step"> <span class="icon">
                                                                         <i class="fa fa-check"></i> </span> <span
