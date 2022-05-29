@@ -3,8 +3,10 @@
 namespace App\Http\Controllers\Backend;
 
 use App\Models\Order;
+use App\Models\Product;
 use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 
 class ReturnController extends Controller
@@ -54,10 +56,30 @@ class ReturnController extends Controller
 
     public function ReturnItemFinalized(Request $request, $order_item_id)
     {
+        // validare astfel incat cantitatea returanta sa fie necesara
+        $request->validate(
+            [
+                'return_qty' => 'required',
+            ],
+            [
+                'return_qty.required' => 'Cantitatea de returnat nu poate fi goala!',
+            ]
+        );
+
+        // actualizam in tabelul order_item campul return_order_item cu 2 (retur finalizat) 
+        // pentru produsul cu id-ul = $order_item_id primit ca parametru
+        // si actualizam si cantitatea returanta cu cea din formular
         OrderItem::where('id', $order_item_id)->update([
             'return_order_item' => 2,
             'return_qty' => $request->return_qty,
         ]);
+
+        // cautam in tabelul products produsul care are id-ul =  $request->product_id 
+        //(camp ascuns din formularul din pagina resources\views\backend\orders\return_orders_details.blade.php)
+        Product::where('id', $request->product_id)
+            // crestem stocul produselor din tabelul products cu cantitatea produsului returnat
+            ->update(['product_quantity' => DB::raw('product_quantity+' . $request->return_qty)]);
+
         $notification = array(
             'message' => 'Produsul a fost returnat cu succes!',
             'alert-type' => 'success'

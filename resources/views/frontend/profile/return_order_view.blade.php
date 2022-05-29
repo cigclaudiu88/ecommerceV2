@@ -58,7 +58,8 @@
                                                             finalizat</span>
                                                     @endif
                                                 </td>
-                                                <td style="text-align: right">{{ $order->amount }} RON</td>
+                                                <td style="text-align: right">
+                                                    {{ number_format($order->amount, 2, '.', ',') }} RON</td>
                                                 <td style="text-align: left">{{ $order->return_reason }} <a
                                                         href="{{ route('my.return.order.details', $order->id) }}"
                                                         class="view"><i
