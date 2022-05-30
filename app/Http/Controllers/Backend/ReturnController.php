@@ -56,6 +56,7 @@ class ReturnController extends Controller
 
     public function ReturnItemFinalized(Request $request, $order_item_id)
     {
+        // dd($request->all());
         // validare astfel incat cantitatea returanta sa fie necesara
         $request->validate(
             [
@@ -65,26 +66,36 @@ class ReturnController extends Controller
                 'return_qty.required' => 'Cantitatea de returnat nu poate fi goala!',
             ]
         );
+        // daca cantitatea returata este mai mica decat cantitatea produslui din comanda atunci se realizeaza algoritmul
+        // altfel afisam mesaj de eroare cu notificare
+        if ($request->return_qty <= $request->order_qty) {
 
-        // actualizam in tabelul order_item campul return_order_item cu 2 (retur finalizat) 
-        // pentru produsul cu id-ul = $order_item_id primit ca parametru
-        // si actualizam si cantitatea returanta cu cea din formular
-        OrderItem::where('id', $order_item_id)->update([
-            'return_order_item' => 2,
-            'return_qty' => $request->return_qty,
-        ]);
+            // actualizam in tabelul order_item campul return_order_item cu 2 (retur finalizat) 
+            // pentru produsul cu id-ul = $order_item_id primit ca parametru
+            // si actualizam si cantitatea returanta cu cea din formular
+            OrderItem::where('id', $order_item_id)->update([
+                'return_order_item' => 2,
+                'return_qty' => $request->return_qty,
+            ]);
 
-        // cautam in tabelul products produsul care are id-ul =  $request->product_id 
-        //(camp ascuns din formularul din pagina resources\views\backend\orders\return_orders_details.blade.php)
-        Product::where('id', $request->product_id)
-            // crestem stocul produselor din tabelul products cu cantitatea produsului returnat
-            ->update(['product_quantity' => DB::raw('product_quantity+' . $request->return_qty)]);
+            // cautam in tabelul products produsul care are id-ul =  $request->product_id 
+            //(camp ascuns din formularul din pagina resources\views\backend\orders\return_orders_details.blade.php)
+            Product::where('id', $request->product_id)
+                // crestem stocul produselor din tabelul products cu cantitatea produsului returnat
+                ->update(['product_quantity' => DB::raw('product_quantity+' . $request->return_qty)]);
 
-        $notification = array(
-            'message' => 'Produsul a fost returnat cu succes!',
-            'alert-type' => 'success'
-        );
-        //redirectiom inapoi la pagina de vizualizare comenzi de returnat cu notificare
-        return redirect()->back()->with($notification);
+            $notification = array(
+                'message' => 'Produsul a fost returnat cu succes!',
+                'alert-type' => 'success'
+            );
+            //redirectiom inapoi la pagina de vizualizare comenzi de returnat cu notificare
+            return redirect()->back()->with($notification);
+        } else {
+            $notification = array(
+                'message' => 'Cantitatea returanta nu poate fi mai mare decat cantitatea din comanda!',
+                'alert-type' => 'info'
+            );
+            return redirect()->back()->with($notification);
+        }
     }
 }

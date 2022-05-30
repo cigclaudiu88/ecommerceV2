@@ -249,13 +249,16 @@
                                     <td>
                                         <form method="post" action="{{ route('return.item.finalized', $item->id) }}">
                                             @csrf
-                                            <input type="text" id="formLayoutUsername3" class="form-control"
+                                            {{-- setat ca number input si limiata la minim 1 produs de returant si max cantitatea din comanda returanta --}}
+                                            <input type="number" min="1" id="formLayoutUsername3" class="form-control"
                                                 name="return_qty" placeholder="Cantitate">
                                             @error('return_qty')
                                                 <span class="text-danger"><strong>{{ $message }}</strong></span>
                                             @enderror
                                             <input type="hidden" id="formLayoutUsername3" class="form-control"
                                                 name="product_id" value="{{ $item->product->id }}">
+                                            <input type="hidden" id="formLayoutUsername3" class="form-control"
+                                                name="order_qty" value="{{ $item->qty }}">
                                     </td>
                                 @elseif($item->return_order_item == 2 || $item->return_order_item == 0)
                                     <td class="col-md-1">{{ $item->return_qty }} BUC</td>
