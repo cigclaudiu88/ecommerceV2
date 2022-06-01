@@ -35,9 +35,9 @@
                                     <th class="product_remove">Sterge</th>
                                     <th class="product_thumb">Poza</th>
                                     <th class="product_name">Produs</th>
-                                    <th class="product-price">Pret</th>
+                                    <th class="product-price">Pret fara TVA</th>
                                     <th class="product_quantity">Cantitate</th>
-                                    <th class="product_total">Total</th>
+                                    <th class="product_total">Total fara TVA</th>
                                 </tr>
                             </thead>
                             {{-- adaugat idul cartPage pentru scriptul de management al cosului de cumparaturi --}}

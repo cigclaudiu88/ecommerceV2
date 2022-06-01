@@ -163,14 +163,14 @@ class StripeController extends Controller
             'alert-type' => 'success'
         );
         // $product preia toate produsele din tabelul orderitems (produse comandate) cele care au id-ul comenzii plasate
-        $product = OrderItem::where('order_id', $order_id)->get();
+        // $product = OrderItem::where('order_id', $order_id)->get();
         // iteram cu $product ca sa preluam fiecare produs din comanda
-        foreach ($product as $item) {
-            // cautam in tabelul products produsul care are id-ul = product_id (tabelul orderitems)
-            Product::where('id', $item->product_id)
-                // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
-                ->update(['product_quantity' => DB::raw('product_quantity-' . $item->qty)]);
-        }
+        // foreach ($product as $item) {
+        // cautam in tabelul products produsul care are id-ul = product_id (tabelul orderitems)
+        // Product::where('id', $item->product_id)
+        // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
+        // ->update(['product_quantity' => DB::raw('product_quantity-' . $item->qty)]);
+        // }
 
         return redirect()->route('welcome')->with($notification);
     }

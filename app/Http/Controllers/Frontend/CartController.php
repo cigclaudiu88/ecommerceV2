@@ -13,6 +13,7 @@ use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
@@ -23,7 +24,6 @@ class CartController extends Controller
     // functia de adaugare in cosul de cumparaturi
     public function AddToCart(Request $request, $id)
     {
-
         // cand adaugam un produs in pagina cosului de cumparaturi 
         // daca sesiunea are voucher, atunci il stergem
         if (Session::has('voucher')) {
@@ -43,13 +43,18 @@ class CartController extends Controller
                 'name' => $request->product_name,
                 'qty' => $request->quantity,
                 'price' => $product->selling_price,
-                'weight' => 1,
+                'weight' => $product->product_quantity,
                 'options' => [
                     'image' => $product->product_thumbnail,
                     // 'color' => $request->color,
                     // 'size' => $request->size,
                 ],
             ]);
+
+            Product::where('id', $id)
+                // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
+                ->update(['product_quantity' => DB::raw('product_quantity-' . $request->quantity)]);
+
             // returnam mesajul de succes
             return response()->json(['success' => 'Adaugat cu success in Cosul de Cumparaturi']);
             // daca produsul are discount, atunci in cos se adauga pretul de discount (discount_price)
@@ -60,13 +65,18 @@ class CartController extends Controller
                 'name' => $request->product_name,
                 'qty' => $request->quantity,
                 'price' => $product->discount_price,
-                'weight' => 1,
+                'weight' => $product->product_quantity,
                 'options' => [
                     'image' => $product->product_thumbnail,
                     // 'color' => $request->color,
                     // 'size' => $request->size,
                 ],
             ]);
+
+            Product::where('id', $id)
+                // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
+                ->update(['product_quantity' => DB::raw('product_quantity-' . $request->quantity)]);
+
             // returnam mesajul de succes
             return response()->json(['success' => 'Adaugat cu success in Cosul de Cumparaturi']);
         }
@@ -103,10 +113,26 @@ class CartController extends Controller
     // functia de stergere produse dini minicart
     public function RemoveMiniCart($rowId)
     {
-        // sterge produsul cu id-ul $rowId din mini cosul de cumparaturi
-        Cart::remove($rowId);
-        // returnam mesajul de succes
-        return response()->json(['success' => 'Produsul a fost sters cu success din Mini Cosul de Cumparaturi']);
+        $cart_product_id = Cart::get($rowId)->id;
+        $cart_product_quantity = Cart::get($rowId)->qty;
+        Product::where('id', $cart_product_id)
+            // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
+            ->update(['product_quantity' => DB::raw('product_quantity+' . $cart_product_quantity)]);
+
+        // cand adaugam un produs in pagina cosului de cumparaturi 
+        // daca sesiunea are voucher, atunci il stergem
+        if (Session::has('voucher')) {
+            // scoatem voucherul din sesiune
+            Session::forget('voucher');
+            // returnam mesajul de succes ca voucherul a fost sters cu success
+            Cart::remove($rowId);
+            // returnam mesajul de succes
+            return response()->json(['success' => 'Produsul si voucherul au fost sters cu success din Cosul de Cumparaturi']);
+        } else {
+            Cart::remove($rowId);
+            // returnam mesajul de succes
+            return response()->json(['success' => 'Produsul a fost sters cu success din Cosul de Cumparaturi']);
+        }
     }
 
     // functia de adaugare produse in wishlist

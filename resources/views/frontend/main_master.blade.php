@@ -552,7 +552,7 @@ $seo = App\Models\SEO::find(1);
                                                 `<button type="submit" class="btn btn-danger btn-sm" id="${value.rowId}" onclick="cartDecrement(this.id)" >-</button> ` 
                                                 : `<button type="submit" class="btn btn-danger btn-sm" disabled >-</button> `}
 
-                                            <input min="1" max="100" value="${value.qty}" type="text" class="text-center">
+                                            <input min="1" max="${value.weight}" value="${value.qty}" type="text" class="text-center" disabled>
                                             <button type="submit" class="btn btn-success btn-sm" id="${value.rowId}" onclick="cartIncrement(this.id)">+</button>
                                         </td>
                                             
@@ -575,6 +575,7 @@ $seo = App\Models\SEO::find(1);
                 success: function(data) {
                     // adaugat functia de calculare voucher ca atunci cand se sterge un produs din cosul de cumparaturi se recalculeaza pretul total
                     // voucherCalculation();
+                    voucherCalculation();
                     cart();
                     miniCart();
                     // dupa ce stergem produse care aveau voucher, afisam din nou campul de adaugare voucher
@@ -615,12 +616,40 @@ $seo = App\Models\SEO::find(1);
                 url: "/cart-increment/" + rowId,
                 dataType: 'json',
                 success: function(data) {
-                    //adaugat functia de calcul a voucherului pentru a actualiza pretul total la fiecare incrementare
-                    voucherCalculation();
-                    // actualizam cantitatea si in cart() si in miniCarT()
-                    cart();
-                    miniCart();
+                    if (data === 'increment') {
+                        //adaugat functia de calcul a voucherului pentru a actualiza pretul total la fiecare incrementare
+                        voucherCalculation();
+                        // actualizam cantitatea si in cart() si in miniCarT()
+                        cart();
+                        miniCart();
+                    } else {
+                        // Start Message 
+                        const Toast = Swal.mixin({
+                            toast: true,
+                            position: 'top-end',
+
+                            showConfirmButton: false,
+                            timer: 3000
+                        })
+                        if ($.isEmptyObject(data.error)) {
+                            Toast.fire({
+                                type: 'success',
+                                icon: 'success',
+                                title: data.success
+                            })
+                        } else {
+                            Toast.fire({
+                                type: 'error',
+                                icon: 'error',
+                                title: data.error
+                            })
+                        }
+                        ///  functia de stergere produse din wishlist + notificare sweetalert start
+                    }
+
+
                 }
+
             });
         }
         // functia de decrementare produse din cosul de cumparaturi start
@@ -724,7 +753,7 @@ $seo = App\Models\SEO::find(1);
                         );
                     }
                     // afisare calcul cos de cumparaturi CU VOUCHER
-                    else {
+                    else if (data.grandtotal) {
                         $('#voucherCalField').html(
                             `<div class="cart_subtotal">
                                 <p>Subtotal</p>
@@ -753,6 +782,8 @@ $seo = App\Models\SEO::find(1);
                             <div class="cart_subtotal ">
                             </div>
                             `);
+                    } else {
+                        $('#voucherCalField').hide();
                     }
                 }
             });

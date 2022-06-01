@@ -32,7 +32,7 @@
                                     </td>
                                     <td>{{ $item->product_name }}</td>
                                     <td>{{ $item->product_quantity }}</td>
-                                    <td>{{ $item->selling_price }} RON</td>
+                                    <td>{{ number_format($item->selling_price, 2, '.', ',') }} RON</td>
                                     <td class="text-center">
                                         {{-- afisare discount ca si % --}}
                                         @if ($item->discount_price == null)
