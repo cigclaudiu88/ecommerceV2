@@ -62,7 +62,7 @@ class ProductController extends Controller
                 // descrierea lunga a produsului este necesara, trebuie sa fie un string de minim 10 caractere
                 'long_description' => 'required|min:10',
                 // imaginea principala a produsului este necesara, trebuie sa fie un imagine de tip .jpg, .png sau .jpeg 
-                // 'product_thumbnail' => 'required|mimes:jpeg,png,jpg',
+                'product_thumbnail' => 'required|mimes:jpeg,png,jpg',
             ],
             // mesaje speciale pentru fiecare tip de eraoare la inserare produselor in 
             [
@@ -82,9 +82,9 @@ class ProductController extends Controller
                 'product_quantity.numeric' => 'Cantiatea produsului trebuie sa fie un numar intreg.',
 
                 'selling_price.required' => 'Pretul produslui este necesar.',
-                'selling_price.numeric' => 'Pretul produsului trebuie sa fie o valoare nimerica zecimala.',
+                'selling_price.numeric' => 'Pretul produsului trebuie sa fie o valoare numerica.',
 
-                'discount_price.numeric' => 'Pretul produslui trebuie sa fie o valoare nimerica zecimala.',
+                'discount_price.numeric' => 'Pretul produslui trebuie sa fie o valoare numerica.',
 
                 'short_description.required' => 'Descrierea scurta a produsului este necesara.',
                 'short_description.min' => 'Descrierea scurta a produsului trebuie sa contina minim 10 caractere.',

@@ -159,7 +159,7 @@
 
                         <div class="col-6 mb-20">
                             <label class="adomx-checkbox primary"><input type="checkbox" name="special_offer" value="1"> <i
-                                    class="icon"></i> Oferta Zilei</label>
+                                    class="icon"></i> Oferta Speciala</label>
                             <label class="adomx-checkbox primary"><input type="checkbox" name="special_deal" value="1"> <i
                                     class="icon"></i> Oferta Saptamanii</label>
                         </div>

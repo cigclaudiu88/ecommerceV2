@@ -171,7 +171,7 @@
                         <div class="col-6 mb-20">
                             <label class="adomx-checkbox primary"><input type="checkbox" name="special_offer" value="1"
                                     {{ $products->special_offer == 1 ? 'checked' : '' }}> <i class="icon"></i>
-                                Oferta Zilei</label>
+                                Oferta Speciala</label>
                             <label class="adomx-checkbox primary"><input type="checkbox" name="special_deal" value="1"
                                     {{ $products->special_deal == 1 ? 'checked' : '' }}> <i class="icon"></i>
                                 Oferta Saptamanii</label>
