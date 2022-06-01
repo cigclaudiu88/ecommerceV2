@@ -69,6 +69,17 @@
                     {{-- inclus rating produse --}}
                     @include('frontend.product.product_rating')
                     {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
+
+                    <div class="modal_title mb-10">
+                        @if ($product->product_quantity >= 10)
+                            <h2><span id="aviable">In Stoc</span></h2>
+                        @elseif($product->product_quantity > 0)
+                            <h2><span id="lowstock">Stoc Scazut</span></h2>
+                        @elseif($product->product_quantity == 0)
+                            <h2><span id="stockout">Stoc Epuizat</span></h2>
+                        @endif
+                    </div>
+
                     <div class="price_box">
                         @if ($product->discount_price == null)
                             <span
@@ -597,8 +608,6 @@
 {{-- script addthis.com pentru butoane de social media share --}}
 <!-- Go to www.addthis.com/dashboard to customize your tools -->
 <script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-6278053b87584298"></script>
-
-
 
 
 @endsection

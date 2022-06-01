@@ -76,7 +76,7 @@
 
                 <div class="col-lg-6 col-md-6">
                     <div class="coupon_code right">
-                        <h3>Cart Totals</h3>
+                        <h3>Total Cos</h3>
                         <div class="coupon_inner" id="voucherCalField">
 
                             {{-- aici se afiseaza subtotal, tva si total cu sau fara tva din functia / script applyVoucher() --}}

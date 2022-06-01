@@ -233,24 +233,25 @@
                         <div class="payment_method mt-4">
                             <div class="row text-center">
 
-                                <div class="col-lg-4 mb-20">
+                                <div class="col-lg-6 mb-20">
                                     <div class="panel-default">
                                         <input type="radio" name="payment_method" value="stripe" id="stripe"
                                             data-target="createp_account" />
-                                        <a href="#method" data-bs-toggle="collapse" aria-controls="method">Stripe <i
-                                                class="fa-brands fa-cc-stripe fa-2x"></i> </a>
+                                        <a href="#method" data-bs-toggle="collapse" aria-controls="method">Plata
+                                            cu Card <i class="fa-brands fa-cc-visa fa-2x"></i> <i
+                                                class="fa-brands fa-cc-mastercard fa-2x"></i></a>
                                         <div id="method" class="collapse one" data-parent="#accordion">
                                             <div class="card-body1">
-                                                <p>Please send a check to Store Name, Store Street, Store Town, Store
+                                                {{-- <p>Please send a check to Store Name, Store Street, Store Town, Store
                                                     State
                                                     /
-                                                    County, Store Postcode.</p>
+                                                    County, Store Postcode.</p> --}}
                                             </div>
                                         </div>
                                     </div>
                                 </div>
 
-                                <div class="col-lg-4 mb-20">
+                                {{-- <div class="col-lg-4 mb-20">
                                     <div class="panel-default">
                                         <input type="radio" name="payment_method" value="card" id="card"
                                             data-target="createp_account" />
@@ -260,27 +261,27 @@
                                                 class="fa-solid fa-credit-card fa-2x"></i><img
                                                 src="assets/img/icon/papyel.png" alt=""></a>
                                         <div id="method" class="collapse one" data-parent="#accordion">
-                                            <div class="card-body1">
-                                                <p>Pay via PayPal; you can pay with your credit card if you don’t have a
+                                            <div class="card-body1"> --}}
+                                {{-- <p>Pay via PayPal; you can pay with your credit card if you don’t have a
                                                     PayPal
-                                                    account.</p>
-                                            </div>
+                                                    account.</p> --}}
+                                {{-- </div>
                                         </div>
                                     </div>
-                                </div>
+                                </div> --}}
 
-                                <div class="col-lg-4 mb-20">
+                                <div class="col-lg-6 mb-20">
                                     <div class="panel-default">
                                         <input type="radio" name="payment_method" value="cash" id="cash"
                                             data-target="createp_account" />
                                         <a href="#method" data-bs-toggle="collapse" aria-controls="method">Plata
-                                            Cash <i class="fa-solid fa-money-bill-wave fa-2x"></i></a>
+                                            Cash la Livrare <i class="fa-solid fa-money-bill-wave fa-2x"></i></a>
                                         <div id="method" class="collapse one" data-parent="#accordion">
                                             <div class="card-body1">
-                                                <p>Please send a check to Store Name, Store Street, Store Town, Store
+                                                {{-- <p>Please send a check to Store Name, Store Street, Store Town, Store
                                                     State
                                                     /
-                                                    County, Store Postcode.</p>
+                                                    County, Store Postcode.</p> --}}
                                             </div>
                                         </div>
                                     </div>
