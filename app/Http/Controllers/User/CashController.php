@@ -97,31 +97,18 @@ class CashController extends Controller
 
         // trasmite mailul cu datele comenzii dupa finalizare plata
         // $invoice preia din tabelul acea comanda care are id=$order_id
-        $invoice = Order::findOrFail($order_id);
+        // $invoice = Order::findOrFail($order_id);
+
+        $order = Order::with('division', 'district', 'user', 'user_address')->where('id', $order_id)->first();
+        $orderItem = OrderItem::with('product', 'voucher', 'order')->where('order_id', $order_id)->orderBy('id', 'DESC')->get();
         // $data preia datele comenzii
         $data = [
-            'order_number' => $invoice->order_number,
-            'first_name' => $invoice->shipping_first_name,
-            'last_name' => $invoice->shipping_last_name,
-            'phone' => $invoice->shipping_phone,
-            'email' => $invoice->shipping_email,
-            'amount' => $total_amount,
-            'street' => $invoice->shipping_street,
-            'street_number' => $invoice->shipping_street_number,
-            'building' => $invoice->shipping_building,
-            'apartment' => $invoice->shipping_apartment,
-            'payment_method' => $invoice->payment_method,
-            'transaction_id' => $invoice->transaction_id,
-            'voucher_name' => $invoice->voucher_name,
-            'discount_amount' => $invoice->discount_amount,
-            'subtotal' => $invoice->subtotal,
-            'tax' => $invoice->tax,
-            'amount' => $total_amount,
-            'order_date' => $invoice->order_date,
+            'order' =>  $order,
+            'order_items' => $orderItem,
         ];
         // trimite spre mail-ul din request afereten adresei de livrare (user email) 
         // toate datele comenzii (data, numarul comenzii, totalul comenzii) prin custom mail creat -> app\Mail\OrderMail.php
-        Mail::to($request->shipping_email)->send(new OrderMail($data));
+        Mail::to($order->user->email)->send(new OrderMail($data));
 
         // dupa inserare comanda daca sesiunea are voucher stergem voucherul din sesiune
         if (Session::has('voucher')) {

@@ -11,7 +11,7 @@
 <body>
     <table align="center">
         <tr>
-            <td align="center" bgcolor="#EFF1F0">
+            <td align="center" bgcolor="#000000">
                 <table width="100%" cellpadding="0" cellspacing="0" border="0" style="
                 border-collapse: collapse;
                 background: #ffffff;
@@ -23,9 +23,9 @@
                                 <table width="100%" cellpadding="0" cellspacing="0" border="0"
                                     style="border-collapse: collapse; background: #ffffff" bgcolor="#FFFFFF">
                                     <tbody>
-                                        <tr bgcolor="#00cdb5">
+                                        <tr bgcolor="#40d114">
                                             <td align="center" valign="middle" style="
-                              color: #fff;
+                              color: #000000;
                               font-size: 15px;
                               font-weight: 600;
                               padding: 10px;
@@ -35,7 +35,7 @@
                                 Arial;
                             ">
                                                 <span class="il">Comanda dvs cu numarul</span>
-                                                {{ $order['order_number'] }}
+                                                {{ $order['order']->order_number }}
                                             </td>
                                         </tr>
                                     </tbody>
@@ -73,7 +73,7 @@
                                               width: 84px;
                                               border-left: none;
                                               background: #ffffff;
-                                              color: #009b28;
+                                              color: #40d114;
                                             " class="m_8204581075700908159step1td1">
                                                                                 <img src="https://ci5.googleusercontent.com/proxy/BDfLy3EJ3WFlyqpSonJKHUq0G30Pr8TFt2IBMRzByjNuG3w4Rlv2LekcDFL823hiypLthIpGr6OirR2eKjRlYPR3DLx7O5ZlZUGE2QjhWfrR2s6_8Q=s0-d-e1-ft#https://s1-cnsst.akamaized.net/emag/template/v4/delivery_truck.png"
                                                                                     width="84" alt=" " style="
@@ -98,7 +98,7 @@
                                                                                         <tr>
                                                                                             <td style="
                                                       border-bottom: 2px solid
-                                                        #009b28;
+                                                        #40d114;
                                                     ">
                                                                                                 &nbsp;
                                                                                             </td>
@@ -133,7 +133,7 @@
                                                                                             <td align="center"
                                                                                                 valign="middle" style="
                                                       padding: 3px 10px;
-                                                      color: #009b28;
+                                                      color: #40d114;
                                                       text-align: center;
                                                       vertical-align: middle;
                                                       font-size: 17px;
@@ -162,9 +162,9 @@
                                                                 Helvetica, Arial;
                                                               white-space: nowrap;
                                                             ">
-                                                                                                                {{ $order['first_name'] }}
+                                                                                                                {{ $order['order']->shipping_first_name }}
                                                                                                                 <span>
-                                                                                                                </span>{{ $order['last_name'] }}
+                                                                                                                </span>{{ $order['order']->shipping_last_name }}
                                                                                                             </td>
 
                                                                                                         </tr>
@@ -266,16 +266,22 @@
                                           font-family: 'Open Sans', sans-serif,
                                             Helvetica, Arial;
                                         " id="m_8204581075700908159section-payment">
-                                                                        Plata cu cardul a fost acceptată și în
+                                                                        @if ($order['order']->payment_method == 'Cash la livrare')
+                                                                            Plata se va face la livrare
+                                                                        @elseif($order['order']->payment_method == 'Stripe')
+                                                                            Plata cu cardul a fost acceptată
+                                                                        @endif
+                                                                        și în
                                                                         curând te vei putea bucura de produsele
                                                                         pe care le-ai ales.
-
                                                                         <br /><br />
                                                                         Te anunţăm de îndată ce produsele tale
                                                                         preferate vor fi expediate. Nu uita că
                                                                         poți oricând să urmărești
-                                                                        <span class="il">comanda</span> din
-                                                                        contul tău de client eShop.
+                                                                        <span class="il">comanda</span>
+                                                                        din
+                                                                        contul tău de client eShop UPT.Sectiunea Istoric
+                                                                        Comenzi.
                                                                     </span>
                                                                 </span>
                                                             </td>
@@ -324,50 +330,57 @@
                                                                                 &nbsp;
                                                                             </td>
                                                                         </tr>
-                                                                        <tr>
-                                                                            <!-- Imagine Produs -->
-                                                                            <td align="left" valign="middle" width="50">
-                                                                                <img src="https://ci5.googleusercontent.com/proxy/b7FvMCRprwBMTnD8XoeD67s4ktI7GqRMozfYAMb4w1K6kyTdTcs50A8AJt5CpnXqSWh6jhONcvU63q80cZ6k7B6iPxqoD9prd2lNnf-WnCE_gvW43J4UHAQ9tEuvCgBgdW7-kcA8ZEVHLVs47RSc_lMsbVatRSfPwoRd-0xK9XvqRTq4awwniMtA8x8pn0ld7MjJDqJIUVWV_tAILMq6kj7Y2zobXhDCi1ryFpToBRyH4iET=s0-d-e1-ft#https://s13emagst.akamaized.net/products/35231/35230577/images/res_ee9a6d18d40b2e4980d281425f52bfcf.jpg?width=80&amp;height=80&amp;hash=CA8CDF54EDE705C244C3030BF65532CC"
-                                                                                    border="0" width="50" alt="img"
-                                                                                    style="
+                                                                        @foreach ($order['order_items'] as $item)
+                                                                            <tr>
+                                                                                <!-- Imagine Produs -->
+
+                                                                                <td align="left" valign="middle"
+                                                                                    width="50">
+                                                                                    <img src="{{ asset($item->product->product_thumbnail) }}"
+                                                                                        border="0" width="50" alt="img"
+                                                                                        style="
                                                   width: 100%;
                                                   max-width: 50px;
                                                 " class="CToWUd hoverZoomLink" />
-                                                                            </td>
-                                                                            <!-- Nume Produs -->
-                                                                            <td align="left" valign="middle" style="
+                                                                                </td>
+
+                                                                                <!-- Nume Produs -->
+                                                                                <td align="left" valign="middle"
+                                                                                    width="250" style="
                                               padding-left: 8px;
                                               font-size: 13px;
                                               color: #5a5a5a;
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                [Nume Produs]
-                                                                                </a>
-                                                                            </td>
-                                                                            <!-- Cantitate Produs -->
-                                                                            <td valign="middle" width="50" align="right"
-                                                                                style="
+                                                                                    {{ Str::limit($item->product->product_name, 40) }}
+                                                                                    </a>
+                                                                                </td>
+                                                                                <!-- Cantitate Produs -->
+                                                                                <td valign="middle" width="50"
+                                                                                    align="right" style="
+                                              text-align: left;
+                                              font-size: 13px;
+                                              color: #5a5a5a;
+                                              font-family: 'Open Sans',
+                                                sans-serif, Helvetica, Arial;
+                                            ">
+                                                                                    {{ $item->qty }} BUC
+                                                                                </td>
+
+                                                                                <td valign="middle" width="90" style="
                                               text-align: right;
                                               font-size: 13px;
                                               color: #5a5a5a;
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                [Cantitate]
-                                                                            </td>
+                                                                                    {{ number_format($item->price, 2, '.', ',') }}
+                                                                                    RON
+                                                                                </td>
 
-                                                                            <td valign="middle" width="90" style="
-                                              text-align: right;
-                                              font-size: 13px;
-                                              color: #5a5a5a;
-                                              font-family: 'Open Sans',
-                                                sans-serif, Helvetica, Arial;
-                                            ">
-                                                                                [1.199,99 RON]
-                                                                            </td>
-                                                                        </tr>
-
+                                                                            </tr>
+                                                                        @endforeach
                                                                         <tr>
                                                                             <td colspan="3" align="right" style="
                                               text-align: right;
@@ -387,10 +400,11 @@
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                {{ $order['subtotal'] }} RON
+                                                                                {{ number_format($order['order']->subtotal, 2, '.', ',') }}
+                                                                                RON
                                                                             </td>
                                                                         </tr>
-                                                                        @if ($order['discount_amount'] == null)
+                                                                        @if ($order['order']->discount_amount == null)
                                                                         @else
                                                                             <tr>
                                                                                 <td colspan="3" align="right" style="
@@ -411,7 +425,8 @@
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                    {{ $order['voucher_name'] }} RON
+                                                                                    {{ $order['order']->voucher_name }}
+                                                                                    RON
                                                                                 </td>
                                                                             </tr>
                                                                             <tr>
@@ -433,7 +448,7 @@
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                    -{{ $order['discount_amount'] }}
+                                                                                    -{{ number_format($order['order']->discount_amount, 2, '.', ',') }}
                                                                                     RON
                                                                                 </td>
                                                                             </tr>
@@ -457,7 +472,8 @@
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                {{ $order['tax'] }} RON
+                                                                                {{ number_format($order['order']->tax, 2, '.', ',') }}
+                                                                                RON
                                                                             </td>
                                                                         </tr>
                                                                         <tr>
@@ -479,7 +495,8 @@
                                               font-family: 'Open Sans',
                                                 sans-serif, Helvetica, Arial;
                                             ">
-                                                                                {{ $order['amount'] }} RON
+                                                                                {{ number_format($order['order']->amount, 2, '.', ',') }}
+                                                                                RON
                                                                             </td>
                                                                         </tr>
                                                                     </tbody>
@@ -615,8 +632,8 @@
                                       font-family: 'Open Sans', sans-serif,
                                         Helvetica, Arial;
                                     ">
-                                                                {{ $order['first_name'] }}
-                                                                <span> </span>{{ $order['last_name'] }}
+                                                                {{ $order['order']->user->name }}
+
                                                             </td>
                                                         </tr>
                                                         <!-- tr de spatiu -->
@@ -648,7 +665,7 @@
                                       font-family: 'Open Sans', sans-serif,
                                         Helvetica, Arial;
                                     ">
-                                                                {{ $order['order_date'] }}
+                                                                {{ $order['order']->order_date }}
                                                             </td>
                                                         </tr>
 
@@ -680,7 +697,7 @@
                                       font-family: 'Open Sans', sans-serif,
                                         Helvetica, Arial;
                                     ">
-                                                                {{ $order['payment_method'] }}
+                                                                {{ $order['order']->payment_method }}
                                                             </td>
                                                         </tr>
 
@@ -693,7 +710,7 @@
                                                                 &nbsp;
                                                             </td>
                                                         </tr>
-                                                        @if ($order['transaction_id'] == null)
+                                                        @if ($order['order']->transaction_id == null)
                                                         @else
                                                             <tr>
                                                                 <td align="left" valign="top" style="
@@ -714,7 +731,7 @@
                                   font-family: 'Open Sans', sans-serif,
                                     Helvetica, Arial;
                                 ">
-                                                                    {{ $order['transaction_id'] }}
+                                                                    {{ $order['order']->transaction_id }}
                                                                 </td>
                                                             </tr>
                                                         @endif
@@ -747,13 +764,21 @@
                                       font-family: 'Open Sans', sans-serif,
                                         Helvetica, Arial;
                                     ">
-                                                                <span>Str.</span>{{ $order['street'] }}<span> </span>
-                                                                <span>Nr.</span>{{ $order['street_number'] }}<span>
+                                                                <span>Str.</span>{{ $order['order']->shipping_street }}<span>
                                                                 </span>
-                                                                <span>Bloc </span> {{ $order['building'] }}<span>
+                                                                <span>Nr.</span>{{ $order['order']->shipping_street_number }}<span>
+                                                                </span>
+                                                                <span>Bloc </span>
+                                                                {{ $order['order']->shipping_building }}<span>
                                                                 </span>
                                                                 <span>Apartament
-                                                                </span>{{ $order['apartment'] }}<span>
+                                                                </span>{{ $order['order']->shipping_apartment }}<span>
+                                                                </span>
+                                                                <span>Jud.
+                                                                </span>{{ $order['order']->division->division_name }}<span>
+                                                                </span>
+                                                                <span>Loc.
+                                                                </span>{{ $order['order']->district->district_name }}<span>
                                                                 </span>
                                                             </td>
                                                         </tr>
@@ -809,8 +834,9 @@
                                       font-family: 'Open Sans', sans-serif,
                                         Helvetica, Arial;
                                     ">
-                                                                {{ $order['first_name'] }}
-                                                                <span> </span>{{ $order['last_name'] }}
+                                                                {{ $order['order']->shipping_first_name }}
+                                                                <span>
+                                                                </span>{{ $order['order']->shipping_last_name }}
                                                             </td>
                                                         </tr>
 
@@ -845,7 +871,7 @@
                                                                 <span style="
                                         color: #5a5a5a !important;
                                         text-decoration: none !important;
-                                      ">{{ $order['phone'] }}</span>
+                                      ">{{ $order['order']->shipping_phone }}</span>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -879,7 +905,7 @@
                                                                 <span style="
                                         color: #5a5a5a !important;
                                         text-decoration: none !important;
-                                      ">{{ $order['email'] }}</span>
+                                      ">{{ $order['order']->shipping_email }}</span>
                                                             </td>
                                                         </tr>
                                                     </tbody>
