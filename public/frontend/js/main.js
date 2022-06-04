@@ -1186,7 +1186,8 @@
 //  script cautare avansata sugestii
 // de schimbat URL cand site-ul e pe web host !!!!
 // const site_url = "http://127.0.0.1:8000/";
-const site_url = "http://phplaravel-777274-2645462.cloudwaysapps.com/";
+// const site_url = "http://phplaravel-777274-2645462.cloudwaysapps.com/";
+const site_url = "https://eshopupt.xyz/";
 
 $("body").on("keyup", "#search", function () {
   // variabila text preia valoarea din campul de cautare din bara de cautare
