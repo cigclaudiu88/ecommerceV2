@@ -13,13 +13,13 @@
                     <table class="table table-bordered data-table data-table-default">
                         <thead>
                             <tr>
-                                <th>Data Comanda</th>
-                                <th>Nume Client</th>
+                                <th>Data</th>
+                                <th>Client</th>
                                 <th>Telefon</th>
-                                <th>Numar Comanda</th>
-                                <th>Total Comanda</th>
-                                <th>Modalitate de Plata</th>
-                                <th>Status Comanda</th>
+                                <th>Nr. Comanda</th>
+                                <th>Total</th>
+                                <th>Tip Plata</th>
+                                <th>Status</th>
                                 <th>Actiuni</th>
                             </tr>
                         </thead>
@@ -44,8 +44,8 @@
                                             class="button button-primary"><i
                                                 class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="" class="button button-danger" id="delete"><i
-                                                class="fa-solid fa-trash-can"></i>Delete</a>
+                                        {{-- <a href="" class="button button-danger" id="delete"><i
+                                                class="fa-solid fa-trash-can"></i>Delete</a> --}}
                                     </td>
                                 </tr>
                             @endforeach

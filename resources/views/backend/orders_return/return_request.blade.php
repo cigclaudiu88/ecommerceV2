@@ -13,13 +13,13 @@
                     <table class="table table-bordered data-table data-table-default">
                         <thead>
                             <tr>
-                                <th>Data Comanda</th>
-                                <th>Nume Client</th>
+                                <th>Data</th>
+                                <th>Client</th>
                                 <th>Telefon</th>
-                                <th>Numar Comanda</th>
-                                <th>Total Comanda</th>
-                                <th>Modalitate de Plata</th>
-                                <th>Status Comanda</th>
+                                <th>Nr. Comanda</th>
+                                <th>Total</th>
+                                <th>Tip Plata</th>
+                                <th>Status</th>
                                 <th>Actiuni</th>
                             </tr>
                         </thead>
@@ -47,8 +47,9 @@
                                         <a href="{{ route('return.pending.order.details', $item->id) }}"
                                             class="button button-primary"><i
                                                 class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
-                                        <a href="{{ route('return.approve', $item->id) }}" class="btn btn-danger">Aproba
-                                            Returul Comenzii </a>
+                                        <a href="{{ route('return.approve', $item->id) }}"
+                                            class="button button-danger">Finalizeaza
+                                            Retur Comanda</a>
                                     </td>
                                 </tr>
                             @endforeach

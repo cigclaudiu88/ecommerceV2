@@ -13,13 +13,13 @@
                     <table class="table table-bordered data-table data-table-default">
                         <thead>
                             <tr>
-                                <th>Data Comanda</th>
-                                <th>Nume Client</th>
+                                <th>Data</th>
+                                <th>Client</th>
                                 <th>Telefon</th>
-                                <th>Numar Comanda</th>
-                                <th>Total Comanda</th>
-                                <th>Modalitate de Plata</th>
-                                <th>Status Comanda</th>
+                                <th>Nr. Comanda</th>
+                                <th>Total</th>
+                                <th>Tip Plata</th>
+                                <th>Status</th>
                                 <th>Actiuni</th>
                             </tr>
                         </thead>

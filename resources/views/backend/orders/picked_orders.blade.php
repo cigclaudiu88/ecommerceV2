@@ -13,13 +13,13 @@
                     <table class="table table-bordered data-table data-table-default">
                         <thead>
                             <tr>
-                                <th>Data Comanda</th>
-                                <th>Nume Client</th>
+                                <th>Data</th>
+                                <th>Client</th>
                                 <th>Telefon</th>
-                                <th>Numar Comanda</th>
-                                <th>Total Comanda</th>
-                                <th>Modalitate de Plata</th>
-                                <th>Status Comanda</th>
+                                <th>Nr. Comanda</th>
+                                <th>Total</th>
+                                <th>Tip Plata</th>
+                                <th>Status</th>
                                 <th>Actiuni</th>
                             </tr>
                         </thead>
@@ -43,9 +43,30 @@
                                         <a href="{{ route('pending.order.details', $item->id) }}"
                                             class="button button-primary"><i
                                                 class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
+                                        @if ($item->status == 'In asteptare')
+                                            <a href="{{ route('pending-confirm', $item->id) }}"
+                                                class="button button-success" id="confirm"><strong>Confirma
+                                                    Comanda</strong></a>
+                                        @elseif($item->status == 'Confirmata')
+                                            <a href="{{ route('confirm.processing', $item->id) }}"
+                                                class="button button-success" id="processing">Proceseaza</a>
+                                        @elseif($item->status == 'Procesata')
+                                            <a href="{{ route('processing.picked', $item->id) }}"
+                                                class="button button-success" id="picked">Preda Comanda
+                                            </a>
+                                        @elseif($item->status == 'Preluata de curier' && $item->awb_code != null)
+                                            <a href="{{ route('picked.shipped', $item->id) }}"
+                                                class="button button-success" id="shipped">Expediaza</a>
+                                        @elseif($item->status == 'In tranzit')
+                                            <a href="{{ route('shipped.delivered', $item->id) }}"
+                                                class="button button-success" id="delivered">Comanda livrata</a>
+                                            {{-- @elseif($order->status == 'Livrata')
+                                                            <a href="{{ route('delivered.canceled', $order->id) }}" class="btn btn-block btn-success"
+                                                                id="cancel_order">Anuleaza Comanda</a> --}}
+                                        @endif
                                         {{-- adaugat ruta de stergere categorie cu id="delete" pentru scriptul de sweetalert --}}
-                                        <a href="{{ route('invoice.download', $item->id) }}" class="button button-info"><i
-                                                class="fa-solid fa-circle-down"></i>Factura</a>
+                                        <a href="{{ route('invoice.download', $item->id) }}"
+                                            class="button button-info"><i class="fa-solid fa-circle-down"></i>Factura</a>
                                     </td>
                                 </tr>
                             @endforeach
