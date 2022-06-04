@@ -17,6 +17,7 @@
                                 <th>Poza</th>
                                 <th>Nume Produs</th>
                                 <th>Cantitate</th>
+                                <th>Blocata</th>
                                 <th>Pret</th>
                                 <th>Discount</th>
                                 <th>Status</th>
@@ -30,8 +31,9 @@
                                     <td><img src="{{ asset($item->product_thumbnail) }}"
                                             style="max-width:none !important; width:100px !important; height:100px !important;">
                                     </td>
-                                    <td>{{ $item->product_name }}</td>
+                                    <td>{{ Str::limit($item->product_name, 60) }}</td>
                                     <td>{{ $item->product_quantity }}</td>
+                                    <td>{{ $item->blocked_quantity }}</td>
                                     <td>{{ number_format($item->selling_price, 2, '.', ',') }} RON</td>
                                     <td class="text-center">
                                         {{-- afisare discount ca si % --}}

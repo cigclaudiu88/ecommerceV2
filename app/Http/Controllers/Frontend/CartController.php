@@ -32,7 +32,7 @@ class CartController extends Controller
 
         // $product preia id-ul produsului din tabelul products folosind modelul Product si functia findorfail()
         $product = Product::findOrFail($id);
-        if ($product->product_quantity == 0 || $product->product_quantity < $request->quantity || $request->quantity < 1) {
+        if ($product->product_quantity == 0 || ($product->product_quantity - $product->blocked_quantity) < $request->quantity || $request->quantity < 1) {
             return response()->json(['error' => 'Stocul produsului este insuficient sau epuizat']);
         }
         // daca produsul nu are discount, atunci in cos se adauga pretul de vanzare (selling_price)
@@ -53,7 +53,7 @@ class CartController extends Controller
 
             Product::where('id', $id)
                 // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
-                ->update(['product_quantity' => DB::raw('product_quantity-' . $request->quantity)]);
+                ->update(['blocked_quantity' => DB::raw('blocked_quantity+' . $request->quantity)]);
 
             // returnam mesajul de succes
             return response()->json(['success' => 'Adaugat cu success in Cosul de Cumparaturi']);
@@ -75,7 +75,7 @@ class CartController extends Controller
 
             Product::where('id', $id)
                 // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
-                ->update(['product_quantity' => DB::raw('product_quantity-' . $request->quantity)]);
+                ->update(['blocked_quantity' => DB::raw('blocked_quantity+' . $request->quantity)]);
 
             // returnam mesajul de succes
             return response()->json(['success' => 'Adaugat cu success in Cosul de Cumparaturi']);
@@ -117,7 +117,7 @@ class CartController extends Controller
         $cart_product_quantity = Cart::get($rowId)->qty;
         Product::where('id', $cart_product_id)
             // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
-            ->update(['product_quantity' => DB::raw('product_quantity+' . $cart_product_quantity)]);
+            ->update(['blocked_quantity' => DB::raw('blocked_quantity-' . $cart_product_quantity)]);
 
         // cand adaugam un produs in pagina cosului de cumparaturi 
         // daca sesiunea are voucher, atunci il stergem

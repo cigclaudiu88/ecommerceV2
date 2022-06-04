@@ -390,7 +390,7 @@ Route::prefix('orders')->group(function () {
     // ruta de modificare status comanda din "In tranzit" -> "Livrata"
     Route::get('/shipped/delivered/{order_id}', [OrderController::class, 'ShippedToDelivered'])->name('shipped.delivered');
     // ruta de modificare status comanda din "Livrata" -> "Anulata"
-    Route::get('/shipped/delivered/canceled/{order_id}', [OrderController::class, 'DeliveredToCanceled'])->name('delivered.canceled');
+    Route::get('/canceled/{order_id}', [OrderController::class, 'OrderCanceled'])->name('delivered.canceled');
     // ruta pentru descarcat factura PDF in admin dashboard din pagina comenzi confirmate
     Route::get('/invoice/download/{order_id}', [OrderController::class, 'AdminInvoiceDownload'])->name('invoice.download');
 

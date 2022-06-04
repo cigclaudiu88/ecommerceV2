@@ -58,7 +58,7 @@ class CartPageController extends Controller
         $cart_product_quantity = Cart::get($rowId)->qty;
         Product::where('id', $cart_product_id)
             // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
-            ->update(['product_quantity' => DB::raw('product_quantity+' . $cart_product_quantity)]);
+            ->update(['blocked_quantity' => DB::raw('blocked_quantity-' . $cart_product_quantity)]);
 
         // cand adaugam un produs in pagina cosului de cumparaturi 
         // daca sesiunea are voucher, atunci il stergem
@@ -91,14 +91,14 @@ class CartPageController extends Controller
 
         $cart_product_id = Cart::get($rowId)->id;
 
-        $product_stock = Product::where('id', $cart_product_id)->select('product_quantity')->get();
-        if ($product_stock[0]->product_quantity <= 0) {
+        $product_blocked_stock = Product::where('id', $cart_product_id)->select('product_quantity', 'blocked_quantity')->get();
+        if (($product_blocked_stock[0]->product_quantity - $product_blocked_stock[0]->blocked_quantity) <= 0) {
             return response()->json(['error' => 'Stocul produsului este insuficient']);
         } else {
 
             Product::where('id', $cart_product_id)
                 // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
-                ->update(['product_quantity' => DB::raw('product_quantity-1')]);
+                ->update(['blocked_quantity' => DB::raw('blocked_quantity+1')]);
             // actualizam cantitatea produsului cu id-ul $rowId cu 1
             Cart::update($rowId, $row->qty + 1);
             // daca sesiunea are voucherul, atunci se adauga pretul de discount la pretul total al produselor din cosul de cumparaturi
@@ -140,7 +140,7 @@ class CartPageController extends Controller
         $cart_product_id = Cart::get($rowId)->id;
         Product::where('id', $cart_product_id)
             // scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
-            ->update(['product_quantity' => DB::raw('product_quantity+1')]);
+            ->update(['blocked_quantity' => DB::raw('blocked_quantity-1')]);
 
 
         // actualizam cantitatea produsului cu id-ul $rowId cu 1

@@ -2,13 +2,15 @@
 
 namespace App\Http\Controllers\Backend;
 
-use App\Models\Order;
-use App\Models\OrderItem;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Carbon;
 use PDF;
+use App\Models\Order;
+use App\Models\Product;
+use App\Models\OrderItem;
 use Illuminate\Http\Request;
+use Illuminate\Support\Carbon;
+use Illuminate\Support\Facades\DB;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -77,6 +79,19 @@ class OrderController extends Controller
             'status' => 'Confirmata',
             'confirmed_date' => Carbon::now()->format('d/m/Y H:i')
         ]);
+
+        // $product preia toate produsele din tabelul orderitems (produse comandate) cele care au id-ul comenzii plasate
+        $product = OrderItem::where('order_id', $order_id)->get();
+        // iteram cu $product ca sa preluam fiecare produs din comanda
+        foreach ($product as $item) {
+            // cautam in tabelul products produsul care are id-ul = product_id (tabelul orderitems)
+            Product::where('id', $item->product_id)
+                //  scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
+                ->update([
+                    'product_quantity' => DB::raw('product_quantity-' . $item->qty),
+                    'blocked_quantity' => DB::raw('blocked_quantity-' . $item->qty)
+                ]);
+        }
 
         $notification = array(
             'message' => 'Comanda a fost confirmata cu succes!',
@@ -152,13 +167,26 @@ class OrderController extends Controller
     }
 
     // functia pentru modificare statusului comenzii in Anulata
-    public function DeliveredToCanceled($order_id)
+    public function OrderCanceled($order_id)
     {
         // schimbam statusul comenzii in Livrata
         Order::findOrFail($order_id)->update([
             'status' => 'Anulata',
-            'canceled_date' => Carbon::now()->format('d/m/Y H:i')
+            'cancel_date' => Carbon::now()->format('d/m/Y H:i')
         ]);
+
+        // $product preia toate produsele din tabelul orderitems (produse comandate) cele care au id-ul comenzii plasate
+        $product = OrderItem::where('order_id', $order_id)->get();
+        // iteram cu $product ca sa preluam fiecare produs din comanda
+        foreach ($product as $item) {
+            // cautam in tabelul products produsul care are id-ul = product_id (tabelul orderitems)
+            Product::where('id', $item->product_id)
+                //  scadem stocul produselor din tabelul products cu cantitatea produselor din comanda
+                ->update([
+                    'blocked_quantity' => DB::raw('blocked_quantity-' . $item->qty)
+                ]);
+        }
+
 
         $notification = array(
             'message' => 'Comanda a fost anulata cu succes!',
