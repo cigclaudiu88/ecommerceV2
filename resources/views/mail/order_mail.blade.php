@@ -336,7 +336,7 @@
 
                                                                                 <td align="left" valign="middle"
                                                                                     width="50">
-                                                                                    <img src="{{ $message->embed(asset($item->product->product_thumbnail)) }}"
+                                                                                    <img src="{{ $message->embed(public_path($item->product->product_thumbnail)) }}"
                                                                                         border="0" width="50" alt="img"
                                                                                         style="
                                                   width: 100%;
