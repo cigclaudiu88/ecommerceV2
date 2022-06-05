@@ -459,19 +459,61 @@ class IndexController extends Controller
         // SECTIUNE FILTRARE BRAND
 
         // SECTIUNE FILTRARE PHONE DISPLAY
-        $display_filters = ProductPhone::select('phone_display')->whereHas('product', function ($q) use ($subsubcategory_id) {
+        $phone_display_filter = ProductPhone::select('phone_display')->whereHas('product', function ($q) use ($subsubcategory_id) {
             $q->where('subsubcategory_id', '=', $subsubcategory_id);
         })->distinct('phone_display')->get();
 
-        if (request()->get('filterdisplay')) {
+        $phone_storage_filter = ProductPhone::select('phone_storage')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('phone_storage')->get();
 
-            $checked = $_GET['filterdisplay'];
+        $phone_memory_filter = ProductPhone::select('phone_memory')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('phone_memory')->get();
 
-            $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked) {
-                $q->whereIn('phone_display', $checked);
+
+        if (request()->get('filterdisplay') || request()->get('filterstorage') || request()->get('filtermemory')) {
+
+
+            $checked_filterdisplay = request()->get('filterdisplay');
+            $checked_filterstorage = request()->get('filterstorage');
+            $checked_filtermemory = request()->get('filtermemory');
+
+
+            $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked_filterdisplay, $checked_filterstorage, $checked_filtermemory, $subsubcategory_id) {
+                if ($checked_filterdisplay) {
+                    $q->whereIn('phone_display', $checked_filterdisplay);
+                }
+                if ($checked_filterstorage) {
+                    $q->whereIn('phone_storage', $checked_filterstorage);
+                }
+                if ($checked_filtermemory) {
+                    $q->whereIn('phone_memory', $checked_filtermemory);
+                }
+                // dd($q->toSql());
             })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+            //     $q->whereIn('phone_display', $checked1)->whereIn('phone_storage', $checked2);
+            // })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
         }
+
+
         // SECTIUNE FILTRARE PHONE DISPLAY
+
+        // SECTIUNE FILTRARE PHONE STORAGE
+        // $storage_filters = ProductPhone::select('phone_storage')->whereHas('product', function ($q) use ($subsubcategory_id) {
+        //     $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        // })->distinct('phone_storage')->get();
+
+        // if (request()->get('filterstorage')) {
+
+        //     $checked = $_GET['filterstorage'];
+
+
+        //     $products  = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked) {
+        //         $q->whereIn('phone_storage', $checked);
+        //     })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        // }
+        // SECTIUNE FILTRARE PHONE STORAGE
 
         // SECTIUNE FILTRARE PRET MIN MAX
         if (request()->get('form_min')) {
@@ -484,7 +526,7 @@ class IndexController extends Controller
         // SECTIUNE FILTRARE PRET MIN MAX
 
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat
-        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters', 'display_filters'));
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters', 'phone_display_filter', 'phone_storage_filter', 'phone_memory_filter'));
     }
 
     // functia de afisare a produselor in modal

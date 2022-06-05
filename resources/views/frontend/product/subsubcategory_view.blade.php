@@ -121,13 +121,13 @@
                         {{-- SECTIUNE FILTRARE BRAND --}}
 
 
+                        <form action="{{ URL::current() }}" method="GET">
+                            {{-- SECTIUNE FILTRARE DISPLAY --}}
+                            @if ($phone_display_filter->count())
+                                <div class="widget_list widget_color">
+                                    <h3>Dimensiune Ecran Telefon</h3>
 
-                        {{-- SECTIUNE FILTRARE DISPLAY --}}
-                        @if ($display_filters->count())
-                            <div class="widget_list widget_color">
-                                <h3>Filtrare Dimensiune Ecran</h3>
-                                <form action="{{ URL::current() }}" method="GET">
-                                    @foreach ($display_filters as $filterdisplay)
+                                    @foreach ($phone_display_filter as $filterdisplay)
                                         @php
                                             $checked = [];
                                             if (isset($_GET['filterdisplay'])) {
@@ -142,13 +142,67 @@
                                             <label>{{ $filterdisplay->phone_display }}</label>
                                         </div>
                                     @endforeach
-                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
-                                </form>
-                            </div>
-                        @endif
-                        {{-- SECTIUNE FILTRARE DISPLAY --}}
+                                    {{-- <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                </form> --}}
+                                </div>
+                            @endif
+                            {{-- SECTIUNE FILTRARE DISPLAY --}}
+
+                            {{-- SECTIUNE FILTRARE STORAGE --}}
+                            @if ($phone_storage_filter->count())
+                                <div class="widget_list widget_color">
+                                    <h3>Spatiu Stocare Telefon</h3>
+                                    {{-- <form action="{{ URL::current() }}" method="GET"> --}}
+                                    @foreach ($phone_storage_filter as $filterstorage)
+                                        @php
+                                            $checked = [];
+                                            
+                                            if (isset($_GET['filterstorage'])) {
+                                                $checked = $_GET['filterstorage'];
+                                            }
+                                        @endphp
+
+                                        <div class="col-12">
+                                            <input type="checkbox" value="{{ $filterstorage->phone_storage }}"
+                                                name="filterstorage[]" @if (in_array($filterstorage->phone_storage, $checked)) checked @endif>
+
+                                            <label>{{ $filterstorage->phone_storage }}</label>
+                                        </div>
+                                    @endforeach
+                                    {{-- <button type="submit" class="btn btn-success mt-3">Filtreaza</button> --}}
+                                </div>
+                            @endif
+
+                            {{-- SECTIUNE FILTRARE DISPLAY --}}
+                            @if ($phone_memory_filter->count())
+                                <div class="widget_list widget_color">
+                                    <h3>Memorie Telefon</h3>
+
+                                    @foreach ($phone_memory_filter as $filtermemory)
+                                        @php
+                                            $checked = [];
+                                            if (isset($_GET['filtermemory'])) {
+                                                $checked = $_GET['filtermemory'];
+                                            }
+                                        @endphp
+
+                                        <div class="col-12">
+                                            <input type="checkbox" value="{{ $filtermemory->phone_memory }}"
+                                                name="filtermemory[]" @if (in_array($filtermemory->phone_memory, $checked)) checked @endif>
+
+                                            <label>{{ $filtermemory->phone_memory }}</label>
+                                        </div>
+                                    @endforeach
+                                    {{-- <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+</form> --}}
+                                </div>
+                            @endif
+                            {{-- SECTIUNE FILTRARE DISPLAY --}}
 
 
+                            <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                        </form>
+                        {{-- SECTIUNE FILTRARE STORAGE --}}
 
                         {{-- <div class="widget_list widget_color">
                             <h3>Select By SIze</h3>
@@ -328,7 +382,8 @@
                                 {{-- LIST VIEW STARTS --}}
                                 <div class="product_content list_content">
                                     <h4 class="product_name"><a
-                                            href="product-details.html">{{ $product->product_name }}</a></h4>
+                                            href="product-details.html">{{ $product->product_name }}</a>
+                                    </h4>
                                     {{-- inclus rating produse --}}
                                     @include('frontend.product.product_rating')
                                     <p><a
