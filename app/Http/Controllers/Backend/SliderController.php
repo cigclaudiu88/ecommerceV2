@@ -29,6 +29,7 @@ class SliderController extends Controller
                 'slider_title' => 'required|unique:sliders|min:6',
                 'slider_description' => 'required|min:6',
                 'slider_image' => 'required|image|mimes:jpeg,png,jpg',
+                'offer_products' => 'required|min:6',
             ],
             // mesaje erori validare campuri
             [
@@ -40,6 +41,8 @@ class SliderController extends Controller
                 'slider_image.required' => 'Campul imagine este necesar',
                 'slider_image.image' => 'Campul imagine trebuie sa fie o imagine',
                 'slider_image.mimes' => 'Campul imagine trebuie sa fie o imagine de tip JPEG, PNG sau JPG',
+                'offer_products.required' => 'Campul produse oferite este necesar',
+                'offer_products.min' => 'Campul produse oferite trebuie sa contina minim 6 caractere',
             ]
         );
         // $image preia imaginea din formularul de inserare din campul slider_image
@@ -56,6 +59,7 @@ class SliderController extends Controller
             'slider_title' => $request->slider_title,
             'slider_description' => $request->slider_description,
             'slider_image' => $save_url,
+            'offer_products' => $request->offer_products,
         ]);
 
         // afisam mesaj de notificare
@@ -102,6 +106,7 @@ class SliderController extends Controller
                 'slider_title' => $request->slider_title,
                 'slider_description' => $request->slider_description,
                 'slider_image' => $save_url,
+                'offer_products' => $request->offer_products,
             ]);
 
             // afisam mesaj de notificare
@@ -118,6 +123,7 @@ class SliderController extends Controller
             Slider::findOrfail($slider_id)->update([
                 'slider_title' => $request->slider_title,
                 'slider_description' => $request->slider_description,
+                'offer_products' => $request->offer_products,
             ]);
 
             // afisam mesaj de notificare

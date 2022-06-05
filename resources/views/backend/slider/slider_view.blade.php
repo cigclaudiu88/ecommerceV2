@@ -95,6 +95,16 @@
                             </div>
 
                             <div class="col-12 mb-20">
+                                <label for="offer_products"><strong>Produs Oferta</strong></label>
+                                <input type="text" name="offer_products" id="offer_products" class="form-control"
+                                    placeholder="Produs Oferta">
+                                @error('offer_products')
+                                    <span class="text-danger"><strong>{{ $message }}</strong></span>
+                                @enderror
+                            </div>
+
+
+                            <div class="col-12 mb-20">
                                 <label for="slider_image"><strong>Poza Slider</strong></label>
                                 <input type="file" name="slider_image" id="imagedisplay" class="form-control">
                                 @error('slider_image')

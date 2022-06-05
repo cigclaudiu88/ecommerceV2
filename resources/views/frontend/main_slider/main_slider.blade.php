@@ -14,7 +14,12 @@
                                 <p>
                                     {{ $slider->slider_description }}
                                 </p>
-                                <a href="shop.html">Descopera</a>
+                                <form method="post" action="{{ route('product.search') }}">
+                                    @csrf
+                                    <input type="hidden" name="search" value="{{ $slider->offer_products }}">
+                                    <button type=submit class="btn btn-success">Descopera</button>
+                                </form>
+
                             </div>
                         </div>
                     </div>

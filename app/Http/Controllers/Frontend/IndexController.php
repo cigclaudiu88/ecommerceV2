@@ -33,7 +33,7 @@ class IndexController extends Controller
     public function index()
     {
         // $sliders preia din tabela sliders doar datele care au statusul 1 (activ) si le ordoneaza dupa id descendent si le limiteaza la 3 inregistrari
-        $sliders = Slider::where('slider_status', 1)->orderBy('id', 'DESC')->limit(3)->get();
+        $sliders = Slider::where('slider_status', 1)->orderBy('id', 'DESC')->limit(5)->get();
         // $categories primeste toate categoriile din baza de date ordonate ascendent dupa id
         $categories = Category::orderBy('id', 'ASC')->get();
         // $products preia din tabela products doar datele care au statusul 1 (activ) si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
