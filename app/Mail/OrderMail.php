@@ -35,6 +35,6 @@ class OrderMail extends Mailable
         $order = $this->data;
         // returnam emailul cu datele comenzii de la adresa de email a utilizatorului
         // si returnam view-ul care contine datele comenzii
-        return $this->from('support@eshopupt.com')->view('mail.order_mail', compact('order'))->subject('Comanda de la eShop UPT');
+        return $this->from('no-reply@eshopupt.xyz')->view('mail.order_mail', compact('order'))->subject('Comanda de la eShop UPT');
     }
 }
