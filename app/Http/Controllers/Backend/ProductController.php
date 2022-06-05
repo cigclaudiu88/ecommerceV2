@@ -62,7 +62,7 @@ class ProductController extends Controller
                 // descrierea lunga a produsului este necesara, trebuie sa fie un string de minim 10 caractere
                 'long_description' => 'required|min:10',
                 // imaginea principala a produsului este necesara, trebuie sa fie un imagine de tip .jpg, .png sau .jpeg 
-                'product_thumbnail' => 'required|mimes:jpeg,png,jpg',
+                // 'product_thumbnail' => 'required|mimes:jpeg,png,jpg',
             ],
             // mesaje speciale pentru fiecare tip de eraoare la inserare produselor in 
             [
@@ -96,7 +96,7 @@ class ProductController extends Controller
                 'long_description.min' => 'Descrierea lunga a produsului trebuie sa contina minim 10 caractere.',
 
                 'product_thumbnail.required' => 'Imaginea principala a produsului este necesara.',
-                'product_thumbnail.mimes' => 'Imaginea principala a produsului trebuie sa fie o imagine de tip .jpg, .png sau .jpeg.',
+                // 'product_thumbnail.mimes' => 'Imaginea principala a produsului trebuie sa fie o imagine de tip .jpg, .png sau .jpeg.',
             ]
         );
 

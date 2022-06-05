@@ -22,6 +22,7 @@ use App\Models\ProductPhone;
 use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
+use App\Models\ProductLaptop;
 use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -39,13 +40,13 @@ class IndexController extends Controller
         // $products preia din tabela products doar datele care au statusul 1 (activ) si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $featured preia din tabela products doar datele care au campul featured 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
-        $featured = Product::where('featured', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(3)->get();
+        $featured = Product::where('featured', 1)->where('status', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(3)->get();
         // $hot_deals preia din tabela products doar datele care au campul hot_deals 1 si le ordoneaza random si le limiteaza la 10 inregistrari
-        $hot_deals = Product::where('hot_deal', 1)->where('discount_price', '!=', NULL)->inRandomOrder()->limit(10)->get();
+        $hot_deals = Product::where('hot_deal', 1)->where('status', 1)->where('discount_price', '!=', NULL)->inRandomOrder()->limit(10)->get();
         // $special_offer preia din tabela products doar datele care au campul special_offer 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari            
-        $special_offer = Product::where('special_offer', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        $special_offer = Product::where('special_offer', 1)->where('status', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(3)->get();
         // $special_deals preia din tabela products doar datele care au campul special_deals 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
-        $special_deals = Product::where('special_deal', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        $special_deals = Product::where('special_deal', 1)->where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $skip_subsubcategory_0 foloseste modelul Category pentru sa sari peste o categorie si preia datele urmatoarei categorii skip(0) - prima categorie skip(1) - a doua categorie skip(2) - a treia categorie etc
         // aici preia subsubcategoria cu id-ul 3 -> telefoane
         $skip_subsubcategory_0 = SubSubCategory::skip(2)->first();
@@ -458,44 +459,97 @@ class IndexController extends Controller
         }
         // SECTIUNE FILTRARE BRAND
 
-        // SECTIUNE FILTRARE PHONE DISPLAY
+        // VARIABILE FILTRARE TELEFON
         $phone_display_filter = ProductPhone::select('phone_display')->whereHas('product', function ($q) use ($subsubcategory_id) {
             $q->where('subsubcategory_id', '=', $subsubcategory_id);
-        })->distinct('phone_display')->get();
+        })->distinct('phone_display')->orderby('phone_display', 'ASC')->get();
 
         $phone_storage_filter = ProductPhone::select('phone_storage')->whereHas('product', function ($q) use ($subsubcategory_id) {
             $q->where('subsubcategory_id', '=', $subsubcategory_id);
-        })->distinct('phone_storage')->get();
+        })->distinct('phone_storage')->orderby('phone_storage', 'ASC')->get();
 
         $phone_memory_filter = ProductPhone::select('phone_memory')->whereHas('product', function ($q) use ($subsubcategory_id) {
             $q->where('subsubcategory_id', '=', $subsubcategory_id);
-        })->distinct('phone_memory')->get();
+        })->distinct('phone_memory')->orderby('phone_memory', 'ASC')->get();
 
 
-        if (request()->get('filterdisplay') || request()->get('filterstorage') || request()->get('filtermemory')) {
+        // SECTIUNE FILTRE TELEFOANE
+        if (request()->get('phone_filterdisplay') || request()->get('phone_filterstorage') || request()->get('phone_filtermemory')) {
 
+            $checked_phone_filterdisplay = request()->get('phone_filterdisplay');
+            $checked_phone_filterstorage = request()->get('phone_filterstorage');
+            $checked_phone_filtermemory = request()->get('phone_filtermemory');
 
-            $checked_filterdisplay = request()->get('filterdisplay');
-            $checked_filterstorage = request()->get('filterstorage');
-            $checked_filtermemory = request()->get('filtermemory');
-
-
-            $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked_filterdisplay, $checked_filterstorage, $checked_filtermemory, $subsubcategory_id) {
-                if ($checked_filterdisplay) {
-                    $q->whereIn('phone_display', $checked_filterdisplay);
+            $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked_phone_filterdisplay, $checked_phone_filterstorage, $checked_phone_filtermemory) {
+                if ($checked_phone_filterdisplay) {
+                    $q->whereIn('phone_display', $checked_phone_filterdisplay);
                 }
-                if ($checked_filterstorage) {
-                    $q->whereIn('phone_storage', $checked_filterstorage);
+                if ($checked_phone_filterstorage) {
+                    $q->whereIn('phone_storage', $checked_phone_filterstorage);
                 }
-                if ($checked_filtermemory) {
-                    $q->whereIn('phone_memory', $checked_filtermemory);
+                if ($checked_phone_filtermemory) {
+                    $q->whereIn('phone_memory', $checked_phone_filtermemory);
                 }
                 // dd($q->toSql());
             })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
             //     $q->whereIn('phone_display', $checked1)->whereIn('phone_storage', $checked2);
             // })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
         }
+        // SECTIUNE FILTRE TELEFOANE
 
+
+        // VARIABILE FILTRARE LAPTOP
+        $laptop_display_filter = ProductLaptop::select('laptop_display')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('laptop_display')->orderby('laptop_display', 'ASC')->get();
+
+        $laptop_storage_filter = ProductLaptop::select('laptop_storage')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('laptop_storage')->orderby('laptop_storage', 'DESC')->get();
+
+        $laptop_memory_filter = ProductLaptop::select('laptop_memory')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('laptop_memory')->orderby('laptop_memory', 'ASC')->get();
+
+        $laptop_cpufilter = ProductLaptop::select('laptop_cpu')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('laptop_cpu')->orderby('laptop_cpu', 'ASC')->get();
+
+        $laptop_gpufilter = ProductLaptop::select('laptop_gpu')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('laptop_gpu')->orderby('laptop_gpu', 'ASC')->get();
+
+        // SECTIUNE FILTRE LAPTOP
+        if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu')) {
+
+            $checked_laptop_filterdisplay = request()->get('laptop_filterdisplay');
+            $checked_laptop_filterstorage = request()->get('laptop_filterstorage');
+            $checked_laptop_filtermemory = request()->get('laptop_filtermemory');
+            $checked_laptop_filtercpu = request()->get('laptop_filtercpu');
+            $checked_laptop_filtergpu = request()->get('laptop_filtergpu');
+
+            $products = Product::where('status', 1)->whereHas('product_laptop', function ($q) use ($checked_laptop_filterdisplay, $checked_laptop_filterstorage, $checked_laptop_filtermemory, $checked_laptop_filtercpu, $checked_laptop_filtergpu) {
+                if ($checked_laptop_filterdisplay) {
+                    $q->whereIn('laptop_display', $checked_laptop_filterdisplay);
+                }
+                if ($checked_laptop_filterstorage) {
+                    $q->whereIn('laptop_storage', $checked_laptop_filterstorage);
+                }
+                if ($checked_laptop_filtermemory) {
+                    $q->whereIn('laptop_memory', $checked_laptop_filtermemory);
+                }
+                if ($checked_laptop_filtercpu) {
+                    $q->whereIn('laptop_cpu', $checked_laptop_filtercpu);
+                }
+                if ($checked_laptop_filtergpu) {
+                    $q->whereIn('laptop_gpu', $checked_laptop_filtergpu);
+                }
+                // dd($q->toSql());
+            })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+            //     $q->whereIn('phone_display', $checked1)->whereIn('phone_storage', $checked2);
+            // })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        }
+        // SECTIUNE FILTRE LAPTOP
 
         // SECTIUNE FILTRARE PHONE DISPLAY
 
@@ -526,7 +580,7 @@ class IndexController extends Controller
         // SECTIUNE FILTRARE PRET MIN MAX
 
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat
-        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters', 'phone_display_filter', 'phone_storage_filter', 'phone_memory_filter'));
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters', 'phone_display_filter', 'phone_storage_filter', 'phone_memory_filter', 'laptop_display_filter', 'laptop_storage_filter', 'laptop_memory_filter', 'laptop_cpufilter', 'laptop_gpufilter'));
     }
 
     // functia de afisare a produselor in modal

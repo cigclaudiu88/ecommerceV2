@@ -54,7 +54,7 @@
 
                         </div>
 
-                        <div class="widget_list widget_filter">
+                        {{-- <div class="widget_list widget_filter">
                             <h3>Filter by price</h3>
                             <form action="#">
                                 <div id="slider-range"></div>
@@ -138,12 +138,12 @@
                                 <a href="#">Accessories</a>
                                 <a href="#">Shoes</a>
                             </div>
-                        </div>
-                        <div class="widget_list banner_widget">
+                        </div> --}}
+                        {{-- <div class="widget_list banner_widget">
                             <div class="banner_thumb">
                                 <a href="#"><img src="{{ asset('frontend/img/bg/banner17.jpg') }}" alt=""></a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                 </aside>
                 <!--sidebar widget end-->
