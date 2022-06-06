@@ -444,22 +444,25 @@ class IndexController extends Controller
         // SECTIUNE SORTARE PRODUSE
 
         // SECTIUNE FILTRARE BRAND
-        $brand_filters = Product::with('brand')->select('brand_id')->where('subsubcategory_id', $subsubcategory_id)->distinct('brand_id')->get();
 
-        if (request()->get('filterbrand')) {
 
-            $checked = $_GET['filterbrand'];
+        // if (request()->get('filterbrand')) {
 
-            $brands_filters = Brand::whereIN('brand_name', $checked)->get();
-            $brand_id = [];
-            foreach ($brands_filters as $brand_filter) {
-                array_push($brand_id, $brand_filter->id);
-            }
-            $products = Product::where('status', 1)->whereIN('brand_id', $brand_id)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
-        }
+        //     $checked = $_GET['filterbrand'];
+
+        //     $brands_filters = Brand::whereIN('brand_name', $checked)->get();
+        //     $brand_id = [];
+        //     foreach ($brands_filters as $brand_filter) {
+        //         array_push($brand_id, $brand_filter->id);
+        //     }
+        //     $products = Product::where('status', 1)->whereIN('brand_id', $brand_id)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        // }
         // SECTIUNE FILTRARE BRAND
 
         // VARIABILE FILTRARE TELEFON
+        $brand_filters = Product::with('brand')->select('brand_id')->where('subsubcategory_id', $subsubcategory_id)->distinct('brand_id')->get();
+
+
         $phone_display_filter = ProductPhone::select('phone_display')->whereHas('product', function ($q) use ($subsubcategory_id) {
             $q->where('subsubcategory_id', '=', $subsubcategory_id);
         })->distinct('phone_display')->orderby('phone_display', 'ASC')->get();
@@ -474,28 +477,61 @@ class IndexController extends Controller
 
 
         // SECTIUNE FILTRE TELEFOANE
-        if (request()->get('phone_filterdisplay') || request()->get('phone_filterstorage') || request()->get('phone_filtermemory')) {
+        if (request()->get('form_min') && request()->get('form_max')) {
+            $min = round(request()->get('form_min') / 1.19, 2);
+            $max = round(request()->get('form_max') / 1.19, 2);
 
-            $checked_phone_filterdisplay = request()->get('phone_filterdisplay');
-            $checked_phone_filterstorage = request()->get('phone_filterstorage');
-            $checked_phone_filtermemory = request()->get('phone_filtermemory');
+            if (request()->get('phone_filterdisplay') || request()->get('phone_filterstorage') || request()->get('phone_filtermemory') || request()->get('phone_filterbrand')) {
 
-            $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked_phone_filterdisplay, $checked_phone_filterstorage, $checked_phone_filtermemory) {
-                if ($checked_phone_filterdisplay) {
-                    $q->whereIn('phone_display', $checked_phone_filterdisplay);
-                }
-                if ($checked_phone_filterstorage) {
-                    $q->whereIn('phone_storage', $checked_phone_filterstorage);
-                }
-                if ($checked_phone_filtermemory) {
-                    $q->whereIn('phone_memory', $checked_phone_filtermemory);
-                }
-                // dd($q->toSql());
-            })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
-            //     $q->whereIn('phone_display', $checked1)->whereIn('phone_storage', $checked2);
-            // })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+                $checked_phone_filterdisplay = request()->get('phone_filterdisplay');
+                $checked_phone_filterstorage = request()->get('phone_filterstorage');
+                $checked_phone_filtermemory = request()->get('phone_filtermemory');
+                $checked_phone_filterbrand = request()->get('phone_filterbrand');
+
+                $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked_phone_filterdisplay, $checked_phone_filterstorage, $checked_phone_filtermemory) {
+                    if ($checked_phone_filterdisplay) {
+                        $q->whereIn('phone_display', $checked_phone_filterdisplay);
+                    }
+                    if ($checked_phone_filterstorage) {
+                        $q->whereIn('phone_storage', $checked_phone_filterstorage);
+                    }
+                    if ($checked_phone_filtermemory) {
+                        $q->whereIn('phone_memory', $checked_phone_filtermemory);
+                    }
+                })->whereHas('brand', function ($z) use ($checked_phone_filterbrand) {
+                    if ($checked_phone_filterbrand) {
+                        $z->whereIn('brand_name', $checked_phone_filterbrand);
+                    }
+                })->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
+            }
+        } else {
+            if (request()->get('phone_filterdisplay') || request()->get('phone_filterstorage') || request()->get('phone_filtermemory') || request()->get('phone_filterbrand')) {
+
+                $checked_phone_filterdisplay = request()->get('phone_filterdisplay');
+                $checked_phone_filterstorage = request()->get('phone_filterstorage');
+                $checked_phone_filtermemory = request()->get('phone_filtermemory');
+                $checked_phone_filterbrand = request()->get('phone_filterbrand');
+
+                $products = Product::where('status', 1)->whereHas('product_phone', function ($q) use ($checked_phone_filterdisplay, $checked_phone_filterstorage, $checked_phone_filtermemory) {
+                    if ($checked_phone_filterdisplay) {
+                        $q->whereIn('phone_display', $checked_phone_filterdisplay);
+                    }
+                    if ($checked_phone_filterstorage) {
+                        $q->whereIn('phone_storage', $checked_phone_filterstorage);
+                    }
+                    if ($checked_phone_filtermemory) {
+                        $q->whereIn('phone_memory', $checked_phone_filtermemory);
+                    }
+                })->whereHas('brand', function ($z) use ($checked_phone_filterbrand) {
+                    if ($checked_phone_filterbrand) {
+                        $z->whereIn('brand_name', $checked_phone_filterbrand);
+                    }
+                })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+            }
+            // SECTIUNE FILTRE TELEFOANE
         }
-        // SECTIUNE FILTRE TELEFOANE
+
+
 
 
         // VARIABILE FILTRARE LAPTOP
@@ -519,36 +555,77 @@ class IndexController extends Controller
             $q->where('subsubcategory_id', '=', $subsubcategory_id);
         })->distinct('laptop_gpu')->orderby('laptop_gpu', 'ASC')->get();
 
-        // SECTIUNE FILTRE LAPTOP
-        if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu')) {
+        if (request()->get('form_min') && request()->get('form_max')) {
+            $min = round(request()->get('form_min') / 1.19, 2);
+            $max = round(request()->get('form_max') / 1.19, 2);
 
-            $checked_laptop_filterdisplay = request()->get('laptop_filterdisplay');
-            $checked_laptop_filterstorage = request()->get('laptop_filterstorage');
-            $checked_laptop_filtermemory = request()->get('laptop_filtermemory');
-            $checked_laptop_filtercpu = request()->get('laptop_filtercpu');
-            $checked_laptop_filtergpu = request()->get('laptop_filtergpu');
+            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu') || request()->get('laptop_filterbrand')) {
 
-            $products = Product::where('status', 1)->whereHas('product_laptop', function ($q) use ($checked_laptop_filterdisplay, $checked_laptop_filterstorage, $checked_laptop_filtermemory, $checked_laptop_filtercpu, $checked_laptop_filtergpu) {
-                if ($checked_laptop_filterdisplay) {
-                    $q->whereIn('laptop_display', $checked_laptop_filterdisplay);
-                }
-                if ($checked_laptop_filterstorage) {
-                    $q->whereIn('laptop_storage', $checked_laptop_filterstorage);
-                }
-                if ($checked_laptop_filtermemory) {
-                    $q->whereIn('laptop_memory', $checked_laptop_filtermemory);
-                }
-                if ($checked_laptop_filtercpu) {
-                    $q->whereIn('laptop_cpu', $checked_laptop_filtercpu);
-                }
-                if ($checked_laptop_filtergpu) {
-                    $q->whereIn('laptop_gpu', $checked_laptop_filtergpu);
-                }
-                // dd($q->toSql());
-            })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
-            //     $q->whereIn('phone_display', $checked1)->whereIn('phone_storage', $checked2);
-            // })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+                $checked_laptop_filterdisplay = request()->get('laptop_filterdisplay');
+                $checked_laptop_filterstorage = request()->get('laptop_filterstorage');
+                $checked_laptop_filtermemory = request()->get('laptop_filtermemory');
+                $checked_laptop_filtercpu = request()->get('laptop_filtercpu');
+                $checked_laptop_filtergpu = request()->get('laptop_filtergpu');
+                $checked_laptop_filterbrand = request()->get('laptop_filterbrand');
+
+                $products = Product::where('status', 1)->whereHas('product_laptop', function ($q) use ($checked_laptop_filterdisplay, $checked_laptop_filterstorage, $checked_laptop_filtermemory, $checked_laptop_filtercpu, $checked_laptop_filtergpu) {
+                    if ($checked_laptop_filterdisplay) {
+                        $q->whereIn('laptop_display', $checked_laptop_filterdisplay);
+                    }
+                    if ($checked_laptop_filterstorage) {
+                        $q->whereIn('laptop_storage', $checked_laptop_filterstorage);
+                    }
+                    if ($checked_laptop_filtermemory) {
+                        $q->whereIn('laptop_memory', $checked_laptop_filtermemory);
+                    }
+                    if ($checked_laptop_filtercpu) {
+                        $q->whereIn('laptop_cpu', $checked_laptop_filtercpu);
+                    }
+                    if ($checked_laptop_filtergpu) {
+                        $q->whereIn('laptop_gpu', $checked_laptop_filtergpu);
+                    }
+                })->whereHas('brand', function ($z) use ($checked_laptop_filterbrand) {
+                    if ($checked_laptop_filterbrand) {
+                        $z->whereIn('brand_name', $checked_laptop_filterbrand);
+                    }
+                })->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
+            }
+        } else {
+            // SECTIUNE FILTRE LAPTOP
+            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu') || request()->get('laptop_filterbrand')) {
+
+                $checked_laptop_filterdisplay = request()->get('laptop_filterdisplay');
+                $checked_laptop_filterstorage = request()->get('laptop_filterstorage');
+                $checked_laptop_filtermemory = request()->get('laptop_filtermemory');
+                $checked_laptop_filtercpu = request()->get('laptop_filtercpu');
+                $checked_laptop_filtergpu = request()->get('laptop_filtergpu');
+                $checked_laptop_filterbrand = request()->get('laptop_filterbrand');
+
+                $products = Product::where('status', 1)->whereHas('product_laptop', function ($q) use ($checked_laptop_filterdisplay, $checked_laptop_filterstorage, $checked_laptop_filtermemory, $checked_laptop_filtercpu, $checked_laptop_filtergpu) {
+                    if ($checked_laptop_filterdisplay) {
+                        $q->whereIn('laptop_display', $checked_laptop_filterdisplay);
+                    }
+                    if ($checked_laptop_filterstorage) {
+                        $q->whereIn('laptop_storage', $checked_laptop_filterstorage);
+                    }
+                    if ($checked_laptop_filtermemory) {
+                        $q->whereIn('laptop_memory', $checked_laptop_filtermemory);
+                    }
+                    if ($checked_laptop_filtercpu) {
+                        $q->whereIn('laptop_cpu', $checked_laptop_filtercpu);
+                    }
+                    if ($checked_laptop_filtergpu) {
+                        $q->whereIn('laptop_gpu', $checked_laptop_filtergpu);
+                    }
+                })->whereHas('brand', function ($z) use ($checked_laptop_filterbrand) {
+                    if ($checked_laptop_filterbrand) {
+                        $z->whereIn('brand_name', $checked_laptop_filterbrand);
+                    }
+                })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+            }
         }
+
+
         // SECTIUNE FILTRE LAPTOP
 
         // SECTIUNE FILTRARE PHONE DISPLAY
@@ -570,13 +647,13 @@ class IndexController extends Controller
         // SECTIUNE FILTRARE PHONE STORAGE
 
         // SECTIUNE FILTRARE PRET MIN MAX
-        if (request()->get('form_min')) {
-            $min = round(request()->get('form_min') / 1.19, 2);
-            $max = round(request()->get('form_max') / 1.19, 2);
+        // if (request()->get('form_min')) {
+        //     $min = round(request()->get('form_min') / 1.19, 2);
+        //     $max = round(request()->get('form_max') / 1.19, 2);
 
-            // pretul introduse de utilizator in min / max este pretul u tva in products selling_price e fara TVA de aia trebuie sa scadem pretul de TVA in whereBetween
-            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
-        }
+        // pretul introduse de utilizator in min / max este pretul u tva in products selling_price e fara TVA de aia trebuie sa scadem pretul de TVA in whereBetween
+        // $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
+        // }
         // SECTIUNE FILTRARE PRET MIN MAX
 
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat

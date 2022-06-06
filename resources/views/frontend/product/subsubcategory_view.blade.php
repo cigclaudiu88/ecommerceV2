@@ -80,7 +80,7 @@
 
                         </div>
 
-                        <div class="widget_list widget_color">
+                        {{-- <div class="widget_list widget_color">
                             <h3>Filtreaza dupa pret</h3>
                             <form action="{{ URL::current() }}" method="GET">
                                 @php
@@ -93,37 +93,54 @@
                                 <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
                                 <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
                             </form>
-                        </div>
-
-
-                        {{-- SECTIUNE FILTRARE BRAND --}}
-                        <div class="widget_list widget_color">
-                            <h3>Filtrare Brand</h3>
-                            <form action="{{ URL::current() }}" method="GET">
-                                @foreach ($brand_filters as $filterbrand)
-                                    @php
-                                        $checked = [];
-                                        if (isset($_GET['filterbrand'])) {
-                                            $checked = $_GET['filterbrand'];
-                                        }
-                                    @endphp
-
-                                    <div class="col-12">
-                                        <input type="checkbox" value={{ $filterbrand->brand->brand_name }}
-                                            name="filterbrand[]" @if (in_array($filterbrand->brand->brand_name, $checked)) checked @endif>
-
-                                        <label>{{ $filterbrand->brand->brand_name }}</label>
-                                    </div>
-                                @endforeach
-                                <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
-                            </form>
-                        </div>
-                        {{-- SECTIUNE FILTRARE BRAND --}}
+                        </div> --}}
 
 
                         @if ($phone_display_filter->count() || $phone_storage_filter->count() || $phone_memory_filter->count())
                             {{-- SECTIUNE FILTRARE TELEFOANE --}}
                             <form action="{{ URL::current() }}" method="GET">
+
+                                <div class="widget_list widget_color">
+                                    <h3>Filtreaza dupa pret</h3>
+                                    {{-- <form action="{{ URL::current() }}" method="GET"> --}}
+                                    @php
+                                        if (isset($_GET['min']) && isset($_GET['max'])) {
+                                            $form_min = $_GET['min'];
+                                            $form_max = $_GET['max'];
+                                        }
+                                    @endphp
+                                    <input type="text" class="form-control" name="form_min"
+                                        placeholder="Pret Minim"><br>
+                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
+                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                    {{-- </form> --}}
+                                </div>
+
+                                {{-- SECTIUNE FILTRARE BRAND --}}
+                                @if ($brand_filters->count())
+                                    <div class="widget_list widget_color">
+                                        <h3>Filtrare Brand</h3>
+
+                                        @foreach ($brand_filters as $phone_filterbrand)
+                                            @php
+                                                $checked = [];
+                                                if (isset($_GET['phone_filterbrand'])) {
+                                                    $checked = $_GET['phone_filterbrand'];
+                                                }
+                                            @endphp
+                                            <div class="col-12">
+                                                <input type="checkbox"
+                                                    value={{ $phone_filterbrand->brand->brand_name }}
+                                                    name="phone_filterbrand[]"
+                                                    @if (in_array($phone_filterbrand->brand->brand_name, $checked)) checked @endif>
+
+                                                <label>{{ $phone_filterbrand->brand->brand_name }}</label>
+                                            </div>
+                                        @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                    </div>
+                                @endif
+                                {{-- SECTIUNE FILTRARE BRAND --}}
 
                                 {{-- SECTIUNE FILTRARE DISPLAY --}}
                                 @if ($phone_display_filter->count())
@@ -147,7 +164,7 @@
                                                 <label>{{ $phone_filterdisplay->phone_display }}</label>
                                             </div>
                                         @endforeach
-
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE DISPLAY --}}
@@ -175,7 +192,7 @@
                                                 <label>{{ $phone_filterstorage->phone_storage }}</label>
                                             </div>
                                         @endforeach
-
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE STORAGE --}}
@@ -201,9 +218,10 @@
                                                 <label>{{ $phone_filtermemory->phone_memory }}</label>
                                             </div>
                                         @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
-                                <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+
                                 {{-- SECTIUNE FILTRARE MEMORIE --}}
                         @endif
 
@@ -211,6 +229,50 @@
                         @if ($laptop_display_filter->count() || $laptop_storage_filter->count() || $laptop_memory_filter->count() || $laptop_cpufilter->count() || $laptop_gpufilter->count())
 
                             <form action="{{ URL::current() }}" method="GET">
+
+
+                                <div class="widget_list widget_color">
+                                    <h3>Filtreaza dupa pret</h3>
+                                    {{-- <form action="{{ URL::current() }}" method="GET"> --}}
+                                    @php
+                                        if (isset($_GET['min']) && isset($_GET['max'])) {
+                                            $form_min = $_GET['min'];
+                                            $form_max = $_GET['max'];
+                                        }
+                                    @endphp
+                                    <input type="text" class="form-control" name="form_min"
+                                        placeholder="Pret Minim"><br>
+                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
+                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                    {{-- </form> --}}
+                                </div>
+
+
+                                {{-- SECTIUNE FILTRARE BRAND --}}
+                                @if ($brand_filters->count())
+                                    <div class="widget_list widget_color">
+                                        <h3>Filtrare Brand</h3>
+
+                                        @foreach ($brand_filters as $laptop_filterbrand)
+                                            @php
+                                                $checked = [];
+                                                if (isset($_GET['laptop_filterbrand'])) {
+                                                    $checked = $_GET['laptop_filterbrand'];
+                                                }
+                                            @endphp
+                                            <div class="col-12">
+                                                <input type="checkbox"
+                                                    value={{ $laptop_filterbrand->brand->brand_name }}
+                                                    name="laptop_filterbrand[]"
+                                                    @if (in_array($laptop_filterbrand->brand->brand_name, $checked)) checked @endif>
+
+                                                <label>{{ $laptop_filterbrand->brand->brand_name }}</label>
+                                            </div>
+                                        @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                    </div>
+                                @endif
+                                {{-- SECTIUNE FILTRARE BRAND --}}
 
                                 {{-- SECTIUNE FILTRARE LAPTOP DISPLAY --}}
                                 @if ($laptop_display_filter->count())
@@ -234,7 +296,7 @@
                                                 <label>{{ $laptop_filterdisplay->laptop_display }}</label>
                                             </div>
                                         @endforeach
-
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP DISPLAY --}}
@@ -262,7 +324,7 @@
                                                 <label>{{ $laptop_filterstorage->laptop_storage }}</label>
                                             </div>
                                         @endforeach
-
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP STORAGE --}}
@@ -288,6 +350,7 @@
                                                 <label>{{ $laptop_filtermemory->laptop_memory }}</label>
                                             </div>
                                         @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP MEMORIE --}}
@@ -312,6 +375,7 @@
                                                 <label>{{ $laptop_filtercpu->laptop_cpu }}</label>
                                             </div>
                                         @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP CPU --}}
@@ -336,10 +400,11 @@
                                                 <label>{{ $laptop_filtergpu->laptop_gpu }}</label>
                                             </div>
                                         @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP GPU --}}
-                                <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                {{-- <button type="submit" class="btn btn-success mt-3">Filtreaza</button> --}}
                             </form>
                         @endif
 
@@ -597,4 +662,12 @@
     </div>
 </div>
 <!--shop  area end-->
+
+<style>
+    h3 {
+        margin-bottom: 5px !important;
+        padding-bottom: 5px !important;
+    }
+
+</style>
 @endsection
