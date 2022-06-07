@@ -155,7 +155,7 @@
     <div class="container">
         <div class="row">
             <div class="col-12">
-                <div class="product_d_inner">
+                <div class="product_d_inner" style="overflow: hidden !important; width:100% !important;">
                     <div class="product_info_button">
                         <ul class="nav" role="tablist" id="nav-tab">
                             <li>
@@ -182,7 +182,7 @@
                             </li>
                         </ul>
                     </div>
-                    <div class="tab-content">
+                    <div class="tab-content" style="overflow: hidden !important; width:100% !important;">
                         <div class="tab-pane fade show active" id="info" role="tabpanel">
                             <div class="product_info_content">
                                 {{-- Rendering HTML from database table to view in Laravel --}}
@@ -603,6 +603,13 @@
 
     /* Modified from: https://github.com/mukulkant/Star-rating-using-pure-css */
 
+    .product-page-description-text {
+        width: 100% !important;
+    }
+
+    .product-page-description-text img {
+        width: 100% !important;
+    }
 </style>
 
 {{-- script addthis.com pentru butoane de social media share --}}
