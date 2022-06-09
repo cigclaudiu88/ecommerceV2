@@ -23,6 +23,7 @@ use App\Models\ShipDistrict;
 use App\Models\ShipDivision;
 use Illuminate\Http\Request;
 use App\Models\ProductLaptop;
+use App\Models\ProductTablet;
 use App\Models\SubSubCategory;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -625,6 +626,75 @@ class IndexController extends Controller
             }
         }
 
+        $tablet_display_filter = ProductTablet::select('tablet_display')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('tablet_display')->orderby('tablet_display', 'ASC')->get();
+
+        $tablet_storage_filter = ProductTablet::select('tablet_storage')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('tablet_storage')->orderby('tablet_storage', 'ASC')->get();
+
+        $tablet_memory_filter = ProductTablet::select('tablet_memory')->whereHas('product', function ($q) use ($subsubcategory_id) {
+            $q->where('subsubcategory_id', '=', $subsubcategory_id);
+        })->distinct('tablet_memory')->orderby('tablet_memory', 'ASC')->get();
+
+
+        // SECTIUNE FILTRE TABLETE
+        if (request()->get('form_min') && request()->get('form_max')) {
+
+            $min = round(request()->get('form_min') / 1.19, 2);
+            $max = round(request()->get('form_max') / 1.19, 2);
+
+            if (request()->get('tablet_filterdisplay') || request()->get('tablet_filterstorage') || request()->get('tablet_filtermemory') || request()->get('tablet_filterbrand')) {
+
+                $checked_tablet_filterdisplay = request()->get('tablet_filterdisplay');
+                $checked_tablet_filterstorage = request()->get('tablet_filterstorage');
+                $checked_tablet_filtermemory = request()->get('tablet_filtermemory');
+                $checked_tablet_filterbrand = request()->get('tablet_filterbrand');
+
+                $products = Product::where('status', 1)->whereHas('product_tablet', function ($q) use ($checked_tablet_filterdisplay, $checked_tablet_filterstorage, $checked_tablet_filtermemory) {
+                    if ($checked_tablet_filterdisplay) {
+                        $q->whereIn('tablet_display', $checked_tablet_filterdisplay);
+                    }
+                    if ($checked_tablet_filterstorage) {
+                        $q->whereIn('tablet_storage', $checked_tablet_filterstorage);
+                    }
+                    if ($checked_tablet_filtermemory) {
+                        $q->whereIn('tablet_memory', $checked_tablet_filtermemory);
+                    }
+                })->whereHas('brand', function ($z) use ($checked_tablet_filterbrand) {
+                    if ($checked_tablet_filterbrand) {
+                        $z->whereIn('brand_name', $checked_tablet_filterbrand);
+                    }
+                })->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
+            }
+        } else {
+            if (request()->get('tablet_filterdisplay') || request()->get('tablet_filterstorage') || request()->get('tablet_filtermemory') || request()->get('tablet_filterbrand')) {
+
+
+                $checked_tablet_filterdisplay = request()->get('tablet_filterdisplay');
+                $checked_tablet_filterstorage = request()->get('tablet_filterstorage');
+                $checked_tablet_filtermemory = request()->get('tablet_filtermemory');
+                $checked_tablet_filterbrand = request()->get('tablet_filterbrand');
+
+                $products = Product::where('status', 1)->whereHas('product_tablet', function ($q) use ($checked_tablet_filterdisplay, $checked_tablet_filterstorage, $checked_tablet_filtermemory) {
+                    if ($checked_tablet_filterdisplay) {
+                        $q->whereIn('tablet_display', $checked_tablet_filterdisplay);
+                    }
+                    if ($checked_tablet_filterstorage) {
+                        $q->whereIn('tablet_storage', $checked_tablet_filterstorage);
+                    }
+                    if ($checked_tablet_filtermemory) {
+                        $q->whereIn('tablet_memory', $checked_tablet_filtermemory);
+                    }
+                })->whereHas('brand', function ($z) use ($checked_tablet_filterbrand) {
+                    if ($checked_tablet_filterbrand) {
+                        $z->whereIn('brand_name', $checked_tablet_filterbrand);
+                    }
+                })->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+            }
+            // SECTIUNE FILTRE TABLETE
+        }
 
         // SECTIUNE FILTRE LAPTOP
 
@@ -657,7 +727,7 @@ class IndexController extends Controller
         // SECTIUNE FILTRARE PRET MIN MAX
 
         //  returnam pagina de produse functie de subsubcategorie cu datele din variabila $products $categories si $breadsubsubcat
-        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters', 'phone_display_filter', 'phone_storage_filter', 'phone_memory_filter', 'laptop_display_filter', 'laptop_storage_filter', 'laptop_memory_filter', 'laptop_cpufilter', 'laptop_gpufilter'));
+        return view('frontend.product.subsubcategory_view', compact('products', 'categories', 'breadsubsubcat', 'brand_filters', 'phone_display_filter', 'phone_storage_filter', 'phone_memory_filter', 'laptop_display_filter', 'laptop_storage_filter', 'laptop_memory_filter', 'laptop_cpufilter', 'laptop_gpufilter', 'tablet_display_filter', 'tablet_storage_filter', 'tablet_memory_filter'));
     }
 
     // functia de afisare a produselor in modal

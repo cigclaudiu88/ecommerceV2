@@ -137,7 +137,7 @@
     }
 </style>
 <script type="text/javascript">
-    $('.d-flex').removeClass('d-flex').addClass('row');
+    // $('.d-flex').removeClass('d-flex').addClass('row');
     // $('.col-xs-4').removeAttr('style');
     // $('.col-xs-8').css('width', '1200px');
 

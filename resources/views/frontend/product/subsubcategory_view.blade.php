@@ -95,9 +95,9 @@
                             </form>
                         </div> --}}
 
-
+                        {{-- SECTIUNE FILTRARE TELEFOANE --}}
                         @if ($phone_display_filter->count() || $phone_storage_filter->count() || $phone_memory_filter->count())
-                            {{-- SECTIUNE FILTRARE TELEFOANE --}}
+
                             <form action="{{ URL::current() }}" method="GET">
 
                                 <div class="widget_list widget_color">
@@ -224,6 +224,7 @@
 
                                 {{-- SECTIUNE FILTRARE MEMORIE --}}
                         @endif
+                        {{-- SECTIUNE FILTRARE TELEFOANE --}}
 
                         {{-- SECTIUNE FILTRARE LAPTOPURI --}}
                         @if ($laptop_display_filter->count() || $laptop_storage_filter->count() || $laptop_memory_filter->count() || $laptop_cpufilter->count() || $laptop_gpufilter->count())
@@ -407,9 +408,138 @@
                                 {{-- <button type="submit" class="btn btn-success mt-3">Filtreaza</button> --}}
                             </form>
                         @endif
-
                         {{-- SECTIUNE FILTRARE LAPTOPURI --}}
 
+                        {{-- SECTIUNE FILTRARE TABLETE --}}
+                        @if ($tablet_display_filter->count() || $tablet_storage_filter->count() || $tablet_memory_filter->count())
+
+                            <form action="{{ URL::current() }}" method="GET">
+
+                                <div class="widget_list widget_color">
+                                    <h3>Filtreaza dupa pret</h3>
+                                    {{-- <form action="{{ URL::current() }}" method="GET"> --}}
+                                    @php
+                                        if (isset($_GET['min']) && isset($_GET['max'])) {
+                                            $form_min = $_GET['min'];
+                                            $form_max = $_GET['max'];
+                                        }
+                                    @endphp
+                                    <input type="text" class="form-control" name="form_min"
+                                        placeholder="Pret Minim"><br>
+                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
+                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                    {{-- </form> --}}
+                                </div>
+
+                                {{-- SECTIUNE FILTRARE BRAND --}}
+                                @if ($brand_filters->count())
+                                    <div class="widget_list widget_color">
+                                        <h3>Filtrare Brand</h3>
+
+                                        @foreach ($brand_filters as $tablet_filterbrand)
+                                            @php
+                                                $checked = [];
+                                                if (isset($_GET['tablet_filterbrand'])) {
+                                                    $checked = $_GET['tablet_filterbrand'];
+                                                }
+                                            @endphp
+                                            <div class="col-12">
+                                                <input type="checkbox"
+                                                    value={{ $tablet_filterbrand->brand->brand_name }}
+                                                    name="tablet_filterbrand[]"
+                                                    @if (in_array($tablet_filterbrand->brand->brand_name, $checked)) checked @endif>
+
+                                                <label>{{ $tablet_filterbrand->brand->brand_name }}</label>
+                                            </div>
+                                        @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                    </div>
+                                @endif
+                                {{-- SECTIUNE FILTRARE BRAND --}}
+
+                                {{-- SECTIUNE FILTRARE DISPLAY --}}
+                                @if ($tablet_display_filter->count())
+                                    <div class="widget_list widget_color">
+                                        <h3>Dimensiune Ecran Telefon</h3>
+
+                                        @foreach ($tablet_display_filter as $tablet_filterdisplay)
+                                            @php
+                                                $checked = [];
+                                                if (isset($_GET['tablet_filterdisplay'])) {
+                                                    $checked = $_GET['tablet_filterdisplay'];
+                                                }
+                                            @endphp
+
+                                            <div class="col-12">
+                                                <input type="checkbox"
+                                                    value="{{ $tablet_filterdisplay->tablet_display }}"
+                                                    name="tablet_filterdisplay[]"
+                                                    @if (in_array($tablet_filterdisplay->tablet_display, $checked)) checked @endif>
+
+                                                <label>{{ $tablet_filterdisplay->tablet_display }}</label>
+                                            </div>
+                                        @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                    </div>
+                                @endif
+                                {{-- SECTIUNE FILTRARE DISPLAY --}}
+
+                                {{-- SECTIUNE FILTRARE STORAGE --}}
+                                @if ($tablet_storage_filter->count())
+                                    <div class="widget_list widget_color">
+                                        <h3>Spatiu Stocare Telefon</h3>
+
+                                        @foreach ($tablet_storage_filter as $tablet_filterstorage)
+                                            @php
+                                                $checked = [];
+                                                
+                                                if (isset($_GET['tablet_filterstorage'])) {
+                                                    $checked = $_GET['tablet_filterstorage'];
+                                                }
+                                            @endphp
+
+                                            <div class="col-12">
+                                                <input type="checkbox"
+                                                    value="{{ $tablet_filterstorage->tablet_storage }}"
+                                                    name="tablet_filterstorage[]"
+                                                    @if (in_array($tablet_filterstorage->tablet_storage, $checked)) checked @endif>
+
+                                                <label>{{ $tablet_filterstorage->tablet_storage }}</label>
+                                            </div>
+                                        @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                    </div>
+                                @endif
+                                {{-- SECTIUNE FILTRARE STORAGE --}}
+
+                                {{-- SECTIUNE FILTRARE MEMORIE --}}
+                                @if ($tablet_memory_filter->count())
+                                    <div class="widget_list widget_color">
+                                        <h3>Memorie Telefon</h3>
+
+                                        @foreach ($tablet_memory_filter as $tablet_filtermemory)
+                                            @php
+                                                $checked = [];
+                                                if (isset($_GET['tablet_filtermemory'])) {
+                                                    $checked = $_GET['tablet_filtermemory'];
+                                                }
+                                            @endphp
+
+                                            <div class="col-12">
+                                                <input type="checkbox"
+                                                    value="{{ $tablet_filtermemory->tablet_memory }}"
+                                                    name="tablet_filtermemory[]"
+                                                    @if (in_array($tablet_filtermemory->tablet_memory, $checked)) checked @endif>
+                                                <label>{{ $tablet_filtermemory->tablet_memory }}</label>
+                                            </div>
+                                        @endforeach
+                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                    </div>
+                                @endif
+
+                                {{-- SECTIUNE FILTRARE MEMORIE --}}
+                        @endif
+                        {{-- SECTIUNE FILTRARE TABLETE --}}
 
                         {{-- <div class="widget_list widget_color">
                             <h3>Select By SIze</h3>
@@ -668,6 +798,5 @@
         margin-bottom: 5px !important;
         padding-bottom: 5px !important;
     }
-
 </style>
 @endsection
