@@ -86,8 +86,8 @@
 
                     <div class="login-register-bg order-1 order-lg-2 col-lg-7 col-12">
                         <div class="content">
-                            <h1>Sign in</h1>
-                            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p>
+                            {{-- <h1>Sign in</h1> --}}
+                            {{-- <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry.</p> --}}
                         </div>
                     </div>
 
@@ -121,45 +121,45 @@
         @if (Session::has('message'))
             // variabila type preia tipul de alerta si mesajul din sesiune
             var type = "{{ Session::get('alert-type', 'message') }}"
-        
+
             // optiuni de afisare a mesajului Toastr
             // pozitie sus in centru larg cu buton de close
             toastr.options = {
-            "closeButton": true,
-            "debug": false,
-            "newestOnTop": false,
-            "progressBar": false,
-            "rtl": false,
-            "positionClass": "toast-top-left",
-            "preventDuplicates": false,
-            "onclick": null,
-            "showDuration": 300,
-            "hideDuration": 1000,
-            "timeOut": 5000,
-            "extendedTimeOut": 1000,
-            "showEasing": "swing",
-            "hideEasing": "linear",
-            "showMethod": "fadeIn",
-            "hideMethod": "fadeOut"
+                "closeButton": true,
+                "debug": false,
+                "newestOnTop": false,
+                "progressBar": false,
+                "rtl": false,
+                "positionClass": "toast-top-left",
+                "preventDuplicates": false,
+                "onclick": null,
+                "showDuration": 300,
+                "hideDuration": 1000,
+                "timeOut": 5000,
+                "extendedTimeOut": 1000,
+                "showEasing": "swing",
+                "hideEasing": "linear",
+                "showMethod": "fadeIn",
+                "hideMethod": "fadeOut"
             }
-        
+
             // functie de tipul de alerta din sesiune se apeleaza notificarea Toastr cu mesajul din sesiune
-            switch(type){
-            case 'info':
-            toastr.info(" {{ Session::get('message') }} ");
-            break;
-        
-            case 'success':
-            toastr.success("{{ Session::get('message') }}");
-            break;
-        
-            case 'warning':
-            toastr.warning(" {{ Session::get('message') }} ");
-            break;
-        
-            case 'error':
-            toastr.error(" {{ Session::get('message') }} ");
-            break;
+            switch (type) {
+                case 'info':
+                    toastr.info(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'success':
+                    toastr.success("{{ Session::get('message') }}");
+                    break;
+
+                case 'warning':
+                    toastr.warning(" {{ Session::get('message') }} ");
+                    break;
+
+                case 'error':
+                    toastr.error(" {{ Session::get('message') }} ");
+                    break;
             }
         @endif
     </script>
