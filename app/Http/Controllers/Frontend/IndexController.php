@@ -482,7 +482,7 @@ class IndexController extends Controller
             $min = round(request()->get('form_min') / 1.19, 2);
             $max = round(request()->get('form_max') / 1.19, 2);
 
-            if (request()->get('phone_filterdisplay') || request()->get('phone_filterstorage') || request()->get('phone_filtermemory') || request()->get('phone_filterbrand')) {
+            if (request()->get('phone_filterdisplay') || request()->get('phone_filterstorage') || request()->get('phone_filtermemory') || request()->get('phone_filterbrand') || (request()->get('form_min') && request()->get('form_max'))) {
 
                 $checked_phone_filterdisplay = request()->get('phone_filterdisplay');
                 $checked_phone_filterstorage = request()->get('phone_filterstorage');
@@ -560,7 +560,7 @@ class IndexController extends Controller
             $min = round(request()->get('form_min') / 1.19, 2);
             $max = round(request()->get('form_max') / 1.19, 2);
 
-            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu') || request()->get('laptop_filterbrand')) {
+            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu') || request()->get('laptop_filterbrand') || (request()->get('form_min') && request()->get('form_max'))) {
 
                 $checked_laptop_filterdisplay = request()->get('laptop_filterdisplay');
                 $checked_laptop_filterstorage = request()->get('laptop_filterstorage');
@@ -645,7 +645,7 @@ class IndexController extends Controller
             $min = round(request()->get('form_min') / 1.19, 2);
             $max = round(request()->get('form_max') / 1.19, 2);
 
-            if (request()->get('tablet_filterdisplay') || request()->get('tablet_filterstorage') || request()->get('tablet_filtermemory') || request()->get('tablet_filterbrand')) {
+            if (request()->get('tablet_filterdisplay') || request()->get('tablet_filterstorage') || request()->get('tablet_filtermemory') || request()->get('tablet_filterbrand') || (request()->get('form_min') && request()->get('form_max'))) {
 
                 $checked_tablet_filterdisplay = request()->get('tablet_filterdisplay');
                 $checked_tablet_filterstorage = request()->get('tablet_filterstorage');
