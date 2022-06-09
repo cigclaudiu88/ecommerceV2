@@ -211,7 +211,7 @@ $seo = App\Models\SEO::find(1);
                     $('.product_navactive').empty();
                     // se afiseaza fiecare imagine din multimea de imagini din baza de date in div-ul cu id-ul product_navactive din modal
                     data.multiImage.forEach((image, index) => $('.product_navactive').append(
-                        `<div class="owl-item ${index<4? `active`:`cloned`}" style="width: 96.707px;"><li><a class="nav-link ${index+1==1? `active`:``}" data-toggle="tab" role="tab" aria-controls="tab${index+1}" aria-selected="${index === 0}"><img src=${image.photo_name} alt=""></a></li><div>`
+                        `<div class="owl-item ${index<4? `active`:`cloned`}" style="width: 96.707px;"><li><a class="nav-link ${index+1==1? `active`:``}" data-toggle="tab" role="tab" aria-controls="tab${index+1}" aria-selected="${index === 0}"><img src="/${image.photo_name}" alt=""></a></li><div>`
                     ));
 
                     // pentru randere continut specificatii ca si html si nu text
@@ -837,6 +837,17 @@ $seo = App\Models\SEO::find(1);
     </script>
     {{-- script pentru stergere voucher - sfarsit --}}
 
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // Check and Uncheck All With Single Button
+            $("#filter_reset").click(function() {
+                $('.filter_reset').prop("checked", false);
+                $('input[name=form_min]').val('');
+                $('input[name=form_max]').val('');
+                // $('input[name="tablet_filterbrand[]"]').prop("checked", false);
+            });
+        })
+    </script>
 
 </body>
 

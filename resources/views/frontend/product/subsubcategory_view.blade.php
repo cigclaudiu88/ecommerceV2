@@ -100,6 +100,10 @@
 
                             <form action="{{ URL::current() }}" method="GET">
 
+                                <button type="submit" class="btn btn-danger mb-3" id="filter_reset"
+                                    style="width:100% !important;">Reset
+                                    Filtre</button>
+
                                 <div class="widget_list widget_color">
                                     <h3>Filtreaza dupa pret</h3>
                                     {{-- <form action="{{ URL::current() }}" method="GET"> --}}
@@ -109,10 +113,12 @@
                                             $form_max = $_GET['max'];
                                         }
                                     @endphp
-                                    <input type="text" class="form-control" name="form_min"
-                                        placeholder="Pret Minim"><br>
-                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
-                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                    <input type="text" class="form-control" name="form_min" placeholder="Pret Minim"
+                                        value="@php echo isset($_GET['form_min']) ? $_GET['form_min'] : '' @endphp"><br>
+                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim"
+                                        value="@php echo isset($_GET['form_max']) ? $_GET['form_max'] : '' @endphp">
+                                    <button type="submit" class="btn btn-success mt-3"
+                                        style="width:100% !important;">Filtreaza</button>
                                     {{-- </form> --}}
                                 </div>
 
@@ -129,7 +135,7 @@
                                                 }
                                             @endphp
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value={{ $phone_filterbrand->brand->brand_name }}
                                                     name="phone_filterbrand[]"
                                                     @if (in_array($phone_filterbrand->brand->brand_name, $checked)) checked @endif>
@@ -137,7 +143,8 @@
                                                 <label>{{ $phone_filterbrand->brand->brand_name }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE BRAND --}}
@@ -156,7 +163,7 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $phone_filterdisplay->phone_display }}"
                                                     name="phone_filterdisplay[]"
                                                     @if (in_array($phone_filterdisplay->phone_display, $checked)) checked @endif>
@@ -164,7 +171,8 @@
                                                 <label>{{ $phone_filterdisplay->phone_display }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE DISPLAY --}}
@@ -184,7 +192,7 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $phone_filterstorage->phone_storage }}"
                                                     name="phone_filterstorage[]"
                                                     @if (in_array($phone_filterstorage->phone_storage, $checked)) checked @endif>
@@ -192,7 +200,8 @@
                                                 <label>{{ $phone_filterstorage->phone_storage }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE STORAGE --}}
@@ -211,14 +220,15 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $phone_filtermemory->phone_memory }}"
                                                     name="phone_filtermemory[]"
                                                     @if (in_array($phone_filtermemory->phone_memory, $checked)) checked @endif>
                                                 <label>{{ $phone_filtermemory->phone_memory }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
 
@@ -230,7 +240,9 @@
                         @if ($laptop_display_filter->count() || $laptop_storage_filter->count() || $laptop_memory_filter->count() || $laptop_cpufilter->count() || $laptop_gpufilter->count())
 
                             <form action="{{ URL::current() }}" method="GET">
-
+                                <button type="submit" class="btn btn-danger mb-3" id="filter_reset"
+                                    style="width:100% !important;">Reset
+                                    Filtre</button>
 
                                 <div class="widget_list widget_color">
                                     <h3>Filtreaza dupa pret</h3>
@@ -241,10 +253,12 @@
                                             $form_max = $_GET['max'];
                                         }
                                     @endphp
-                                    <input type="text" class="form-control" name="form_min"
-                                        placeholder="Pret Minim"><br>
-                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
-                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                    <input type="text" class="form-control" name="form_min" placeholder="Pret Minim"
+                                        value="@php echo isset($_GET['form_min']) ? $_GET['form_min'] : '' @endphp"><br>
+                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim"
+                                        value="@php echo isset($_GET['form_max']) ? $_GET['form_max'] : '' @endphp">
+                                    <button type="submit" class="btn btn-success mt-3"
+                                        style="width:100% !important;">Filtreaza</button>
                                     {{-- </form> --}}
                                 </div>
 
@@ -262,7 +276,7 @@
                                                 }
                                             @endphp
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value={{ $laptop_filterbrand->brand->brand_name }}
                                                     name="laptop_filterbrand[]"
                                                     @if (in_array($laptop_filterbrand->brand->brand_name, $checked)) checked @endif>
@@ -270,7 +284,8 @@
                                                 <label>{{ $laptop_filterbrand->brand->brand_name }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE BRAND --}}
@@ -289,7 +304,7 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $laptop_filterdisplay->laptop_display }}"
                                                     name="laptop_filterdisplay[]"
                                                     @if (in_array($laptop_filterdisplay->laptop_display, $checked)) checked @endif>
@@ -297,7 +312,8 @@
                                                 <label>{{ $laptop_filterdisplay->laptop_display }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP DISPLAY --}}
@@ -317,7 +333,7 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $laptop_filterstorage->laptop_storage }}"
                                                     name="laptop_filterstorage[]"
                                                     @if (in_array($laptop_filterstorage->laptop_storage, $checked)) checked @endif>
@@ -325,7 +341,8 @@
                                                 <label>{{ $laptop_filterstorage->laptop_storage }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP STORAGE --}}
@@ -344,14 +361,15 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $laptop_filtermemory->laptop_memory }}"
                                                     name="laptop_filtermemory[]"
                                                     @if (in_array($laptop_filtermemory->laptop_memory, $checked)) checked @endif>
                                                 <label>{{ $laptop_filtermemory->laptop_memory }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP MEMORIE --}}
@@ -370,13 +388,15 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox" value="{{ $laptop_filtercpu->laptop_cpu }}"
+                                                <input type="checkbox" class="filter_reset"
+                                                    value="{{ $laptop_filtercpu->laptop_cpu }}"
                                                     name="laptop_filtercpu[]"
                                                     @if (in_array($laptop_filtercpu->laptop_cpu, $checked)) checked @endif>
                                                 <label>{{ $laptop_filtercpu->laptop_cpu }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP CPU --}}
@@ -395,13 +415,15 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox" value="{{ $laptop_filtergpu->laptop_gpu }}"
+                                                <input type="checkbox" class="filter_reset"
+                                                    value="{{ $laptop_filtergpu->laptop_gpu }}"
                                                     name="laptop_filtergpu[]"
                                                     @if (in_array($laptop_filtergpu->laptop_gpu, $checked)) checked @endif>
                                                 <label>{{ $laptop_filtergpu->laptop_gpu }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE LAPTOP GPU --}}
@@ -413,8 +435,13 @@
                         {{-- SECTIUNE FILTRARE TABLETE --}}
                         @if ($tablet_display_filter->count() || $tablet_storage_filter->count() || $tablet_memory_filter->count())
 
+
+
                             <form action="{{ URL::current() }}" method="GET">
 
+                                <button type="submit" class="btn btn-danger mb-3" id="filter_reset"
+                                    style="width:100% !important;">Reset
+                                    Filtre</button>
                                 <div class="widget_list widget_color">
                                     <h3>Filtreaza dupa pret</h3>
                                     {{-- <form action="{{ URL::current() }}" method="GET"> --}}
@@ -424,10 +451,12 @@
                                             $form_max = $_GET['max'];
                                         }
                                     @endphp
-                                    <input type="text" class="form-control" name="form_min"
-                                        placeholder="Pret Minim"><br>
-                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim">
-                                    <button type="submit" class="btn btn-success mt-3">Filtreaza</button>
+                                    <input type="text" class="form-control" name="form_min" placeholder="Pret Minim"
+                                        value="@php echo isset($_GET['form_min']) ? $_GET['form_min'] : '' @endphp"><br>
+                                    <input type="text" class="form-control" name="form_max" placeholder="Pret Maxim"
+                                        value="@php echo isset($_GET['form_max']) ? $_GET['form_max'] : '' @endphp">
+                                    <button type="submit" class="btn btn-success mt-3"
+                                        style="width:100% !important;">Filtreaza</button>
                                     {{-- </form> --}}
                                 </div>
 
@@ -444,7 +473,7 @@
                                                 }
                                             @endphp
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset" class="filter_reset"
                                                     value={{ $tablet_filterbrand->brand->brand_name }}
                                                     name="tablet_filterbrand[]"
                                                     @if (in_array($tablet_filterbrand->brand->brand_name, $checked)) checked @endif>
@@ -452,7 +481,8 @@
                                                 <label>{{ $tablet_filterbrand->brand->brand_name }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE BRAND --}}
@@ -471,7 +501,7 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $tablet_filterdisplay->tablet_display }}"
                                                     name="tablet_filterdisplay[]"
                                                     @if (in_array($tablet_filterdisplay->tablet_display, $checked)) checked @endif>
@@ -479,7 +509,8 @@
                                                 <label>{{ $tablet_filterdisplay->tablet_display }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE DISPLAY --}}
@@ -499,7 +530,7 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $tablet_filterstorage->tablet_storage }}"
                                                     name="tablet_filterstorage[]"
                                                     @if (in_array($tablet_filterstorage->tablet_storage, $checked)) checked @endif>
@@ -507,7 +538,8 @@
                                                 <label>{{ $tablet_filterstorage->tablet_storage }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
                                 {{-- SECTIUNE FILTRARE STORAGE --}}
@@ -526,14 +558,15 @@
                                             @endphp
 
                                             <div class="col-12">
-                                                <input type="checkbox"
+                                                <input type="checkbox" class="filter_reset"
                                                     value="{{ $tablet_filtermemory->tablet_memory }}"
                                                     name="tablet_filtermemory[]"
                                                     @if (in_array($tablet_filtermemory->tablet_memory, $checked)) checked @endif>
                                                 <label>{{ $tablet_filtermemory->tablet_memory }}</label>
                                             </div>
                                         @endforeach
-                                        <button type="submit" class="btn btn-success mt-2">Filtreaza</button>
+                                        <button type="submit" class="btn btn-success mt-2"
+                                            style="width:100% !important;">Filtreaza</button>
                                     </div>
                                 @endif
 
