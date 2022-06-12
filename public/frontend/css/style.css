@@ -3643,21 +3643,6 @@ textarea:-ms-input-placeholder {
   position: absolute;
 }
 
-.label_product span.label_sale {
-  height: 35px;
-  width: 35px;
-  background: #ff0000;
-  border-radius: 50%;
-  font-size: 14px;
-  font-weight: 500;
-  color: #ffffff;
-  line-height: 35px;
-  text-align: center;
-  position: absolute;
-  left: 15px;
-  top: 15px;
-}
-
 .label_product span.label_new {
   top: 20px;
   right: 20px;
@@ -3671,6 +3656,21 @@ textarea:-ms-input-placeholder {
   text-align: center;
   display: block;
   border-radius: 5px;
+}
+
+.label_product span.label_sale {
+  height: 35px;
+  width: 35px;
+  background: #ff0000;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  line-height: 35px;
+  text-align: center;
+  position: absolute;
+  left: 15px;
+  top: 15px;
 }
 
 /*  Badge pentru Modal - Stoc Produs : In Stoc */
