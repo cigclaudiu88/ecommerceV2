@@ -412,96 +412,96 @@
         <div class="product_banner_container">
             <div class="row">
                 <div class="col-lg-12 col-md-7">
+                    @foreach ($special_offer->shuffle()->slice(0, 2) as $product)
+                        <div class="small_product_area product_carousel product_column3 owl-carousel mt-5">
+                            {{-- <div class="product_carousel product_column5 owl-carousel"> --}}
+                            {{-- @foreach ($special_offer->shuffle() as $product) --}}
+                            {{-- <div class="product_items"> --}}
+                            @foreach ($special_offer->shuffle() as $product)
+                                <article class="single_product">
+                                    <figure>
+                                        <div class="product_thumb">
+                                            <a class="primary_img"
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
+                                                    src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                            <a class="secondary_img"
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
+                                                    src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                        </div>
 
-                    <div class="small_product_area product_carousel product_column3 owl-carousel mt-5">
-                        @foreach ($special_offer->shuffle() as $product)
-                            <div class="product_items">
-                                @foreach ($special_offer->shuffle() as $product)
-                                    <article class="single_product">
-                                        <figure>
-                                            <div class="product_thumb">
-                                                <a class="primary_img"
-                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                        src="{{ asset($product->product_thumbnail) }}" alt=""></a>
-                                                <a class="secondary_img"
-                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                        src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                        @php
+                                            // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
+                                            $amount = $product->selling_price - $product->discount_price;
+                                            $discount = ($amount / $product->selling_price) * 100;
+                                        @endphp
+                                        <div class="label_product">
+                                            {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                            @if ($product->discount_price == null)
+                                                <span class="label_new">Nou</span>
+                                            @else
+                                                {{-- daca produsul are pret de discount afisam % discount --}}
+                                                <span class="label_sale">{{ round($discount) }}%</span>
+                                            @endif
+                                        </div>
+
+                                        <figcaption class="product_content">
+                                            <h4 class="product_name"><a
+                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
+                                            </h4>
+                                            {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                            {{-- inclus rating produse --}}
+                                            @include('frontend.product.product_rating')
+                                            <p><a
+                                                    href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                            </p>
+                                            <div class="action_links">
+                                                <ul>
+                                                    <li class="add_to_cart"><a data-tippy="Adauga in Cos"
+                                                            data-tippy-placement="top" data-tippy-arrow="true"
+                                                            data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                            id="{{ $product->id }}"
+                                                            name="{{ $product->product_name }}"
+                                                            onclick="addToCartButton(this.id, this.name)">
+                                                            <span class="lnr lnr-cart"></span></a></li>
+                                                    {{-- adaugat onclick event si id-ul produsului --}}
+                                                    <li class="quick_button"><a data-tippy="Previzualizare"
+                                                            data-tippy-placement="top" data-tippy-arrow="true"
+                                                            data-tippy-inertia="true" data-bs-toggle="modal"
+                                                            data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                            id="{{ $product->id }}">
+                                                            <span class="lnr lnr-magnifier"></span></a></li>
+                                                    {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                    <li class="wishlist"><a data-tippy="Adauga in Wishlist"
+                                                            data-tippy-placement="top" data-tippy-arrow="true"
+                                                            data-tippy-inertia="true" id="{{ $product->id }}"
+                                                            onclick="addToWishList(this.id)"><span
+                                                                class="lnr lnr-heart"></span></a></li>
+                                                </ul>
                                             </div>
-
-                                            @php
-                                                // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
-                                                $amount = $product->selling_price - $product->discount_price;
-                                                $discount = ($amount / $product->selling_price) * 100;
-                                            @endphp
-                                            <div class="label_product">
-                                                {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                            {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
+                                            <div class="price_box">
                                                 @if ($product->discount_price == null)
-                                                    <span class="label_new">Nou</span>
+                                                    <span
+                                                        class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
+                                                        RON</span>
+                                                    {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
                                                 @else
-                                                    {{-- daca produsul are pret de discount afisam % discount --}}
-                                                    <span class="label_sale">{{ round($discount) }}%</span>
+                                                    <span
+                                                        class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
+                                                        RON</span><br>
+                                                    <span
+                                                        class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
+                                                        RON</span>
                                                 @endif
                                             </div>
-
-                                            <figcaption class="product_content">
-                                                <h4 class="product_name"><a
-                                                        href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
-                                                </h4>
-                                                {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
-                                                {{-- inclus rating produse --}}
-                                                @include('frontend.product.product_rating')
-                                                <p><a
-                                                        href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
-                                                </p>
-                                                <div class="action_links">
-                                                    <ul>
-                                                        <li class="add_to_cart"><a data-tippy="Adauga in Cos"
-                                                                data-tippy-placement="top" data-tippy-arrow="true"
-                                                                data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
-                                                                id="{{ $product->id }}"
-                                                                name="{{ $product->product_name }}"
-                                                                onclick="addToCartButton(this.id, this.name)">
-                                                                <span class="lnr lnr-cart"></span></a></li>
-                                                        {{-- adaugat onclick event si id-ul produsului --}}
-                                                        <li class="quick_button"><a data-tippy="Previzualizare"
-                                                                data-tippy-placement="top" data-tippy-arrow="true"
-                                                                data-tippy-inertia="true" data-bs-toggle="modal"
-                                                                data-bs-target="#modal_box"
-                                                                onclick="productView(this.id)"
-                                                                id="{{ $product->id }}">
-                                                                <span class="lnr lnr-magnifier"></span></a></li>
-                                                        {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
-                                                        <li class="wishlist"><a data-tippy="Adauga in Wishlist"
-                                                                data-tippy-placement="top" data-tippy-arrow="true"
-                                                                data-tippy-inertia="true" id="{{ $product->id }}"
-                                                                onclick="addToWishList(this.id)"><span
-                                                                    class="lnr lnr-heart"></span></a></li>
-                                                    </ul>
-                                                </div>
-                                                {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
-                                                <div class="price_box">
-                                                    @if ($product->discount_price == null)
-                                                        <span
-                                                            class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
-                                                            RON</span>
-                                                        {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
-                                                    @else
-                                                        <span
-                                                            class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
-                                                            RON</span><br>
-                                                        <span
-                                                            class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
-                                                            RON</span>
-                                                    @endif
-                                                </div>
-                                            </figcaption>
-                                        </figure>
-                                    </article>
-                                @endforeach
-                            </div>
-                        @endforeach
-                    </div>
-
+                                        </figcaption>
+                                    </figure>
+                                </article>
+                            @endforeach
+                            {{-- </div> --}}
+                            {{-- @endforeach --}}
+                        </div>
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -981,79 +981,90 @@
         </div>
         <div class="row">
             <div class="col-12">
-                <div class="small_product_area product_carousel product_column3 owl-carousel">
-                    @foreach ($featured->shuffle() as $product)
-                        <div class="product_items">
+                @foreach ($featured->slice(0, 2) as $product)
+                    <div class="small_product_area product_carousel product_column3 owl-carousel">
 
-                            @foreach ($featured->shuffle() as $product)
-                                <article class="single_product">
-                                    <figure>
-                                        <div class="product_thumb">
-                                            <a class="primary_img"
-                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                    src="{{ asset($product->product_thumbnail) }}" alt=""></a>
-                                            <a class="secondary_img"
-                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                    src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                        @foreach ($featured->shuffle() as $product)
+                            <article class="single_product">
+                                <figure>
+                                    <div class="product_thumb">
+                                        <a class="primary_img"
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
+                                                src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                        <a class="secondary_img"
+                                            href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
+                                                src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                    </div>
+                                    @php
+                                        // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
+                                        $amount = $product->selling_price - $product->discount_price;
+                                        $discount = ($amount / $product->selling_price) * 100;
+                                    @endphp
+                                    <div class="label_product">
+                                        {{-- daca produsul nu are pret de discount afisam tag de Nou --}}
+                                        @if ($product->discount_price == null)
+                                            <span class="label_new">Nou</span>
+                                        @else
+                                            {{-- daca produsul are pret de discount afisam % discount --}}
+                                            <span class="label_sale">{{ round($discount) }}%</span>
+                                        @endif
+                                    </div>
+                                    <figcaption class="product_content">
+                                        <h4 class="product_name"><a
+                                                href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
+                                        </h4>
+                                        {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
+                                        {{-- inclus rating produse --}}
+                                        @include('frontend.product.product_rating')
+                                        <p><a
+                                                href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
+                                        </p>
+                                        <div class="action_links">
+                                            <ul>
+                                                <li class="add_to_cart"><a data-tippy="Adauga in Cos"
+                                                        data-tippy-placement="top" data-tippy-arrow="true"
+                                                        data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                        id="{{ $product->id }}"
+                                                        name="{{ $product->product_name }}"
+                                                        onclick="addToCartButton(this.id, this.name)">
+                                                        <span class="lnr lnr-cart"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului --}}
+                                                <li class="quick_button"><a data-tippy="Previzualizare"
+                                                        data-tippy-placement="top" data-tippy-arrow="true"
+                                                        data-tippy-inertia="true" data-bs-toggle="modal"
+                                                        data-bs-target="#modal_box" onclick="productView(this.id)"
+                                                        id="{{ $product->id }}">
+                                                        <span class="lnr lnr-magnifier"></span></a></li>
+                                                {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
+                                                <li class="wishlist"><a data-tippy="Adauga in Wishlist"
+                                                        data-tippy-placement="top" data-tippy-arrow="true"
+                                                        data-tippy-inertia="true" id="{{ $product->id }}"
+                                                        onclick="addToWishList(this.id)"><span
+                                                            class="lnr lnr-heart"></span></a></li>
+                                            </ul>
                                         </div>
-
-                                        <figcaption class="product_content">
-                                            <h4 class="product_name"><a
-                                                    href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}">{{ Str::limit($product->product_name, 40) }}</a>
-                                            </h4>
-                                            {{-- adaugat link spre subsubcategorii din slid-uri de produse --}}
-                                            {{-- inclus rating produse --}}
-                                            @include('frontend.product.product_rating')
-                                            <p><a
-                                                    href="{{ url('subsubcategory/product/' . $product->subsubcategory->id . '/' . $product->subsubcategory->subsubcategory_slug) }}">{{ $product->subsubcategory->subsubcategory_name }}</a>
-                                            </p>
-                                            <div class="action_links">
-                                                <ul>
-                                                    <li class="add_to_cart"><a data-tippy="Adauga in Cos"
-                                                            data-tippy-placement="top" data-tippy-arrow="true"
-                                                            data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
-                                                            id="{{ $product->id }}"
-                                                            name="{{ $product->product_name }}"
-                                                            onclick="addToCartButton(this.id, this.name)">
-                                                            <span class="lnr lnr-cart"></span></a></li>
-                                                    {{-- adaugat onclick event si id-ul produsului --}}
-                                                    <li class="quick_button"><a data-tippy="Previzualizare"
-                                                            data-tippy-placement="top" data-tippy-arrow="true"
-                                                            data-tippy-inertia="true" data-bs-toggle="modal"
-                                                            data-bs-target="#modal_box" onclick="productView(this.id)"
-                                                            id="{{ $product->id }}">
-                                                            <span class="lnr lnr-magnifier"></span></a></li>
-                                                    {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
-                                                    <li class="wishlist"><a data-tippy="Adauga in Wishlist"
-                                                            data-tippy-placement="top" data-tippy-arrow="true"
-                                                            data-tippy-inertia="true" id="{{ $product->id }}"
-                                                            onclick="addToWishList(this.id)"><span
-                                                                class="lnr lnr-heart"></span></a></li>
-                                                </ul>
-                                            </div>
-                                            {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
-                                            <div class="price_box">
-                                                @if ($product->discount_price == null)
-                                                    <span
-                                                        class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
-                                                        RON</span>
-                                                    {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
-                                                @else
-                                                    <span
-                                                        class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
-                                                        RON</span><br>
-                                                    <span
-                                                        class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
-                                                        RON</span>
-                                                @endif
-                                            </div>
-                                        </figcaption>
-                                    </figure>
-                                </article>
-                            @endforeach
-                        </div>
-                    @endforeach
-                </div>
+                                        {{-- daca produsul nu are discount afisam doar pretul de vanzare --}}
+                                        <div class="price_box">
+                                            @if ($product->discount_price == null)
+                                                <span
+                                                    class="current_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
+                                                    RON</span>
+                                                {{-- daca produsul are discount afisam discount + pretul de vanzare fara discount --}}
+                                            @else
+                                                <span
+                                                    class="current_price">{{ number_format($product->discount_price * 0.19 + $product->discount_price, 2, '.', ',') }}
+                                                    RON</span><br>
+                                                <span
+                                                    class="old_price">{{ number_format($product->selling_price * 0.19 + $product->selling_price, 2, '.', ',') }}
+                                                    RON</span>
+                                            @endif
+                                        </div>
+                                    </figcaption>
+                                </figure>
+                            </article>
+                        @endforeach
+                    </div>
+                @endforeach
             </div>
         </div>
     </div>

@@ -3643,18 +3643,18 @@ textarea:-ms-input-placeholder {
   position: absolute;
 }
 .label_product span.label_sale {
-  top: 20px;
-  left: 20px;
-  text-transform: uppercase;
+  height: 35px;
+  width: 35px;
+  background: #ff0000;
+  border-radius: 50%;
+  font-size: 14px;
+  font-weight: 500;
   color: #ffffff;
-  background: #40a944;
-  font-size: 12px;
-  height: 20px;
-  line-height: 20px;
-  width: 40px;
+  line-height: 35px;
   text-align: center;
-  display: block;
-  border-radius: 5px;
+  position: absolute;
+  left: 15px;
+  top: 15px;
 }
 .label_product span.label_new {
   top: 20px;

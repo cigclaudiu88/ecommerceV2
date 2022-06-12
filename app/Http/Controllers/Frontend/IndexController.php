@@ -41,13 +41,13 @@ class IndexController extends Controller
         // $products preia din tabela products doar datele care au statusul 1 (activ) si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
         $products = Product::where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
         // $featured preia din tabela products doar datele care au campul featured 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
-        $featured = Product::where('featured', 1)->where('status', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(3)->get();
+        $featured = Product::where('featured', 1)->where('status', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(20)->get();
         // $hot_deals preia din tabela products doar datele care au campul hot_deals 1 si le ordoneaza random si le limiteaza la 10 inregistrari
-        $hot_deals = Product::where('hot_deal', 1)->where('status', 1)->where('discount_price', '!=', NULL)->inRandomOrder()->limit(10)->get();
+        $hot_deals = Product::where('hot_deal', 1)->where('status', 1)->where('discount_price', '!=', NULL)->inRandomOrder()->limit(20)->get();
         // $special_offer preia din tabela products doar datele care au campul special_offer 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari            
-        $special_offer = Product::where('special_offer', 1)->where('status', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(3)->get();
+        $special_offer = Product::where('special_offer', 1)->where('status', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(20)->get();
         // $special_deals preia din tabela products doar datele care au campul special_deals 1 si le ordoneaza dupa id descendent si le limiteaza la 10 inregistrari
-        $special_deals = Product::where('special_deal', 1)->where('status', 1)->orderBy('id', 'DESC')->limit(10)->get();
+        $special_deals = Product::where('special_deal', 1)->where('status', 1)->orderBy('id', 'DESC')->inRandomOrder()->limit(20)->get();
         // $skip_subsubcategory_0 foloseste modelul Category pentru sa sari peste o categorie si preia datele urmatoarei categorii skip(0) - prima categorie skip(1) - a doua categorie skip(2) - a treia categorie etc
         // aici preia subsubcategoria cu id-ul 3 -> telefoane
         $skip_subsubcategory_0 = SubSubCategory::skip(2)->first();
@@ -426,7 +426,7 @@ class IndexController extends Controller
     {
         // $products preia din tabela products acele intregistrarile care au statusul 1 
         // si subcategory_id aceeasi cu cea primita ca parametru $subcategory_id ordonate dupa id desc si paginate la 10
-        $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(9);
+        $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('id', 'DESC')->paginate(12);
         // $subcategory preia datele din tabela subcategories aferenta id-ului primit ca parametru
         $categories = Category::orderBy('id', 'ASC')->get();
         // $breadsubcat preia din tabela subsubcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories si subcategories
@@ -565,7 +565,13 @@ class IndexController extends Controller
             $min = round(request()->get('form_min') / 1.19, 2);
             $max = round(request()->get('form_max') / 1.19, 2);
 
-            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu') || request()->get('laptop_filterbrand')) {
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->when(request()->get('form_min'), function ($query) use ($min) {
+                $query->where('selling_price', '>=', $min);
+            })->when(request()->get('form_max'), function ($query) use ($max) {
+                $query->where('selling_price', '<=', $max);
+            })->orderBy('id', 'DESC')->paginate(9);
+
+            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_filtercpu') || request()->get('laptop_filtergpu') || request()->get('laptop_filterbrand')) {
 
                 $checked_laptop_filterdisplay = request()->get('laptop_filterdisplay');
                 $checked_laptop_filterstorage = request()->get('laptop_filterstorage');
@@ -596,10 +602,9 @@ class IndexController extends Controller
                     }
                 })->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
             }
-            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->whereBetween('selling_price', [$min, $max])->orderBy('id', 'DESC')->paginate(9);
         } else {
             // SECTIUNE FILTRE LAPTOP
-            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_cpu') || request()->get('laptop_gpu') || request()->get('laptop_filterbrand')) {
+            if (request()->get('laptop_filterdisplay') || request()->get('laptop_filterstorage') || request()->get('laptop_filtermemory') || request()->get('laptop_filtercpu') || request()->get('laptop_filtergpu') || request()->get('laptop_filterbrand')) {
 
                 $checked_laptop_filterdisplay = request()->get('laptop_filterdisplay');
                 $checked_laptop_filterstorage = request()->get('laptop_filterstorage');
