@@ -1,8 +1,6 @@
 @extends('admin.admin_master')
 @section('admin')
     <!-- Content Body Start -->
-
-
     <!-- Page Headings Start -->
     <div class="row justify-content-between align-items-center mb-10">
 
@@ -25,12 +23,19 @@
                     <h4 class="text-primary fw-600 m-0">{{ $order->order_number }}</h4>
                 </div>
                 <div class="col-4 col-md-4 mb-15">
-                    <h4>Status: <span><span class="badge badge-round badge-primary">
-                                {{ $order->status }}</span></span></h4>
+                    <h4>Status:
+                        @if ($order->status == 'Anulata')
+                            <span class="badge badge-round badge-danger">
+                                {{ $order->status }}</span>
+                        @else
+                            <span><span class="badge badge-round badge-primary">
+                                    {{ $order->status }}</span></span>
+                        @endif
+                    </h4>
                 </div>
 
                 @if ($order->status == 'Preluata de curier' && $order->awb_code == null)
-                @elseif($order->status == 'Preluata de curier' && $order->awb_code != null)
+                @elseif(($order->status == 'Preluata de curier' || $order->status == 'In tranzit' || $order->status == 'Livrata') && $order->awb_code != null)
                     <div class="col-4 col-md-4 mb-15">
                         <h4>AWB : <span><span class="badge badge-round badge-primary">
                                     {{ $order->awb_code }} </span></span></h4>

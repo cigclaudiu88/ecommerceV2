@@ -6,7 +6,8 @@
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Comenzi Livrate</h3>
+                    <h3 class="title">Lista Comenzi Livrate <span class="badge badge badge-danger">
+                            {{ count($orders) }} </span></h3>
                 </div>
                 <div class="box-body">
 

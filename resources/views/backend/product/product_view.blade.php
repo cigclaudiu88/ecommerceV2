@@ -16,8 +16,8 @@
                             <tr>
                                 <th>Poza</th>
                                 <th>Nume Produs</th>
-                                <th>Cantitate</th>
-                                <th>Blocata</th>
+                                <th>Stoc curent</th>
+                                <th>Stoc blocat</th>
                                 <th>Pret</th>
                                 <th>Discount</th>
                                 <th>Status</th>
