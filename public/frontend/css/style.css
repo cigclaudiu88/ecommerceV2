@@ -3642,6 +3642,7 @@ textarea:-ms-input-placeholder {
 .label_product span {
   position: absolute;
 }
+
 .label_product span.label_sale {
   height: 35px;
   width: 35px;
@@ -3656,6 +3657,7 @@ textarea:-ms-input-placeholder {
   left: 15px;
   top: 15px;
 }
+
 .label_product span.label_new {
   top: 20px;
   right: 20px;
