@@ -48,7 +48,6 @@
             font-family: serif;
             margin-top: 20px;
         }
-
     </style>
 
 </head>
@@ -113,12 +112,12 @@
     <table width="100%">
         <thead style="background-color: green; color:#FFFFFF;">
             <tr class="font">
-                <th>Poza Produs</th>
+                <th>Poza</th>
                 <th>Nume Produs</th>
                 {{-- <th>Code Produs</th> --}}
                 <th>Cantitate</th>
-                <th>Pret Unitar </th>
-                <th>Total</th>
+                <th>Pret unitar</th>
+                <th>Subtotal</th>
             </tr>
         </thead>
         <tbody>
@@ -142,16 +141,20 @@
 
         <tr>
             <td align="right">
-                <h2><span style="color: green; font-size: 14px;">Subtotal:</span> {{ $order->subtotal }} RON</h2>
+                <h2><span style="color: green; font-size: 14px;">Subtotal:</span>
+                    {{ number_format($order->subtotal, 2, '.', ',') }} RON</h2>
                 @if ($order->voucher_name == null)
                 @else
                     <h2><span style="color: green;font-size: 14px;">Voucher:</span> {{ $order->voucher_name }}
                     </h2>
-                    <h2><span style="color: green;font-size: 14px;">Reducere:</span> - {{ $order->discount_amount }}
+                    <h2><span style="color: green;font-size: 14px;">Reducere:</span> -
+                        {{ number_format($order->discount_amount, 2, '.', ',') }}
                         RON</h2>
                 @endif
-                <h2><span style="color: green;font-size: 14px;">TVA:</span> {{ $order->tax }} RON</h2>
-                <h2><span style="color: green;font-size: 14px;">Total:</span> {{ $order->amount }} RON</h2>
+                <h2><span style="color: green;font-size: 14px;">TVA:</span>
+                    {{ number_format($order->tax, 2, '.', ',') }} RON</h2>
+                <h2><span style="color: green;font-size: 14px;">Total:</span>
+                    {{ number_format($order->amount, 2, '.', ',') }} RON</h2>
                 @if ($order->transaction_id == null)
                 @else
                     <h2><span style="color: green">Plata efectuata</h2>
@@ -162,7 +165,7 @@
     </table>
     <div class="thanks mt-3">
         <strong>
-            <p>Multumim pentru ca a-ti cumparat de la eShop UPT</p>
+            <p>Multumim pentru ca a-ti cumparat de la eShop UPT!</p>
         </strong>
     </div>
 </body>

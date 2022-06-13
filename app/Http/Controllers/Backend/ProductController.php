@@ -70,7 +70,7 @@ class ProductController extends Controller
                 'category_id.required' => 'Numele categoriei de produse este necesar.',
                 'subcategory_id.required' => 'Numele subcategoriei de produse este necesar.',
 
-                'product_name.required' => 'Numele categoriei de produse este necesar.',
+                'product_name.required' => 'Numele produsului este necesar.',
                 'product_name.unique' => 'Numele produsului trebuie sa fie unic.',
                 'product_name.min' => 'Numele produsului trebuie sa fie de minim 6 caractere.',
 
