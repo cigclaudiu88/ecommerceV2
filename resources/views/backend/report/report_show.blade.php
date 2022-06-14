@@ -6,7 +6,8 @@
         <div class="col-12 mb-30">
             <div class="box">
                 <div class="box-head">
-                    <h3 class="title">Lista Comenzi</h3>
+                    <h3 class="title">Lista Comenzi <span class="badge badge badge-danger">
+                            {{ count($orders) }} </span></h3>
                 </div>
                 <div class="box-body">
 
@@ -32,7 +33,7 @@
                                     </td>
                                     <td>{{ $item->shipping_phone }}</td>
                                     <td>{{ $item->order_number }}</td>
-                                    <td>{{ $item->amount }} RON</td>
+                                    <td>{{ number_format($item->amount, 2, '.', ',') }} RON</td>
                                     <td>{{ $item->payment_method }}</td>
                                     <td class="text-center">
                                         <h4><span class="badge badge-pill badge-primary">{{ $item->status }}</span></h4>
@@ -42,8 +43,8 @@
                                         <a href="{{ route('pending.order.details', $item->id) }}"
                                             class="button button-primary"><i
                                                 class="fa-solid fa-magnifying-glass"></i>Vizualizare</a>
-                                        <a href="{{ route('invoice.download', $item->id) }}" class="button button-info"><i
-                                                class="fa-solid fa-circle-down"></i>Factura</a>
+                                        <a href="{{ route('invoice.download', $item->id) }}"
+                                            class="button button-info"><i class="fa-solid fa-circle-down"></i>Factura</a>
                                     </td>
                                 </tr>
                             @endforeach

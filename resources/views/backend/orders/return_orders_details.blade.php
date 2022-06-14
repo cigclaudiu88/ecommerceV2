@@ -30,7 +30,7 @@
                 </div>
 
                 @if ($order->status == 'Preluata de curier' && $order->awb_code == null)
-                @elseif($order->status == 'Preluata de curier' && $order->awb_code != null)
+                @elseif(($order->status == 'Preluata de curier' || $order->status == 'In tranzit' || $order->status == 'Livrata') && $order->awb_code != null)
                     <div class="col-4 col-md-4 mb-15">
                         <h4>AWB : <span><span class="badge badge-round badge-primary">
                                     {{ $order->awb_code }} </span></span></h4>

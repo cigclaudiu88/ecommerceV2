@@ -22,55 +22,57 @@
                             <li><a href="#"><i class="ion-social-instagram-outline"></i></a></li>
                         </ul>
                     </div> --}}
+                    
+                    @php
+                        // $categories preia din modelul Category toate datele din tabelul categories in ordine ascendenta dupa id
+                        $categories = App\Models\Category::orderBy('id', 'ASC')->get();
+                    @endphp
+                    <div id="menu" class="text-left ">
+                        <ul class="offcanvas_main_menu">
 
-                </div>
-                @php
-                    // $categories preia din modelul Category toate datele din tabelul categories in ordine ascendenta dupa id
-                    $categories = App\Models\Category::orderBy('id', 'ASC')->get();
-                @endphp
-                <div id="menu" class="text-left ">
-                    <ul class="offcanvas_main_menu">
-
-                        {{-- iteram cu $categories (max 5 inregistrari) si afisam in meniu toate categoriile din baza de date --}}
-                        @foreach ($categories->slice(0, 5) as $category)
-                            <li class="menu-item-has-children active">
-                                <a href="#">{{ $category->category_name }}</a>
-                                @php
-                                    // $subcategories preia din modelul Subcategory toate datele din tabelul subcategories in ordine ascendenta dupa id
-                                    $subcategories = App\Models\SubCategory::where('category_id', $category->id)
-                                        ->orderBy('id', 'ASC')
-                                        ->get();
-                                @endphp
-                                <ul class="sub-menu">
-                                    {{-- iteram cu $subcategories (max 5 inregistrari) si afisam in meniu toate subcategoriile din baza de date --}}
-                                    @foreach ($subcategories->slice(0, 5) as $subcategory)
-                                        <li class="menu-item-has-children">
-                                            {{-- adaugat url pentru afisarea produselor functie de subcategorie in magazin --}}
-                                            <a
-                                                href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
-                                            @php
-                                                // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
-                                                $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
-                                                    ->orderBy('id')
-                                                    ->get();
-                                            @endphp
-                                            <ul class="sub-menu">
-                                                {{-- iteram cu $subsubcategories si afisam in meniu toate subsubcategoriile din baza de date --}}
-                                                @foreach ($subsubcategories as $subsubcategory)
-                                                    <li><a
-                                                            href="{{ url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug) }}">{{ $subsubcategory->subsubcategory_name }}</a>
-                                                    </li>
-                                                @endforeach {{-- iteratie SubSubCategory incheiata --}}
-                                            </ul>
-                                        </li>
-                                    @endforeach {{-- iteratie SubCategory incheiata --}}
-                                </ul>
-                            </li>
-                        @endforeach {{-- iteratie Category incheiata --}}
-                    </ul>
-                    <div class="offcanvas_footer">
-                        <span><a href="#"><i class="fa fa-envelope-o"></i> info@yourdomain.com</a></span>
+                            {{-- iteram cu $categories (max 5 inregistrari) si afisam in meniu toate categoriile din baza de date --}}
+                            @foreach ($categories->slice(0, 5) as $category)
+                                <li class="menu-item-has-children active">
+                                    <a href="#">{{ $category->category_name }}</a>
+                                    @php
+                                        // $subcategories preia din modelul Subcategory toate datele din tabelul subcategories in ordine ascendenta dupa id
+                                        $subcategories = App\Models\SubCategory::where('category_id', $category->id)
+                                            ->orderBy('id', 'ASC')
+                                            ->get();
+                                    @endphp
+                                    <ul class="sub-menu">
+                                        {{-- iteram cu $subcategories (max 5 inregistrari) si afisam in meniu toate subcategoriile din baza de date --}}
+                                        @foreach ($subcategories->slice(0, 5) as $subcategory)
+                                            <li class="menu-item-has-children">
+                                                {{-- adaugat url pentru afisarea produselor functie de subcategorie in magazin --}}
+                                                <a
+                                                    href="{{ url('subcategory/product/' . $subcategory->id . '/' . $subcategory->subcategory_slug) }}">{{ $subcategory->subcategory_name }}</a>
+                                                @php
+                                                    // $subsubcategories preia din modelul Subsubcategory toate datele din tabelul subsubcategories in ordine ascendenta dupa id
+                                                    $subsubcategories = App\Models\SubSubCategory::where('subcategory_id', $subcategory->id)
+                                                        ->orderBy('id')
+                                                        ->get();
+                                                @endphp
+                                                <ul class="sub-menu">
+                                                    {{-- iteram cu $subsubcategories si afisam in meniu toate subsubcategoriile din baza de date --}}
+                                                    @foreach ($subsubcategories as $subsubcategory)
+                                                        <li><a
+                                                                href="{{ url('subsubcategory/product/' . $subsubcategory->id . '/' . $subsubcategory->subsubcategory_slug) }}">{{ $subsubcategory->subsubcategory_name }}</a>
+                                                        </li>
+                                                    @endforeach {{-- iteratie SubSubCategory incheiata --}}
+                                                </ul>
+                                            </li>
+                                        @endforeach {{-- iteratie SubCategory incheiata --}}
+                                    </ul>
+                                </li>
+                            @endforeach {{-- iteratie Category incheiata --}}
+                        </ul>
+                        <div class="offcanvas_footer">
+                            <span><a href="#"><i class="fa fa-envelope-o"></i> suport@eshopupt.ro</a></span>
+                        </div>
                     </div>
+
+
                 </div>
             </div>
         </div>

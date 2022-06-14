@@ -54,7 +54,7 @@
                                     <option value="March">Martie</option>
                                     <option value="April">Aprilie</option>
                                     <option value="May">Mai</option>
-                                    <option value="Jun">Iunie</option>
+                                    <option value="June">Iunie</option>
                                     <option value="July">Iulie</option>
                                     <option value="August">August</option>
                                     <option value="September">Septembrie</option>
