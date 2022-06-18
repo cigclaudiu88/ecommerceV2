@@ -12,13 +12,12 @@
 @endsection
 
 <!--breadcrumbs area start-->
-<div class="breadcrumbs_area" style="
+<div class="breadcrumbs_area"> {{-- style="
     background: url({{ asset($blogpost->post_image) }}) no-repeat 0 0;
     background-size: cover;
     height: 200px;
     display: flex;
-    align-items: center;
-">
+    align-items: center;" --}}>
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -71,50 +70,7 @@
 
 
 
-                    <div class="comments_box">
-                        <h3>3 Comments </h3>
-                        <div class="comment_list">
-                            <div class="comment_thumb">
-                                <img src="{{ asset('frontend/img/blog/comment3.png.jpg') }}" alt="">
-                            </div>
-                            <div class="comment_content">
-                                <div class="comment_meta">
-                                    <h5><a href="#">Admin</a></h5>
-                                    <span>October 16, 2018 at 1:38 am</span>
-                                </div>
-                                <p>But I must explain to you how all this mistaken idea of denouncing pleasure</p>
-                                <div class="comment_reply">
-                                    <a href="#">Reply</a>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="comments_form">
-                        <h3>Leave a Reply </h3>
-                        <p>Your email address will not be published. Required fields are marked *</p>
-                        <form action="#">
-                            <div class="row">
-                                <div class="col-12">
-                                    <label for="review_comment">Comment </label>
-                                    <textarea name="comment" id="review_comment"></textarea>
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <label for="author">Name</label>
-                                    <input id="author" type="text">
 
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <label for="email">Email </label>
-                                    <input id="email" type="text">
-                                </div>
-                                <div class="col-lg-4 col-md-4">
-                                    <label for="website">Website </label>
-                                    <input id="website" type="text">
-                                </div>
-                            </div>
-                            <button class="button" type="submit">Post Comment</button>
-                        </form>
-                    </div>
                 </div>
                 <!--blog grid area start-->
             </div>

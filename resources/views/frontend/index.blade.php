@@ -33,7 +33,8 @@
                                 <li>
                                     {{-- adaugam #category{{ $category->id }} pe <a> pentru link spre tab-urile de categorii care au id category{{ $category->id }} --}}
                                     <a class="" data-toggle="tab" href="#category{{ $category->id }}"
-                                        role="tab" aria-controls="category{{ $category->id }}" aria-selected="true">
+                                        role="tab" aria-controls="category{{ $category->id }}"
+                                        aria-selected="true">
                                         {{ $category->category_name }}
                                     </a>
                                 </li>
@@ -57,10 +58,12 @@
                                                 <div class="product_thumb">
                                                     <a class="primary_img"
                                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                            src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                                            src="{{ asset($product->product_thumbnail) }}"
+                                                            alt=""></a>
                                                     <a class="secondary_img"
                                                         href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                            src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                                            src="{{ asset($product->product_thumbnail) }}"
+                                                            alt=""></a>
                                                     @php
                                                         // calculam procentul de discount pe baza pretului de vanzare / pretul de discount
                                                         $amount = $product->selling_price - $product->discount_price;
@@ -72,8 +75,7 @@
                                                             <span class="label_new">Nou</span>
                                                         @else
                                                             {{-- daca produsul are pret de discount afisam % discount --}}
-                                                            <span
-                                                                class="label_sale">{{ round($discount) }}%</span>
+                                                            <span class="label_sale">{{ round($discount) }}%</span>
                                                         @endif
                                                     </div>
                                                     <div class="action_links">
@@ -94,8 +96,7 @@
                                                                     id="{{ $product->id }}">
                                                                     <span class="lnr lnr-magnifier"></span></a></li>
                                                             {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
-                                                            <li class="wishlist"><a
-                                                                    data-tippy="Adauga in Wishlist"
+                                                            <li class="wishlist"><a data-tippy="Adauga in Wishlist"
                                                                     data-tippy-placement="top" data-tippy-arrow="true"
                                                                     data-tippy-inertia="true" id="{{ $product->id }}"
                                                                     onclick="addToWishList(this.id)"><span
@@ -181,7 +182,8 @@
                                                                 <li class="add_to_cart"><a data-tippy="Adauga in Cos"
                                                                         data-tippy-placement="top"
                                                                         data-tippy-arrow="true"
-                                                                        data-tippy-inertia="true" {{-- adaugat id si nume produs --}}
+                                                                        data-tippy-inertia="true"
+                                                                        {{-- adaugat id si nume produs --}}
                                                                         id="{{ $product->id }}"
                                                                         name="{{ $product->product_name }}"
                                                                         onclick="addToCartButton(this.id, this.name)">
@@ -191,11 +193,13 @@
                                                                         data-tippy="Previzualizare"
                                                                         data-tippy-placement="top"
                                                                         data-tippy-arrow="true"
-                                                                        data-tippy-inertia="true" data-bs-toggle="modal"
+                                                                        data-tippy-inertia="true"
+                                                                        data-bs-toggle="modal"
                                                                         data-bs-target="#modal_box"
                                                                         onclick="productView(this.id)"
                                                                         id="{{ $product->id }}">
-                                                                        <span class="lnr lnr-magnifier"></span></a></li>
+                                                                        <span class="lnr lnr-magnifier"></span></a>
+                                                                </li>
                                                                 {{-- adaugat onclick event si id-ul produsului pt wishlist --}}
                                                                 <li class="wishlist"><a
                                                                         data-tippy="Adauga in Wishlist"
@@ -259,14 +263,16 @@
             <div class="col-lg-6 col-md-6">
                 <div class="single_banner">
                     <div class="banner_thumb">
-                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/apple.png') }}" alt=""></a>
+                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/apple.png') }}"
+                                alt=""></a>
                     </div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6">
                 <div class="single_banner">
                     <div class="banner_thumb">
-                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/samsung.png') }}" alt=""></a>
+                        <a href="shop.html"><img src="{{ asset('frontend/img/bg/samsung.png') }}"
+                                alt=""></a>
                     </div>
                 </div>
             </div>
@@ -423,10 +429,12 @@
                                         <div class="product_thumb">
                                             <a class="primary_img"
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                    src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                                    src="{{ asset($product->product_thumbnail) }}"
+                                                    alt=""></a>
                                             <a class="secondary_img"
                                                 href="{{ url('product/details/' . $product->id . '/' . $product->product_slug) }}"><img
-                                                    src="{{ asset($product->product_thumbnail) }}" alt=""></a>
+                                                    src="{{ asset($product->product_thumbnail) }}"
+                                                    alt=""></a>
                                         </div>
 
                                         @php
@@ -1080,7 +1088,8 @@
                 <div class="brand_container owl-carousel ">
                     @foreach ($brand_logo as $item)
                         <div class="single_brand">
-                            <a href=""><img src="{{ asset($item->brand_image) }}" alt=""></a>
+                            <a href=""><img src="{{ asset($item->brand_image) }}" alt=""
+                                   ></a>
                         </div>
                     @endforeach
                 </div>
