@@ -54,96 +54,7 @@
 
                         </div>
 
-                        {{-- <div class="widget_list widget_filter">
-                            <h3>Filter by price</h3>
-                            <form action="#">
-                                <div id="slider-range"></div>
-                                <button type="submit">Filter</button>
-                                <input type="text" name="text" id="amount" />
 
-                            </form>
-                        </div>
-                        <div class="widget_list widget_color">
-                            <h3>Select By Color</h3>
-                            <ul>
-                                <li>
-                                    <a href="#">Black <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> Blue <span>(8)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Brown <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> Green <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Pink <span>(4)</span></a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="widget_list widget_color">
-                            <h3>Select By SIze</h3>
-                            <ul>
-                                <li>
-                                    <a href="#">S <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> M <span>(8)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">L <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> XL <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">XLL <span>(4)</span></a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="widget_list widget_manu">
-                            <h3>Manufacturer</h3>
-                            <ul>
-                                <li>
-                                    <a href="#">Brake Parts <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Accessories <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Engine Parts <span>(4)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">hermes <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">louis vuitton <span>(8)</span></a>
-                                </li>
-
-                            </ul>
-                        </div>
-                        <div class="widget_list tags_widget">
-                            <h3>Product tags</h3>
-                            <div class="tag_cloud">
-                                <a href="#">Men</a>
-                                <a href="#">Women</a>
-                                <a href="#">Watches</a>
-                                <a href="#">Bags</a>
-                                <a href="#">Dress</a>
-                                <a href="#">Belt</a>
-                                <a href="#">Accessories</a>
-                                <a href="#">Shoes</a>
-                            </div>
-                        </div> --}}
-                        {{-- <div class="widget_list banner_widget">
-                            <div class="banner_thumb">
-                                <a href="#"><img src="{{ asset('frontend/img/bg/banner17.jpg') }}" alt=""></a>
-                            </div>
-                        </div> --}}
                     </div>
                 </aside>
                 <!--sidebar widget end-->
@@ -160,19 +71,7 @@
                         <button data-role="grid_list" type="button" class="btn-list" data-toggle="tooltip"
                             title="List"></button>
                     </div>
-                    <div class=" niceselect_option">
-                        <form class="select_option" action="#">
-                            <select name="orderby" id="short">
 
-                                <option selected value="1">Sort by average rating</option>
-                                <option value="2">Sort by popularity</option>
-                                <option value="3">Sort by newness</option>
-                                <option value="4">Sort by price: low to high</option>
-                                <option value="5">Sort by price: high to low</option>
-                                <option value="6">Product Name: Z</option>
-                            </select>
-                        </form>
-                    </div>
                     <div class="page_amount">
                         <strong class="text-success">{{ count($products) }} produse</strong>
                     </div>

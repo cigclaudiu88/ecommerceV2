@@ -141,66 +141,8 @@
                         @endif
                         {{-- SECTIUNE FILTRARE DISPLAY --}}
 
-                        <div class="widget_list widget_color">
-                            <h3>Select By SIze</h3>
-                            <ul>
-                                <li>
-                                    <a href="#">S <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> M <span>(8)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">L <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#"> XL <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">XLL <span>(4)</span></a>
-                                </li>
 
-                            </ul>
-                        </div>
-                        <div class="widget_list widget_manu">
-                            <h3>Manufacturer</h3>
-                            <ul>
-                                <li>
-                                    <a href="#">Brake Parts <span>(6)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Accessories <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">Engine Parts <span>(4)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">hermes <span>(10)</span></a>
-                                </li>
-                                <li>
-                                    <a href="#">louis vuitton <span>(8)</span></a>
-                                </li>
 
-                            </ul>
-                        </div>
-                        <div class="widget_list tags_widget">
-                            <h3>Product tags</h3>
-                            <div class="tag_cloud">
-                                <a href="#">Men</a>
-                                <a href="#">Women</a>
-                                <a href="#">Watches</a>
-                                <a href="#">Bags</a>
-                                <a href="#">Dress</a>
-                                <a href="#">Belt</a>
-                                <a href="#">Accessories</a>
-                                <a href="#">Shoes</a>
-                            </div>
-                        </div>
-                        <div class="widget_list banner_widget">
-                            <div class="banner_thumb">
-                                <a href="#"><img src="{{ asset('frontend/img/bg/banner17.jpg') }}" alt=""></a>
-                            </div>
-                        </div>
                     </div>
                 </aside>
                 <!--sidebar widget end-->
