@@ -40,11 +40,11 @@
 
 <style>
     body {
-        background-color: #eee
+        background-color: #ffffff;
     }
 
     .card {
-        background-color: #fff;
+        background-color: #ffffff;
         padding: 15px;
         border: none
     }
@@ -62,11 +62,11 @@
 
     .form-control {
         height: 50px;
-        background-color: #eeeeee69
+        background-color: #ffffff;
     }
 
     .form-control:focus {
-        background-color: #eeeeee69;
+        background-color: #ffffff;
         box-shadow: none;
         border-color: #eee
     }
@@ -94,5 +94,4 @@
     a:hover {
         color: #40a944;
     }
-
 </style>
