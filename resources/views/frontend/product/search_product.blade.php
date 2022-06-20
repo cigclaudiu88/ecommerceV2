@@ -44,7 +44,7 @@
     }
 
     .card {
-        background-color: #ffffff;
+        background-color: #fff;
         padding: 15px;
         border: none
     }
@@ -62,11 +62,11 @@
 
     .form-control {
         height: 50px;
-        background-color: #ffffff;
+        background-color: #eeeeee69;
     }
 
     .form-control:focus {
-        background-color: #ffffff;
+        background-color: #eeeeee69;
         box-shadow: none;
         border-color: #eee
     }
