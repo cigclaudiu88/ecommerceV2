@@ -79,7 +79,7 @@
             <div class="row align-items-center">
                 <div class="col-lg-6 col-md-7">
                     <div class="copyright_area">
-                        <p>Copyright © 2022 <a href="#">eShop UPT</a></p>
+                        <p>Copyright © 2022 . Designed by Cigusevici Claudiu <a href="#">eShop UPT</a></p>
                     </div>
                 </div>
                 <div class="col-lg-6 col-md-5">
