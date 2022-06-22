@@ -1088,8 +1088,7 @@
                 <div class="brand_container owl-carousel ">
                     @foreach ($brand_logo as $item)
                         <div class="single_brand">
-                            <a href=""><img src="{{ asset($item->brand_image) }}" alt=""
-                                   ></a>
+                            <a href=""><img src="{{ asset($item->brand_image) }}" alt=""></a>
                         </div>
                     @endforeach
                 </div>

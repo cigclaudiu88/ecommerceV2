@@ -464,7 +464,7 @@ $seo = App\Models\SEO::find(1);
                     $.each(response, function(key, value) {
                         // folosind functia product() din modelul Wishlist acesam campurile dint tabelul products
                         rows += ` <tr>
-                                        <td class="product_remove"> <button type="submit"  id="${value.id}" onclick="wishlistRemove(this.id)"><i class="icon-x"></i></button></td>
+                                        <td class="product_remove"> <a  id="${value.id}" onclick="wishlistRemove(this.id)"><i class="fa fa-trash-o"></i></a></td>
                                         <td class="product_thumb"><a>
                                             <img
                                                     src="/${value.product.product_thumbnail	}" alt=""></a></td>
@@ -477,7 +477,7 @@ $seo = App\Models\SEO::find(1);
                                                                     id="${value.product_id}"
                                                                     name="${value.product.product_name}"
                                                                     onclick="addToCartButton(this.id, this.name)">
-                                                                    <span class="lnr lnr-cart"> Adauga in Cos</span></a></td>
+                                                                    <span class="lnr lnr-cart"> </span></a></td>
                                     </tr>`
                     });
                     $('#wishlist').html(rows);

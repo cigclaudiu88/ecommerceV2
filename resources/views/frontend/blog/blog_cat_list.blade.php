@@ -76,7 +76,7 @@
 <!--blog area end-->
 
 <!--blog pagination area start-->
-<div class="blog_pagination pagination_full">
+{{-- <div class="blog_pagination pagination_full">
     <div class="container">
         <div class="row">
             <div class="col-12">
@@ -92,7 +92,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 <!--blog pagination area end-->
 
 @endsection

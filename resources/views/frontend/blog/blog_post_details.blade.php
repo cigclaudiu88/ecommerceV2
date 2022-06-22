@@ -24,7 +24,7 @@
                 <div class="breadcrumb_content">
                     <h3>Blog</h3>
                     <ul>
-                        <li><a href="index.html">Acasa</a></li>
+                        <li><a href="{{ url('/') }}">Acasa</a></li>
                         <li> {{ $blogpost->post_title }}</li>
                     </ul>
                 </div>
@@ -49,7 +49,7 @@
                                     <p>Posted by : <a href="#">admin</a> / On : <a
                                             href="#">{{ Carbon\Carbon::parse($blogpost->created_at)->diffForHumans() }}</a>
                                         / In :
-                                        <a href="#">Company, Image, Travel</a>
+                                        <a href="#">{{ $blogpost->category->blog_category_name }}</a>
                                     </p>
                                 </div>
                             </div>
