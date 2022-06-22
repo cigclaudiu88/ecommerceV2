@@ -432,6 +432,9 @@ class IndexController extends Controller
         // $breadsubcat preia din tabela subsubcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories si subcategories
         $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $subsubcategory_id)->get();
 
+
+
+
         // SECTIUNE SORTARE PRODUSE
         if (request()->get('sort') == 'price_asc') {
             $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('discount_price', 'ASC')->paginate(9);
