@@ -432,10 +432,8 @@ class IndexController extends Controller
         // $breadsubcat preia din tabela subsubcategories datele aferente id-ului primit ca parametru cu access la coloanele tabelului categories si subcategories
         $breadsubsubcat = SubSubCategory::with(['category', 'subcategory'])->where('id', $subsubcategory_id)->get();
 
-
-
-
         // SECTIUNE SORTARE PRODUSE
+        
         if (request()->get('sort') == 'price_asc') {
             $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('discount_price', 'ASC')->paginate(12);
         } elseif (request()->get('sort') == 'price_desc') {
@@ -445,6 +443,7 @@ class IndexController extends Controller
         } elseif (request()->get('sort') == 'recommended') {
             $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->where('featured', 1)->orderBy('product_name', 'ASC')->paginate(12);
         }
+        
         // SECTIUNE SORTARE PRODUSE
 
         // SECTIUNE FILTRARE BRAND
