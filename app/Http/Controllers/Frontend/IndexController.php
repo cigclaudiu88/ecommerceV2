@@ -434,9 +434,9 @@ class IndexController extends Controller
 
         // SECTIUNE SORTARE PRODUSE
         if (request()->get('sort') == 'price_asc') {
-            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('selling_price', 'ASC')->paginate(9);
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('discount_price', 'ASC')->paginate(9);
         } elseif (request()->get('sort') == 'price_desc') {
-            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('selling_price', 'DESC')->paginate(9);
+            $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('discount_price', 'DESC')->paginate(9);
         } elseif (request()->get('sort') == 'newest') {
             $products = Product::where('status', 1)->where('subsubcategory_id', $subsubcategory_id)->orderBy('created_at', 'DESC')->paginate(9);
         } elseif (request()->get('sort') == 'recommended') {
